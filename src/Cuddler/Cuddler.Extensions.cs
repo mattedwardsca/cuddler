@@ -2,8 +2,9 @@
 using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-using Cuddler.Internal._Utils;
-using Cuddler.Mvc.Views;
+using Cuddler.Shared.Attributes;
+using Cuddler.Shared.TagHelpers;
+using Cuddler.Shared.Utils;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;

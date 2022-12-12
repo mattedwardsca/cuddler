@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Cuddler.Mvc.Controllers;
+using Cuddler.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

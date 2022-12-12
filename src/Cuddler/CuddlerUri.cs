@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Cuddler.Internal._Utils;
+using Cuddler.Shared.Utils;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Mvc.Rendering;
