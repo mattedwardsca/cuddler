@@ -1,4 +1,4 @@
-﻿namespace Cuddler._Utils;
+﻿namespace Cuddler.Internal._Utils;
 
 public enum EGridTemplate
 {

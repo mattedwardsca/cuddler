@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 
-namespace Cuddler._Utils;
+namespace Cuddler.Internal._Utils;
 
-internal static class AssemblyScannerUtil
+public static class AssemblyScannerUtil
 {
     public static TReturn CreateInstance<TReturn>(Type type)
     {
@@ -77,15 +77,15 @@ internal static class AssemblyScannerUtil
     {
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
         foreach (var assembly1 in assemblies)
-            foreach (var type in assembly1.GetTypes())
+        foreach (var type in assembly1.GetTypes())
+        {
+            if (type.GetCustomAttributes(typeof(T), true)
+                    .Length
+                > 0)
             {
-                if (type.GetCustomAttributes(typeof(T), true)
-                        .Length
-                    > 0)
-                {
-                    yield return type;
-                }
+                yield return type;
             }
+        }
     }
 
     public static IEnumerable<TReturn> InstantiateAllOfType<T, TReturn>(params object[]? obj)
@@ -117,12 +117,12 @@ internal static class AssemblyScannerUtil
                         .ToList();
     }
 
-    internal static IEnumerable<Type> ListTypesWithAttribute<TType, TAttribute>()
+    public static IEnumerable<Type> ListTypesWithAttribute<TType, TAttribute>()
     {
         return ListTypesWithAttribute<TAttribute>(typeof(TType));
     }
 
-    internal static IEnumerable<Type> ListTypesWithAttribute<TAttribute>(Type t)
+    public static IEnumerable<Type> ListTypesWithAttribute<TAttribute>(Type t)
     {
         var assembly = t.Assembly;
 

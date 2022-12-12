@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Cuddler._Utils;
+namespace Cuddler.Internal._Utils;
 
-internal static class StringUtils
+public static class StringUtils
 {
     public static string SplitCamelCase(string str)
     {

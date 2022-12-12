@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-using Cuddler._Utils;
+using Cuddler.Internal._Utils;
 using Cuddler.Mvc.Views;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,7 +20,7 @@ public static class CuddlerExtensions
     public static async Task<IHtmlContent> Template(this Cuddler cuddler, BaseTagHelper tagHelper)
     {
         var modelType = tagHelper.GetType();
-        var tagHelperDictionary = ToTagHelperDictionary(tagHelper);
+        var tagHelperDictionary = ToObjectTagHelperDictionary(tagHelper);
 
         return await cuddler.Template(modelType, tagHelperDictionary);
     }
@@ -76,6 +76,11 @@ public static class CuddlerExtensions
         var result = await cuddler.HtmlHelper.PartialAsync($"Templates/{name}/Default", model);
 
         return result;
+    }
+
+    public static IDictionary<string, object?> ToTagHelperDictionary(this BaseTagHelper source)
+    {
+        return ToObjectTagHelperDictionary(source);
     }
 
     private static string? CalculatedDefaultValue(PropertyInfo propertyInfo)
@@ -195,7 +200,7 @@ public static class CuddlerExtensions
         return Attribute.IsDefined(propertyInfo, typeof(T));
     }
 
-    private static IDictionary<string, object?> ToTagHelperDictionary(object source)
+    private static IDictionary<string, object?> ToObjectTagHelperDictionary(object source)
     {
         if (source == null)
         {

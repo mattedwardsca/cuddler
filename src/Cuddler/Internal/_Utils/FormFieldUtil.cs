@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Cuddler._Utils;
+namespace Cuddler.Internal._Utils;
 
-internal static class FormFieldUtil
+public static class FormFieldUtil
 {
     public static string? ClientTemplate(string key, string kendoGridTemplate)
     {

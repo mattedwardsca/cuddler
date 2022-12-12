@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text.Encodings.Web;
-using Cuddler._Utils;
+using Cuddler.Internal._Utils;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Cuddler.Mvc.Models;
@@ -47,7 +47,7 @@ public class FormField
     public string? DataType { get; set; }
 
     /// <summary>
-    ///     For internal use
+    ///     For public use
     /// </summary>
     [NotMapped]
     public object? DefaultValue { get; set; }
@@ -111,7 +111,7 @@ public class FormField
     }
 
     /// <summary>
-    ///     For internal use
+    ///     For public use
     /// </summary>
     [NotMapped]
     public bool Inherited { get; set; }
@@ -145,7 +145,7 @@ public class FormField
     public bool Required { get; set; }
 
     /// <summary>
-    ///     For internal use
+    ///     For public use
     /// </summary>
     [NotMapped]
     public string[]? Roles { get; set; }
@@ -170,7 +170,7 @@ public class FormField
     }
 
     /// <summary>
-    ///     For internal use
+    ///     For public use
     /// </summary>
     [NotMapped]
     public bool Virtual { get; set; }
@@ -178,7 +178,7 @@ public class FormField
     public string WebId { get; set; } = null!;
 
     /// <summary>
-    ///     For internal use
+    ///     For public use
     /// </summary>
     public virtual Type GetDataType()
     {

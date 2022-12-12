@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace Cuddler._Utils;
+namespace Cuddler.Internal._Utils;
 
-internal static class ErrorModelUtil
+public static class ErrorModelUtil
 {
     public static IDictionary<string, string> GetModelValidationErrors<TModel>(TModel model)
     {

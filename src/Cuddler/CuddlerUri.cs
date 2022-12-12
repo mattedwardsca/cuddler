@@ -1,12 +1,12 @@
 ﻿using System.Linq.Expressions;
-using Cuddler._Utils;
+using Cuddler.Internal._Utils;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Mvc.Rendering;
 
 public abstract class CuddlerUri
 {
-    internal string? _endpointUrl;
+    public string? _endpointUrl;
 
     public string ToUri()
     {
@@ -81,7 +81,7 @@ public class CuddlerUri<T> : CuddlerUri
         return parameterValue;
     }
 
-    internal CuddlerUri<T> Endpoint(Expression<Func<T, Task<IActionResult>>> func)
+    public CuddlerUri<T> Endpoint(Expression<Func<T, Task<IActionResult>>> func)
     {
         var body = func.Body as MethodCallExpression;
 

@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 
-namespace Cuddler._Utils;
+namespace Cuddler.Internal._Utils;
 
-internal static class UpdateModelUtil
+public static class UpdateModelUtil
 {
     public static void UpdateModelValue<TModel>([DisallowNull] TModel model, string key, object? value)
     {
@@ -99,8 +99,9 @@ internal static class UpdateModelUtil
             }
             else
             {
-                b = s.Equals("on") || s.ToLower()
-                                       .Equals("true");
+                b = s.Equals("on")
+                    || s.ToLower()
+                        .Equals("true");
             }
         }
 

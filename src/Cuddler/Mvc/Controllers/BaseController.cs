@@ -1,5 +1,5 @@
-﻿using Cuddler._Utils;
-using Cuddler.Data;
+﻿using Cuddler.Data;
+using Cuddler.Internal._Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
