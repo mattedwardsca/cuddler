@@ -363,7 +363,7 @@ public static class FormFieldUtil
         {
             if (string.IsNullOrEmpty(requiredAttribute.ErrorMessage))
             {
-                message = StringUtils.SplitCamelCase(propertyInfo.Name) + " is required";
+                message = StringUtil.SplitCamelCase(propertyInfo.Name) + " is required";
             }
             else
             {
@@ -450,8 +450,8 @@ public static class FormFieldUtil
         var display = propertyInfo.GetCustomAttribute<DisplayAttribute>();
 
         var splitCamelCase = display != null
-            ? display.Name ?? StringUtils.SplitCamelCase(propertyInfo.Name)
-            : StringUtils.SplitCamelCase(propertyInfo.Name);
+            ? display.Name ?? StringUtil.SplitCamelCase(propertyInfo.Name)
+            : StringUtil.SplitCamelCase(propertyInfo.Name);
 
         return splitCamelCase;
     }

@@ -57,7 +57,7 @@ public class FormField
 
     public string? ErrorMessage
     {
-        get => _errorMessage ?? $"{StringUtils.SplitCamelCase(Name)} is required";
+        get => _errorMessage ?? $"{StringUtil.SplitCamelCase(Name)} is required";
         set => _errorMessage = value;
     }
 
