@@ -13,12 +13,12 @@ namespace Cuddler;
 
 public static class CuddlerExtensions
 {
-    public static Cuddler Cuddler(this IHtmlHelper htmlHelper)
+    public static CuddlerUi Cuddler(this IHtmlHelper htmlHelper)
     {
-        return new Cuddler(htmlHelper);
+        return new CuddlerUi(htmlHelper);
     }
 
-    public static async Task<IHtmlContent> Template(this Cuddler cuddler, BaseTagHelper tagHelper)
+    public static async Task<IHtmlContent> Template(this CuddlerUi cuddler, BaseTagHelper tagHelper)
     {
         var modelType = tagHelper.GetType();
         var tagHelperDictionary = ToObjectTagHelperDictionary(tagHelper);
@@ -26,7 +26,7 @@ public static class CuddlerExtensions
         return await cuddler.Template(modelType, tagHelperDictionary);
     }
 
-    public static async Task<IHtmlContent> Template(this Cuddler cuddler, Type modelType, IDictionary<string, object?> data)
+    public static async Task<IHtmlContent> Template(this CuddlerUi cuddler, Type modelType, IDictionary<string, object?> data)
     {
         object? model;
         try
@@ -44,7 +44,7 @@ public static class CuddlerExtensions
         return await cuddler.HtmlHelper.PartialAsync($"Templates/{templateName}/Default", model);
     }
 
-    public static async Task<IHtmlContent> Template(this Cuddler cuddler, string templateName, IDictionary<string, object?> data)
+    public static async Task<IHtmlContent> Template(this CuddlerUi cuddler, string templateName, IDictionary<string, object?> data)
     {
         object? model;
         Type? modelType;
@@ -65,7 +65,7 @@ public static class CuddlerExtensions
         return await cuddler.HtmlHelper.PartialAsync($"Templates/{templateName}/Default", model);
     }
 
-    public static async Task<IHtmlContent> Template<TModel>(this Cuddler cuddler, Action<TModel>? f = null)
+    public static async Task<IHtmlContent> Template<TModel>(this CuddlerUi cuddler, Action<TModel>? f = null)
     {
         var type = typeof(TModel);
         f ??= _ => { };

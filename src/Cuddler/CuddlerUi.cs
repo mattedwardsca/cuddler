@@ -2,9 +2,9 @@
 
 namespace Cuddler;
 
-public class Cuddler
+public class CuddlerUi
 {
-    public Cuddler(IHtmlHelper htmlHelper)
+    public CuddlerUi(IHtmlHelper htmlHelper)
     {
         HtmlHelper = htmlHelper;
     }
