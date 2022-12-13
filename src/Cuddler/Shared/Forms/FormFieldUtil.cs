@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Cuddler.Shared.Attributes;
-using Cuddler.Shared.Templates.Tables;
 using Cuddler.Shared.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Cuddler.Shared.Templates.Forms;
+namespace Cuddler.Shared.Forms;
 
 public static class FormFieldUtil
 {

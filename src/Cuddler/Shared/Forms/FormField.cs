@@ -6,7 +6,7 @@ using System.Text.Encodings.Web;
 using Cuddler.Shared.Utils;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace Cuddler.Shared.Templates.Forms;
+namespace Cuddler.Shared.Forms;
 
 public class FormField
 {

@@ -1,4 +1,4 @@
-﻿namespace Cuddler.Shared.Templates.Forms;
+﻿namespace Cuddler.Shared.Forms;
 
 public enum EFormField
 {

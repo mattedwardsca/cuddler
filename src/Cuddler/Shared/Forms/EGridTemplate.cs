@@ -1,4 +1,4 @@
-﻿namespace Cuddler.Shared.Templates.Tables;
+﻿namespace Cuddler.Shared.Forms;
 
 public enum EGridTemplate
 {

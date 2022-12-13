@@ -79,7 +79,7 @@ public static class CuddlerExtensions
         return result;
     }
 
-    public static IDictionary<string, object?> ToTagHelperDictionary(this BaseTagHelper source)
+    public static IDictionary<string, object?> ToTagHelperDictionary(this object source)
     {
         return ToObjectTagHelperDictionary(source);
     }
