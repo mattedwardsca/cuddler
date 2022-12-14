@@ -8,7 +8,7 @@ public abstract class CuddlerUri
 {
     public string? _endpointUrl;
 
-    public string ToUri()
+    public override string ToString()
     {
         return _endpointUrl ?? "UNINITIALIZED-ENDPOINT";
     }
