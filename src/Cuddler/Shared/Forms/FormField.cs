@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text.Encodings.Web;
 using Cuddler.Shared.Utils;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Cuddler.Shared.Forms;
@@ -23,7 +24,7 @@ public class FormField
         WebId = id;
     }
 
-    public string? Api { get; set; }
+    public CuddlerUri? Api { get; set; }
 
     [NotMapped]
     public virtual PropertyInfo BackingProperty { get; set; } = null!;
