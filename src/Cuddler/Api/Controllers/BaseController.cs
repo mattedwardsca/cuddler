@@ -1,5 +1,6 @@
 ﻿using Cuddler.Data;
 using Cuddler.Data.Models;
+using Cuddler.Shared.Attributes;
 using Cuddler.Shared.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,17 @@ public abstract class BaseController : Controller
     {
         Repository = repository;
     }
+
+    [WrapOutput]
+    [HttpPost(nameof(Heartbeat))]
+    public async Task<IActionResult> Heartbeat()
+    {
+        var result = await HeartbeatTests();
+
+        return Json(result);
+    }
+
+    protected abstract Task<bool> HeartbeatTests();
 
     protected IRepository Repository { get; }
 
