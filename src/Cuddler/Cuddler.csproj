@@ -45,4 +45,10 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Reference Include="Kendo.Mvc">
+	    <HintPath>..\..\..\..\BoostDC.Ui\lib\kendo\Kendo.Mvc.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
 </Project>

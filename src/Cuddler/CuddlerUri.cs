@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
+using Cuddler;
 using Cuddler.Shared.Utils;
+using Kendo.Mvc;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +9,10 @@ namespace Microsoft.AspNetCore.Mvc.Rendering;
 public abstract class CuddlerUri
 {
     public string? _endpointUrl;
+
+    public List<SortDescriptor> SortList { get; } = new();
+
+    public List<CuddlerBaseFilter> FilterList { get; } = new();
 
     public override string ToString()
     {

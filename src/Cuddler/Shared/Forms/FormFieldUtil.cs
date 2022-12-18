@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Cuddler.Shared.Attributes;
@@ -374,19 +373,19 @@ public static class FormFieldUtil
         return message;
     }
 
-    private static void GetForeignKey(PropertyInfo propertyInfo, FormField property)
-    {
-        var hasAttribute = HasAttribute<ForeignKeyAttribute>(propertyInfo);
-        if (!hasAttribute)
-        {
-            return;
-        }
-
-        var propertyName = propertyInfo.GetCustomAttribute<ForeignKeyAttribute>()!.Name;
-        property.ForeignKey = propertyInfo.DeclaringType?.GetProperty(propertyName)
-                                          ?.PropertyType!;
-        property.Name = propertyName;
-    }
+    // private static void GetForeignKey(PropertyInfo propertyInfo, FormField property)
+    // {
+    //     var hasAttribute = HasAttribute<ForeignKeyAttribute>(propertyInfo);
+    //     if (!hasAttribute)
+    //     {
+    //         return;
+    //     }
+    //
+    //     var propertyName = propertyInfo.GetCustomAttribute<ForeignKeyAttribute>()!.Name;
+    //     property.ForeignKey = propertyInfo.DeclaringType?.GetProperty(propertyName)
+    //                                       ?.PropertyType!;
+    //     property.Name = propertyName;
+    // }
 
     private static string? GetFormTag(PropertyInfo propertyInfo)
     {
