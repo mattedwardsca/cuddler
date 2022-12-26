@@ -1,0 +1,15 @@
+﻿@using BoostDC.Ui.Modules
+@using global::Cuddler.Pages.Shared.Cuddler.FormTooltip
+@model FormLabelTagHelper
+
+@if (!string.IsNullOrEmpty(Model.Text))
+{
+    <label for="@Model.ForProperty" @Model.Block.IsTrueHtml("class='d-block'")>
+        @Html.Raw(Model.Text)
+        @if (Model.Required)
+        {
+            <span class="eux-required">*</span>
+        }
+    </label>
+    <form-tooltip title="@Model.Description" />
+}

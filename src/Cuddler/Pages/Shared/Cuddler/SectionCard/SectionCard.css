@@ -1,0 +1,44 @@
+﻿.d-flex-gap-1 > * { margin-right: 5px; }
+.d-flex-gap-1 > .eux-SectionCard { margin-bottom: 5px; margin-right: 5px; }
+.d-flex-gap-2 > * { margin-right: 10px; }
+.d-flex-gap-2 > .eux-SectionCard { margin-bottom: 10px; margin-right: 10px; }
+.d-flex-gap-3 > * { margin-right: 15px; }
+.d-flex-gap-3 > .eux-SectionCard { margin-bottom: 15px; margin-right: 15px; }
+.d-flex-gap-4 > * { margin-right: 20px; }
+.d-flex-gap-4 > .eux-SectionCard { margin-bottom: 20px; margin-right: 20px; }
+.eux-SectionCard .d-flex-justify-between { width: 100%; }
+.eux-SectionCard .eux-Icon { margin-right: 5px; }
+.eux-SectionCard.b-0 .card { border: 0; }
+.eux-SectionCard.eux-Mini { width: 280px; }
+.eux-SectionCard.eux-Small { width: 429px; }
+.eux-SectionCard.eux-Grow { flex-grow: 1 }
+.eux-SectionCard.eux-Medium { width: 655px; }
+.eux-SectionCard.eux-Paper { width: 812px; }
+.eux-SectionCard.eux-Large { width: 880px; }
+.eux-SectionCard.eux-Full { margin: auto; width: 1360px; }
+.eux-SectionCard > .card { border-radius: 2px; padding: 20px; }
+@keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-o-keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-moz-keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-webkit-keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+.eux-SectionCard .eux-loader-background-flicker { -moz-animation: euxSectionCard 3s infinite; -o-animation: euxSectionCard 3s infinite; -webkit-animation: euxSectionCard 3s infinite; animation: euxSectionCard 3s infinite; }
+.eux-SectionCard .eux-loader-background { background-color: #EEEEEE; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 3; }
+.eux-SectionCard .eux-card-title { align-items: center; display: flex; height: 49px; }
+.eux-SectionCard .eux-card-title .eux-ActionMenu .kagVYw { left: 61px; top: 28px; }
+.eux-SectionCard .card .eux-loader-wrapper > * { margin-bottom: 1em; }

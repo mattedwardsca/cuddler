@@ -1,0 +1,13 @@
+﻿@model PartialLoaderTagHelper
+@{
+}
+<div id="@Model.WebId">
+    @if (!string.IsNullOrEmpty(Model.Src))
+    {
+        <script>
+            $.get("@(Html.Raw(Model.Src))", function (result) {
+                $("#@(Model.WebId)").html(result);
+            });
+        </script>
+    }
+</div>

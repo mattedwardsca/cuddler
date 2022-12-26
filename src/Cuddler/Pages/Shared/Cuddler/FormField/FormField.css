@@ -1,0 +1,7 @@
+﻿.eux-FormField { display: block; }
+.eux-FormField label { display: block; }
+.eux-FormField .k-textbox { width: 100%; }
+.eux-FormField .k-textbox .k-input { border: none; }
+.eux-FormField.eux-readonly .k-select { background: #e9ecef; cursor: default; }
+.eux-FormField.eux-readonly .k-picker-wrap .k-icon { cursor: default; }
+.eux-FormField + .eux-FormField:not(.eux-FormField-hidden) { margin-top: 1em; }

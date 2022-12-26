@@ -1,0 +1,23 @@
+﻿using System.Text.Encodings.Web;
+using Cuddler.Core.Data;
+using Cuddler.Pages.Shared.Cuddler.Base;
+using Cuddler.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace Cuddler.Pages.Shared.Cuddler.CuddlerInformation;
+
+public class CuddlerInformationTagHelper : BaseTagHelper, ICuddler
+{
+    public CuddlerInformationTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
+    {
+
+    }
+
+    public EFontAwesomeIcon Icon { get; set; } = EFontAwesomeIcon.None;
+
+    public CuddlerUri? ButtonSubmitApi { get; set; }
+
+    public string? ButtonText { get; set; }
+
+    public EAlert Type { get; set; } = EAlert.Info;
+}

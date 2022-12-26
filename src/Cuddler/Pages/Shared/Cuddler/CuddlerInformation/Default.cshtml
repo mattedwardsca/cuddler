@@ -1,0 +1,77 @@
+﻿@using global::Cuddler.Core.Data
+@using global::Cuddler.Core.Utils
+@model CuddlerInformationTagHelper
+@{
+    EButtonType buttonType;
+
+    switch (Model.Type)
+    {
+        case EAlert.Success:
+            buttonType = EButtonType.Success;
+            break;
+        case EAlert.Info:
+            buttonType = EButtonType.Light;
+            break;
+        case EAlert.Warning:
+            buttonType = EButtonType.Warning;
+            break;
+        case EAlert.Danger:
+            buttonType = EButtonType.Danger;
+            break;
+        case EAlert.Meta:
+            buttonType = EButtonType.Light;
+            break;
+        default:
+            throw new ArgumentOutOfRangeException();
+    }
+}
+
+@{
+    var html = Model.Html.ToString();
+    if (string.IsNullOrEmpty(html))
+    {
+        return;
+    }
+}
+<div class="eux-Information">
+    @if (Model.Type != EAlert.Meta)
+    {
+        <div class="alert p-4 d-flex align-center @BootstrapUtil.ToString(Model.Type)"
+             role="alert">
+            @if (Model.Icon != EFontAwesomeIcon.None)
+            {
+                <div>
+                    <icon type="@Model.Icon" />
+                </div>
+            }
+            <div class="d-grid-auto-1fr d-grid-gap-20">
+                <div class="text">
+                    @Html.Raw(Model.Html)
+                </div>
+                @if (Model.ButtonSubmitApi != null && !string.IsNullOrEmpty(Model.ButtonText))
+                {
+                    <action-button action-complete="Reload"
+                                   button-type="@buttonType"
+                                   submit-api="@Model.ButtonSubmitApi">
+                        @Model.ButtonText
+                    </action-button>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert p-1 d-flex align-center @BootstrapUtil.ToString(Model.Type)"
+             role="alert">
+            @if (Model.Icon != EFontAwesomeIcon.None)
+            {
+                <div>
+                    <icon type="@Model.Icon" />
+                </div>
+            }
+            <div class="text">
+                @Html.Raw(Model.Html)
+            </div>
+        </div>
+    }
+</div>

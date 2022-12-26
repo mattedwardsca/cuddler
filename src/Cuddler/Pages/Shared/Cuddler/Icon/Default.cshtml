@@ -1,0 +1,10 @@
+﻿@using global::Cuddler.Core.Data
+@using global::Cuddler.Core.Utils
+@model IconTagHelper
+@{
+    var cssClass = EFontAwesomeIconHelper.ToString(Model.Type);
+    var cssSize = FontAwesomeUtil.ToString(Model.Size);
+}
+<span class="eux-Icon">
+    <i class="@cssClass @cssSize"></i>
+</span>

@@ -1,0 +1,17 @@
+﻿.eux-CuddlerHeading { display: grid; height: 100%; margin: auto; max-width: 1400px; padding: 0 35px; width: 100%; }
+.eux-CuddlerHeading .eux-slogan { max-width: 650px; }
+.eux-CuddlerHeading h6 { padding-top: 5px; }
+.eux-CuddlerHeading .align-items-center > div { display: flex; }
+.eux-CuddlerHeading .eux-border-left { align-items: center; border-left: solid 1px var(--ColorFive); margin-left: 10px; }
+.eux-CuddlerHeading .eux-Header-actionmenu .dropdown { width: 100%; }
+.eux-CuddlerHeading .eux-Header-actionmenu .dropdown button { width: 100%; }
+.eux-CuddlerHeading .eux-Header-actionmenu .eux-link { background: transparent; border: none; color: #33475b; display: block; font-size: 13px; padding: 5px 15px 5px 15px; text-decoration: none; }
+.eux-CuddlerHeading .eux-Header-actionmenu .eux-link:hover { background: transparent; }
+.eux-CuddlerHeading .eux-Header-actionmenu .btn.link { box-shadow: none; color: #33475b; font-size: 13px; text-decoration: none; }
+.eux-CuddlerHeading .eux-Header-actionmenu .btn.btn-link { box-shadow: none; color: #33475b; font-size: 13px; text-decoration: none; }
+.eux-CuddlerHeading .eux-Header-actionmenu .dropdown-menu { width: 200px; }
+.eux-CuddlerHeading .eux-Header-actionmenu .btn.show:focus { box-shadow: none; }
+.eux-CuddlerHeading .eux-Header-actionmenu .eux-radius-end-0 .btn { border-radius: 6px 0 0 6px; }
+.eux-CuddlerHeading .eux-Header-actionmenu .dropdown-item:active .eux-link { color: white; }
+.eux-CuddlerHeading .eux-Header-actionmenu .kagVYw { background-color: white; border-bottom-color: rgb(203, 214, 226); border-image: initial; border-left-color: transparent !important; border-right-color: rgb(203, 214, 226); border-style: solid; border-top-color: transparent !important; border-top-left-radius: 100%; border-width: 1px; clip-path: polygon(100% 100%, 0px 100%, 100% 0px); display: none; height: 20px; left: 87px; pointer-events: none; position: absolute; top: 25px; transform: rotate(-135deg); width: 20px; z-index: 9999; }
+.eux-CuddlerHeading .eux-Header-actionmenu .btn.show + .kagVYw { display: block; }

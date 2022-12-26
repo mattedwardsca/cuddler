@@ -1,0 +1,47 @@
+﻿@model CuddlerFormFieldsRowTagHelper
+@{
+    var property = Model.FormField;
+}
+@if (!string.IsNullOrEmpty(property.Tag) || !string.IsNullOrEmpty(property.MoreInfo))
+{
+    <div class="align-items-center d-flex-justify-between">
+        <div>
+            @if (!string.IsNullOrEmpty(property.Tag))
+            {
+                <badge badge-type="Info"
+                       font-size="OneX"
+                       read-only="@Model.ReadOnly">
+                    @property.Tag
+                </badge>
+            }
+        </div>
+        <div>
+            @if (!string.IsNullOrEmpty(property.MoreInfo))
+            {
+                @Html.Raw(property.MoreInfo)
+            }
+        </div>
+    </div>
+}
+<form-field bind-data="@property.BindData"
+            bind-id="@property.BindId"
+            children="@property.Children"
+            context-type="@property.ContextType"
+            description="@property.Description"
+            error-message="@property.ErrorMessage"
+            field="@property.Field"
+            hide-label="@property.HideLabel"
+            html-attributes="@property.HtmlAttributes"
+            inherited="@property.Inherited"
+            is-template="@property.IsTemplate"
+            label="@property.Label"
+            matrix="@property.Matrix"
+            max-length="@property.MaxLength"
+            min-length="@property.MinLength"
+            name="@property.Name"
+            placeholder="@property.Placeholder"
+            read-only="@Model.ReadOnly"
+            required="@property.Required"
+            show-description="@(!string.IsNullOrEmpty(property.Description))"
+            value="@property.Value"
+            web-id="@property.WebId" />

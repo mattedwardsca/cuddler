@@ -1,0 +1,41 @@
+﻿.d-flex-gap-1 > * { margin-right: 5px; }
+.d-flex-gap-1 > .eux-CuddlerBlock { margin-bottom: 5px; margin-right: 5px; }
+.d-flex-gap-2 > * { margin-right: 10px; }
+.d-flex-gap-2 > .eux-CuddlerBlock { margin-bottom: 10px; margin-right: 10px; }
+.d-flex-gap-3 > * { margin-right: 15px; }
+.d-flex-gap-3 > .eux-CuddlerBlock { margin-bottom: 15px; margin-right: 15px; }
+.d-flex-gap-4 > * { margin-right: 20px; }
+.d-flex-gap-4 > .eux-CuddlerBlock { margin-bottom: 20px; margin-right: 20px; }
+.eux-CuddlerBlock.eux-Mini { width: 280px; }
+.eux-CuddlerBlock.eux-Small { width: 429px; }
+.eux-CuddlerBlock.eux-Grow { flex-grow: 1 }
+.eux-CuddlerBlock.eux-Medium { width: 655px; }
+.eux-CuddlerBlock.eux-Paper { width: 812px; }
+.eux-CuddlerBlock.eux-Large { width: 880px; }
+.eux-CuddlerBlock.eux-Full { margin: auto; width: 1360px; }
+.eux-CuddlerBlock > .card { border-radius: 2px; height: 100%; padding: 20px; --bs-card-border-color: transparent; }
+@keyframes euxCuddlerBlock {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-o-keyframes euxCuddlerBlock {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-moz-keyframes euxCuddlerBlock {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-webkit-keyframes euxCuddlerBlock {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+.eux-CuddlerBlock .eux-loader-background-flicker { -moz-animation: euxCuddlerBlock 3s infinite; -o-animation: euxCuddlerBlock 3s infinite; -webkit-animation: euxCuddlerBlock 3s infinite; animation: euxCuddlerBlock 3s infinite; }
+.eux-CuddlerBlock .eux-loader-background { background-color: #EEEEEE; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 3; }
+.eux-CuddlerBlock .eux-card-title { align-items: center; display: flex; height: 49px; }
+.eux-CuddlerBlock .eux-card-title .eux-ActionMenu .kagVYw { left: 37px; }
+.eux-CuddlerBlock .card .eux-loader-wrapper > * { margin-bottom: 1em; }

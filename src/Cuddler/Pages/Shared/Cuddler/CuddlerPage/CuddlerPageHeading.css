@@ -1,0 +1,6 @@
+﻿.eux-Portal .eux-CuddlerPage { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+.eux-Page-LightGray .tab-content { background: #EBEBEB; }
+.eux-Page-LightGray .eux-ContentTabs { background: #EBEBEB; }
+.eux-Page-LightGray .nav-tabs .nav-link.active { background: #EBEBEB; }
+.eux-Page-LightGray .eux-portal main > .eux-CuddlerPage { background: #EBEBEB; }
+.eux-portal main > .eux-CuddlerPage.eux-Page-LightGray { background: #EBEBEB; }

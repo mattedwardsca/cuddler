@@ -1,0 +1,15 @@
+﻿@model CuddlerFormFieldsTagHelper
+<div class="eux-CuddlerFormFields">
+    @if (Model.Fields.Any())
+    {
+        <cuddler-form-fields-children auto-save="@Model.AutoSave"
+                                      fields="@Model.Fields"
+                                      is-template="@Model.IsTemplate"
+                                      read-only="Model.ReadOnly"
+                                      save-url="@Model.SaveUrl" />
+    }
+    else
+    {
+        @Model.Html
+    }
+</div>

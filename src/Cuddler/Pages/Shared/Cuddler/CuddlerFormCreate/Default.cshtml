@@ -1,0 +1,29 @@
+﻿@using global::Cuddler.Core.Data
+@using global::Cuddler.Core.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
+@model CuddlerFormCreateTagHelper
+@{
+    var entityType = Model.CreateModel.GetCuddlerType()
+                          .Name.Replace("Entity", string.Empty);
+    var buttonText = string.IsNullOrEmpty(Model.OverrideButtonText)
+        ? $"Add {StringUtil.SplitCamelCase(entityType)}"
+        : Model.OverrideButtonText;
+}
+<div class="eux-CuddlerCreate">
+    <cuddler-popup action-complete="@Model.ActionComplete"
+                   button-icon="@EFontAwesomeIcon.Plus"
+                   button-text="@(buttonText)"
+                   button-type="Primary"
+                   popup-event="@Model.PopupEvent"
+                   redirect-url="@Model.DetailsUrl"
+                   submit-api-url="@Model.SubmitApiUrl"
+                   submit-button-text="Save"
+                   submit-button-type="@EButtonType.Success">
+        <div class="eux-popup-top-html">
+            @Html.Raw(Model.Html)
+        </div>
+        <div>
+            <cuddler-form-fields fields="@Model.CreateModel.GetPropertyList()" />
+        </div>
+    </cuddler-popup>
+</div>

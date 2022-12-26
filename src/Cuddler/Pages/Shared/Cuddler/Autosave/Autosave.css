@@ -1,0 +1,5 @@
+﻿.eux-Autosave { position: relative; }
+.eux-Autosave > form > article { display: block; }
+.eux-Autosave .field-validation { border-radius: 50px; bottom: -2px; display: none; font-size: 10px; padding: 2px 4px 0px 4px; position: absolute; text-transform: uppercase; }
+.eux-Autosave .field-validation-error { color: darkred; text-align: left; }
+.eux-Autosave .field-validation-success { background: rgba(0, 0, 0, .2); color: darkgreen; text-align: left; }

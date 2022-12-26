@@ -1,0 +1,4 @@
+﻿.eux-CuddlerSubmitButton .eux-submit-btn { min-width: 100px; }
+.eux-CuddlerSubmitButton .eux-message { font-size: 12px; font-weight: normal; }
+.eux-CuddlerSubmitButton .eux-message.success { color: darkgreen; margin-top: 8px; }
+.eux-CuddlerSubmitButton .eux-message.error, .eux-CuddlerSubmitButton .eux-error { color: #d9534f; font-weight: normal; margin-top: 8px; }

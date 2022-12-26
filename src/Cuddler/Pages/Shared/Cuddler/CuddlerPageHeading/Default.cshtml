@@ -1,0 +1,14 @@
+﻿@using global::Cuddler.Core.Utils
+@model CuddlerPageHeadingTagHelper
+@{
+    var classBuilder = CssClassBuilder.CreateInstance();
+    if (Model.HasBottomBorder)
+    {
+        classBuilder.AddClass("eux-CuddlerPageHeading-hasBottomBorder");
+    }
+}
+<div class="eux-CuddlerPageHeading @classBuilder">
+    <div class="eux-CuddlerPageHeading-wrapper">
+        @Html.Raw(Model.Html)
+    </div>
+</div>

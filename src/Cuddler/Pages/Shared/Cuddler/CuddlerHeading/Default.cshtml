@@ -1,0 +1,144 @@
+﻿@using global::Cuddler.Core.Data
+@using global::Cuddler.Core.Extensions
+@using global::Cuddler.Core.Forms
+@using global::Cuddler.Core.Models
+@using global::Cuddler.Core.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerPopup
+@using global::Cuddler.Pages.Shared.Cuddler.FormField
+@using global::Cuddler.Pages.Shared.Cuddler.Help
+@using global::Cuddler.Pages.Shared.Cuddler.PopupEditor
+@model CuddlerHeadingTagHelper
+@{
+    var information = Model.Information?.ToNullableString();
+}
+<div class="eux-CuddlerHeading">
+    <div class="d-grid d-grid-auto-1fr grid-align-center">
+        <div class="p-relative">
+            @if (!string.IsNullOrEmpty(Model.Tag))
+            {
+                <h6>
+                    @Html.Raw(Model.Tag)
+                </h6>
+            }
+            <div>
+                <div class="align-items-center d-flex d-flex-gap-2">
+                    <div>
+                        <h2>
+                            @Html.Raw(Model.Title)
+                        </h2>
+                    </div>
+                    <div>
+                        @if (Model.Data != null && Model.UpdateNameApi != null)
+                        {
+                            <popup-editor button-icon="Tag"
+                                          button-text="Rename"
+                                          button-type="Icon"
+                                          popup-title="Rename"
+                                          submit-api-url="@(Model.UpdateNameApi)">
+                                <form-field name="@nameof(IHasName.Name)"
+                                            template="@(EFormField.Text)"
+                                            value="@Model.Data.Name" />
+                            </popup-editor>
+                        }
+                    </div>
+                    @if (!string.IsNullOrEmpty(information))
+                    {
+                        <help>
+                            @Html.Raw(information)
+                        </help>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="align-items-center d-grid-1fr-auto d-grid-gap-20 p-relative">
+            <div></div>
+            <div class="d-flex d-flex-gap-1">
+
+                @Html.Raw(Model.Html)
+
+                @if (Model.Data != null || Model.Menu != null)
+                {
+                    <div class="eux-Header-actionmenu">
+                        <div class="dropdown">
+                            <button aria-expanded="false"
+                                    class="btn btn-light dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    type="button">
+                                Additional Actions
+                            </button>
+                            <div class="kagVYw"
+                                 data-popover-arrow="true"
+                                 width="20">
+                            </div>
+                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                @if (Model.Menu != null)
+                                {
+                                    foreach (var menuMenuLink in Model.Menu.MenuLinks)
+                                    {
+                                        <li class="dropdown-item">
+                                            @menuMenuLink
+                                        </li>
+                                    }
+                                }
+
+                                @if (Model.Data != null && (Model.ArchiveUri != null || Model.RestoreUri != null))
+                                {
+                                    var modelType = StringUtil.SplitCamelCase(Model.Data.GetType()
+                                                                                   .Name.Replace("Entity", string.Empty)
+                                                                                   .Replace("Proxy", string.Empty));
+
+                                    var isArchiveAction = Model.Data.DateArchived == null;
+                                    var buttonIcon = isArchiveAction
+                                        ? EFontAwesomeIcon.Archive
+                                        : EFontAwesomeIcon.ArchiveRestore;
+                                    var description = isArchiveAction
+                                        ? $"Please confirm you want to {"delete".ToLower()} this {modelType.ToLower()}."
+                                        : $"Please confirm you want to {"restore".ToLower()} this {modelType.ToLower()}.";
+
+                                    var apiUrl = isArchiveAction
+                                        ? Model.ArchiveUri
+                                        : Model.RestoreUri;
+
+                                    var submitButtonText = isArchiveAction
+                                        ? $"Delete {modelType}"
+                                        : $"Restore {modelType}";
+
+                                    var submitButtonType = isArchiveAction
+                                        ? EButtonType.Danger
+                                        : EButtonType.Warning;
+
+                                    <li class="dropdown-item">
+                                        <cuddler-popup action-complete="@EActionComplete.Reload"
+                                                       button-icon="@buttonIcon"
+                                                       button-text="@submitButtonText"
+                                                       button-type="@EButtonType.Link"
+                                                       submit-api-url="@apiUrl"
+                                                       submit-button-text="@submitButtonText"
+                                                       submit-button-type="@submitButtonType">
+                                            <div class="eux-popup-top-html">
+                                                @Html.Raw(Model.Html)
+                                            </div>
+                                            @if (isArchiveAction)
+                                            {
+                                                <div>
+                                                    <form-field label="Reason"
+                                                                name="@nameof(Model.Data.ArchiveReason)"
+                                                                template="@(EFormField.Textarea)"
+                                                                value="@(Model.Data.ArchiveReason)" />
+                                                </div>
+                                            }
+                                            <p>
+                                                @description
+                                            </p>
+                                        </cuddler-popup>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

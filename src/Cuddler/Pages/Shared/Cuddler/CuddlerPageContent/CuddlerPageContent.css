@@ -1,0 +1,3 @@
+﻿.eux-CuddlerPageContent { height: calc(100vh - 121px); overflow-y: scroll; }
+.eux-noheader .eux-CuddlerPageContent { height: calc(100vh - 49px); }
+.eux-CuddlerPageContent .eux-CuddlerPageContent-wrapper { height: 100%; margin: auto; max-width: 1400px; width: 100%; }

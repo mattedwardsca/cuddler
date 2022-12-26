@@ -1,0 +1,17 @@
+﻿@using global::Cuddler.Core.Data
+@using global::Cuddler.Core.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
+@model DynamicFormTagHelper
+@{
+    var formId = WebIdUtil.GetWebId();
+
+    var classBuilder = CssClassBuilder.CreateInstance();
+    if (Model.Width != ETagWidth.None)
+    {
+        var width = $"eux-{Model.Width}";
+        classBuilder.AddClass(width);
+    }
+}
+<cuddler-form-fields fields="@Model.Fields"
+                     is-view="@Model.IsView"
+                     read-only="@Model.ReadOnly" />

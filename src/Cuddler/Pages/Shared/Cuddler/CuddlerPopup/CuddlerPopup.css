@@ -1,0 +1,8 @@
+﻿.eux-CuddlerPopup.medium .btn.btn-icon { background-color: #d4edda; border-color: #c3e6cb; color: #155724; font-size: 38px; height: 60px; width: 60px; }
+.eux-CuddlerPopup.large .btn.btn-icon { background-color: #d4edda; border-color: #c3e6cb; color: #155724; font-size: 68px; height: 112px; width: 112px; }
+.eux-CuddlerPopup.btn-pill .btn.btn-icon { border-radius: 30px; }
+.eux-CuddlerPopup .btn-icon .eux-btn-content > span:last-child { display: none; }
+.eux-CuddlerPopup .eux-icon-Edit.btn.btn-icon { align-content: center; align-items: center; background: rgba(0, 0, 0, .2); display: grid; height: 30px; margin: 0; padding: 0; width: 30px; }
+.eux-CuddlerPopup .eux-icon-Edit.btn.btn-icon .fa-pencil { color: white; font-size: 14px; }
+.eux-CuddlerPopup .eux-icon-Edit.btn.btn-icon:hover { background: var(--ColorThree); border-color: var(--ColorThree); color: var(--ColorFour); }
+.eux-CuddlerPopup .eux-icon-Edit.btn.btn-icon:hover .fa-pencil { color: white; }

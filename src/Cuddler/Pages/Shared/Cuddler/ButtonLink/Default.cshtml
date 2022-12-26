@@ -1,0 +1,78 @@
+﻿@using System.Text.Encodings.Web
+@using BoostDC.Ui.Modules
+@using global::Cuddler.Core.Data
+@using global::Cuddler.Core.Utils
+@using Microsoft.AspNetCore.Html
+@model ButtonLinkTagHelper
+
+@functions{
+
+    public static string GetString(IHtmlContent? content)
+    {
+        if (content == null)
+        {
+            return string.Empty;
+        }
+
+        using var writer = new StringWriter();
+        content.WriteTo(writer, HtmlEncoder.Default);
+        return writer.ToString();
+    }
+
+}
+
+@{
+    var buttonId = Model.Id ?? WebIdUtil.GetWebId();
+    var buttonType = EButtonTypeHelper.ToString(Model.ButtonType);
+}
+
+@if (Model.ButtonType == EButtonType.Link)
+{
+    @:<li>
+}
+else if (Model.ButtonType == EButtonType.ActionMenu)
+{
+    @:<div class="dropdown-item">
+}
+<a class="@buttonType @Model.ReadOnly.IsTrueHtml("eux-disabled")"
+   href="@Model.Href"
+   id="@buttonId"
+   @Model.ReadOnly.IsTrueHtml("disabled=\"disabled\"")
+   @Model.ReadOnly.IsTrueHtml("onclick=\"return false;\"")
+   @((!string.IsNullOrEmpty(Model.ButtonWidth)).IsTrueHtml($"style=\"width:{Model.ButtonWidth}\""))
+   tabindex="-1" @((!string.IsNullOrEmpty(Model.Target)).IsTrue($"target=\"{Model.Target}\""))>
+    @if (!string.IsNullOrEmpty(GetString(Model.Html)))
+    {
+        if (Model.ButtonIcon == EFontAwesomeIcon.None)
+        {
+            @Html.Raw(Model.Html)
+        }
+        else
+        {
+            <div style="align-content: center; display: grid; grid-gap: 5px; grid-template-columns: 20px 1fr;">
+                <span>
+                    <i class="@EFontAwesomeIconHelper.ToString(Model.ButtonIcon)"></i>
+                </span>
+                <span>
+                    @Html.Raw(Model.Html)
+                </span>
+            </div>
+        }
+    }
+    else
+    {
+        var icon = $"fa-fw {EFontAwesomeIconHelper.ToString(Model.ButtonIcon)}";
+
+        <span>
+            <i class="@icon"></i>
+        </span>
+    }
+</a>
+@if (Model.ButtonType == EButtonType.Link)
+{
+    @:</li>
+}
+else if (Model.ButtonType == EButtonType.ActionMenu)
+{
+    @:</div>
+}

@@ -1,0 +1,41 @@
+﻿@using global::Cuddler.Core.Data
+@using global::Cuddler.Core.Utils
+@model CuddlerBlockTagHelper
+@{
+    var webId = WebIdUtil.GetWebId();
+    var webId2 = WebIdUtil.GetWebId();
+
+    var classBuilder = CssClassBuilder.CreateInstance();
+    if (Model.Width != ETagWidth.None)
+    {
+        var width = $"eux-{Model.Width}";
+        classBuilder.AddClass(width);
+    }
+
+    var stylesBuilder = CssStyleBuilder.CreateInstance();
+    if (!string.IsNullOrEmpty(Model.SkeletonHeight))
+    {
+        stylesBuilder.AddStyle("height", Model.SkeletonHeight);
+    }
+}
+<div class="eux-CuddlerBlock @classBuilder"
+     style="@stylesBuilder">
+    <div class="card">
+        <div class="eux-loader-wrapper"
+             id="@(webId)">
+        </div>
+        @if (!string.IsNullOrEmpty(Model.Src))
+        {
+            <div class="eux-loader-background eux-loader-background-flicker"
+                 id="@(webId2)">
+            </div>
+            <script>
+            $.get("@(Html.Raw(Model.Src))", function (result) {
+                $("#@(webId)").html(result);
+                $("#@(webId2)").removeClass("eux-loader-background-flicker");
+                $("#@(webId2)").fadeOut("slow", function () { });
+            });
+        </script>
+        }
+    </div>
+</div>

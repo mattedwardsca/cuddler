@@ -1,0 +1,16 @@
+﻿@using global::Cuddler.Core.Forms
+@model FormFieldTagHelper
+@if (Model.Template != EFormField.Hidden)
+{
+    @:<div class="mb-2">
+}
+@(await Model.ToHtml())
+@if (Model.Template != EFormField.Hidden)
+{
+    <span class="field-validation-error k-form-error k-invalid-msg"
+          data-for="@Model.Name"
+          data-valmsg-for="@Model.Name"
+          id="@(Model.Name.ToLower())_validationMessage">
+    </span>
+    @:</div>
+}

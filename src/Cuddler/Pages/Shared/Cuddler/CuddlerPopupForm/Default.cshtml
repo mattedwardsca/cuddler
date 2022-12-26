@@ -1,0 +1,37 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
+@using global::Cuddler.Pages.Shared.Cuddler.PopupEditor
+@model CuddlerPopupFormTagHelper
+@{
+
+    if (string.IsNullOrEmpty(Model.PopupTitle))
+    {
+        Model.PopupTitle = Model.ButtonText;
+    }
+}
+<div class="eux-CuddlerPopupForm">
+    <popup-editor action-complete="@Model.ActionComplete"
+                  button-icon="@Model.ButtonIcon"
+                  button-text="@Model.ButtonText"
+                  button-type="@Model.ButtonType"
+                  close-event="@Model.CloseEventName"
+                  popup-event="@Model.PopupEvent"
+                  redirect-url="@Model.DetailsUrl"
+                  submit-api-url="@Model.SubmitApiUrl"
+                  submit-button-text="@Model.SubmitButtonText"
+                  submit-button-type="@Model.SubmitButtonType"
+                  submit-event="@Model.SubmitEvent">
+        <div class="eux-popup-top-html">
+            @Html.Raw(Model.Html)
+        </div>
+        <div>
+            <cuddler-form-fields fields="@Model.Fields" />
+        </div>
+    </popup-editor>
+    <script>
+    $(document).ready(function() {
+        $("#ConfirmedBox").show();
+        $("#AfterConfirmedBox").hide();
+        $("#GoTONext").hide();
+    });
+</script>
+</div>

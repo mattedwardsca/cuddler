@@ -1,0 +1,23 @@
+﻿@using global::Cuddler.Core.Utils
+@model CuddlerReplaceTagHelper
+@{
+    var linkId = WebIdUtil.GetWebId();
+}
+<div class="dropdown-item">
+    <a class="eux-link"
+       id="@linkId"
+       href="@(Model.GetUrlHandler())">
+        <icon type="@Model.Icon" />
+        @(Model.Label)
+    </a>
+</div>
+<script>
+$(function(){
+    $("#@(linkId)").click(function(e){
+        e.preventDefault();
+        debugger;
+        var href = $(this).attr("href");
+        $("#@(Model.BlockId)").load(href);
+    });
+});
+</script>

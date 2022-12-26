@@ -1,0 +1,5 @@
+﻿.eux-SubmitButton .eux-submit-btn { min-width: 100px; }
+.eux-SubmitButton .eux-message { font-size: 12px; font-weight: normal; }
+.eux-SubmitButton .eux-message.success { color: darkgreen; margin-top: 8px; }
+.eux-SubmitButton .eux-message.error, .eux-SubmitButton .eux-error { color: #d9534f; font-weight: normal; margin-top: 8px; }
+.eux-SubmitButton .eux-Divider { margin: 13px 0px 13px 0px; }

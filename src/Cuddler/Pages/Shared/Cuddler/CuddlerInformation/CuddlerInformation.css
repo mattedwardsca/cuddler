@@ -1,0 +1,9 @@
+﻿.eux-CuddlerInformation .d-flex { align-items: center; }
+.eux-CuddlerInformation .alert .text { display: block; width: 100%; }
+.eux-CuddlerInformation .alert { border-radius: 0; margin-bottom: 0; }
+.eux-CuddlerInformation .alert-meta { background: rgba(0, 0, 0, 0.1); border: solid rgba(255, 255, 255, 0.01) 1px; }
+.eux-CuddlerInformation .alert-meta.p-4 { margin: 0 !important; padding: 8px !important; }
+.eux-CuddlerInformation .eux-Icon { font-size: 28px; margin-right: 20px; }
+.eux-CuddlerInformation .d-grid-auto-1fr { align-items: center; }
+.eux-CuddlerInformation .eux-Warning .alert { border-radius: 0; }
+.eux-CuddlerInformation .eux-Warning .alert-info { background: #ffe9aa; border-color: darkkhaki; }

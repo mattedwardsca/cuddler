@@ -1,20 +1,78 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
-using Cuddler;
 using Cuddler.Core.Controllers;
 using Cuddler.Core.Utils;
 using Kendo.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-// ReSharper disable once CheckNamespace
-namespace Microsoft.AspNetCore.Mvc.Rendering;
+namespace Cuddler.Dynamic;
 
-public abstract class CuddlerUri
+public class DynamicUriBuilder<TController> : DynamicUriController
+{
+    public static string GetParameterName<TParameter>(Expression<Func<TParameter>> parameterToCheck)
+    {
+        var memberExpression = parameterToCheck.Body as MemberExpression;
+
+        var parameterName = memberExpression!.Member.Name;
+
+        return parameterName;
+    }
+
+    public static TParameter GetParameterValue<TParameter>(Expression<Func<TParameter>> parameterToCheck)
+    {
+        var parameterValue = parameterToCheck.Compile()
+                                             .Invoke();
+
+        return parameterValue;
+    }
+
+    public string Endpoint(Expression<Func<TController, Task<IActionResult>>> func)
+    {
+        var body = func.Body as MethodCallExpression;
+
+        var api = GetBaseApiUrl(typeof(TController));
+        var methodName = body!.Method.Name;
+
+        MethodInfo methodInfo;
+        try
+        {
+            methodInfo = typeof(TController).GetMethods()
+                                            .Single(w => w.Name == methodName);
+        }
+        catch (InvalidOperationException)
+        {
+            throw new InvalidOperationException($"Method '{methodName}' exists more than once in {typeof(TController).Name}");
+        }
+
+        var keys = methodInfo.GetParameters()
+                             .Select(s => s.Name!)
+                             .ToList();
+        var parameterString = string.Join('&', GetApiParameters(keys, body.Arguments));
+        if (string.IsNullOrEmpty(parameterString))
+        {
+            _endpointUrl = $"{api}/{methodName}";
+        }
+        else
+        {
+            _endpointUrl = $"{api}/{methodName}?{parameterString}";
+        }
+
+        return _endpointUrl;
+    }
+
+    public DynamicFormFields<T> Form<T>() where T : class, IApiController
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public abstract class DynamicUriController
 {
     public string? _endpointUrl;
 
-    public List<SortDescriptor> SortList { get; } = new();
-
     public List<CuddlerBaseFilter> FilterList { get; } = new();
+
+    public List<SortDescriptor> SortList { get; } = new();
 
     public override string ToString()
     {
@@ -67,65 +125,5 @@ public abstract class CuddlerUri
         var controllerName = typeOfController.Name.Replace("Controller", string.Empty);
 
         return $"/{AssemblyScannerUtil.GetAttribute<RouteAttribute>(typeOfController)?.Template.Replace("[controller]", controllerName)}";
-    }
-}
-
-public class CuddlerUri<TController> : CuddlerUri
-{
-    public static string GetParameterName<TParameter>(Expression<Func<TParameter>> parameterToCheck)
-    {
-        var memberExpression = parameterToCheck.Body as MemberExpression;
-
-        var parameterName = memberExpression!.Member.Name;
-
-        return parameterName;
-    }
-
-    public static TParameter GetParameterValue<TParameter>(Expression<Func<TParameter>> parameterToCheck)
-    {
-        var parameterValue = parameterToCheck.Compile()
-                                             .Invoke();
-
-        return parameterValue;
-    }
-    
-    public CuddlerUri<TController> Endpoint(Expression<Func<TController, Task<IActionResult>>> func)
-    {
-        var body = func.Body as MethodCallExpression;
-
-        var api = GetBaseApiUrl(typeof(TController));
-        var methodName = body!.Method.Name;
-
-
-        MethodInfo methodInfo;
-        try
-        {
-            methodInfo = typeof(TController).GetMethods()
-                                  .Single(w => w.Name == methodName);
-        }
-        catch (InvalidOperationException)
-        {
-            throw new InvalidOperationException($"Method '{methodName}' exists more than once in {typeof(TController).Name}");
-        }
-
-        var keys = methodInfo.GetParameters()
-                             .Select(s => s.Name!)
-                             .ToList();
-        var parameterString = string.Join('&', GetApiParameters(keys, body.Arguments));
-        if (string.IsNullOrEmpty(parameterString))
-        {
-            _endpointUrl = $"{api}/{methodName}";
-        }
-        else
-        {
-            _endpointUrl = $"{api}/{methodName}?{parameterString}";
-        }
-
-        return this;
-    }
-
-    public CuddlerFormFields<T> Form<T>() where T : class, IApiController
-    {
-        throw new NotImplementedException();
     }
 }

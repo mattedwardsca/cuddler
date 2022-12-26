@@ -1,0 +1,28 @@
+﻿@using global::Cuddler.Core.Extensions
+@using global::Cuddler.Pages.Shared.Cuddler.PopupEditor
+@model CuddlerSaveButtonTagHelper
+@{
+    var html = Model.Html.ToNullableString();
+}
+<div class="eux-CuddlerSaveButton">
+    <popup-editor action-complete="Details"
+                  button-icon="Save"
+                  button-text="@Model.Label"
+                  button-type="Primary"
+                  popup-title="@Model.Label"
+                  redirect-url="@Model.RedirectUrl"
+                  submit-api-url="@(Model.SaveUri)"
+                  submit-button-text="@Model.Label"
+                  submit-button-type="Primary">
+        @if (!string.IsNullOrEmpty(html))
+        {
+            @Html.Raw(html)
+        }
+        else
+        {
+            <p>
+                Would you like to save this item?
+            </p>
+        }
+    </popup-editor>
+</div>
