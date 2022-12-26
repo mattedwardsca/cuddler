@@ -263,3 +263,4 @@ __pycache__/
 /nuget.config
 /publish.bat
 /pack.bat
+/lib/kendo
