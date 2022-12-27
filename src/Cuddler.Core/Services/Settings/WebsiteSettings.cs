@@ -5,16 +5,16 @@ namespace Cuddler.Core.Services.Settings;
 
 public class WebsiteSettings
 {
-    public string AboutWebsite { get; set; } = "Order Management System";
+    public string AboutWebsite { get; set; }  = null!;
 
     [HiddenInput]
     public bool AllowUnauthorizedHomepage { get; set; }
 
-    public string CopyrightHolder { get; set; } = "Cocoon CS Inc.";
+    public string CopyrightHolder { get; set; } = null!;
 
     public string? DefaultLanguage { get; set; } = "EN";
 
-    public string SupportEmail { get; set; } = "support@cocooncs.com";
+    public string SupportEmail { get; set; }  = null!;
 
     public string? TermsPath { get; set; }
 
@@ -22,33 +22,33 @@ public class WebsiteSettings
 
     public string WebsiteLogoPath { get; set; } = "/static/images/logo.png";
 
-    public string? WebsiteBillingCity { get; set; } = "Calgary";
+    public string? WebsiteBillingCity { get; set; }  
 
-    public string? WebsiteBillingEmail { get; set; } = "billing@orderra.com";
+    public string? WebsiteBillingEmail { get; set; } 
 
-    public string? WebsiteBillingPhone { get; set; } = "5878773008";
+    public string? WebsiteBillingPhone { get; set; } 
 
-    public string? WebsiteBillingPostalCode { get; set; } = "TOM 0J0";
+    public string? WebsiteBillingPostalCode { get; set; } 
 
-    public string? WebsiteBillingProvince { get; set; } = "AB";
+    public string? WebsiteBillingProvince { get; set; }  
 
-    public string? WebsiteBillingStreet1 { get; set; } = "Box 1408";
+    public string? WebsiteBillingStreet1 { get; set; } 
 
-    public string? WebsiteBillingStreet2 { get; set; } //= "92 Paramount Cr";
+    public string? WebsiteBillingStreet2 { get; set; } 
 
-    public string? WebsiteName { get; set; } = "Cocoon";
+    public string? WebsiteName { get; set; } 
 
-    public string? WebsiteShippingCity { get; set; } = "Calgary";
+    public string? WebsiteShippingCity { get; set; } 
 
     public double WebsiteShippingLatitude { get; set; }
 
     public double WebsiteShippingLongitude { get; set; }
 
-    public string? WebsiteShippingPostalCode { get; set; } = "TOM 0J0";
+    public string? WebsiteShippingPostalCode { get; set; } 
 
-    public string? WebsiteShippingProvince { get; set; } = "AB";
+    public string? WebsiteShippingProvince { get; set; } 
 
-    public string? WebsiteShippingStreet1 { get; set; } = "Box 1408";
+    public string? WebsiteShippingStreet1 { get; set; } 
 
     public string? WebsiteShippingStreet2 { get; set; }
 

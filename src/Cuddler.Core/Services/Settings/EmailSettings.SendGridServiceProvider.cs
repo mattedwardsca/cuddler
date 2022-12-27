@@ -2,11 +2,11 @@
 
 public class SendGridServiceProvider
 {
-    public string? SendGridApiKey { get; set; } = "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";
+    public string? SendGridApiKey { get; set; }
 
-    public string? SendGridFromEmail { get; set; } = "support@cocooncs.com";
+    public string? SendGridFromEmail { get; set; }
 
-    public string? SendGridFromName { get; set; } = "cocooncs support";
+    public string? SendGridFromName { get; set; }
 
-    public string? SendGridProviderName { get; set; } = "cocooncs";
+    public string? SendGridProviderName { get; set; }
 }
