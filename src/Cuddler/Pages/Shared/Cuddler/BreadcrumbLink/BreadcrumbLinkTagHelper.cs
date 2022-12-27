@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Modules;
 using Cuddler.Web.BaseTagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

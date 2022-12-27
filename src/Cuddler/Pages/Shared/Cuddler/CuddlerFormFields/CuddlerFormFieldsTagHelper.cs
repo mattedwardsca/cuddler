@@ -14,10 +14,10 @@ public class CuddlerFormFieldsTagHelper : BaseTagHelper, ICuddler
     public bool AutoSave { get; set; }
 
     [Required]
-    public List<Web.Forms.FormField> Fields { get; set; } = null!;
+    public List<Core.Services.Modules.Models.FormField> Fields { get; set; } = null!;
 
     public bool IsTemplate { get; set; }
-    
+
     public bool IsView { get; set; }
 
     public CuddlerUri? SaveUrl { get; set; }

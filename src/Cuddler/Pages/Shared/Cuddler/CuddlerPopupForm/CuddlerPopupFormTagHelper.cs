@@ -32,7 +32,7 @@ public class CuddlerPopupFormTagHelper : BaseTagHelper, ICuddler
     public string? DetailsUrl { get; set; }
 
     [Required]
-    public List<Web.Forms.FormField> Fields { get; set; } = null!;
+    public List<Core.Services.Modules.Models.FormField> Fields { get; set; } = null!;
 
     public string? PopupEvent { get; set; }
 

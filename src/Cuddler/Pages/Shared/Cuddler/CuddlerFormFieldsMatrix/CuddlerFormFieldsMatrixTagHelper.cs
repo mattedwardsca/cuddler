@@ -16,5 +16,5 @@ public class CuddlerFormFieldsMatrixTagHelper : BaseTagHelper, ICuddler
     public bool AutoSave { get; set; }
 
     [Required]
-    public IEnumerable<Web.Forms.FormField> Fields { get; set; } = null!;
+    public IEnumerable<Core.Services.Modules.Models.FormField> Fields { get; set; } = null!;
 }

@@ -12,5 +12,5 @@ public class CuddlerFormFieldsRowTagHelper : BaseTagHelper, ICuddler
     }
 
     [Required]
-    public Web.Forms.FormField FormField { get; set; } = null!;
+    public Core.Services.Modules.Models.FormField FormField { get; set; } = null!;
 }

@@ -12,4 +12,7 @@
 <script>
     function @(guid)_assignedToFocus(e) { e.sender.open(); }
 </script>
-@(Html.Kendo().DropDownListFor(m => m).BindTo(list).Events(e => e.DataBound($"{guid}_assignedToFocus")))
+@(Html.Kendo()
+      .DropDownListFor(m => m)
+      .BindTo(list)
+      .Events(e => e.DataBound($"{guid}_assignedToFocus")))

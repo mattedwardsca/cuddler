@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Core.Utils;
+using Cuddler.Data.Forms;
 using Cuddler.Web.Forms;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -29,7 +29,7 @@ public class FormFieldTagHelper : TagHelper
     public virtual string? BindId { get; set; }
 
     // ReSharper disable once CollectionNeverUpdated.Global
-    public List<Web.Forms.FormField>? Children { get; set; }
+    public List<Core.Services.Modules.Models.FormField>? Children { get; set; }
 
     public string? ContextType { get; set; }
 
@@ -89,7 +89,7 @@ public class FormFieldTagHelper : TagHelper
     /// <summary>
     ///     Do not use
     /// </summary>
-    private Web.Forms.FormField? FormField { get; set; }
+    private Core.Services.Modules.Models.FormField? FormField { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {

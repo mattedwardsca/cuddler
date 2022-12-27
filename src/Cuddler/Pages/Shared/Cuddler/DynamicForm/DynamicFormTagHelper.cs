@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
+using Cuddler.Dynamic;
 using Cuddler.Web.BaseTagHelpers;
-using Cuddler.Web.Dynamic;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -18,7 +18,7 @@ public class DynamicFormTagHelper : BaseTagHelper, ICuddler
     public string DeleteUri => $"{PostUrl}?=handler={EDynamicHandler.Delete.ToString()}";
 
     [Required]
-    public List<Web.Forms.FormField> Fields { get; set; } = null!;
+    public List<Core.Services.Modules.Models.FormField> Fields { get; set; } = null!;
 
     public EDynamicHandler Handler { get; set; } = EDynamicHandler.Restore;
 

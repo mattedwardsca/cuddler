@@ -9,7 +9,7 @@
 .eux-CuddlerReplace.eux-Paper { width: 812px; }
 .eux-CuddlerReplace.eux-Large { width: 880px; }
 .eux-CuddlerReplace.eux-Full { margin: auto; width: 1360px; }
-.eux-CuddlerReplace > .card { border-radius: 2px; padding: 20px;  }
+.eux-CuddlerReplace > .card { border-radius: 2px; padding: 20px; }
 @keyframes euxCuddlerReplace {
     0% { background-color: #EEEEEE; }
     50% { background-color: #F5F8FA; }
