@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Kendo.Mvc.UI;
 
 namespace Cuddler.Data.Entities;
 
 [Table("BoostDC_Schedules")]
-public class ScheduleEntity : BaseEntity, ISchedulerEvent
+public class ScheduleEntity : BaseEntity
 {
     public string? CalendarId { get; set; }
 

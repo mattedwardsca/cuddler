@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Dynamic;
 using Cuddler.Web.BaseTagHelpers;
+using Cuddler.Web.Dynamic;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

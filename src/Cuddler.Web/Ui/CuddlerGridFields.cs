@@ -76,9 +76,34 @@ public class CuddlerGridFields<TModel> : GridCuddlerFields where TModel : class
 
         public GridInputPropertyWrapper GridTemplate(EGridTemplate template)
         {
-            _formFieldProperty.GridTemplate = KendoGridExtensions.GetGridTemplate(_formFieldProperty.Name, template.ToString());
+            _formFieldProperty.GridTemplate = GetGridTemplate(_formFieldProperty.Name, template.ToString());
 
             return this;
+        }
+
+        public static string GetGridTemplate(string memberKey, string template)
+        {
+            string CreateKendoTemplate(Queue<string> queue, string? previous = null)
+            {
+                var dequeued = queue.Dequeue();
+                var dequeueKey = previous == null
+                    ? dequeued
+                    : $"{previous}.{dequeued}";
+
+                if (!queue.Any())
+                {
+                    return $"#{KendoGridUtil.KeyTemplate(dequeueKey, template)}#";
+                }
+
+                return $"if({dequeueKey}!==undefined && {dequeueKey}!=null){{ {CreateKendoTemplate(queue, dequeueKey)} }}";
+            }
+
+            var collection = memberKey.Split(".")
+                                      .ToList();
+
+            var kendoTemplate = $"#{CreateKendoTemplate(new Queue<string>(collection))}#";
+
+            return kendoTemplate;
         }
 
         public GridInputPropertyWrapper HeadingHtmlAttributes(object? className)

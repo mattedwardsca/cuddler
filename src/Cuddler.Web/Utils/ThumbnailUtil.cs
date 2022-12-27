@@ -2,10 +2,10 @@
 
 public static class ThumbnailUtil
 {
-    public const string BoostIcon = "/_content/BoostDC.Ui/Icon/BoostIcon.svg";
-    public const string FourOhFour = "/_content/BoostDC.Ui/Icon/FourOhFour.svg";
-    public const string Package = "/_content/BoostDC.Ui/Icon/Package.svg";
-    public const string User = "/_content/BoostDC.Ui/Icon/User.svg";
+    public const string BoostIcon = "/_content/Cuddler.Web/Icon/BoostIcon.svg";
+    public const string FourOhFour = "/_content/Cuddler.Web/Icon/FourOhFour.svg";
+    public const string Package = "/_content/Cuddler.Web/Icon/Package.svg";
+    public const string User = "/_content/Cuddler.Web/Icon/User.svg";
 
     public static string GetPackageThumbnail(byte[]? thumbnailImage)
     {

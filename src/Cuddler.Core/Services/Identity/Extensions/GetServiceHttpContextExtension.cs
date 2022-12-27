@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Cuddler.Core.Services.Identity.Extensions;
 
-internal static class GetServiceHttpContextExtension
+public static class GetServiceHttpContextExtension
 {
     public static T GetService<T>(this HttpContext context)
     {

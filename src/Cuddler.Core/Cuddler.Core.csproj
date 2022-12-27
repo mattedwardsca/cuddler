@@ -25,15 +25,4 @@
 		<PackageReference Include="System.Drawing.Common" Version="7.0.0" />
 	</ItemGroup>
 
-
-	<ItemGroup>
-		<Reference Include="Kendo.Mvc">
-			<HintPath>..\..\lib\kendo\Kendo.Mvc.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Services\Identity\Models\" />
-	</ItemGroup>
-
 </Project>

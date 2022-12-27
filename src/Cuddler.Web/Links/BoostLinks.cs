@@ -5,8 +5,8 @@ namespace Cuddler.Web.Links;
 
 public static class BoostLinks
 {
-    public const string FaviconSrc = "/_content/BoostDC.Ui/boost/Boost-favicon.svg";
-    public const string LogoSrc = "/_content/BoostDC.Ui/boost/Boost-logo.svg";
+    public const string FaviconSrc = "/_content/Cuddler.Web/boost/Boost-favicon.svg";
+    public const string LogoSrc = "/_content/Cuddler.Web/boost/Boost-logo.svg";
 
     public static string FaviconEncodedImg(int width = 20, string title = "Boost")
     {

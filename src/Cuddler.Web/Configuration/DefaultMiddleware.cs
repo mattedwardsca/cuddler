@@ -4,7 +4,6 @@ using Cuddler.Core.Services.Identity.Extensions;
 using Cuddler.Data.Entities;
 using Cuddler.Web.Extensions;
 using Cuddler.Web.Modules;
-using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 

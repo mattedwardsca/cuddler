@@ -18,11 +18,5 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.1" />
 		<PackageReference Include="PluralizeService.Core" Version="2.1.1" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="Kendo.Mvc">
-			<HintPath>..\..\lib\kendo\Kendo.Mvc.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-
+	
 </Project>

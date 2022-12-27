@@ -38,7 +38,7 @@
     var topApps = EmbeddedAppService.ListShowInTop();
     var middleApps = EmbeddedAppService.ListApps();
 
-    if (Context.Request.Cookies.GetBool(BoostCookies.AdminModeCookieName))
+    if (Context.Request.Cookies.GetBool(CuddlerCookies.AdminModeCookieName))
     {
         topApps = topApps.Where(w => w.IsForAdmins)
                          .ToList();

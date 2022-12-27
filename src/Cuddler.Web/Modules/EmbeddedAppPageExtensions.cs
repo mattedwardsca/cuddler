@@ -1,5 +1,5 @@
-﻿using Cuddler.Core.Services.Modules.Models;
-using Kendo.Mvc.Extensions;
+﻿using Cuddler.Core.Services.Identity.Extensions;
+using Cuddler.Core.Services.Modules.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace Cuddler.Web.Modules;

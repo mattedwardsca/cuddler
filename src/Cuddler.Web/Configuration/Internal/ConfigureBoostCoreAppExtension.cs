@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using Cuddler.Core.Services.Identity.Exceptions;
+using Cuddler.Core.Services.Identity.Extensions;
 using Cuddler.Data.Entities;
-using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;

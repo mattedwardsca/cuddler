@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2048px" height="2048px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2048 2048"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil5 {fill:none}
+    .fil2 {fill:#8F8F90}
+    .fil0 {fill:#959595}
+    .fil1 {fill:#A5A5A6}
+    .fil3 {fill:#C4C4C4}
+    .fil4 {fill:gainsboro}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_576357880">
+   <path id="_576359344" class="fil0" d="M1024.57 1736.76l757.238 -265.322c6.39922,-2.55118 10.1906,-8.78505 10.1906,-15.4961l0 -836.124c-1.66299,0.937796 -3.43465,1.74567 -5.30552,2.40236l-0.0590552 -0.119291c-491.6,172.743 -363.066,127.505 -762.064,267.708l0 846.951z"/>
+   <path id="_576359368" class="fil1" d="M266.194 1471.43l758.536 265.21 0 -846.591 -760.573 -266.975c-2.85945,-0.72756 -5.60315,-1.83071 -8.15434,-3.27166l0 836.133c0,6.71103 3.79134,12.9449 10.1906,15.4961z"/>
+   <rect id="_576358504" class="fil2" transform="matrix(1.36053 -0.477109 1.36053 0.477109 256.001 620.654)" width="564.487" height="564.487"/>
+   <polygon id="_576357976" class="fil3" points="598.482,500.553 760.672,443.676 1512.82,718.556 1350.63,775.433 "/>
+   <polygon id="_576358528" class="fil4" points="1351.53,775.117 1355.25,988.667 1374.62,953.277 1387,980.245 1407,943.809 1419.38,970.777 1439.38,934.342 1451.76,961.309 1471.76,924.875 1484.14,951.843 1504.14,915.407 1516.52,942.374 1516.95,941.656 1516.68,907.866 1512.94,718.514 1512.82,718.556 "/>
+  </g>
+ </g>
+ <rect class="fil5" width="2048" height="2048"/>
+</svg>

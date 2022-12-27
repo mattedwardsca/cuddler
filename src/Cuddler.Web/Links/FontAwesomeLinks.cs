@@ -8,7 +8,7 @@ public static class FontAwesomeLinks
     {
         if (useLocal)
         {
-            return new HtmlString(@"<link href=""/_content/BoostDC.Ui/fontawesome/css/all.min.css"" rel=""stylesheet"">");
+            return new HtmlString(@"<link href=""/_content/Cuddler.Web/fontawesome/css/all.min.css"" rel=""stylesheet"">");
         }
 
         return new HtmlString(@"<script crossorigin=""anonymous"" src=""https://kit.fontawesome.com/185af9dfd8.js""></script>");

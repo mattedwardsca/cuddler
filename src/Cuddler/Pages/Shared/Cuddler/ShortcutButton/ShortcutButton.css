@@ -1,0 +1,7 @@
+﻿.eux-ShortcutButton { border-radius: 10px; cursor: pointer; display: block; display: grid; height: 132px; padding: 20px; position: relative; text-align: center; width: 140px; }
+.eux-ShortcutButton .eux-pod { color: inherit; text-decoration: none; }
+.eux-ShortcutButton:hover { background: var(--ColorFive); }
+.eux-ShortcutButton .eux-circle { align-content: center; border: solid 3px var(--ColorOne); border-radius: 50%; display: grid; font-size: 35px; height: 70px; margin: auto; width: 70px; }
+.eux-ShortcutButton.eux-ShortcutButtonSize-Small { border-radius: 10px; cursor: pointer; display: grid; height: 80px; padding: 10px; position: relative; text-align: center; width: 120px; }
+.eux-ShortcutButton.eux-ShortcutButtonSize-Small .eux-circle { align-content: center; border: solid 2px var(--ColorOne); border-radius: 50%; display: grid; font-size: 20px; height: 40px; margin: auto; width: 40px; }
+.eux-ShortcutButton .eux-text { font-size: 13px; left: 0; margin-top: 3px; padding: 0 10px; position: absolute; width: 100%; }
