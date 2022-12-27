@@ -1,5 +1,5 @@
 ﻿using System.Web;
-using Cuddler.Core.Modules;
+using Cuddler.Web.Modules;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

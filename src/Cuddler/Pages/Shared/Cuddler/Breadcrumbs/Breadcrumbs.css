@@ -1,0 +1,5 @@
+﻿.eux-Breadcrumbs { align-items: center; align-items: center; display: flex; padding: 0 10px; }
+.eux-Breadcrumbs > * :before { color: #ccc; content: '/'; padding-left: 10px; padding-right: 10px; }
+.eux-Breadcrumbs .eux-BreadcrumbLink { color: var(--ColorSix); display: inline-block; }
+.eux-Breadcrumbs .eux-BreadcrumbLink .eux-link, .eux-AppHeader .eux-pod .eux-menuPageTitle .eux-link { color: #777; font-size: 12px; text-decoration: none; }
+.eux-Breadcrumbs .eux-BreadcrumbLink:last-child a { text-decoration: none !important; }

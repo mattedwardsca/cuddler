@@ -1,0 +1,37 @@
+﻿.eux-portal .eux-logo-links .eux-editor { display: inline-block; position: relative; }
+.eux-portal .eux-logo-links { align-items: center; background: var(--AppHeader); border-bottom: solid 1px #bcbcbc; display: flex; height: 100%; margin: auto; width: 100%; }
+.eux-portal .eux-logo-links a { align-items: center; display: flex; height: 100%; width: 100%; }
+.eux-portal .eux-logo-links a img { align-items: center; display: flex; margin: auto; max-height: 100%; max-width: 100%; }
+.eux-portal .eux-ModuleNavbar .eux-middle-links .navbar-nav .active .nav-link { background: var(--ColorThree); }
+.eux-portal .eux-ModuleNavbar .eux-middle-links .navbar-nav .nav-link span { margin-top: 8px; }
+.eux-portal .eux-ModuleNavbar .eux-middle-links .navbar-nav { -ms-overflow-style: none; background: rgba(0, 0, 0, .5); border-radius: 10px; margin: 5px 0; overflow-x: hidden; overflow-y: scroll; scrollbar-width: none; }
+.eux-portal .eux-ModuleNavbar .eux-middle-links .navbar-nav::-webkit-scrollbar { display: none; }
+.eux-portal .eux-ModuleNavbar .eux-middle-links { -ms-overflow-style: none; margin: 0 5px; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
+.eux-portal .eux-ModuleNavbar .eux-middle-links::-webkit-scrollbar { display: none; }
+.eux-portal .eux-ModuleNavbar .eux-navbar-links .navbar-nav { overflow-x: hidden; overflow-y: scroll; }
+.eux-portal .eux-ModuleNavbar .eux-navbar-links { height: 100%; }
+.eux-portal .eux-ModuleNavbar .eux-top-links .navbar-nav .nav-item { height: 80px; margin-top: 5px; position: relative; }
+.eux-portal .eux-ModuleNavbar .eux-top-links .navbar-nav .nav-link { border-radius: 5px; }
+.eux-portal .eux-ModuleNavbar .eux-top-links .navbar-nav .nav-link span { position: absolute; top: 60px; }
+.eux-portal .eux-ModuleNavbar .eux-top-links .nav-item .nav-link { background: rgba(0, 0, 0, 0.5); }
+.eux-portal .eux-ModuleNavbar .eux-top-links { border-top: solid 1px rgba(0, 0, 0, 0.01); padding: 0 5px; }
+.eux-portal .eux-ModuleNavbar .navbar-nav .nav-link { color: var(--ColorTwo); position: relative; }
+.eux-portal .eux-ModuleNavbar .navbar-nav .nav-link span { color: var(--ColorTwo); display: block; line-height: 1.3em; text-align: center; width: 100%; }
+.eux-portal .eux-ModuleNavbar .nav-item.active .nav-link { background: var(--ColorThree) !important; }
+.eux-portal .eux-ModuleNavbar .nav-item:not(.active) .nav-link { border: solid 1px transparent; }
+.eux-portal .eux-ModuleNavbar .nav-item:not(.active) .nav-link:hover { background: rgba(0, 0, 0, 0.1); }
+.eux-portal .eux-ModuleNavbar .nav-link { font-size: 9px; line-height: 14px; padding: 12px 0; text-align: center; text-decoration: none; }
+.eux-portal .eux-ModuleNavbar .nav-link i { font-size: 30px; width: 100%; }
+.eux-portal .eux-ModuleNavbar .nav-link span { display: block; line-height: 12px; }
+.eux-portal .eux-ModuleNavbar .nav-link span + span { padding-top: 3px; }
+.eux-portal .eux-ModuleNavbar { -webkit-overflow-scrolling: touch; background: var(--ColorOne); display: grid; grid-template-rows: 48px 90px calc(100vh - 130px); height: 100%; z-index: 0; }
+.eux-portal .eux-RightSiteLinks .dropdown-toggle::after { display: none; }
+.eux-portal .eux-RightSiteLinks .dropdown-toggle::after { margin-left: 34%; position: absolute; top: 5px; transform: rotate(-180deg); }
+.eux-portal .eux-RightSiteLinks .dropdown-toggle:hover::after { display: inline; }
+.eux-portal .eux-RightSiteLinks { padding-bottom: 35px; padding-top: 35px; }
+.eux-portal .eux-wrapper { background: #FFF; display: grid; height: 100%; z-index: 1; }
+.eux-portal { background: rgba(0, 0, 0, 0.5); display: grid; grid-template-rows: 1fr; height: 100%; overflow: hidden; }
+.eux-PortalLogo .eux-editor { display: inline-block; position: relative; }
+.eux-PortalLogo .navbar-brand img { background: white; padding: 3px; width: 55px; }
+.eux-PortalLogo .navbar-brand img { border-radius: 50%; overflow: hidden; }
+.eux-PortalLogo a { align-content: center; align-self: center; display: grid; left: -3px; margin: auto; overflow: hidden; padding: 10px 5px; position: relative; width: 60px; }

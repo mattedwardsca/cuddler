@@ -1,0 +1,42 @@
+﻿@using global::Cuddler.Core.Utils
+@using global::Cuddler.Web.Helpers
+@model IconButtonTagHelper
+@{
+    var fontSize = FontAwesomeUtil.ToString(Model.Size);
+    string iconCss;
+    if (!string.IsNullOrEmpty(Model.OverrideIcon))
+    {
+        iconCss = Model.OverrideIcon + " " + fontSize;
+    }
+    else
+    {
+        iconCss = EFontAwesomeIconHelper.ToString(Model.ButtonIcon) + " " + fontSize;
+    }
+}
+<div class="eux-IconButton">
+    @if (string.IsNullOrEmpty(Model.Href) || Model.Disabled)
+    {
+        <span class="eux-@fontSize">
+            <i class="@(iconCss)"></i>
+            <span>
+                @if (!Model.HideLabel)
+                {
+                    @(Model.Html)
+                }
+            </span>
+        </span>
+    }
+    else
+    {
+        <a class="eux-@fontSize"
+           href="@Model.Href">
+            <i class="@(iconCss)"></i>
+            <span>
+                @if (!Model.HideLabel)
+                {
+                    @(Model.Html)
+                }
+            </span>
+        </a>
+    }
+</div>

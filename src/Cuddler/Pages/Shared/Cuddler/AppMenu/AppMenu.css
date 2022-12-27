@@ -1,0 +1,82 @@
+﻿/* */
+.eux-AppMenu { background: var(--ColorFive); display: grid; grid-template-columns: 1fr; grid-template-rows: 48px 1fr; position: relative; }
+.eux-AppMenu .eux-app-bar { align-items: center; background: var(--AppHeader); border-bottom: solid 1px #bcbcbc; display: flex; text-align: center; }
+.eux-AppMenu .eux-app-bar a { color: var(--ColorThree); font-size: 14px; font-weight: bold; line-height: 1em; text-decoration: none; }
+.eux-AppMenu.showapps { border-left: 1px solid var(--ColorThree); grid-template-columns: 53px 1fr; }
+/* */
+.eux-AppMenu .eux-AppMenu-divider.eux-AppMenu-divider-bottom { border-top: 1px solid rgba(0, 0, 0, 0.1); font-size: 11px; font-weight: bold; margin: 30px 15px 15px 15px; padding-left: 5px; padding-top: 10px; text-transform: uppercase; width: 200px; }
+.eux-AppMenu .eux-AppMenu-divider-top { color: var(--ColorSix); font-weight: bold; margin-bottom: 15px; padding: 8px 0 5px 10px; text-transform: uppercase; }
+/* */
+.eux-appmenu-button-tools { display: grid; grid-gap: 3px; grid-template-rows: 20px 20px 20px; margin: 5px 10px; padding-left: 100px; position: absolute; z-index: 9; }
+.eux-appmenu-button-tools .eux-PopupButton { height: 20px; }
+.eux-appmenu-button-tools i { font-size: 12px; }
+.eux-appmenu-button-tools .btn { align-content: center; align-items: center; display: grid; height: 20px; padding: 0; text-align: center; width: 20px; }
+/* */
+.eux-AppMenu .eux-AppMenu.eux-AppMenu--noapps { grid-template-columns: 1fr; }
+/* */
+.eux-AppMenu .eux-AppMenu-aside { -webkit-overflow-scrolling: touch; display: grid; grid-template-rows: 150px 1fr; height: calc(100vh - 48px); overflow-x: hidden; overflow-y: auto; position: relative; }
+.eux-AppMenu .eux-AppMenu-aside h1 { font-size: 16px; padding-bottom: 1rem; }
+.eux-AppMenu .eux-AppMenu-aside::-webkit-scrollbar { width: 2px; }
+/* */
+.eux-AppMenu .eux-AppMenu-nav { background: var(--ColorOne); padding: 16px 4px; }
+.eux-AppMenu .eux-AppMenu-nav ul .dropdown-menu { -ms-border-radius: 0; -ms-box-shadow: none; -webkit-box-shadow: none; background-color: #222222; border: none; border-radius: 0; box-shadow: none; margin: 0; padding: 0; position: relative; width: 100%; }
+.eux-AppMenu .eux-AppMenu-nav ul { list-style: none; margin: 0; padding: 0; }
+.eux-AppMenu .eux-AppMenu-nav ul { position: relative; }
+.eux-AppMenu .eux-AppMenu-nav ul li { height: 62px; position: relative; width: 45px; }
+.eux-AppMenu .eux-AppMenu-nav ul li > img { margin: 0 5px; margin-left: 4px; }
+.eux-AppMenu .eux-AppMenu-nav ul li a > i { color: var(--ColorTwo); font-size: 20px; position: relative; }
+.eux-AppMenu .eux-AppMenu-nav ul li a > img { top: 6px; }
+.eux-AppMenu .eux-AppMenu-nav ul li a, .eux-AppMenu-nav ul li button { align-items: center; border-radius: 5px; color: var(--ColorFour); display: grid; line-height: 14px; padding: 5px 0; text-align: center; text-decoration: none; }
+.eux-AppMenu .eux-AppMenu-nav ul li > a > span { display: block; display: none; font-size: 6px; margin-bottom: 0; }
+.eux-AppMenu .eux-AppMenu-nav ul li a:hover, .eux-AppMenu-nav ul li button:hover { background-color: var(--ColorThree); }
+.eux-AppMenu .eux-AppMenu-nav ul li button i { left: -8px; position: relative; top: 2px; }
+.eux-AppMenu .eux-AppMenu-nav ul li img { height: 30px; margin: auto; width: 30px; }
+.eux-AppMenu .eux-AppMenu-nav ul li a, .eux-AppMenu .eux-AppMenu-nav ul li.active a { color: var(--ColorFour); height: 45px; text-decoration: none; width: 45px; }
+.eux-AppMenu .eux-AppMenu-nav ul li.active a { background: rgba(0, 0, 0, 0.5); }
+.eux-AppMenu .eux-AppMenu-nav ul li.active a > i { color: var(--ColorTwo); }
+.eux-AppMenu .eux-AppMenu-nav::-webkit-scrollbar { display: none; }
+.eux-AppMenu .eux-AppMenu-alt .eux-AppMenu-nav ul { display: none; }
+.eux-AppMenu .nav-main-link-name i { margin-right: 10px; }
+/* */
+.eux-AppMenu .breadcrumb-label { align-content: center; background: var(--ColorSeven); color: #333; display: grid; font-size: 12px; padding-left: 20px; }
+.eux-AppMenu .breadcrumb-label span { padding: 0 10px 3px 0; }
+/* hover affect */
+.eux-AppMenu .eux-AppMenu-nav ul li a i { transition: all 0.1s; }
+.eux-AppMenu .eux-AppMenu-nav ul li a span { transition: all 0.1s; }
+.eux-AppMenu .eux-AppMenu-nav ul li a:hover { background-color: var(--ColorThree); height: 75px; left: -15px; position: relative; top: -15px; width: 75px; z-index: 9999999999999; }
+.eux-AppMenu .eux-AppMenu-nav ul li a:hover i { font-size: 36px; }
+.eux-AppMenu .eux-AppMenu-nav ul li a:hover span { display: block; font-size: 10px; }
+/* app button */
+.eux-portal .eux-AppMenu-aside .eux-appmenu-button { border-top-left-radius: 15px; }
+.eux-AppMenu .eux-appmenu-button a, .eux-AppMenu .eux-appmenu-button a:hover { color: inherit; display: block; font-size: 16px; font-weight: bold; line-height: 1.2em; padding-top: 0.5em; text-decoration: none; }
+.eux-appmenu-button .eux-appmenu-button-links { display: flex; justify-content: center; padding: 12px 0 0 0; text-align: center; }
+.eux-appmenu-button .eux-appmenu-button-links a:hover { text-decoration: none; }
+.eux-appmenu-button .eux-appmenu-button-links .app-icon { align-items: center; background: var(--ColorThree); border-radius: 10px; color: var(--ColorFour); display: grid; font-size: 36px; height: 75px; margin: auto; overflow: hidden; padding-left: 3px; width: 75px; }
+.eux-appmenu-button .eux-appmenu-button-links .eux-appmenu-button-label { color: var(--ColorSix); display: block; font-size: 16px; font-weight: bold; margin-top: 5px; margin-top: 10px; text-align: center; white-space: nowrap; width: 100%; }
+.eux-appmenu-button-tools .eux-btn-content > span:last-child { display: none; }
+/* app menu */
+.eux-app-nav-main-link { align-items: center; border-radius: .2rem; display: flex; font-size: .875rem; line-height: 1rem; margin: 0 5px; position: relative; text-decoration: none; /*padding-left: 10px;*//*padding-left: 10px;*/ }
+.eux-app-nav-main-link:not(.active):not(.disabled) .eux-app-nav-main-link-name, .eux-app-nav-main-link { color: var(--ColorEight); }
+.eux-app-nav-main-link .fa-grip-vertical { left: 5px; position: absolute; top: 10px; }
+.eux-app-nav-main-link:not(.active) { background: rgba(0, 0, 0, 0.1); border: solid rgba(255, 255, 255, 0.01) 1px; }
+.eux-app-nav-main-link.disabled { background: lightgray; color: darkgray; }
+.eux-app-nav-main-link .eux-app-nav-main-link-name { display: block; flex: 1 1 auto; max-width: 100%; padding: .5rem .625rem; }
+.eux-app-nav-main-link:not(.disabled):hover .eux-app-nav-main-link-name { background: rgba(255, 255, 255, 0.1); color: var(--ColorFour); }
+.eux-app-nav-main-link:not(.disabled):hover { background: rgba(0, 0, 0, 0.3); text-decoration: none; }
+.content-side { width: 180px; }
+.eux-app-nav-main-link.active, .content-side .nav-main:hover .eux-app-nav-main-link.active:hover { background-color: var(--ColorThree); color: var(--ColorFour); font-weight: normal; text-decoration: none; }
+.content-side .nav-main { list-style: none; margin: 0 0 15px 0; padding: 0; }
+.eux-nav-main-item { list-style-type: none; margin-bottom: 5px; }
+.eux-nav-main-item.eux-AppMenu-divider-top { border: none; margin-bottom: 10px; margin-right: 10px; padding-left: 10px; }
+.eux-nav-main-item + .eux-AppMenu-divider-top { font-size: 11px; margin-top: 15px; }
+.eux-nav-main-item.eux-AppMenu-divider-middle { color: transparent !important; font-size: 0; padding: 0px 0 5px 20px; }
+.eux-nav-main-item.eux-nav-main-item-editgrid { display: grid; grid-template-columns: 1fr 30px 30px; }
+.nav-main .eux-draggable-drop { align-content: center; display: grid; height: 34px; padding-left: 10px; text-align: center; }
+.eux-nav-main-item .btn.btn-icon { box-shadow: none !important; }
+.eux-linktools { align-items: center; background: darkgray; border: 1px solid black; border-radius: 5px; display: flex; height: 32px; padding: 3px; position: absolute; right: 0; z-index: 999; }
+.eux-linktools > * { margin: 0 3px; }
+.eux-portal .eux-AppMenu-aside .eux-appmenu-button { border-top-left-radius: 15px; }
+.eux-AppMenu .eux-appmenu-button .eux-appmenu-link { display: flex; justify-content: center; padding: 15px 0 0 0; text-align: center; width: 180px; }
+.eux-AppMenu .eux-appmenu-button .eux-appmenu-link a:hover { text-decoration: none; }
+.eux-AppMenu .eux-appmenu-button .eux-appmenu-link .app-icon { align-items: center; background: var(--ColorThree); border-radius: 10px; color: var(--ColorFour); display: grid; font-size: 43px; height: 75px; margin: auto; overflow: hidden; padding-left: 2px; padding-top: 0; width: 75px; }
+.eux-AppMenu .eux-appmenu-button .eux-appmenu-link .eux-appbutton-label { color: var(--ColorSix); display: block; font-size: 16px; font-weight: bold; margin-top: 5px; margin-top: 10px; text-align: center; white-space: nowrap; width: 100%; }

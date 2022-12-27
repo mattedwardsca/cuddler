@@ -1,0 +1,12 @@
+﻿@using Kendo.Mvc.UI
+@model dynamic
+@{
+    var data = new[] { "New Project", "Bidding", "Accepted", "On Customer Hold" };
+}
+<script>
+    function assignedToFocus(e) { e.sender.open(); }
+</script>
+@(Html.Kendo()
+      .DropDownListFor(m => m)
+      .BindTo(data)
+      .Events(e => e.DataBound("assignedToFocus")))

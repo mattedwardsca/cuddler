@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Core.Models;
-using Cuddler.Pages.Shared.Cuddler.Base;
-using Cuddler.ViewModels;
+using Cuddler.Data.Entities;
+using Cuddler.Web.BaseTagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerWarning;

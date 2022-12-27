@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Pages.Shared.Cuddler.Base;
-using Cuddler.ViewModels;
+using Cuddler.Web.BaseTagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsMatrix;
@@ -17,5 +16,5 @@ public class CuddlerFormFieldsMatrixTagHelper : BaseTagHelper, ICuddler
     public bool AutoSave { get; set; }
 
     [Required]
-    public IEnumerable<Core.Forms.FormField> Fields { get; set; } = null!;
+    public IEnumerable<Web.Forms.FormField> Fields { get; set; } = null!;
 }

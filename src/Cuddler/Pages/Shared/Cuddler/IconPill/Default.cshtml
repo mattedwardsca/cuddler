@@ -1,0 +1,32 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.Icon
+@using global::Cuddler.Web.Helpers
+@model IconPillTagHelper
+@{
+    var badgeClass = EIconPillTypeHelper.ToCss(Model.IconPillType);
+    var fontSize = EFontSizeHelper.ToFontSize(Model.FontSize);
+}
+<div class="eux-IconPill">
+    @if (!string.IsNullOrEmpty(Model.Href))
+    {
+        <a class="@badgeClass @fontSize"
+           href="@(Model.Href)">
+            <div class="eux-IconPill-icon">
+                <icon type="@Model.Icon" />
+            </div>
+            <div class="d-grid-center">
+                @Model.Html
+            </div>
+        </a>
+    }
+    else
+    {
+        <div class="@badgeClass @fontSize">
+            <div class="eux-IconPill-icon">
+                <icon type="@Model.Icon" />
+            </div>
+            <div class="d-grid-center">
+                @Model.Html
+            </div>
+        </div>
+    }
+</div>

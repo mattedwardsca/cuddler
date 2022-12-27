@@ -1,14 +1,15 @@
 ﻿@using System.Text
-@using BoostDC.Ui.Modules
-@using global::Cuddler.Core.Data
 @using global::Cuddler.Core.Utils
+@using global::Cuddler.Modules
+@using global::Cuddler.Pages.Shared.Cuddler.Divider
+@using global::Cuddler.Web.Helpers
 @model CuddlerSubmitButtonTagHelper
 @{
     var btnId = WebIdUtil.GetWebId();
     var msgId = WebIdUtil.GetWebId();
     var buttonClass = EButtonTypeHelper.ToString(Model.SubmitButtonType);
 
-    string? submitApiUrl = Model.SubmitApiUrl?.ToString();
+    var submitApiUrl = Model.SubmitApiUrl?.ToString();
     if (Model.SubmitApiUrl != null)
     {
         string? filter = null;

@@ -1,4 +1,6 @@
-﻿namespace Cuddler.Pages.Shared.Cuddler.ActionMenu;
+﻿using Cuddler.Web.Ui;
+
+namespace Cuddler.Pages.Shared.Cuddler.ActionMenu;
 
 public static class ActionMenuItemsExtensions
 {

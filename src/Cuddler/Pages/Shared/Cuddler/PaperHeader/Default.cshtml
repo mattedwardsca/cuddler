@@ -1,0 +1,18 @@
+﻿@model PaperHeaderTagHelper
+<div class="eux-PaperHeader">
+    <div class="eux-w-Medium p-2">
+        <div class="d-flex-justify-between">
+            <div>
+                @Model.BookTitle
+                @if (!string.IsNullOrEmpty(Model.PageTitle))
+                {
+                    <span> | </span>
+                    @Model.PageTitle
+                }
+            </div>
+            <div>
+                @Model.Html
+            </div>
+        </div>
+    </div>
+</div>

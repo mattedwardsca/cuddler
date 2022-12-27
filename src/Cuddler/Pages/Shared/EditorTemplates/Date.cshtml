@@ -1,0 +1,14 @@
+@using Kendo.Mvc.UI
+@model DateTime?
+@{
+    const string DateFormat = "yyyy-MM-dd"; // 1999-10-22T00:00:00
+    string[] ParseFormats = { "yyyy-MM-ddTHH:mm:ss" };
+}
+@(Html.Kendo()
+      .DatePickerFor(m => m)
+      .HtmlAttributes(new
+      {
+          title = Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("")
+      })
+      .Format(DateFormat)
+      .ParseFormats(ParseFormats))

@@ -5,6 +5,11 @@ namespace Cuddler.Core.Utils;
 
 public static class StringUtil
 {
+    public static string ToSplitCamelCase(this string str)
+    {
+        return Regex.Replace(Regex.Replace(str, @"(\P{Ll})(\P{Ll}\p{Ll})", "$1 $2"), @"(\p{Ll})(\P{Ll})", "$1 $2");
+    }
+
     public static string? CleanName(string? text)
     {
         if (string.IsNullOrWhiteSpace(text))

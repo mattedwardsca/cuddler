@@ -1,5 +1,7 @@
 ﻿@using global::Cuddler.Pages.Shared.Cuddler.Autosave
 @using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsMatrix
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsRow
 @using global::Cuddler.Pages.Shared.Cuddler.FormLabel
 @model CuddlerFormFieldsChildrenTagHelper
 <div class="eux-CuddlerFormFields">
@@ -114,7 +116,7 @@
                                             @if (Model.AutoSave)
                                             {
                                                 <autosave read-only="@Model.ReadOnly"
-                                                          save-url="@Model.SaveUrl">
+                                                          save-url="@(Model.SaveUrl!)">
                                                     <cuddler-form-fields-row form-field="@property"
                                                                              read-only="@Model.ReadOnly" />
                                                 </autosave>

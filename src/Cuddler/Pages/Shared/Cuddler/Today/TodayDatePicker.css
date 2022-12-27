@@ -1,0 +1,15 @@
+﻿.eux-Today .k-textbox-container { width: 120px; }
+.eux-Today .eux-TodayDatePicker-filter { display: flex; }
+.eux-Today .k-daterangepicker { background: transparent !important; margin-top: 0; }
+.eux-Today .eux-TodayDatePicker .eux-pod { background: #F8F9FA; border: solid 1px #dde2e7; border-radius: 5px; padding: 10px 10px 10px 10px; }
+.eux-Today .eux-TodayDatePicker.eux-flush .eux-pod { border-bottom: 0; border-radius: 5px 5px 0 0; padding: 10px 10px 10px 10px; }
+.eux-Today .eux-TodayDatePicker-pod .btn { align-content: center; align-items: center; display: flex; height: 30px; text-align: center; }
+.eux-Today .eux-TodayDatePicker-pod .eux-btn-nextprev { width: 35px; }
+.eux-Today .eux-TodayDatePicker-pod .eux-TodayDatePicker-lbl { display: none; font-size: 18px; }
+.eux-Today .eux-TodayDatePicker-pod { display: flex; }
+.eux-Today .eux-TodayDatePicker-pod > * { align-content: center; display: grid; margin: 0; }
+.eux-Today .eux-TodayDatePicker-pod > div:first-child { display: flex; margin-right: 10px; }
+.eux-Today .eux-TodayDatePicker-pod > div:last-child { display: grid; grid-gap: 2px; grid-template-columns: 35px auto 35px; }
+.eux-Today .eux-TodayDatePicker-clear { display: inline-grid; flex-direction: column; padding: 10px; position: relative; }
+.eux-Today .eux-quickdates { align-content: end; display: grid; font-size: 25px; grid-gap: 5px; grid-template-columns: auto auto auto; margin: 0px 10px 3px 10px; }
+.eux-Today .eux-quickdates i { cursor: pointer; }

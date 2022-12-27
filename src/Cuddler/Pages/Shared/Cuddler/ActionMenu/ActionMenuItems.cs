@@ -1,12 +1,13 @@
 ﻿using System.Text.Encodings.Web;
-using Cuddler.Core.Data;
-using Cuddler.Core.Extensions;
-using Cuddler.Core.Forms;
-using Cuddler.Core.Models;
+using Cuddler.Data.Entities;
 using Cuddler.Pages.Shared.Cuddler.ArchiveButton;
 using Cuddler.Pages.Shared.Cuddler.ButtonLink;
 using Cuddler.Pages.Shared.Cuddler.CuddlerFormCreate;
 using Cuddler.Pages.Shared.Cuddler.PopupEditor;
+using Cuddler.Web.Extensions;
+using Cuddler.Web.Forms;
+using Cuddler.Web.Helpers;
+using Cuddler.Web.Ui;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

@@ -1,0 +1,6 @@
+﻿.eux-AccountDropdown { font-size: 14px; }
+.eux-AccountDropdown .menu-info { padding: 0 24px; white-space: nowrap; }
+.eux-AccountDropdown .menu-info + .menu-info { padding-top: 5px; }
+.eux-AccountDropdown .dropdown-menu { font-size: 13px; position: absolute; }
+.eux-AccountDropdown .dropdown-menu h4 { font-size: 15px; padding-bottom: 5px; padding-left: 24px; padding-top: 10px; }
+.eux-AccountDropdown .dropdown-menu h5 { font-size: 15px; padding-bottom: 5px; padding-left: 24px; padding-top: 20px; }

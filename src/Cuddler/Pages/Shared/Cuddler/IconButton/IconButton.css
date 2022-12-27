@@ -1,0 +1,6 @@
+﻿.eux-Iconbutton, .eux-Iconbutton span, .eux-Iconbutton a { display: inline-block; margin: 0; padding: 0; text-align: center; }
+.eux-Iconbutton span > i { display: block; }
+.eux-Iconbutton a > i { display: block; }
+.eux-Iconbutton span > span, .eux-Iconbutton a > span { display: block; padding: 2px; }
+.eux-Iconbutton .eux-fa-3x i + span { font-size: 14px; }
+.eux-Iconbutton a:hover { text-decoration: none; }

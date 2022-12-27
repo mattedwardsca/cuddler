@@ -1,0 +1,14 @@
+﻿@using Kendo.Mvc.UI
+@model object
+@{
+    var fullHtmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data";
+    var obj = ViewData[fullHtmlFieldName];
+    var bindObj = (SelectList)obj!;
+}
+@(Html.Kendo()
+      .DropDownListFor(m => m)
+      .BindTo(bindObj)
+      .HtmlAttributes(new
+      {
+          title = Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("")
+      }))

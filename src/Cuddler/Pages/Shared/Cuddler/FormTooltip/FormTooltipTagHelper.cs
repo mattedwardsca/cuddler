@@ -1,6 +1,5 @@
 ﻿using System.Text.Encodings.Web;
-using Cuddler.Pages.Shared.Cuddler.Base;
-using Cuddler.ViewModels;
+using Cuddler.Web.BaseTagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.FormTooltip;

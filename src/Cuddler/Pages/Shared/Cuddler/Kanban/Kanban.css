@@ -1,0 +1,65 @@
+﻿/*.k-toolbar { border-width: 0; }
+#ToolBar { font-size: 12px; }
+#ToolBar i { font-size: 14px; }
+#ToolBar .k-dropdown { font-size: 10px; }
+#ToolBar .k-toolbar .k-overflow-anchor { font-size: 10px; }*/
+/*.k-list-scroller { overflow: hidden; }*/
+.eux-Kanban { height: 100%; }
+.eux-Kanban .eux-KanbanToolbar { align-items: center; background: #F9F9F9; border-bottom: 1px solid #dee2e6 !important; display: grid; grid-column-gap: 0; grid-template-columns: 1fr 200px; height: 47px; padding: 0 10px; }
+.eux-Kanban .eux-KanbanToolbar .h3 { font-size: 16px; }
+.eux-Kanban .eux-KanbanToolbar label { padding-top: 4px; }
+.eux-Kanban .items { cursor: pointer; display: grid; grid-gap: 10px; grid-template-columns: 20px 1fr 20px; overflow-x: scroll; position: relative; user-select: none; }
+.eux-Kanban .items > * { grid-column: 2/-2; }
+.eux-Kanban .items > .full { grid-column: 1/-1; }
+.eux-Kanban .eux-pipeline { align-content: start; display: grid; height: 100%; }
+.eux-Kanban .eux-pipeline > * { grid-column: 2/-2; }
+.eux-Kanban .eux-pipeline > .eux-pipeline-hs { background: #F2F2F2; border-right: solid 1px #ddd; grid-column: 1/-1; overflow-x: scroll; }
+.eux-Kanban .eux-pipeline-hs { display: grid; grid-auto-columns: 270px; grid-auto-flow: column; grid-gap: 0; grid-template-columns: 0; height: calc(100vh - 125px); overflow-x: hidden; overflow-y: hidden; scroll-snap-type: x proximity; }
+.eux-Kanban .eux-pipeline-hs:before, .eux-pipeline-hs:after { content: ''; width: 0; }
+.eux-Kanban .eux-pipeline.active { cursor: grabbing; cursor: -webkit-grabbing; }
+.eux-Kanban .eux-pipeline-hs-item { -ms-overflow-style: none; /* IE and Edge */background: #F2F2F2; border-bottom: solid 1px #ddd; border-right: solid 1px #ddd; overflow-y: scroll; scrollbar-width: none; }
+.eux-Kanban .eux-pipeline-hs-item::-webkit-scrollbar { display: none; }
+.eux-Kanban .eux-pipeline-hs-item .title-bar { background: #F2F2F2; border-bottom: solid 1px #ddd; padding: 10px 15px; position: sticky; top: 0; z-index: 99; }
+.eux-Kanban .eux-pipeline-hs-item .title-bar .add-to-watchlist { position: absolute; right: 10px; top: 10px; }
+.eux-Kanban .eux-pipeline-hs-item .badge { border-radius: 0; color: #333; display: block; font-size: 12px; padding: 10px; text-decoration: none; text-transform: uppercase; --bs-bg-opacity: 0.5; }
+.eux-Kanban .eux-pipeline-hs-item .count { display: block; font-size: 12px; margin-top: 3px; padding-left: 2px; text-transform: uppercase; }
+.eux-Kanban .eux-pipeline-hs-item { display: grid; grid-template-rows: auto 1fr; }
+.eux-Kanban .eux-MyWatchList-pod { border: none; }
+.eux-Kanban .eux-MyWorkQueue-pod { border: none; height: 490px; }
+.eux-Kanban .eux-drag-pod { background: transparent; border: none; box-shadow: none; height: 100%; margin: 15px 5px 0 5px; overflow-x: hidden; overflow-y: auto; padding-left: 5px; }
+.eux-drag-card .card-title .badge { color: var(--ColorSix); font-size: 18px; }
+.eux-drag-card .card-title .badge:hover { color: var(--ColorSix); }
+.eux-drag-card { background: white; border: solid 1px #ddd; border-radius: 3px; margin: 5px; padding: 10px 10px; position: relative; width: 240px; }
+.eux-drag-card:hover { cursor: move; }
+.eux-drag-card + .eux-drag-card { margin-top: 10px; }
+.eux-drag-card * { box-sizing: content-box; }
+.eux-drag-card .card-title { border-bottom: dashed 1px #ddd; padding-bottom: 6px; }
+.eux-drag-card .heading { color: gray; font-size: 10px; text-transform: uppercase; }
+.eux-drag-card .difficulty { align-content: center; background: #4699ff; border-radius: 50px; color: white; display: grid; font-size: 13px; font-weight: bold; height: 20px; position: absolute; right: 20px; text-align: center; top: 10px; width: 20px; }
+.eux-drag-card .owner > * { background: #4699ff; border-radius: 30px; color: white; font-size: 32px; padding: 3px; }
+.eux-drag-card .stats { margin-top: 10px; }
+.eux-drag-card .value { font-weight: bold; }
+.eux-drag-card .date { font-size: 12px; padding-top: 2px; }
+.eux-drag-card .info { display: grid; grid-gap: 10px; grid-template-columns: 50% 50%; }
+.eux-drag-card .notes { font-size: 12px; height: 40px; overflow: hidden; }
+.eux-drag-card .notes span { font-weight: bold; }
+.eux-drag-card .actions { display: none; font-size: 12px; position: absolute; right: 10px; top: 5px; z-index: 99; }
+.eux-drag-card .actions .fas { cursor: pointer; margin-left: 5px; }
+.eux-drag-card:hover .actions { display: block; }
+.eux-drag-card.list-item { align-content: center; background: #eee; border: dashed 1px #ddd; color: #ddd; display: grid; font-weight: bold; list-style-type: none; text-align: center; }
+/* .card-body */
+.eux-Kanban a.card-body, .eux-Kanban a.card-body:hover { color: inherit; text-decoration: none; }
+.eux-Kanban a.card-body .card-button { padding-top: 10px; }
+.eux-Kanban a.card-body .card-button > * { display: block; }
+.eux-Kanban .eux-card-grid { display: grid; grid-gap: 10px; }
+.eux-Kanban .eux-card-grid .card-body { cursor: pointer; position: relative; text-align: center; }
+.eux-Kanban .eux-card-grid .card-body .card-title { height: 40px; }
+.eux-Kanban .eux-card-grid .card-body .btn { margin: auto; top: 40px; width: 100px; }
+.eux-Kanban .eux-card-grid .card-body:hover { background: rgba(0, 0, 0, 0.5); }
+.eux-Kanban .eux-card-grid .card-body .card-button { display: none; left: 0; position: absolute; text-align: center; top: 50%; width: 100%; }
+.eux-Kanban .eux-card-grid .card-body:hover .card-button { display: block; }
+.eux-Kanban #PipelinePod { height: 100%; }
+.eux-Kanban .k-listview-content { flex: 0; }
+.eux-Kanban .eux-storyname { overflow: hidden; text-overflow: ellipsis; }
+.eux-Kanban .eux-metasmall { font-size: 13px; }
+#swimlane_placeholder { margin: 0; width: 228px; }

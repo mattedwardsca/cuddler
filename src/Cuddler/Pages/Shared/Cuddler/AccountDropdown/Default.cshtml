@@ -1,0 +1,58 @@
+﻿@using global::Cuddler.Modules
+@using global::Cuddler.Web.Extensions
+@model AccountDropdownTagHelper
+@{
+    var account = Model.Account;
+    var path = Context.Request.CombinedPath();
+    var isInDropdown = path.StartsWith("/MyAccount", StringComparison.InvariantCultureIgnoreCase);
+}
+<div class="eux-AccountDropdown">
+    <a aria-expanded="false"
+       aria-haspopup="true"
+       class="nav-link dropdown-toggle @isInDropdown.IsTrue("active")"
+       data-bs-toggle="dropdown"
+       href="#"
+       id="navbarDropdown2"
+       role="button">
+        <span>
+            <i class="fad fa-user-circle"></i>
+        </span>
+        <span>
+            My Account
+        </span>
+    </a>
+    <div aria-labelledby="navbarDropdown2"
+         class="dropdown-menu dropdown-menu-right">
+        <div class="align-items-center d-flex justify-content-between">
+            <h4>
+                @account.GetProfile().Name
+            </h4>
+            <div class="d-block d-md-none"
+                 onclick="return closeAccountDd('#navbarDropdown2')">
+                <i class="fa-3x fad fa-times-circle pointer"></i>
+            </div>
+        </div>
+        <div class="menu-info">Email: @account.Email</div>
+        <div class="menu-info">Customer #: @account.UserName</div>
+        <div style="background: var(--ColorFive); height: 2px;"></div>
+        <h5>
+            ACCOUNT
+        </h5>
+        <a class="dropdown-item @path.StartsWith("/MyAccount", StringComparison.InvariantCultureIgnoreCase).IsTrue("active")"
+           href="/MyAccount/">
+            <i class="fas fa-user-cog"></i> Account Settings
+        </a>
+        <div style="background: var(--ColorFive); height: 2px;"></div>
+        <div>
+            <a class="dropdown-item"
+               href="/Identity/Logout/?returnUrl=@Context.Request.CombinedPath()">
+                <i class="fas fa-sign-out-alt"></i> Log Out
+            </a>
+        </div>
+        <script>
+        function closeAccountDd(selector) {
+            $(selector).click();
+        }
+    </script>
+    </div>
+</div>

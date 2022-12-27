@@ -1,0 +1,8 @@
+﻿.eux-IconPill { position: relative; }
+.eux-IconPill > div { align-content: center; display: flex; grid-gap: 10px; grid-template-columns: auto 1fr; line-height: 10px; padding: 10px 9px; text-align: left; }
+.eux-IconPill .eux-Icon { align-items: center; display: flex; }
+.eux-IconPill .badge-size-1 { font-size: 14px; }
+.eux-IconPill .badge-size-2 { font-size: 18px; }
+.eux-IconPill .badge-size-3 { font-size: 22px; }
+.eux-IconPill .badge-size-4 { font-size: 26px; }
+.eux-IconPill .fas, .eux-IconPill .far, .eux-IconPill .fal { font-size: 36px; }

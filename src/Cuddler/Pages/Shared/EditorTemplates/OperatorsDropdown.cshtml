@@ -1,0 +1,15 @@
+﻿@using global::Cuddler.Core.Utils
+@using Kendo.Mvc.UI
+@model string
+@{
+    var guid = WebIdUtil.GetWebId();
+    var list = new List<SelectListItem>
+    {
+        new("Add", "Add"),
+        new("Multiply", "Multiply")
+    };
+}
+<script>
+    function @(guid)_assignedToFocus(e) { e.sender.open(); }
+</script>
+@(Html.Kendo().DropDownListFor(m => m).BindTo(list).Events(e => e.DataBound($"{guid}_assignedToFocus")))

@@ -1,0 +1,39 @@
+﻿@inject IWebHostEnvironment _env
+@using global::Cuddler.Web.Links
+@using global::Cuddler.Web.Modules
+@using Microsoft.AspNetCore.Hosting
+@model HeadTagHelper
+@{
+    var version = _env.GetVersion(GetType());
+}
+<link href="/static/favicon/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180">
+<link href="/static/favicon/favicon-32x32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png">
+<link href="/static/favicon/favicon-16x16.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png">
+<link href="/static/favicon/site.webmanifest"
+      rel="manifest">
+<link color="#5bbad5"
+      href="/static/favicon/safari-pinned-tab.svg"
+      rel="mask-icon">
+<meta content="#da532c"
+      name="msapplication-TileColor">
+<meta content="#ffffff"
+      name="theme-color">
+<meta charset="utf-8" />
+<meta content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"
+      name="viewport" />
+@Html.Raw(GoogleFontsLinks.GoogleFontLink())
+@Html.Raw(JQueryLinks.JQueryLibraryScript())
+@Html.Raw(BootstrapLinks.BootstrapLinkScript())
+@Html.Raw(FontAwesomeLinks.FontAwesomeLink())
+@Html.Raw(KendoLinks.GetHeaderHtml())
+<link href="/_content/BoostDC.Ui/css/components.min.css?ver=@version"
+      rel="stylesheet" />
+@Html.Raw(Model.Html)

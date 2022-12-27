@@ -1,4 +1,4 @@
-﻿using Cuddler.Core.Data;
+﻿using Cuddler.Web.Helpers;
 
 namespace Cuddler.Core.Utils;
 
