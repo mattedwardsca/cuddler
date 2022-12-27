@@ -26,5 +26,5 @@ public class ActionButtonTagHelper : BaseTagHelper, ICuddler
 
     public string? RedirectUrl { get; set; }
 
-    public string? SubmitApi { get; set; }
+    public CuddlerUri? SubmitApi { get; set; }
 }

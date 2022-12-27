@@ -27,7 +27,7 @@ public abstract class BaseController : Controller
 
     protected abstract Task<bool> HeartbeatTests();
 
-    protected async Task<ActionResult> ArchiveEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
+    protected async Task<IActionResult> ArchiveEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -63,7 +63,7 @@ public abstract class BaseController : Controller
         return Json(entity);
     }
 
-    protected async Task<ActionResult> CreateEntity<TEntity>(TEntity entity, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
+    protected async Task<IActionResult> CreateEntity<TEntity>(TEntity entity, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
     {
         entity.Id = Guid.NewGuid()
                         .ToString();
@@ -119,7 +119,7 @@ public abstract class BaseController : Controller
         return queryable;
     }
 
-    protected async Task<ActionResult> RestoreEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
+    protected async Task<IActionResult> RestoreEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -153,7 +153,7 @@ public abstract class BaseController : Controller
         return Json(entity);
     }
 
-    protected async Task<ActionResult> UpdateEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
+    protected async Task<IActionResult> UpdateEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
     {
         if (string.IsNullOrEmpty(id))
         {

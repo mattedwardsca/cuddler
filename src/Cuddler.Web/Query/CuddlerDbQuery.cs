@@ -34,7 +34,7 @@ public class CuddlerDbQuery
     {
         var entityName = PluralizeUtil.Pluralize(ElementType.Name.Replace("Entity", string.Empty));
 
-        return $"/Apis/Cuddler/{entityName}/{endPoint}?q={ToStringFilter()}";
+        return $"/A/p/i/s/Cuddler/{entityName}/{endPoint}?q={ToStringFilter()}";
     }
 
     public IList<IFilterDescriptor> ToFilterDescriptors()

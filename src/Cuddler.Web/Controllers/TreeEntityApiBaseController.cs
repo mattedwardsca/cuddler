@@ -16,7 +16,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
     }
 
     [HttpPost(nameof(Active))]
-    public async Task<ActionResult> Active(string q, [DataSourceRequest] DataSourceRequest request)
+    public async Task<IActionResult> Active(string q, [DataSourceRequest] DataSourceRequest request)
     {
         request.Filters = FilterDescriptorFactory.Create(q);
 
@@ -40,7 +40,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
     [HandleErrors]
     [WrapOutput]
     [HttpPost(nameof(Archive))]
-    public async Task<ActionResult> Archive([DataSourceRequest] DataSourceRequest request, string id)
+    public async Task<IActionResult> Archive([DataSourceRequest] DataSourceRequest request, string id)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -74,7 +74,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
     [WrapOutput]
     [ValidateModel]
     [HttpPost(nameof(Create))]
-    public async Task<ActionResult> Create([DataSourceRequest] DataSourceRequest request, TEntity entity)
+    public async Task<IActionResult> Create([DataSourceRequest] DataSourceRequest request, TEntity entity)
     {
         if (string.IsNullOrEmpty(entity.Id))
         {
@@ -105,7 +105,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
     [HandleErrors]
     [WrapOutput]
     [HttpPost(nameof(Destroy))]
-    public async Task<ActionResult> Destroy([DataSourceRequest] DataSourceRequest request, string id)
+    public async Task<IActionResult> Destroy([DataSourceRequest] DataSourceRequest request, string id)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -127,7 +127,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
     [HandleErrors]
     [WrapOutput]
     [HttpPost(nameof(Get))]
-    public ActionResult Get(string id)
+    public async Task<IActionResult> Get(string id)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -136,16 +136,20 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
 
         var entity = Repository.DbSet<TEntity>()
                                .Single(w => w.Id == id);
+        
+        await Task.CompletedTask;
 
         return Json(entity);
     }
 
-    public JsonResult Index([DataSourceRequest] DataSourceRequest request, string? id)
+    public async Task<IActionResult>Index([DataSourceRequest] DataSourceRequest request, string? id)
     {
         var result = Repository.DbSet<TEntity>()
                                .ToTreeDataSourceResult(request, e => e.Id, e => e.ParentId, e => !string.IsNullOrEmpty(id)
                                    ? e.ParentId == id
                                    : e.ParentId == null, e => e);
+        
+        await Task.CompletedTask;
 
         return Json(result);
     }
@@ -167,7 +171,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
     [HandleErrors]
     [WrapOutput]
     [HttpPost(nameof(Unarchive))]
-    public async Task<ActionResult> Unarchive([DataSourceRequest] DataSourceRequest request, string id)
+    public async Task<IActionResult> Unarchive([DataSourceRequest] DataSourceRequest request, string id)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -190,7 +194,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
     [HandleErrors]
     [WrapOutput]
     [HttpPost(nameof(Update))]
-    public async Task<ActionResult> Update([DataSourceRequest] DataSourceRequest request, string id)
+    public async Task<IActionResult> Update([DataSourceRequest] DataSourceRequest request, string id)
     {
         if (string.IsNullOrEmpty(id))
         {

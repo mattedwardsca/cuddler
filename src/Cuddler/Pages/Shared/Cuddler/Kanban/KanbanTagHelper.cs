@@ -19,7 +19,10 @@ public class KanbanTagHelper : BaseTagHelper
     public FactoryBoardModel FactoryBoard { get; set; } = null!;
 
     [Required]
-    public CuddlerUri StationApi { get; set; } = null!; // = "/Apis/Kanban/ListKanbanCards";
+    public CuddlerUri StationApi { get; set; } = null!;
+
+    [Required]
+    public CuddlerUri UpdateUri { get; set; } = null!; 
 
     public static EBadgeType ToBadge(EStationType state)
     {

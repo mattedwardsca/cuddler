@@ -1,6 +1,8 @@
 ﻿using System.Text.Json;
+using Cuddler.Core.Apis;
 using Cuddler.Data.Attributes;
 using Cuddler.Data.Context;
+using Cuddler.Web.Api;
 using Cuddler.Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +14,7 @@ namespace Cuddler.Web.Blocks;
 /// </summary>
 [Authorize]
 [Route("Apis/[controller]")]
-public class PartialsController : BaseController
+public class PartialsController : BaseController, IApiController
 {
     private readonly IRazorPartialToStringRenderer _renderer;
 
@@ -23,7 +25,7 @@ public class PartialsController : BaseController
 
     [WrapOutput]
     [HttpPost(nameof(GetInputs))]
-    public async Task<ActionResult> GetInputs(string contextId, string inputs)
+    public async Task<IActionResult> GetInputs(string contextId, string inputs)
     {
         if (string.IsNullOrEmpty(contextId))
         {
@@ -64,7 +66,7 @@ public class PartialsController : BaseController
 
         var BlockEntity = new BlockModel();
         BlockEntity.Inputs = inputList;
-        BlockEntity.SubmitApiUrl = $"/Apis/Partials/{nameof(SaveInputs)}?{nameof(contextId)}={contextId}";
+        BlockEntity.SubmitApiUrl = CuddlerApi.Uri<PartialsController>(e => e.SaveInputs(contextId)).ToString();
 
         var model = new HtmlModel
         {

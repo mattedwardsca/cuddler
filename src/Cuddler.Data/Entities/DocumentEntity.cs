@@ -26,8 +26,6 @@ public class DocumentEntity : BaseEntity, IRequiresContext, IHasOwner
     [StringLength(100)]
     public string? Title { get; set; }
 
-    public virtual string Url => $"/Apis/Documents/Download/{Id}";
-
     public virtual AccountEntity Owner { get; set; } = null!;
 
     [Required]

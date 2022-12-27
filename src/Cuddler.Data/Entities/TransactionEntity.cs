@@ -10,7 +10,8 @@ public class TransactionEntity : BaseEntity, ISortable, IHasOwner, IHasFormModel
 {
     public string? BillId { get; set; }
 
-    public string? CategoryId { get; set; }
+    [ForeignKey(nameof(TransactionCategory))]
+    public string? TransactionCategoryId { get; set; }
 
     public string? ClientsTitle { get; set; }
 
@@ -63,6 +64,7 @@ public class TransactionEntity : BaseEntity, ISortable, IHasOwner, IHasFormModel
     [Column(TypeName = "decimal(18,3)")]
     public decimal Subtotal { get; set; }
 
+    [ForeignKey(nameof(Supplier))]
     public string? SupplierId { get; set; }
 
     public string? ThumbnailId { get; set; }
@@ -116,6 +118,10 @@ public class TransactionEntity : BaseEntity, ISortable, IHasOwner, IHasFormModel
     public string Token { get; set; } = null!;
 
     public int SortOrder { get; set; }
+
+    public virtual TransactionCategoryEntity? TransactionCategory { get; set; }
+
+    public virtual SupplierEntity? Supplier { get; set; }
 
     public decimal GetItemPrice()
     {

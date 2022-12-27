@@ -1,5 +1,4 @@
-﻿using Cuddler.Data.Utils;
-using Kendo.Mvc;
+﻿using Kendo.Mvc;
 using Kendo.Mvc.Infrastructure;
 
 namespace Cuddler.Dynamic;
@@ -29,12 +28,12 @@ public class DynamicDbQuery
     //    return $"{apiUrl}?q={ToStringFilter()}";
     //}
 
-    public string ToApiUrl(string endPoint)
-    {
-        var entityName = PluralizeUtil.Pluralize(ElementType.Name.Replace("Entity", string.Empty));
+    //public string ToApiUrl(string endPoint)
+    //{
+    //    var entityName = PluralizeUtil.Pluralize(ElementType.Name.Replace("Entity", string.Empty));
 
-        return $"/Apis/Dynamic/{entityName}/{endPoint}?q={ToStringFilter()}";
-    }
+    //    return $"/A/p/i/s/Dynamic/{entityName}/{endPoint}?q={ToStringFilter()}";
+    //}
 
     public IList<IFilterDescriptor> ToFilterDescriptors()
     {

@@ -84,7 +84,7 @@
         const station = e.sender.element.data("swimlane");
         const newIndex = e.newIndex;
         if (newIndex >= 0) {
-            const url = '/Apis/Kanban/UpdateKanbanCard';
+            const url = '@(Model.UpdateUri.ToString())';
             $.post(url,
                 {
                     "@(nameof(ICard.Id))": id,
