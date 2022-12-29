@@ -14,9 +14,9 @@ public static class StartupApplication
         return boostApplicationBuilder.InitServices();
     }
 
-    public static void ConfigureApp(this IApplicationBuilder app, IWebHostEnvironment environment, BoostConfiguration boostConfiguration, ApplicationSettings ApplicationSettings, DatabaseType databaseType, Action<IApplicationBuilder>? middlewareAction)
+    public static void ConfigureApp(this IApplicationBuilder app, IWebHostEnvironment environment, BoostConfiguration boostConfiguration, ApplicationSettings ApplicationSettings, Action<IApplicationBuilder>? middlewareAction)
     {
-        app.ConfigureBoostCoreApp(environment, boostConfiguration, ApplicationSettings, databaseType, middlewareAction);
+        app.ConfigureBoostCoreApp(environment, boostConfiguration, ApplicationSettings, middlewareAction);
     }
 
     public static void ConfigureApp_NotificationsApp(this IApplicationBuilder app)

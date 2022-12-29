@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Emails")]
+[Table("Cuddler_Emails")]
 public class EmailEntity : BaseEntity
 {
     public string? BccEmail { get; set; }

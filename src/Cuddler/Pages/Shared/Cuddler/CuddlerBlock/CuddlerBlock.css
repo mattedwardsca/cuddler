@@ -14,7 +14,7 @@
 .eux-CuddlerBlock.eux-Large { width: 880px; }
 .eux-CuddlerBlock.eux-Full { margin: auto; width: 1360px; }
 .eux-CuddlerBlock > .card { border-radius: 2px; height: 100%; padding: 20px; --bs-card-border-color: transparent; }
-@keyframes euxCuddlerBlock {
+@keyframes euxCuddlerBlock { 
     0% { background-color: #EEEEEE; }
     50% { background-color: #F5F8FA; }
     100% { background-color: #EEEEEE; }

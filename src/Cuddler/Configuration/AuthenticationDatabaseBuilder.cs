@@ -20,11 +20,11 @@ public class AuthenticationDatabaseBuilder
         _applicationSettings = applicationSettings;
     }
 
-    public AdditionalDatabaseBuilder InitAuthenticationDatabase<TDbContext>(DatabaseType databaseType) where TDbContext : IdentityDbContext<AccountEntity>, IRepository, ITranslationRepository
+    public AdditionalDatabaseBuilder InitAuthenticationDatabase<TDbContext>() where TDbContext : IdentityDbContext<AccountEntity>, IRepository, ITranslationRepository
     {
-        _applicationBuilder.AddAuthenticationDatabase<TDbContext, IRepository>(databaseType, _applicationSettings);
+        _applicationBuilder.AddAuthenticationDatabase<TDbContext, IRepository>();
         _applicationBuilder.AddAuthenticationScheme<TDbContext, AccountEntity>(_applicationSettings);
 
-        return new AdditionalDatabaseBuilder(_applicationBuilder, _boostConfiguration, _applicationSettings, databaseType);
+        return new AdditionalDatabaseBuilder(_applicationBuilder, _boostConfiguration, _applicationSettings);
     }
 }

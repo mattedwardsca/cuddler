@@ -1,0 +1,28 @@
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::Cuddler.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    dictionary.Add("id", Model.WebId);
+    dictionary.Add("style", "font-size: 16px; width: 100%;max-width: 200px;");
+    if (Model.ReadOnly)
+    {
+        dictionary.Add("readonly", "readonly");
+    }
+}
+@if (!Model.HideLabel)
+{
+    <form-label for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+@(Html.Kendo()
+      .DatePicker()
+      .Name(Model.Name)
+    //.Start(CalendarView.Year)
+    //.Depth(CalendarView.Year)
+    //.Format("MMMM yyyy")
+    //.DateInput(true)
+    //.Max(Model.MaxDateTime ?? DateTime.UtcNow.AddYears(10))
+      .Value(Model.Value)
+      .HtmlAttributes(dictionary))

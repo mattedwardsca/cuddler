@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Settings")]
+[Table("Cuddler_Settings")]
 public class SettingEntity : BaseEntity, IHasContext
 {
     [Required]

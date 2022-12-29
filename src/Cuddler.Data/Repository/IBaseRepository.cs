@@ -35,5 +35,9 @@ public interface IBaseRepository
 
     DbSet<SettingEntity> Settings { get; set; }
 
+    DbSet<SupplierEntity> Suppliers { get; set; }
+
+    DbSet<TransactionCategoryEntity> TransactionCategories { get; set; }
+
     DbSet<TransactionEntity> Transactions { get; set; }
 }

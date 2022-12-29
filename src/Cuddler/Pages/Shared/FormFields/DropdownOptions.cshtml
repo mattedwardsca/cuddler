@@ -1,0 +1,92 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using global::Cuddler.Utils
+@using Kendo.Mvc.UI
+@model global::Cuddler.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    dictionary.Add("id", Model.WebId);
+    var ddPod = WebIdUtil.GetWebId();
+}
+
+@if (!Model.HideLabel)
+{
+    <form-label description="@Model.Description"
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+
+@{
+    List<SelectListItem> list;
+    if (Model.BindData != null && SelectListItemUtil.IsTextValue(Model.BindData))
+    {
+        var selectListItems = Model.BindData.ToList();
+
+        foreach (var selectListItem in selectListItems)
+        {
+            selectListItem.Value = WebIdUtil.GetWebId(selectListItem.Value);
+        }
+
+        var str = Model.Value;
+        var bindOptions = selectListItems.Where(s => (string?)s.Value != str);
+        var selectedOption = selectListItems.SingleOrDefault(s => s.Value != null && (string?)s.Value == str);
+        list = bindOptions.Select(s => new SelectListItem
+        {
+            Text = s.Text,
+            Value = s.Value
+        })
+                          .ToList();
+        if (selectedOption != null)
+        {
+            list.Insert(0, new SelectListItem
+            {
+                Text = selectedOption.Text,
+                Value = selectedOption.Value
+            });
+        }
+    }
+    else
+    {
+        list = new List<SelectListItem>();
+    }
+
+    <script>
+        function showOptionPod() {
+            const val = $("#@(Model.WebId)").data("kendoDropDownList").value();
+            @{
+                foreach (var item in list)
+                {
+                    @:$("#@(item.Value)").addClass("d-none");
+                }
+            }
+            $(`#${val}`).removeClass('d-none');
+        }
+    </script>
+    <div class="p-relative"
+         id="@ddPod">
+    </div>
+    @(Html.Kendo()
+          .DropDownList()
+          .Name(Model.Name)
+          .Value(Model.Value)
+          .HtmlAttributes(dictionary)
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .OptionLabel(Model.Placeholder)
+          .Popup(p => p.AppendTo($"#{ddPod}"))
+          .Events(a => {
+              a.DataBound("showOptionPod");
+              a.Change("showOptionPod");
+          })
+          .BindTo(list))
+}
+
+@if (Model.ReadOnly)
+{
+    <script>
+        $(function() {
+            const dropdownlist = $("#@(Model.WebId)").data("kendoDropDownList");
+            dropdownlist.readonly();
+        });
+    </script>
+}

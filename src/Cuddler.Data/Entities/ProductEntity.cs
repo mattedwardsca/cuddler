@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("BoostDC_Products")]
+[Table("Cuddler_Products")]
 public class ProductEntity : BaseEntity, IHasThumbnailId
 {
     public string? Description { get; set; }

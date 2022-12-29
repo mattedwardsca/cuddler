@@ -1,0 +1,32 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.FormTooltip
+@using global::Cuddler.Utils
+@model global::Cuddler.Forms.FormField
+@{
+    var chcked = string.Equals("True", Model.Value, StringComparison.InvariantCultureIgnoreCase);
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    dictionary.Add("id", Model.WebId);
+}
+
+@if (Model.HideLabel)
+{
+    <input data-role="checkbox"
+           data-value="@Model.Value"
+           name="@Model.Name"
+           type="checkbox"
+           value="true" @chcked.IsTrueHtml("checked='checked'") @dictionary.ToHtmlAttributes() @Model.ReadOnly.IsTrueHtml("disabled") />
+}
+else
+{
+    <label class="eux-Checkbox">
+        <input data-role="checkbox"
+               data-value="@Model.Value"
+               name="@Model.Name"
+               type="checkbox"
+               value="true" @chcked.IsTrueHtml("checked='checked'") @dictionary.ToHtmlAttributes() @Model.ReadOnly.IsTrueHtml("disabled") />
+        <span>@Html.Raw(Model.Label)</span>
+        <form-tooltip title="@Model.Description" />
+    </label>
+}
+<input name="cb_hint"
+       type="hidden"
+       value="@Model.Name"/>

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Transactions")]
+[Table("Cuddler_Transactions")]
 public class TransactionEntity : BaseEntity, ISortable, IHasFormModel, IHasToken
 {
     public string? BillId { get; set; }

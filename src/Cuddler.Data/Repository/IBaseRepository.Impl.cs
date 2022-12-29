@@ -43,6 +43,10 @@ public abstract class BaseRepository : IdentityDbContext<AccountEntity>, IReposi
 
     public DbSet<SettingEntity> Settings { get; set; } = null!;
 
+    public DbSet<SupplierEntity> Suppliers { get; set; } = null!;
+
+    public DbSet<TransactionCategoryEntity> TransactionCategories { get; set; } = null!;
+
     public DbSet<TransactionEntity> Transactions { get; set; } = null!;
 
     public TEntity Archive<TEntity>(string id) where TEntity : class, IData

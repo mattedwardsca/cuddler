@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.AppNotifications;
 
-public class AppNotifications : BaseTagHelper
+public class AppNotificationsTagHelper : BaseTagHelper, ICuddler
 {
-    public AppNotifications(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
+    public AppNotificationsTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
     {
 
     }

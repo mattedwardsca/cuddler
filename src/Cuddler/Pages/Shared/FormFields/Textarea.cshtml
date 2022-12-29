@@ -1,0 +1,19 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using global::Cuddler.Utils
+@model global::Cuddler.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    dictionary.Add("id", Model.WebId);
+    dictionary.AppendValue("style", ";", "height: 70px; width:100%;");
+    dictionary.AddIfMissing("class", "k-textbox");
+}
+
+@if (!Model.HideLabel)
+{
+    <form-label description="@Model.Description"
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+
+@(Html.TextArea(Model.Name, Model.Value, dictionary))

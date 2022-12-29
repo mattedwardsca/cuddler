@@ -1,0 +1,34 @@
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using global::Cuddler.Utils
+@model global::Cuddler.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+}
+@if (!Model.HideLabel)
+{
+    <form-label description="@Model.Description"
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+<input id="@(Model.WebId)"
+       name="@(Model.Name)"
+       step="1"
+       style="width: 100%;"
+       title="numeric"
+       type="number"
+       value="@(Model.Value)" @(dictionary.ToHtmlAttributes()) />
+<script>
+    $("#@(Model.WebId)").kendoNumericTextBox({
+        format: "#"
+    });
+</script>
+<script>
+    $("#@(Model.WebId)").on("focus",
+        function() {
+            var input = $(this);
+            setTimeout(function() {
+                input.select();
+            });
+        });
+</script>

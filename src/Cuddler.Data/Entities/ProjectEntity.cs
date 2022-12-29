@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Projects")]
+[Table("Cuddler_Projects")]
 public class ProjectEntity : BaseEntity, IHasName, IHasToken, ISortable, ICard
 {
     public string? Background { get; set; }

@@ -1,0 +1,5 @@
+﻿.eux-RadioImageList input { left: -10000px; position: absolute; }
+.eux-RadioImageList label { align-items: center; display: flex; flex-direction: column; margin: 10px; text-align: center; }
+.eux-RadioImageList .eux-item, .eux-RadioImageList .eux-item * { cursor: pointer; }
+.eux-RadioImageList .eux-item { border: solid 2px transparent; border-radius: 10px; }
+.eux-RadioImageList .eux-item.eux-checked { border: solid 2px #ccc; }

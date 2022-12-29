@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBAEA0B7-C3E5-4B6F-8707-4C28F4DB11A9}"
 	ProjectSection(SolutionItems) = preProject
+		gulp\gulpfile.js = gulp\gulpfile.js
+		gulp_cuddler.bat = gulp_cuddler.bat
 		README.md = README.md
 	EndProjectSection
 EndProject

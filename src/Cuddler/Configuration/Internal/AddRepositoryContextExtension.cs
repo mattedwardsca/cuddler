@@ -13,22 +13,10 @@ namespace Cuddler.Configuration.Internal;
 internal static class AddRepositoryContextExtension
 {
     [DebuggerStepThrough]
-    public static void AddAuthenticationDatabase<TDbContext, TRepository>(this WebApplicationBuilder builder, DatabaseType databaseType, ApplicationSettings ApplicationSettings) where TDbContext : DbContext, TRepository, ITranslationRepository where TRepository : class
+    public static void AddAuthenticationDatabase<TDbContext, TRepository>(this WebApplicationBuilder builder) where TDbContext : DbContext, TRepository, ITranslationRepository where TRepository : class
     {
-        // Database
         builder.Services.AddDbContext<TDbContext>(options => {
-            switch (databaseType)
-            {
-                case DatabaseType.SQLite:
-                    options.UseSqlite($"Data Source={Path.Combine(ApplicationSettings.ContentRootFolder!, "Db", "boostdc.db")}");
-
-                    break;
-                case DatabaseType.SQLServer:
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(databaseType), databaseType, null);
-            }
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
             if (builder.Environment.IsDevelopment())
             {
@@ -46,29 +34,14 @@ internal static class AddRepositoryContextExtension
         builder.Services.AddScoped<ITranslationRepository>(p => p.GetRequiredService<TDbContext>());
         builder.Services.AddScoped<DbContext>(p => p.GetRequiredService<TDbContext>());
         builder.Services.AddTransient<LanguageService>();
-
-        //builder.Services.AddScoped<ITranslationRepository>(p => p.GetRequiredService<TDbContext>()); // TODO for language support
-        // Database Filters
-        //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+        builder.Services.AddScoped<ITranslationRepository>(p => p.GetRequiredService<TDbContext>());
     }
 
     [DebuggerStepThrough]
-    public static void AddAdditionalDatabase<TDbContext>(this WebApplicationBuilder builder, DatabaseType databaseType, ApplicationSettings ApplicationSettings) where TDbContext : DbContext
+    public static void AddAdditionalDatabase<TDbContext>(this WebApplicationBuilder builder) where TDbContext : DbContext
     {
-        // Database
         builder.Services.AddDbContext<TDbContext>(options => {
-            switch (databaseType)
-            {
-
-                case DatabaseType.SQLite:
-                    options.UseSqlite($"Data Source={Path.Combine(ApplicationSettings.ContentRootFolder!, "Db", "boostdc.db")}");
-                    break;
-                case DatabaseType.SQLServer:
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(databaseType), databaseType, null);
-            }
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
             if (builder.Environment.IsDevelopment())
             {
@@ -83,8 +56,5 @@ internal static class AddRepositoryContextExtension
         });
 
         builder.Services.AddScoped(p => p.GetRequiredService<TDbContext>());
-
-        // Database Filters
-        //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
     }
 }

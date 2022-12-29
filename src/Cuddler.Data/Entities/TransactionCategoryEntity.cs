@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Cuddler.Data.Entities;
 
-[Table("BoostDC_TransactionCategories")]
+[Table("Cuddler_TransactionCategories")]
 public class TransactionCategoryEntity : BaseEntity, IHasBalance, IHasParent, IHasDescription
 {
     //[UIHint("ExpenseCategoryTypesDropdown")]

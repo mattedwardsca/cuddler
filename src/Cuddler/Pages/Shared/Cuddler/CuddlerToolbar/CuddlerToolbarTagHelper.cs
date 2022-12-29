@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Cuddler.Pages.Shared.Cuddler.Toolbar;
+namespace Cuddler.Pages.Shared.Cuddler.CuddlerToolbar;
 
-public class ToolbarTagHelper : TagHelper, ICuddler
+public class CuddlerToolbarTagHelper : TagHelper, ICuddler
 {
     protected readonly HtmlHelper HtmlHelper;
 
-    public ToolbarTagHelper(IHtmlHelper htmlHelper)
+    public CuddlerToolbarTagHelper(IHtmlHelper htmlHelper)
     {
         HtmlHelper = htmlHelper as HtmlHelper ?? throw new ArgumentNullException(nameof(htmlHelper));
     }

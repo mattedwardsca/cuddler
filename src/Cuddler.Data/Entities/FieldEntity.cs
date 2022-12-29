@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Lookups")]
+[Table("Cuddler_Fields")]
 public class FieldEntity : BaseEntity, IHasOwner, IRequiresContext
 {
     [Required]

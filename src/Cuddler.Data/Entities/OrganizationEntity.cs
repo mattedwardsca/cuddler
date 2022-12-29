@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace Cuddler.Data.Entities;
 
 [CuddlerEntity(CuddlerEntityTargets.All)]
-[Table("Core_Organizations")]
+[Table("Cuddler_Organizations")]
 [JsonObject(MemberSerialization.OptIn)]
 public class OrganizationEntity : BaseEntity, IBillingAddress, IHasName
 {

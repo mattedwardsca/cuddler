@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Cuddler.Pages.Shared.Cuddler.ContentTabs;
+namespace Cuddler.Pages.Shared.Cuddler.CuddlerTabs;
 
-[RestrictChildren("tab")]
-public class ContentTabsTagHelper : TagHelper, ICuddler
+[RestrictChildren("cuddler-tab")]
+public class CuddlerTabsTagHelper : TagHelper, ICuddler
 {
     protected readonly HtmlEncoder HtmlEncoder;
 
@@ -19,7 +19,7 @@ public class ContentTabsTagHelper : TagHelper, ICuddler
 
     protected ETagType TagType;
 
-    public ContentTabsTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder)
+    public CuddlerTabsTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder)
     {
         HtmlHelper = htmlHelper as HtmlHelper ?? throw new ArgumentNullException(nameof(htmlHelper));
         HtmlEncoder = htmlEncoder;
@@ -30,7 +30,7 @@ public class ContentTabsTagHelper : TagHelper, ICuddler
     [JsonIgnore]
     public bool ReadOnly { get; set; }
 
-    public List<TabTagHelper> TabList { get; private set; } = null!;
+    public List<CuddlerTabTagHelper> TabList { get; private set; } = null!;
 
     public bool TrackHistory { get; set; } = true;
 
@@ -80,9 +80,9 @@ public class ContentTabsTagHelper : TagHelper, ICuddler
         return JsonSerializer.Deserialize(json, type) ?? Activator.CreateInstance(type)!;
     }
 
-    private static List<TabTagHelper> ParseInnerContent(string innerHtml)
+    private static List<CuddlerTabTagHelper> ParseInnerContent(string innerHtml)
     {
-        var list = new List<TabTagHelper>();
+        var list = new List<CuddlerTabTagHelper>();
 
         using StringReader reader = new(innerHtml);
         while (reader.ReadLine() is { } line)
@@ -98,7 +98,7 @@ public class ContentTabsTagHelper : TagHelper, ICuddler
                 continue;
             }
 
-            var obj = (TabTagHelper)JsonDeserializeObject(typeof(TabTagHelper), line);
+            var obj = (CuddlerTabTagHelper)JsonDeserializeObject(typeof(CuddlerTabTagHelper), line);
             list.Add(obj);
         }
 
@@ -111,6 +111,6 @@ public class ContentTabsTagHelper : TagHelper, ICuddler
             .Name;
         name = name.Replace("TagHelper", string.Empty);
 
-        return await HtmlHelper.PartialAsync($"Templates/{name}/Default", this);
+        return await HtmlHelper.PartialAsync($"Cuddler/{name}/Default", this);
     }
 }

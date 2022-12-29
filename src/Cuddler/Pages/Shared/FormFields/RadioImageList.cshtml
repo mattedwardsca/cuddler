@@ -1,0 +1,94 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.FormTooltip
+@using global::Cuddler.Utils
+@using global::Cuddler.Web.Models
+@model global::Cuddler.Forms.FormField
+
+@functions
+{
+    public static bool IsSelectListUrl(IEnumerable<SelectListItem>? list)
+    {
+        if (list == null)
+        {
+            return false;
+        }
+
+        var type = list.GetType();
+        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+        {
+            var itemType = type.GetGenericArguments()[0];
+
+            return itemType == typeof(SelectListUrl);
+        }
+
+        return false;
+    }
+
+    public async Task ListItem(string name, string? label, string url, object? value, bool isChecked)
+    {
+        <div class="eux-item @(isChecked.IsTrue("eux-checked"))">
+            <label>
+                <img alt="@label"
+                     src="@url" />
+                <input data-role="checkbox"
+                       name="@name"
+                       type="radio"
+                       value="@value"
+                       @Model.ReadOnly.IsTrueHtml("disabled")
+                       @isChecked.IsTrueHtml("checked") />
+                @Html.Raw(label)
+            </label>
+        </div>
+
+        await Task.CompletedTask;
+    }
+}
+
+@{
+    if (Model.BindData == null)
+    {
+        throw new InvalidOperationException("RadioList requires the 'bind-data' attribute");
+    }
+
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    dictionary.Add("id", Model.WebId);
+    var parentStyles = Model.Matrix
+        ? "display: grid; grid-template-columns: 1fr 50px 50px; grid-gap: 10px;"
+        : string.Empty;
+    dictionary.AppendStyles(parentStyles);
+}
+<div class="eux-RadioImageList" @dictionary.ToHtmlAttributes()>
+    @if (!Model.HideLabel)
+    {
+        <div class="mb-2">
+            <label>@Html.Raw(Model.Label)</label>
+            <form-tooltip title="@Model.Description" />
+        </div>
+    }
+    @if (IsSelectListUrl(Model.BindData))
+    {
+        <div class="d-flex d-flex-gap-1 d-flex-wrap">
+            @foreach (var item in (List<SelectListUrl>)Model.BindData)
+            {
+                var chcked = string.Equals(item.Value, Model.Value, StringComparison.InvariantCultureIgnoreCase);
+
+                await ListItem(Model.Name, item.Text, item.Url, item.Value, chcked);
+            }
+        </div>
+    }
+    else
+    {
+        throw new InvalidOperationException($"RadioImageList does not support this type of data: {Model.BindData.GetType() .Name}");
+    }
+
+</div>
+<script>
+
+$(function(){
+    $("#@(Model.WebId) input").change(function () {
+            $("#@(Model.WebId) .eux-item").removeClass("eux-checked");
+            var item = $(this);
+            item.closest(".eux-item").addClass("eux-checked");
+        });
+});
+
+</script>

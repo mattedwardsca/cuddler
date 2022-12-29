@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Profiles")]
+[Table("Cuddler_Profiles")]
 [JsonObject(MemberSerialization.OptIn)]
 public class ProfileEntity : BaseEntity, IProfileRole, IProfile
 {

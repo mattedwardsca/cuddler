@@ -1,0 +1,13 @@
+Steps for Gulp Setup
+
+For the first time:
+1. Download and Install Node.js
+2. Open Command Line 
+3. Install gulp by running "npm install --location=global gulp-cli"
+Gulp files can now be run.
+
+
+For all other times, npm must be updated for gulp to run:
+1. Open Command Line 
+2. Update npm by running "npm install"
+Gulp files can now be run.

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerPageContentSection;
 
-[RestrictChildren("cuddler-block", "section-card", "style", "script", "section-tabs", "activity-cards", "partial-loader")]
+[RestrictChildren("cuddler-block", "section-card", "style", "script", "cuddler-tabs", "activity-cards", "partial-loader")]
 public class CuddlerPageContentSectionTagHelper : TagHelper
 {
     public ELayout PageLayout { get; set; } = ELayout.Flex;

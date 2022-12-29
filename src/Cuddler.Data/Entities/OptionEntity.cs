@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("BoostDC_Options")]
+[Table("Cuddler_Options")]
 public class OptionEntity : BaseEntity, IRequiresContext
 {
     [Required]

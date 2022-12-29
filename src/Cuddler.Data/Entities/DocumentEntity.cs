@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Documents")]
+[Table("Cuddler_Documents")]
 public class DocumentEntity : BaseEntity, IRequiresContext, IHasOwner
 {
     public string? ClientContextId { get; set; }

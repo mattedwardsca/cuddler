@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("BoostDC_BillSuppliers")]
+[Table("Cuddler_Suppliers")]
 public class SupplierEntity : BaseEntity, IHasBalance, IHasDescription, IData
 {
     [DisplayName("Billing Address")]

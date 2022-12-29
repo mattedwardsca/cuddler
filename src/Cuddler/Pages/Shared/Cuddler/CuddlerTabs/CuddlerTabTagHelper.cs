@@ -2,9 +2,10 @@
 using Cuddler.Utils;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Cuddler.Pages.Shared.Cuddler.ContentTabs;
+namespace Cuddler.Pages.Shared.Cuddler.CuddlerTabs;
 
-public class TabTagHelper : TagHelper
+[RestrictChildren("cuddler-no-tags")]
+public class CuddlerTabTagHelper : TagHelper
 {
     public string Value { get; set; } = null!;
 

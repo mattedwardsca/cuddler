@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerHeading;
 
-[RestrictChildren("toolbar")]
+[RestrictChildren("cuddler-toolbar")]
 public class CuddlerHeadingTagHelper : BaseTagHelper, ICuddler
 {
     public CuddlerHeadingTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_EmailTemplates")]
+[Table("Cuddler_EmailTemplates")]
 public class EmailTemplateEntity : BaseEntity
 {
     [Required]

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Cultures")]
+[Table("Cuddler_Cultures")]
 public class CultureEntity : BaseEntity
 {
     [Required]

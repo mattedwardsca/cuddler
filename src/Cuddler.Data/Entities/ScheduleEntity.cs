@@ -2,7 +2,7 @@
 
 namespace Cuddler.Data.Entities;
 
-[Table("BoostDC_Schedules")]
+[Table("Cuddler_Schedules")]
 public class ScheduleEntity : BaseEntity
 {
     public string? CalendarId { get; set; }

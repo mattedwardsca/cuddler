@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_Addresses")]
+[Table("Cuddler_Addresses")]
 public class AddressEntity : BaseEntity, IAddress, IRequiresContext
 {
     public string? AddressType { get; set; }

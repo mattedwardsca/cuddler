@@ -1,0 +1,49 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::Cuddler.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    dictionary.Add("id", Model.WebId);
+
+    var provinces = new List<SelectListItem>
+    {
+        new("Alberta", "Alberta"),
+        new("British Columbia", "British Columbia"),
+        new("Manitoba", "Manitoba"),
+        new("New Brunswick", "New Brunswick"),
+        new("Newfoundland and Labrador", "Newfoundland and Labrador"),
+        new("Northwest Territories", "Northwest Territories"),
+        new("Nova Scotia", "Nova Scotia"),
+        new("Nunavut", "Nunavut"),
+        new("Ontario", "Ontario"),
+        new("Prince Edward Island", "Prince Edward Island"),
+        new("Québec", "Quebec"),
+        new("Saskatchewan", "Saskatchewan"),
+        new("Yukon", "Yukon")
+    };
+}
+@if (!Model.HideLabel)
+{
+    <form-label for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+
+@(Html.Kendo()
+      .DropDownList()
+      .Name(Model.Name)
+      .Value(Model.Value)
+      .DataValueField(nameof(SelectListItem.Value))
+      .DataTextField(nameof(SelectListItem.Text))
+      .BindTo(provinces)
+      .HtmlAttributes(dictionary))
+
+@if (Model.ReadOnly)
+{
+    <script>
+        $(function() {
+            const dropdownlist = $("#@(Model.WebId)").data("kendoDropDownList");
+            dropdownlist.readonly();
+        });
+    </script>
+}

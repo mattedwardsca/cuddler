@@ -10,21 +10,19 @@ public class AdditionalDatabaseBuilder
 {
     private readonly WebApplicationBuilder _applicationBuilder;
     private readonly ApplicationSettings _applicationSettings;
-    private readonly DatabaseType _authenticationDatabaseType;
     private readonly BoostConfiguration _boostConfiguration;
 
-    public AdditionalDatabaseBuilder(WebApplicationBuilder applicationBuilder, BoostConfiguration boostConfiguration, ApplicationSettings applicationSettings, DatabaseType authenticationDatabaseType)
+    public AdditionalDatabaseBuilder(WebApplicationBuilder applicationBuilder, BoostConfiguration boostConfiguration, ApplicationSettings applicationSettings)
     {
         _applicationBuilder = applicationBuilder;
         _boostConfiguration = boostConfiguration;
         _applicationSettings = applicationSettings;
-        _authenticationDatabaseType = authenticationDatabaseType;
     }
 
-    public AdditionalDatabaseBuilder InitAdditionalDatabase<TDbContext>(DatabaseType databaseType) where TDbContext : DbContext
+    public AdditionalDatabaseBuilder InitAdditionalDatabase<TDbContext>() where TDbContext : DbContext
     {
 
-        _applicationBuilder.AddAdditionalDatabase<TDbContext>(databaseType, _applicationSettings);
+        _applicationBuilder.AddAdditionalDatabase<TDbContext>();
 
         return this;
     }
@@ -35,7 +33,7 @@ public class AdditionalDatabaseBuilder
         _applicationBuilder.Services.AddSingleton(instance);
 
         var app = _applicationBuilder.Build();
-        app.ConfigureApp(_applicationBuilder.Environment, _boostConfiguration, _applicationSettings, _authenticationDatabaseType, middlewareAction);
+        app.ConfigureApp(_applicationBuilder.Environment, _boostConfiguration, _applicationSettings, middlewareAction);
         app.Run();
     }
 }

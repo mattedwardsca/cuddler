@@ -17,7 +17,7 @@ namespace Cuddler.Configuration.Internal;
 
 internal static class ConfigureBoostCoreAppExtension
 {
-    public static void ConfigureBoostCoreApp(this IApplicationBuilder app, IWebHostEnvironment environment, BoostConfiguration boostConfiguration, ApplicationSettings applicationSettings, DatabaseType databaseType, Action<IApplicationBuilder>? middlewareAction)
+    public static void ConfigureBoostCoreApp(this IApplicationBuilder app, IWebHostEnvironment environment, BoostConfiguration boostConfiguration, ApplicationSettings applicationSettings, Action<IApplicationBuilder>? middlewareAction)
     {
         UseErrorHandling(app, applicationSettings);
 
@@ -26,7 +26,7 @@ internal static class ConfigureBoostCoreAppExtension
             app.UseHsts();
         }
 
-        UpgradeDatabaseUtil.UpgradeAuthenticationDatabase(app, environment, boostConfiguration, databaseType, applicationSettings);
+        UpgradeDatabaseUtil.UpgradeAuthenticationDatabase(app, environment, boostConfiguration, applicationSettings);
 
         app.UseRequestLocalization(app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>()
                                       ?.Value!);

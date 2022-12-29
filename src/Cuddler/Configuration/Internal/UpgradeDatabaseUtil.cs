@@ -9,40 +9,19 @@ namespace Cuddler.Configuration.Internal;
 
 internal static class UpgradeDatabaseUtil
 {
-    public static void UpgradeAuthenticationDatabase(IApplicationBuilder app, IWebHostEnvironment environment, BoostConfiguration boostConfiguration, DatabaseType databaseType, ApplicationSettings ApplicationSettings)
+    public static void UpgradeAuthenticationDatabase(IApplicationBuilder app, IWebHostEnvironment environment, BoostConfiguration boostConfiguration, ApplicationSettings ApplicationSettings)
     {
         using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
                                     .CreateScope();
         var dbContext = serviceScope.ServiceProvider.GetRequiredService<IRepository>();
-        switch (databaseType)
+        if (boostConfiguration.ResetDbOnStartup)
         {
-            case DatabaseType.SQLite:
-                var dbpath = GetSqliteDbPath(environment, ApplicationSettings);
-                if (boostConfiguration.ResetDbOnStartup)
-                {
-                    ResetSqliteDb(environment, dbpath);
-                }
+            ResetSqlServerDb(dbContext);
+        }
 
-                if (ApplicationSettings.EnableMigrations.HasValue && ApplicationSettings.EnableMigrations.Value)
-                {
-                    RunSqliteDbMigrations(dbContext);
-                }
-
-                break;
-            case DatabaseType.SQLServer:
-                if (boostConfiguration.ResetDbOnStartup)
-                {
-                    ResetSqlServerDb(dbContext);
-                }
-
-                if (ApplicationSettings.EnableMigrations.HasValue && ApplicationSettings.EnableMigrations.Value)
-                {
-                    // RunSqlServerDbMigrations(dbContext, environment);
-                }
-
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(databaseType), databaseType, null);
+        if (ApplicationSettings.EnableMigrations.HasValue && ApplicationSettings.EnableMigrations.Value)
+        {
+            // RunSqlServerDbMigrations(dbContext, environment);
         }
     }
 

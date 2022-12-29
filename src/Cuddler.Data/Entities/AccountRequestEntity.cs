@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Cuddler.Data.Entities;
 
-[Table("Core_AccountRequests")]
+[Table("Cuddler_AccountRequests")]
 public class AccountRequestEntity : BaseEntity
 {
     [ForeignKey(nameof(AccountId))]
