@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Core.Modules;
+namespace Cuddler.Modules.Utils;
 
 public static class ModulePageUtil
 {

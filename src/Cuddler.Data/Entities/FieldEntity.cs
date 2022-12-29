@@ -22,7 +22,7 @@ public class FieldEntity : BaseEntity, IHasOwner, IRequiresContext
     [Required]
     [ValidateNever]
     [ForeignKey(nameof(Owner))]
-    public string? OwnerId { get; set; } = null!;
+    public string OwnerId { get; set; } = null!;
 
     [Required]
     [ValidateNever]

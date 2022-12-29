@@ -22,7 +22,7 @@ public class KanbanTagHelper : BaseTagHelper
     public CuddlerUri StationApi { get; set; } = null!;
 
     [Required]
-    public CuddlerUri UpdateUri { get; set; } = null!; 
+    public CuddlerUri UpdateUri { get; set; } = null!;
 
     public static EBadgeType ToBadge(EStationType state)
     {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Cuddler.Data.Entities;
 
 [Table("Core_Settings")]
-public class SettingEntity : BaseEntity, IHasContext, IHasOwner
+public class SettingEntity : BaseEntity, IHasContext
 {
     [Required]
     public string Key { get; set; } = null!;

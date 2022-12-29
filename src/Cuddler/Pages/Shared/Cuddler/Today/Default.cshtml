@@ -1,4 +1,4 @@
-﻿@using global::Cuddler.Core.Utils
+﻿@using global::Cuddler.Utils
 @using Kendo.Mvc.UI
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Http
@@ -99,7 +99,6 @@
 
 @{
     var webId = WebIdUtil.GetWebId();
-
     var modelBaseUrl = Context.Request.PathBase + Context.Request.Path;
     var startdate = Model.Required
         ? GetRequiredStartDate(Context.Request)

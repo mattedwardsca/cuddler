@@ -1,8 +1,11 @@
-﻿using Cuddler.Core.Utils;
-using Cuddler.Data.Attributes;
+﻿using Cuddler.Data.Attributes;
 using Cuddler.Data.Context;
 using Cuddler.Data.Entities;
 using Cuddler.Forms.Utils;
+using Cuddler.Utils;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.Infrastructure;
+using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +27,17 @@ public abstract class BaseController : Controller
         var result = await HeartbeatTests();
 
         return Json(result);
+    }
+
+    protected static IEnumerable<TResult> Filter<TSource, TResult>(DataSourceRequest request, IQueryable<TSource> data, string q, Func<TSource, int, TResult> selector)
+    {
+        var filters = FilterDescriptorFactory.Create(q);
+
+        request.Filters = filters;
+
+        return data.ToDataSourceResult(request)
+                   .Data.Cast<TSource>()
+                   .Select(selector);
     }
 
     protected abstract Task<bool> HeartbeatTests();

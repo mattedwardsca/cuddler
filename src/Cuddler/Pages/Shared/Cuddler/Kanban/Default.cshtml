@@ -1,7 +1,7 @@
 ﻿@using System.Text
-@using global::Cuddler.Core.Utils
 @using global::Cuddler.Data.Entities
 @using global::Cuddler.Forms
+@using global::Cuddler.Utils
 @using Kendo.Mvc.UI
 @model KanbanTagHelper
 @{
@@ -10,7 +10,7 @@
 <div class="eux-Kanban">
     <script id="kanabanTemplate"
             type="text/x-kendo-tmpl">
-    <div class="eux-drag-card dash-drag-panel panel panel-default card-edit" data-swimlane="#: @(KendoGridUtil.GetMember<ICard>(f => f.Status))#" data-id="#:@(nameof(ICard.Id))#">
+    <div class="eux-drag-card dash-drag-panel panel panel-default card-edit" data-swimlane="#: @(TemplateUtil.GetMember<ICard>(f => f.Status))#" data-id="#:@(nameof(ICard.Id))#">
         @Html.Raw(Model.Html) 
     </div> 
 </script>

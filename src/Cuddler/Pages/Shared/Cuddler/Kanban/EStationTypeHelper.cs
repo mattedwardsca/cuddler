@@ -1,4 +1,4 @@
-using Cuddler.Core.Utils;
+using Cuddler.Utils;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.Kanban;

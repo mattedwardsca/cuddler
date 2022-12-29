@@ -31,7 +31,7 @@ public class DocumentEntity : BaseEntity, IRequiresContext, IHasOwner
     [Required]
     [ValidateNever]
     [ForeignKey(nameof(Owner))]
-    public string? OwnerId { get; set; } = null!;
+    public string OwnerId { get; set; } = null!;
 
     [Required]
     public string ContextId { get; set; } = null!;

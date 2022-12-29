@@ -80,7 +80,7 @@ public static class FormFieldUtil
             ErrorMessage = GetErrorMessage(propertyInfo),
             Field = GetInputTemplate(propertyInfo),
             GridColumnWidth = GetColumnWidth(propertyInfo),
-            GridTemplate = KendoGridUtil.GetGridTemplate(propertyInfo, propertyInfoName),
+            GridTemplate = TemplateUtil.GetGridTemplate(propertyInfo, propertyInfoName),
             HideLabel = GetHideLabel(propertyInfo),
             Inherited = HasAttribute<InheritedInputAttribute>(propertyInfo),
             Label = GetLabel(propertyInfo),
@@ -112,7 +112,7 @@ public static class FormFieldUtil
 
             if (!queue.Any())
             {
-                return $"#{KendoGridUtil.KeyTemplate(dequeueKey, template)}#";
+                return $"#{TemplateUtil.KeyTemplate(dequeueKey, template)}#";
             }
 
             return $"if({dequeueKey}!==undefined && {dequeueKey}!=null){{ {CreateKendoTemplate(queue, dequeueKey)} }}";

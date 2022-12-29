@@ -1,5 +1,5 @@
-﻿@using global::Cuddler.Core.Utils
-@using global::Cuddler.Pages.Shared.Cuddler.CuddlerInformation
+﻿@using global::Cuddler.Pages.Shared.Cuddler.CuddlerInformation
+@using global::Cuddler.Utils
 @model CuddlerWarningTagHelper
 
 @functions
@@ -7,7 +7,7 @@
     public string GetName()
     {
         var name = string.IsNullOrEmpty(Model.OverrideName)
-            ? $"{StringUtil.SplitCamelCase(Model.Data.GetType() .Name.Replace("Entity", string.Empty) .Replace("Proxy", string.Empty))}"
+            ? StringUtil.SplitCamelCase(Model.Data.GetType().Name.Replace("Entity", string.Empty).Replace("Proxy", string.Empty))
             : Model.OverrideName;
         return $"{name} has been deleted.";
     }

@@ -1,9 +1,8 @@
 ﻿@using global::Cuddler.Helpers
-@using global::Cuddler.Web.Utils
 @model IconTagHelper
 @{
     var cssClass = EFontAwesomeIconHelper.ToString(Model.Type);
-    var cssSize = FontAwesomeUtil.ToString(Model.Size);
+    var cssSize = EFontAwesomeSizeHelper.ToString(Model.Size);
 }
 <span class="eux-Icon">
     <i class="@cssClass @cssSize"></i>

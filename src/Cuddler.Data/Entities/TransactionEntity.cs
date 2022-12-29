@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 namespace Cuddler.Data.Entities;
 
 [Table("Core_Transactions")]
-public class TransactionEntity : BaseEntity, ISortable, IHasOwner, IHasFormModel, IHasToken
+public class TransactionEntity : BaseEntity, ISortable, IHasFormModel, IHasToken
 {
     public string? BillId { get; set; }
 
@@ -79,6 +79,10 @@ public class TransactionEntity : BaseEntity, ISortable, IHasOwner, IHasFormModel
     [Column(TypeName = "decimal(18,3)")]
     public decimal UnitPrice { get; set; }
 
+    public virtual TransactionCategoryEntity? TransactionCategory { get; set; }
+
+    public virtual SupplierEntity? Supplier { get; set; }
+
     public string? ModelDetails { get; set; }
 
     public string? SerializedModel { get; set; }
@@ -118,10 +122,6 @@ public class TransactionEntity : BaseEntity, ISortable, IHasOwner, IHasFormModel
     public string Token { get; set; } = null!;
 
     public int SortOrder { get; set; }
-
-    public virtual TransactionCategoryEntity? TransactionCategory { get; set; }
-
-    public virtual SupplierEntity? Supplier { get; set; }
 
     public decimal GetItemPrice()
     {

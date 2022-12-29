@@ -1,5 +1,4 @@
 ﻿using Cuddler.Configuration.Internal;
-using Cuddler.Core.Utils;
 using Cuddler.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +31,7 @@ public class AdditionalDatabaseBuilder
 
     public void Run<TModule>(Action<IApplicationBuilder>? middlewareAction = null) where TModule : class, ICuddlerModule
     {
-        var instance = AssemblyScannerUtil.CreateInstance<ICuddlerModule>(typeof(TModule));
+        var instance = (ICuddlerModule)Activator.CreateInstance(typeof(TModule))!;
         _applicationBuilder.Services.AddSingleton(instance);
 
         var app = _applicationBuilder.Build();

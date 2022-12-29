@@ -1,5 +1,5 @@
-﻿@using global::Cuddler.Core.Utils
-@using global::Cuddler.Helpers
+﻿@using global::Cuddler.Helpers
+@using global::Cuddler.Utils
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model AutosaveTagHelper
 @{
@@ -7,7 +7,6 @@
     {
         throw new InvalidOperationException($"{nameof(Model.Script)} is required when {nameof(Model.OnBlur)} is set to {nameof(EBlurAction.Trigger)}");
     }
-
     var form1Id = WebIdUtil.GetWebId();
 }
 <div class="eux-Autosave">

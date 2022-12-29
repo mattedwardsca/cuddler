@@ -6,7 +6,7 @@ using Cuddler.Pages.Shared.Cuddler.ArchiveButton;
 using Cuddler.Pages.Shared.Cuddler.ButtonLink;
 using Cuddler.Pages.Shared.Cuddler.CuddlerFormCreate;
 using Cuddler.Pages.Shared.Cuddler.PopupEditor;
-using Cuddler.Web.Utils;
+using Cuddler.Utils;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

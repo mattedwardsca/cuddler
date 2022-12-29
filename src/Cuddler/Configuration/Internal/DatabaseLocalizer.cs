@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using Cuddler.Core.Language;
+using Cuddler.Configuration.Language;
 using Cuddler.Data.Context;
 using Cuddler.Data.Entities;
 using Microsoft.Extensions.Caching.Memory;

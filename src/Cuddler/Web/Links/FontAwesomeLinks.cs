@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 
-namespace Cuddler.Web.Links;
+namespace Cuddler.Links;
 
 public static class FontAwesomeLinks
 {
@@ -8,7 +8,7 @@ public static class FontAwesomeLinks
     {
         if (useLocal)
         {
-            return new HtmlString(@"<link href=""/_content/Cuddler.Web/fontawesome/css/all.min.css"" rel=""stylesheet"">");
+            return new HtmlString(@"<link href=""/_content/Cuddler/fontawesome/css/all.min.css"" rel=""stylesheet"">");
         }
 
         return new HtmlString(@"<script crossorigin=""anonymous"" src=""https://kit.fontawesome.com/185af9dfd8.js""></script>");

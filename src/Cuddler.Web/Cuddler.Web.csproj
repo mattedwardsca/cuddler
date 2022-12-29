@@ -1,34 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <Compile Remove="ViewModels\**" />
-	  <Content Remove="ViewModels\**" />
-	  <EmbeddedResource Remove="ViewModels\**" />
-	  <None Remove="ViewModels\**" />
-	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Cuddler.Core\Cuddler.Core.csproj" />
-	  <ProjectReference Include="..\Cuddler.Data\Cuddler.Data.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Modules\" />
+	  <Folder Include="Utils\" />
 	</ItemGroup>
 
 </Project>

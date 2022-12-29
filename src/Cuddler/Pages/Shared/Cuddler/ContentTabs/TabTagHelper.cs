@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using Cuddler.Core.Utils;
+using Cuddler.Utils;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.ContentTabs;

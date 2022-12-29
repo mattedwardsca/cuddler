@@ -1,9 +1,8 @@
 ﻿using System.Linq.Expressions;
-using Cuddler.Core.Utils;
 using Cuddler.Forms;
 using Cuddler.Forms.Attributes;
-using Cuddler.Forms.Utils;
 using Cuddler.Helpers;
+using Cuddler.Utils;
 using Kendo.Mvc.UI.Fluent;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -25,7 +24,7 @@ public static class KendoGridExtensions
 
     public static GridBoundColumnBuilder<TType> ClientTemplate<TType>(this GridBoundColumnBuilder<TType> builder, EGridTemplate kendoGridTemplate, string value) where TType : class
     {
-        var template = KendoGridUtil.ClientTemplate(builder.Column.Member, kendoGridTemplate, value);
+        var template = TemplateUtil.ClientTemplate(builder.Column.Member, kendoGridTemplate, value);
 
         return builder.ClientTemplate(template);
     }
@@ -45,12 +44,12 @@ public static class KendoGridExtensions
     // ReSharper disable once UnusedMethodReturnValue.Global
     public static GridBoundColumnBuilder<TType> DetailsLink<TType>(this GridBoundColumnBuilder<TType> builder, string href, string? icon = null) where TType : class
     {
-        var newIcon = icon ?? KendoUtil.ViewIcon;
+        var newIcon = icon ?? TemplateUtil.ViewIcon;
         var template = $"<a href=\"{href}/#:{builder.Column.Member}#\">{newIcon}</a>";
 
         return builder.ClientHeaderTemplate(" ")
                       .Groupable(false)
-                      .HtmlAttributes(KendoUtil.TextCenter)
+                      .HtmlAttributes(TemplateUtil.TextCenter)
                       .Width(40)
                       .Exportable(false)
                       .Sortable(false)
@@ -70,7 +69,7 @@ public static class KendoGridExtensions
 
             if (!queue.Any())
             {
-                return $"#{KendoGridUtil.KeyTemplate(dequeueKey, template)}#";
+                return $"#{TemplateUtil.KeyTemplate(dequeueKey, template)}#";
             }
 
             return $"if({dequeueKey}!==undefined && {dequeueKey}!=null){{ {CreateKendoTemplate(queue, dequeueKey)} }}";
@@ -101,7 +100,7 @@ public static class KendoGridExtensions
         return builder.ClientHeaderTemplate(" ")
                       .ClientTemplate(PopupLink(popupTitle, detailsUrl, popupId, icon))
                       .Groupable(false)
-                      .HtmlAttributes(KendoUtil.TextCenter)
+                      .HtmlAttributes(TemplateUtil.TextCenter)
                       .Width(50)
                       .Exportable(false)
                       .Sortable(false)
@@ -113,7 +112,7 @@ public static class KendoGridExtensions
     public static GridTemplateColumnBuilder<TModel> Popup<TModel>(this GridColumnFactory<TModel> builder, string popupTitle, string detailsUrl, string popupId, EButtonType buttonType = EButtonType.Icon) where TModel : class
     {
         return builder.Template(PopupButton(popupTitle, detailsUrl, popupId, buttonType))
-                      .HtmlAttributes(KendoUtil.TextCenter)
+                      .HtmlAttributes(TemplateUtil.TextCenter)
                       .Exportable(false)
                       .IncludeInMenu(false);
     }

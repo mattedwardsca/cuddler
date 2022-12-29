@@ -1,8 +1,8 @@
-﻿using Cuddler.Core.Utils;
-using Cuddler.Data.Attributes;
+﻿using Cuddler.Data.Attributes;
 using Cuddler.Data.Context;
 using Cuddler.Data.Entities;
 using Cuddler.Forms.Utils;
+using Cuddler.Utils;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.Infrastructure;
 using Kendo.Mvc.UI;
@@ -137,19 +137,19 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
 
         var entity = Repository.DbSet<TEntity>()
                                .Single(w => w.Id == id);
-        
+
         await Task.CompletedTask;
 
         return Json(entity);
     }
 
-    public async Task<IActionResult>Index([DataSourceRequest] DataSourceRequest request, string? id)
+    public async Task<IActionResult> Index([DataSourceRequest] DataSourceRequest request, string? id)
     {
         var result = Repository.DbSet<TEntity>()
                                .ToTreeDataSourceResult(request, e => e.Id, e => e.ParentId, e => !string.IsNullOrEmpty(id)
                                    ? e.ParentId == id
                                    : e.ParentId == null, e => e);
-        
+
         await Task.CompletedTask;
 
         return Json(result);

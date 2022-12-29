@@ -2,7 +2,7 @@
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
 using Cuddler.Helpers;
-using Cuddler.Web.Dynamic;
+using Cuddler.Web.Blocks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.DynamicForm;

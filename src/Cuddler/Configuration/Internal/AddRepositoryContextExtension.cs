@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using Cuddler.Core.Language;
+using Cuddler.Configuration.Language;
 using Cuddler.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;

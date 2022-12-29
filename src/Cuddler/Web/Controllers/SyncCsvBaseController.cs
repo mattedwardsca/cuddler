@@ -30,7 +30,7 @@ public abstract class SyncCsvBaseController<T> : BaseController where T : class
         csvWriter.WriteHeader<T>();
         csvWriter.WriteRecords(products);
         csvWriter.Flush();
-        
+
         await Task.CompletedTask;
 
         return File(memoryStream.ToArray(), "text/csv", $"{fileDownloadName}.csv");

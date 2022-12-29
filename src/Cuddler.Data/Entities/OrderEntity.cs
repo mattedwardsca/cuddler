@@ -158,7 +158,8 @@ public class OrderEntity : BaseEntity, IHasName, IWebsiteBillingAddress, IHasDes
 
     public string? OrganizationId { get; set; }
 
-    public string? OwnerId { get; set; }
+    [Required]
+    public string OwnerId { get; set; } = null!;
 
     public DateTime? DateShipped { get; set; }
 

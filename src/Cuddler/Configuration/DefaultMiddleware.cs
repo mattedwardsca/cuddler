@@ -1,9 +1,10 @@
 ﻿using System.Security.Claims;
-using Cuddler.Core.Services.Identity.Exceptions;
-using Cuddler.Core.Services.Identity.Extensions;
+using Cuddler.Configuration.Identity.Exceptions;
+using Cuddler.Configuration.Identity.Extensions;
 using Cuddler.Data.Entities;
 using Cuddler.Modules;
 using Cuddler.Web.Utils;
+using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 

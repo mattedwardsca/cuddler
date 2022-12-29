@@ -1,7 +1,6 @@
-﻿@using global::Cuddler.Core.Utils
-@using global::Cuddler.Forms
-@using global::Cuddler.Forms.Utils
+﻿@using global::Cuddler.Forms
 @using global::Cuddler.Helpers
+@using global::Cuddler.Utils
 @using global::Cuddler.Web.Kendo
 @using global::Cuddler.Web.Utils
 @using Kendo.Mvc
@@ -17,10 +16,10 @@
     var html = Model.Html.ToNullableString();
 
     var pageSize = Model.Pageable
-        ? KendoGridUtil.PageSizes()
-                       .First()
-        : KendoGridUtil.PageSizes()
-                       .Last();
+        ? TemplateUtil.PageSizes()
+                      .First()
+        : TemplateUtil.PageSizes()
+                      .Last();
 }
 <div class="eux-CuddlerGrid">
     <script>
@@ -140,7 +139,7 @@
           .Name(gridId)
           .Pageable(p => {
               p.Enabled(Model.Pageable);
-              p.PageSizes(KendoGridUtil.PageSizes());
+              p.PageSizes(TemplateUtil.PageSizes());
           })
           .Columns(columns => {
               if (!string.IsNullOrEmpty(Model.DetailsUrl))
@@ -148,7 +147,7 @@
                   columns.Bound("Id")
                          .ClientTemplate($"<a href=\"{Model.DetailsUrl}/#:Id#\"><i class=\"fas fa-pen-circle\"></i></a>")
                          .Width(50)
-                         .HtmlAttributes(KendoUtil.TextCenter)
+                         .HtmlAttributes(TemplateUtil.TextCenter)
                          .ClientHeaderTemplate(" ");
               }
               foreach (var property in propertyList)
@@ -188,7 +187,7 @@
                        .Template($"<i class=\"pointer customRestore mx-1 {EFontAwesomeIconHelper.ToString(EFontAwesomeIcon.TrashRestore)}\"></i>");
                   }
               })
-                     .HtmlAttributes(KendoUtil.TextCenter)
+                     .HtmlAttributes(TemplateUtil.TextCenter)
                      .Width(50);
           })
           .ToolBar(t => {

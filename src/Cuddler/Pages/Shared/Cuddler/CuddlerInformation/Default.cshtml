@@ -1,7 +1,6 @@
 ﻿@using global::Cuddler.Helpers
 @using global::Cuddler.Pages.Shared.Cuddler.ActionButton
 @using global::Cuddler.Pages.Shared.Cuddler.Icon
-@using global::Cuddler.Web.Utils
 @model CuddlerInformationTagHelper
 @{
     EButtonType buttonType;
@@ -38,7 +37,7 @@
 <div class="eux-Information">
     @if (Model.Type != EAlert.Meta)
     {
-        <div class="alert p-4 d-flex align-center @BootstrapUtil.ToString(Model.Type)"
+        <div class="alert p-4 d-flex align-center @EAlertHelper.ToString(Model.Type)"
              role="alert">
             @if (Model.Icon != EFontAwesomeIcon.None)
             {
@@ -63,7 +62,7 @@
     }
     else
     {
-        <div class="alert p-1 d-flex align-center @BootstrapUtil.ToString(Model.Type)"
+        <div class="alert p-1 d-flex align-center @EAlertHelper.ToString(Model.Type)"
              role="alert">
             @if (Model.Icon != EFontAwesomeIcon.None)
             {

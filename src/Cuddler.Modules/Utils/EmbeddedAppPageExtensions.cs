@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cuddler.Modules.Utils;
 
@@ -6,7 +7,7 @@ public static class EmbeddedAppPageExtensions
 {
     public static async Task<string> GetAppRootPage(this HttpRequest request)
     {
-        var moduleFactory = request.HttpContext.GetService<IModuleService>();
+        var moduleFactory = GetService<IModuleService>(request.HttpContext);
         var app = moduleFactory.GetSegmentApp();
         if (app == null)
         {
@@ -14,6 +15,11 @@ public static class EmbeddedAppPageExtensions
         }
 
         return await GetRootPage(app, request);
+    }
+
+    private static T GetService<T>(HttpContext context)
+    {
+        return context.RequestServices.GetService<T>() ?? throw new NullReferenceException($"{typeof(T).Name} cannot be found in DI");
     }
 
     private static async Task<string> GetRootPage(IApp app, HttpRequest request)

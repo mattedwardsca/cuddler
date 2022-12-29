@@ -1,4 +1,4 @@
-using Cuddler.Core.Utils;
+using Cuddler.Utils;
 
 namespace Cuddler.Pages.Shared.Cuddler.Kanban;
 

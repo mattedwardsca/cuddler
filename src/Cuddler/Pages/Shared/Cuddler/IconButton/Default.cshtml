@@ -1,8 +1,7 @@
 ﻿@using global::Cuddler.Helpers
-@using global::Cuddler.Web.Utils
 @model IconButtonTagHelper
 @{
-    var fontSize = FontAwesomeUtil.ToString(Model.Size);
+    var fontSize = EFontAwesomeSizeHelper.ToString(Model.Size);
     string iconCss;
     if (!string.IsNullOrEmpty(Model.OverrideIcon))
     {
