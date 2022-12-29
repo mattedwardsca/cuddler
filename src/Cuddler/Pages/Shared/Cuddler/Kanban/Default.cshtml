@@ -1,7 +1,7 @@
 ﻿@using System.Text
 @using global::Cuddler.Core.Utils
 @using global::Cuddler.Data.Entities
-@using global::Cuddler.Web.Kendo
+@using global::Cuddler.Forms
 @using Kendo.Mvc.UI
 @model KanbanTagHelper
 @{
@@ -26,7 +26,7 @@
 
                 @foreach (var stationModel in stationModels)
                 {
-                    var url = $"{Model.StationApi.ToString()}?{nameof(ICard.Status)}={stationModel.Name}&{nameof(ICard.BoardId)}={Model.FactoryBoard.Id}";
+                    var url = $"{Model.StationApi}?{nameof(ICard.Status)}={stationModel.Name}&{nameof(ICard.BoardId)}={Model.FactoryBoard.Id}";
                     var badgeType = KanbanTagHelper.ToBadge(stationModel.StationType);
 
                     <div class="eux-pipeline-hs-item">

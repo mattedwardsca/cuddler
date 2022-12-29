@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Web.BaseTagHelpers;
-using Cuddler.Web.Ui;
+using Cuddler.Forms;
+using Cuddler.Forms.BaseTagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerGrid;
@@ -19,7 +19,7 @@ public class CuddlerGridTagHelper : BaseTagHelper, ICuddler
     public string? DetailsUrl { get; set; }
 
     [Required]
-    public GridCuddlerFields Fields { get; set; } = null!;
+    public GridCuddlerFormFields FormFields { get; set; } = null!;
 
     public string? GridId { get; set; }
 

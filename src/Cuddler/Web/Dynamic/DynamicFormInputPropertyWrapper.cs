@@ -1,5 +1,4 @@
-﻿using Cuddler.Core.Services.Modules.Models;
-using Cuddler.Data.Forms;
+﻿using Cuddler.Forms;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Web.Dynamic;

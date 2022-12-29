@@ -1,5 +1,5 @@
 ﻿using System.Text.Encodings.Web;
-using Cuddler.Web.Helpers;
+using Cuddler.Helpers;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 

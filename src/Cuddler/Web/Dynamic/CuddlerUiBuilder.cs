@@ -1,4 +1,4 @@
-﻿using Cuddler.Web.Ui;
+﻿using Cuddler.Forms;
 
 namespace Cuddler.Web.Dynamic;
 
@@ -9,8 +9,8 @@ public static class CuddlerUiBuilder
         return new CuddlerFormFields<TData>();
     }
 
-    public static CuddlerGridFields<TData> Grid<TData>() where TData : class
+    public static CuddlerFormGridFields<TData> Grid<TData>() where TData : class
     {
-        return new CuddlerGridFields<TData>();
+        return new CuddlerFormGridFields<TData>();
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System.Text.Encodings.Web;
 using Cuddler.Data.Entities;
+using Cuddler.Forms.Ui;
+using Cuddler.Helpers;
 using Cuddler.Pages.Shared.Cuddler.ArchiveButton;
 using Cuddler.Pages.Shared.Cuddler.ButtonLink;
 using Cuddler.Pages.Shared.Cuddler.CuddlerFormCreate;
 using Cuddler.Pages.Shared.Cuddler.PopupEditor;
-using Cuddler.Web.Extensions;
-using Cuddler.Web.Forms;
-using Cuddler.Web.Helpers;
-using Cuddler.Web.Ui;
+using Cuddler.Web.Utils;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -24,7 +23,7 @@ public class ActionMenuItems
 
     public List<IHtmlContent> MenuLinks { get; } = new();
 
-    public async Task AddCuddlerCreate(CuddlerFields createModel, EActionComplete actionComplete = EActionComplete.Details, string? overrideButtonText = null, string? detailsUrl = null)
+    public async Task AddCuddlerCreate(Forms.CuddlerFormFields createModel, EActionComplete actionComplete = EActionComplete.Details, string? overrideButtonText = null, string? detailsUrl = null)
     {
         var tag = new CuddlerFormCreateTagHelper(_htmlHelper, HtmlEncoder.Default)
         {

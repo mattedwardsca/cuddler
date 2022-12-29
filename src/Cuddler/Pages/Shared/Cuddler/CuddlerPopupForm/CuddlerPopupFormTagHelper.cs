@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Web.BaseTagHelpers;
-using Cuddler.Web.Helpers;
+using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerPopupForm;
@@ -32,7 +32,7 @@ public class CuddlerPopupFormTagHelper : BaseTagHelper, ICuddler
     public string? DetailsUrl { get; set; }
 
     [Required]
-    public List<Core.Services.Modules.Models.FormField> Fields { get; set; } = null!;
+    public List<Forms.FormField> Fields { get; set; } = null!;
 
     public string? PopupEvent { get; set; }
 

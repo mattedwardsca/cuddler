@@ -1,9 +1,7 @@
-﻿@using global::Cuddler.Core.Services.Modules.Models
-@using global::Cuddler.Core.Utils
-@using global::Cuddler.Modules
-@using global::Cuddler.Web.Modules
+﻿@using global::Cuddler.Modules
+@using global::Cuddler.Modules.Utils
 @model AppMenuTagHelper
-@inject IBoostModule Module
+@inject ICuddlerModule Module
 @{
     var app = Model.SegmentApp;
     var appMenu = await app.GetAppMenu(Context);

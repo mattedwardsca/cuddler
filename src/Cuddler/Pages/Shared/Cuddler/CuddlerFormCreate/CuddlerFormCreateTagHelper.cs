@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Web.BaseTagHelpers;
-using Cuddler.Web.Forms;
-using Cuddler.Web.Helpers;
+using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerFormCreate;
@@ -17,7 +16,7 @@ public class CuddlerFormCreateTagHelper : BaseTagHelper, ICuddler
     public EActionComplete ActionComplete { get; set; } = EActionComplete.Details;
 
     [Required]
-    public CuddlerFields CreateModel { get; set; } = null!;
+    public Forms.CuddlerFormFields CreateModel { get; set; } = null!;
 
     public string? DetailsUrl { get; set; }
 

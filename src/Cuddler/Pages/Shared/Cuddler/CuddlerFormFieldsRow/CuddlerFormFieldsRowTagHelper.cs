@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Web.BaseTagHelpers;
+using Cuddler.Forms.BaseTagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsRow;
@@ -12,5 +12,5 @@ public class CuddlerFormFieldsRowTagHelper : BaseTagHelper, ICuddler
     }
 
     [Required]
-    public Core.Services.Modules.Models.FormField FormField { get; set; } = null!;
+    public Forms.FormField FormField { get; set; } = null!;
 }

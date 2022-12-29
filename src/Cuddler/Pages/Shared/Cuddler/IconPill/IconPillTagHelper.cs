@@ -1,6 +1,6 @@
 ﻿using System.Text.Encodings.Web;
-using Cuddler.Web.BaseTagHelpers;
-using Cuddler.Web.Helpers;
+using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.IconPill;

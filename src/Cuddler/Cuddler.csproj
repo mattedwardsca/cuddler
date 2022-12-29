@@ -38,6 +38,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Pages\Shared\Cuddler\PageView\**" />
+	  <Content Remove="Pages\Shared\Cuddler\PageView\**" />
+	  <EmbeddedResource Remove="Pages\Shared\Cuddler\PageView\**" />
+	  <None Remove="Pages\Shared\Cuddler\PageView\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
@@ -56,6 +63,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<ProjectReference Include="..\Cuddler.Forms\Cuddler.Forms.csproj" />
+		<ProjectReference Include="..\Cuddler.Modules\Cuddler.Modules.csproj" />
 		<ProjectReference Include="..\Cuddler.Web\Cuddler.Web.csproj" />
 	</ItemGroup>
 

@@ -1,8 +1,9 @@
 ﻿using System.Linq.Expressions;
 using Cuddler.Core.Utils;
-using Cuddler.Data.Attributes;
-using Cuddler.Data.Forms;
-using Cuddler.Web.Helpers;
+using Cuddler.Forms;
+using Cuddler.Forms.Attributes;
+using Cuddler.Forms.Utils;
+using Cuddler.Helpers;
 using Kendo.Mvc.UI.Fluent;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 

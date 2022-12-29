@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Text.Encodings.Web;
-using Cuddler.Web.BaseTagHelpers;
+using Cuddler.Forms.BaseTagHelpers;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;

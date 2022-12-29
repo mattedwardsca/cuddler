@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using Cuddler.Web.BaseTagHelpers;
+using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Helpers;
 using Cuddler.Web.Dynamic;
-using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerReplace;

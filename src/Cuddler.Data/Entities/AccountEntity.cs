@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Cuddler.Data.Attributes;
-using Cuddler.Data.Forms;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 
@@ -62,7 +60,6 @@ public class AccountEntity : IdentityUser, IData, IAccount
 
     [DisplayName("Account Number")]
     [JsonProperty]
-    [GridTemplate(EGridTemplate.Token)]
     public new string UserName
     {
 #pragma warning disable CS8603

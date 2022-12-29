@@ -1,7 +1,7 @@
 ﻿using System.Text.Encodings.Web;
+using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Helpers;
 using Cuddler.Pages.Shared.Cuddler.ActionMenu;
-using Cuddler.Web.BaseTagHelpers;
-using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.SectionCard;

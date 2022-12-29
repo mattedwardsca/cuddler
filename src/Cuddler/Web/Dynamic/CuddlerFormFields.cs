@@ -1,9 +1,9 @@
 ﻿using Cuddler.Data.Entities;
-using Cuddler.Web.Forms;
+using Cuddler.Forms;
 
 namespace Cuddler.Web.Dynamic;
 
-public class CuddlerFormFields<TModel> : CuddlerFields where TModel : class
+public class CuddlerFormFields<TModel> : CuddlerFormFields where TModel : class
 {
     public CuddlerFormFields() : base(typeof(TModel))
     {

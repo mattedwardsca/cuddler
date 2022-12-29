@@ -1,14 +1,15 @@
 ﻿@using global::Cuddler.Core.Utils
-@using global::Cuddler.Data.Forms
-@using global::Cuddler.Web.Extensions
-@using global::Cuddler.Web.Helpers
+@using global::Cuddler.Forms
+@using global::Cuddler.Forms.Utils
+@using global::Cuddler.Helpers
 @using global::Cuddler.Web.Kendo
+@using global::Cuddler.Web.Utils
 @using Kendo.Mvc
 @using Kendo.Mvc.UI
 @model CuddlerGridTagHelper
 @{
     var closePopupWindowEvent = WebIdUtil.GetWebId();
-    var propertyList = Model.Fields.GetPropertyList();
+    var propertyList = Model.FormFields.GetPropertyList();
     var gridId = Model.GridId ?? WebIdUtil.GetWebId();
     var readApi = Model.Query.ToString();
     //var readApi = Model.Query.ToApiUrl("Query");
@@ -200,7 +201,7 @@
                               .Model(model => {
                                   model.Id("Id");
                                   model.Field("Id", typeof(string));
-                                  foreach (var column in Model.Fields.GetPropertyList())
+                                  foreach (var column in Model.FormFields.GetPropertyList())
                                   {
                                       if (column.Name != "Id")
                                       {

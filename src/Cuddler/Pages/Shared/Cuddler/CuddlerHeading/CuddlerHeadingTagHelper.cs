@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Data.Entities;
+using Cuddler.Forms.BaseTagHelpers;
 using Cuddler.Pages.Shared.Cuddler.ActionMenu;
-using Cuddler.Web.BaseTagHelpers;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;

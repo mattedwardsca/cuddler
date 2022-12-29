@@ -2,7 +2,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Cuddler.Core.Utils;
-using Cuddler.Web.BaseTagHelpers;
+using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Forms.Utils;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
