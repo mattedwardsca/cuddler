@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Routing;
 
-// ReSharper disable once CheckNamespace
-namespace Microsoft.AspNetCore.Mvc;
+namespace Cuddler.Utils;
 
 public static class RouteDataExtensions
 {

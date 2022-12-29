@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Helpers;
+namespace Cuddler.Web.Helpers;
 
 public static class EUnitOfMeasureHelper
 {

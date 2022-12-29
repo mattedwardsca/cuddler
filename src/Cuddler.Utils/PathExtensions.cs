@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Cuddler.Web.Utils;
+namespace Cuddler.Utils;
 
 public static class PathExtensions
 {

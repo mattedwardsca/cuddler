@@ -1,6 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Cuddler.Helpers;
+namespace Cuddler.Web.Helpers;
 
 public enum EFontAwesomeSize
 {

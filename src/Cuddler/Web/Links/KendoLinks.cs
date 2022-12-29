@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 
-namespace Cuddler.Links;
+namespace Cuddler.Web.Links;
 
 public static class KendoLinks
 {

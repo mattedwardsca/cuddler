@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Cuddler.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Web.Api;
 

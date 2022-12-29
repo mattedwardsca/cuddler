@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 namespace Cuddler.Data.Entities;
 
 [Table("Core_Orders")]
-public class OrderEntity : BaseEntity, IHasName, IWebsiteBillingAddress, IHasDescription, ILockable, IHasWebsiteAddress, IHasShippingInfo, IHasToken, ISortable, IHasDateEmailed, IHasOwner, IHasBillingAddress, IHasOrganization
+public class OrderEntity : BaseEntity, IHasName, IWebsiteBillingAddress, IHasDescription, ILockable, IHasWebsiteAddress, IHasShippingInfo, IHasToken, ISortable, IHasDateEmailed, IHasBillingAddress, IHasOrganization
 {
     public virtual ProjectEntity? Project { get; set; }
 
@@ -158,8 +158,7 @@ public class OrderEntity : BaseEntity, IHasName, IWebsiteBillingAddress, IHasDes
 
     public string? OrganizationId { get; set; }
 
-    [Required]
-    public string OwnerId { get; set; } = null!;
+    public string? OwnerId { get; set; } 
 
     public DateTime? DateShipped { get; set; }
 

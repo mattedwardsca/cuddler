@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 
-// ReSharper disable once CheckNamespace
-namespace Cuddler.Modules;
+namespace Cuddler.Utils;
 
 public static class BoolExtensions
 {

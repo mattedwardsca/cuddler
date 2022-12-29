@@ -1,11 +1,10 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 using Cuddler.Utils;
-using Cuddler.Web.Api;
 using Kendo.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-// ReSharper disable once CheckNamespace
-namespace Microsoft.AspNetCore.Mvc.Rendering;
+namespace Cuddler.Web.Api;
 
 public abstract class CuddlerUri
 {

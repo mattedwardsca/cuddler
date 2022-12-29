@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using Microsoft.AspNetCore.Html;
 
-namespace Cuddler.Links;
+namespace Cuddler.Web.Links;
 
 public static class CuddlerLinks
 {

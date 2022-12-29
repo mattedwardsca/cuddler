@@ -1,4 +1,4 @@
-﻿namespace Cuddler.Helpers;
+﻿namespace Cuddler.Web.Helpers;
 
 public static class EFontAwesomeSizeHelper
 {

@@ -2,7 +2,8 @@
 using System.Text.Encodings.Web;
 using Cuddler.Data.Entities;
 using Cuddler.Forms.BaseTagHelpers;
-using Cuddler.Helpers;
+using Cuddler.Web.Api;
+using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.ArchiveButton;
