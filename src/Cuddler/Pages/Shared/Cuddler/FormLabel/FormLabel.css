@@ -1,1 +1,2 @@
-﻿.eux-FormLabel .eux-required { color: darkred; }
+﻿.eux-FormLabel { padding-bottom: 5px; }
+.eux-FormLabel .eux-required { color: darkred; }

@@ -3,35 +3,18 @@
 @using global::Cuddler.Pages.Shared.Cuddler.AppMenu
 @using global::Cuddler.Pages.Shared.Cuddler.ModuleNavbar
 @using global::Cuddler.Pages.Shared.Cuddler.PageLoader
-@using global::Cuddler.Utils
 @model PortalTagHelper
 @inject ICuddlerModule Module
-@{
-    var toolbar = ViewData["Toolbar"];
-    var justify = ViewData["Toolbar_Justify"] != null && (bool)ViewData["Toolbar_Justify"]!;
-}
 <div class="eux-Portal">
     <page-loader />
     <div class="eux-portal">
-        <module-navbar pinned-app-ids-for-user="@Model.PinnedAppIdsForUser"
-                       root-link="@Module.RootLink"
-                       website-favicon-path="@Model.WebsiteFaviconPath" />
+        <module-navbar root-link="@Module.RootLink" website-favicon-path="@Model.WebsiteFaviconPath" />
         <div class="eux-wrapper">
-            <app-menu account="@Model.Account"
-                      segment-app="@Model.SegmentApp" />
+            <app-menu account="@Model.Account" segment-app="@Model.SegmentApp" />
             <div class="eux-ContentPanel">
                 <div class="eux-ContentPanel-body">
-                    <app-header account="@Model.Account"
-                                segment-app="@Model.SegmentApp" />
+                    <app-header account="@Model.Account" segment-app="@Model.SegmentApp" />
                     <main role="main">
-                        @if (toolbar != null)
-                        {
-                            <div class="eux-Toolbar @justify.IsTrue("eux-Toolbar-justify")">
-                                <div class="eux-pod">
-                                    @Html.Raw(toolbar)
-                                </div>
-                            </div>
-                        }
                         @Html.Raw(Model.Html)
                     </main>
                 </div>

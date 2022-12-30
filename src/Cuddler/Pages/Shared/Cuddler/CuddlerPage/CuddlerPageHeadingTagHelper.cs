@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerPage;
 
-[RestrictChildren("cuddler-page-heading", "cuddler-page-content")]
+[RestrictChildren("cuddler-header", "cuddler-body")]
 public class CuddlerPageTagHelper : TagHelper
 {
     public bool NoHeading { get; set; }

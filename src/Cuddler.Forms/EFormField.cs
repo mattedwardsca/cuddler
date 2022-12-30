@@ -20,7 +20,6 @@ public enum EFormField
     DatePicker,
     Decimal,
     Dropdown,
-    DropdownContentOption,
     Email,
     EmployeesDropdown,
     ExpenseCategoriesTreeDropdown,
@@ -66,5 +65,6 @@ public enum EFormField
     ExtendedQuestions,
     Margin,
     Padding,
-    NumberSpinner
+    NumberSpinner,
+    DropdownContentOption
 }

@@ -1,4 +1,4 @@
-﻿.eux-Portal .eux-CuddlerPage { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+﻿.eux-Portal .eux-CuddlerPage { background: darkgray; display: grid; grid-template-rows: auto 1fr; height: calc(100vh - 48px); min-width: 936px; overflow-x: auto; overflow-y: scroll; padding: 7px; }
 .eux-Page-LightGray .tab-content { background: #EBEBEB; }
 .eux-Page-LightGray .eux-CuddlerTabs { background: #EBEBEB; }
 .eux-Page-LightGray .nav-tabs .nav-link.active { background: #EBEBEB; }

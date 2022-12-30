@@ -41,8 +41,6 @@ public abstract class BaseRepository : IdentityDbContext<AccountEntity>, IReposi
 
     public DbSet<ScheduleEntity> Schedules { get; set; } = null!;
 
-    public DbSet<SettingEntity> Settings { get; set; } = null!;
-
     public DbSet<SupplierEntity> Suppliers { get; set; } = null!;
 
     public DbSet<TransactionCategoryEntity> TransactionCategories { get; set; } = null!;

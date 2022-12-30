@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 namespace Cuddler.Data.Entities;
 
 [Table("Cuddler_Fields")]
-public class FieldEntity : BaseEntity, IHasOwner, IRequiresContext
+public class FieldEntity : BaseEntity, IHasOwner
 {
     [Required]
     [ValidateNever]
@@ -25,15 +25,10 @@ public class FieldEntity : BaseEntity, IHasOwner, IRequiresContext
     public string OwnerId { get; set; } = null!;
 
     [Required]
-    [ValidateNever]
-    public string ContextId { get; set; } = null!;
-
-    [Required]
-    [ValidateNever]
-    public string ContextType { get; set; } = null!;
+    public string Category { get; set; } = null!;
 
     public override string ToString()
     {
-        return $"{ContextType} > {Name}";
+        return $"{Category} > {Name}";
     }
 }

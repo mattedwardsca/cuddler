@@ -17,9 +17,6 @@ public class PortalTagHelper : BaseTagHelper, ICuddler
     public IAccount Account { get; set; } = null!;
 
     [Required]
-    public List<string> PinnedAppIdsForUser { get; set; } = null!;
-
-    [Required]
     public IApp SegmentApp { get; set; } = null!;
 
     [Required]

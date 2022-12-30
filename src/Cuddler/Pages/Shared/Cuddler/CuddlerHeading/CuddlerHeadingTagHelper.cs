@@ -31,6 +31,4 @@ public class CuddlerHeadingTagHelper : BaseTagHelper, ICuddler
     public CuddlerUri? ArchiveUri { get; set; }
 
     public CuddlerUri? RestoreUri { get; set; }
-
-    public ActionMenuItems? Menu { get; set; }
 }

@@ -33,8 +33,6 @@ public interface IBaseRepository
 
     DbSet<ScheduleEntity> Schedules { get; set; }
 
-    DbSet<SettingEntity> Settings { get; set; }
-
     DbSet<SupplierEntity> Suppliers { get; set; }
 
     DbSet<TransactionCategoryEntity> TransactionCategories { get; set; }

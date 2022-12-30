@@ -16,8 +16,5 @@ public class ModuleNavbarTagHelper : BaseTagHelper, ICuddler
     public string RootLink { get; set; } = "/";
 
     [Required]
-    public List<string> PinnedAppIdsForUser { get; set; } = null!;
-
-    [Required]
     public string WebsiteFaviconPath { get; set; } = null!;
 }

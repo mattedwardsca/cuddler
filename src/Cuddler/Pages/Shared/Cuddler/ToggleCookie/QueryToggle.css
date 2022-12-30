@@ -1,2 +1,2 @@
 ﻿.eux-ToggleCookie .eux-ToggleWidget { align-items: center; display: flex; }
-.eux-ToggleCookie .eux-ToggleWidget .k-switch { margin: auto; }
+.eux-ToggleCookie .eux-ToggleWidget .k-switch { margin: auto; overflow: visible;}

@@ -40,3 +40,6 @@ a.btn-success { color: #fff !important; }
 @media (min-width: 992px) {
     .modal-lg, .modal-xl { --bs-modal-width: 682px; }
 }
+.accordion-item:last-of-type .accordion-button.collapsed { border-radius: 0; }
+.accordion-button,
+.accordion-button:not(.collapsed) { background-color: rgba(0, 0, 0, 0.03); color: inherit; font-size: 14px; padding: 0 10px;}

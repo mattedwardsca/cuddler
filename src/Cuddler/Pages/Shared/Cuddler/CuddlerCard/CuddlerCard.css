@@ -1,0 +1,43 @@
+﻿.d-flex-gap-1 > * { margin-right: 5px; }
+.d-flex-gap-1 > .eux-CuddlerCard { margin-bottom: 5px; margin-right: 5px; }
+.d-flex-gap-2 > * { margin-right: 10px; }
+.d-flex-gap-2 > .eux-CuddlerCard { margin-bottom: 10px; margin-right: 10px; }
+.d-flex-gap-3 > * { margin-right: 15px; }
+.d-flex-gap-3 > .eux-CuddlerCard { margin-bottom: 15px; margin-right: 15px; }
+.d-flex-gap-4 > * { margin-right: 20px; }
+.d-flex-gap-4 > .eux-CuddlerCard { margin-bottom: 20px; margin-right: 20px; }
+.eux-CuddlerCard .eux-Icon { margin-right: 5px; }
+.eux-CuddlerCard .card { border-radius: 0; }
+.eux-CuddlerCard.b-0 .card { border: 0; }
+.eux-CuddlerCard.eux-Mini { max-width: 280px; width: 100%; }
+.eux-CuddlerCard.eux-Small { max-width: 429px; width: 100%; }
+.eux-CuddlerCard.eux-Grow { flex-grow: 1 }
+.eux-CuddlerCard.eux-Medium { max-width: 655px; width: 100%; }
+.eux-CuddlerCard.eux-Paper { max-width: 812px; width: 100%; }
+.eux-CuddlerCard.eux-Large { max-width: 880px; width: 100%; }
+.eux-CuddlerCard.eux-Full { width: 100%; }
+@keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-o-keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-moz-keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+@-webkit-keyframes euxSectionCard {
+    0% { background-color: #EEEEEE; }
+    50% { background-color: #F5F8FA; }
+    100% { background-color: #EEEEEE; }
+}
+.eux-CuddlerCard .eux-loader-background-flicker { -moz-animation: euxSectionCard 3s infinite; -o-animation: euxSectionCard 3s infinite; -webkit-animation: euxSectionCard 3s infinite; animation: euxSectionCard 3s infinite; }
+.eux-CuddlerCard .eux-loader-background { background-color: #EEEEEE; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 3; }
+.eux-CuddlerCard .eux-card-title { align-items: center; display: flex; height: 49px; }
+.eux-CuddlerCard .eux-card-title .eux-ActionMenu .kagVYw { left: 61px; top: 28px; }
+.eux-CuddlerCard .card .eux-loader-wrapper > * { margin-bottom: 1em; }

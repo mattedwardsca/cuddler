@@ -1,0 +1,2 @@
+﻿.eux-CuddlerCards { height: 100%; display: flex; padding: 20px;}
+.eux-CuddlerHeader + .eux-CuddlerBody > .eux-CuddlerBody-wrapper > .eux-CuddlerCards { border-top: solid 1px #bcbcbc; }

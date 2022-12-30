@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerTabs;
 
-[RestrictChildren("cuddler-no-tags")]
+[HtmlTargetElement("cuddler-tab", TagStructure = TagStructure.WithoutEndTag)]
 public class CuddlerTabTagHelper : TagHelper
 {
     public string Value { get; set; } = null!;

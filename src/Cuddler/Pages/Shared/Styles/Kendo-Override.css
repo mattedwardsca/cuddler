@@ -7,7 +7,8 @@
 .k-grid { font-size: 12px; }
 .k-grid thead { text-transform: uppercase; }
 .k-grid thead.k-grid-header th.k-header:last-child { border-radius: 0; }
-.k-widget { box-shadow: none; }
+.k-widget { box-shadow: none; overflow: hidden; }
 .k-list-item.k-selected { background-color: var(--ColorOne); color: #fff; }
 .k-notification .k-notification-content { font-size: 14px; }
 .k-disabled { background-color: #e9ecef !important; color: #ccc !important; }
+.k-switch {overflow: visible;}

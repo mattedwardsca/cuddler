@@ -1,0 +1,135 @@
+﻿@using System.Text
+@using global::Cuddler.Data.Entities
+@using global::Cuddler.Forms
+@using global::Cuddler.Utils
+@using Kendo.Mvc.UI
+@model CuddlerKanbanTagHelper
+@{
+    var stationModels = Model.FactoryBoard.Stations;
+}
+<div class="eux-CuddlerKanban">
+    <script id="kanabanTemplate"
+            type="text/x-kendo-tmpl">
+    <div class="eux-drag-card dash-drag-panel panel panel-default card-edit" data-swimlane="#: @(TemplateUtil.GetMember<ICard>(f => f.Status))#" data-id="#:@(nameof(ICard.Id))#">
+        @Html.Raw(Model.Html) 
+    </div> 
+</script>
+    <script type="text/javascript">
+    function listViewDataBound(e) {
+        const columnId = e.sender.element.attr('id');
+        $(`#state-count-${columnId}`).text(e.items.length);
+    }
+</script>
+    <div id="PipelinePod">
+        <div class="eux-pipeline">
+            <div class="eux-pipeline-hs">
+
+                @foreach (var stationModel in stationModels)
+                {
+                    var url = $"{Model.StationApi}?{nameof(ICard.Status)}={stationModel.Name}&{nameof(ICard.BoardId)}={Model.FactoryBoard.Id}";
+                    var badgeType = CuddlerKanbanTagHelper.ToBadge(stationModel.StationType);
+
+                    <div class="eux-pipeline-hs-item">
+                        <div class="title-bar">
+                            <badge badge-type="@badgeType">
+                                @(stationModel.Name)
+                            </badge>
+                        </div>
+                        <div class="item-column">
+                            @(Html.Kendo()
+                                  .ListView<ICard>()
+                                  .Name(WebIdUtil.GetWebId(stationModel.Name))
+                                  .TagName("div")
+                                  .ClientTemplateId("kanabanTemplate")
+                                  .HtmlAttributes(new
+                                  {
+                                      @class = "eux-drag-pod sortable-list",
+                                      data_id = stationModel.Name,
+                                      data_swimlane = stationModel.Name
+                                  })
+                                  .Events(e => e.DataBound("listViewDataBound"))
+                                  .DataSource(source => source.Ajax()
+                                                              .Read(r => r.Url(url)
+                                                                          .Type(HttpVerbs.Post))))
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script>
+
+    function reloadKanbanState(tbl) {
+        const listView = $(`#${tbl}`).data("kendoListView");
+        listView.dataSource.read();
+    }
+
+    function reloadAllColumns(readBaseUrl) {
+        @foreach (var model in stationModels)
+        {
+            <text>
+                var listView@(WebIdUtil.GetWebId(model.Name)) = $('#@(model.Name)').data("kendoListView");
+                listView@(WebIdUtil.GetWebId(model.Name)).dataSource.options.transport.read.url = `${readBaseUrl}&status=@(model.Name)`;
+                listView@(WebIdUtil.GetWebId(model.Name)).dataSource.read();
+            </text>
+        }
+    }
+
+    function swimlane_placeholder() {
+        return $("<li class='eux-drag-card list-item' id='swimlane_placeholder'>Drop Here!</li>");
+    }
+
+    function swimlane_onEnd(e) {
+        const id = e.item.data('id');
+        const station = e.sender.element.data("swimlane");
+        const newIndex = e.newIndex;
+        if (newIndex >= 0) {
+            const url = '@(Model.UpdateUri.ToString())';
+            $.post(url,
+                {
+                    "@(nameof(ICard.Id))": id,
+                    "@(nameof(ICard.Status))": station,
+                    newIndex
+                },
+                function(result) {
+                    if (result.StatusCode === 200) {
+                    }
+                });
+        }
+    }
+
+    $(document).ready(function() {
+        @foreach (var model in stationModels)
+        {
+            var id = WebIdUtil.GetWebId(model.Name);
+            var idlist = stationModels.Where(x => x.Name != model.Name)
+                                      .ToList();
+            var sb = new StringBuilder();
+            sb.Append("\"");
+            for (var j = 0; j < idlist.Count; j++)
+            {
+                sb.Append("#");
+                sb.Append(WebIdUtil.GetWebId(idlist[j].Name));
+                if (j < idlist.Count - 1)
+                {
+                    sb.Append(",");
+                }
+            }
+            sb.Append("\"");
+            var ids = sb.ToString();
+            <text>$("#@id").kendoSortable({ connectWith: @Html.Raw(ids), placeholder: swimlane_placeholder, end: swimlane_onEnd, filter: ".eux-drag-card" });</text>
+        }
+    });
+
+</script>
+    <script>
+    $(document).ready(function() {
+        $("body").on("click",
+            ".card-edit",
+            function() {
+                const cardId = $(this).data('id');
+                window.location.href = `@(Model.CardDetailsUrl)/${cardId}`;
+            });
+    });
+</script>
+</div>

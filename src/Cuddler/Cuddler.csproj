@@ -38,6 +38,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Pages\Shared\Cuddler\PartialLoader\**" />
+	  <Content Remove="Pages\Shared\Cuddler\PartialLoader\**" />
+	  <EmbeddedResource Remove="Pages\Shared\Cuddler\PartialLoader\**" />
+	  <None Remove="Pages\Shared\Cuddler\PartialLoader\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
