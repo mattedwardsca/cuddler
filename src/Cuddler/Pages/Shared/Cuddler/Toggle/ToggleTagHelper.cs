@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Web.Api;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.Toggle;
@@ -31,7 +32,7 @@ public class ToggleTagHelper : BaseTagHelper, ICuddler
 
     public int ToggleWidth { get; set; }
 
-    public string? TurnOffApi { get; set; }
+    public CuddlerUri? TurnOffApi { get; set; }
 
-    public string? TurnOnApi { get; set; }
+    public CuddlerUri? TurnOnApi { get; set; }
 }
