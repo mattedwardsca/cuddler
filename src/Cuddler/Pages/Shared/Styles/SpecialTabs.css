@@ -1,0 +1,6 @@
+﻿main .eux-SpecialTabs > div { display: grid; grid-template-rows: auto 1fr; }
+main .eux-SpecialTabs .nav-tabs { align-items: stretch; background: white; display: flex; flex-direction: column; height: 52px; padding-left: 0; }
+main .eux-SpecialTabs .nav-tabs .nav-item .nav-link { display: block; padding-bottom: 15px; }
+main .eux-SpecialTabs .nav-tabs .nav-link { border: 1px solid transparent; border-bottom-width: 2px; border-radius: 0; text-align: center; }
+main .eux-SpecialTabs .nav-tabs .nav-link.active { border-bottom-color: black !important; border-color: transparent transparent black transparent; }
+main .eux-SpecialTabs .nav-tabs .nav-link:hover { border-color: transparent; }

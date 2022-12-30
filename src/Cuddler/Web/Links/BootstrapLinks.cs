@@ -8,8 +8,7 @@ public static class BootstrapLinks
     {
         if (useLocal)
         {
-            const string value = @"<link crossorigin=""anonymous"" href=""/_content/Cuddler/bootstrap/css/bootstrap.min.css"" rel=""stylesheet"">" //
-                                 + @"<script src=""/_content/Cuddler/bootstrap/js/bootstrap.bundle.min.js""></script>";
+            const string value = @"<link crossorigin=""anonymous"" href=""/_content/Cuddler/bootstrap/css/bootstrap.min.css"" rel=""stylesheet""><script src=""/_content/Cuddler/bootstrap/js/bootstrap.bundle.min.js""></script>";
             return new HtmlString(value);
         }
 

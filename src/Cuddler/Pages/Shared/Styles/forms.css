@@ -1,0 +1,4 @@
+﻿.eux-FormEditor .k-textbox { border-color: transparent; }
+.eux-FormEditor .k-textbox > input { border: solid 1px #ccc; }
+.eux-InlineForm .eux-FormEditor .k-textbox > input { border: solid 1px transparent; }
+.eux-InlineForm .eux-FormEditor .k-textbox > input:focus { border: solid 1px #ccc; }

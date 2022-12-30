@@ -1,0 +1,8 @@
+﻿/* .eux-portal */
+.eux-portal .eux-CuddlerPage .eux-CuddlerPage { background: red; height: 100%; overflow-y: auto; }
+.eux-portal .eux-CuddlerPage > .eux-pod { background: var(--ColorSeven); color: var(--ColorEight); height: 100%; }
+.eux-portal .eux-CuddlerPage.eux-page-small > .eux-pod { padding: 15px; }
+.eux-portal .eux-CuddlerPage.eux-page-medium > .eux-pod { padding: 60px; }
+.eux-ContentPanel { height: 100%; }
+.eux-ContentPanel-body { display: grid; grid-template-rows: 48px 1fr; height: 100%; }
+main { border-left: solid 1px #BCBCBC; display: grid; height: 100%; }

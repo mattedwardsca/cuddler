@@ -40,17 +40,17 @@ public class DocumentEntity : BaseEntity, IRequiresContext, IHasOwner
     [ValidateNever]
     public string ContextType { get; set; } = null!;
 
-    public string GetFileDirectory(string rootFolder)
+    public string GetPathToFileDirectory(string rootFolder)
     {
         return $@"{rootFolder}\Uploads\{Id}";
     }
 
-    public string GetFilePath(string rootFolder)
+    public string GetPathToFile(string rootFolder)
     {
         return $@"{rootFolder}\Uploads\{Id}\{Id}.{Extension}";
     }
 
-    public string GetThumbnail(string rootFolder, int w)
+    public string GetPathToThumbnail(string rootFolder, int w)
     {
         return $@"{rootFolder}\Uploads\{Id}\{w}.{Extension}";
     }

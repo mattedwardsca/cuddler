@@ -1,0 +1,9 @@
+﻿:root { --AppHeader: #FAFAFA; --ColorOne: #5EBFE6; --ColorTwo: #ffffff; --ColorThree: #0e123a; --ColorFour: #ffffff; --ColorFive: #ebebeb; --ColorSix: #333333; --ColorSeven: #ffffff; --ColorEight: #333333; }
+.fa-leaf-maple { position: relative; transform: rotate(-45deg); }
+.eux-AppButton-links .fa-leaf-maple { left: 0; }
+.h-100 { height: 100%; }
+.t-small { font-size: 0.85em; }
+.border-bottom { border-bottom: solid 1px var(--ColorFive); }
+.border-top-0 { border-top: none !important; }
+.border-top-0 tr:first-child td, .border-top-0 tr:first-child th { border-top: none !important; }
+.table-padded td, .table-padded th { padding: 0.5em; }

@@ -1,0 +1,42 @@
+﻿.eux-w-Small.m-auto { display: block; }
+.modal-header { background: var(--ColorFive); }
+.modal-header .modal-title { color: var(--ColorSix); }
+.modal-header .close { color: var(--ColorSix); }
+a.btn-success { color: #fff !important; }
+.btn { font-size: 14px; }
+.btn.btn-lg { font-size: 22px; }
+.btn-light { border: solid 1px #d3d4d5; color: rgba(0, 0, 0, 0.8); }
+.d-grid-center, .align-center { align-content: center; align-items: center; }
+.d-flex-column { display: flex; flex-direction: column; }
+.d-flex-column-grow { display: flex; flex-direction: column; flex-direction: column; flex-grow: 1; }
+.d-flex-column-grow > .row { height: 100%; }
+.d-flex-center { align-items: center; display: flex; }
+.align-bottom { align-content: end; display: grid; }
+/*card-body*/
+.card-body { display: inline-block; margin-right: 17px; width: 300px; }
+.card-body.card-wide { display: grid; grid-template-columns: 300px 1fr; width: 100%; }
+.card-body + .card-body { margin-top: 20px; }
+.card-body .card-body-divider { border-left: solid 1px var(--ColorFive); }
+/* end card-body*/
+@media (min-width: 576px) {
+    .modal-md.modal-dialog { margin: 1.75rem auto; max-width: 634px; }
+}
+.modal-sm .eux-SubmitButton { display: block; width: 100%; }
+.modal-sm .eux-SubmitButton .btn { display: block; width: 100%; }
+.modal-md .eux-SubmitButton .btn { max-width: 200px; width: 100%; }
+.modal-sm .eux-SubmitButton .btn { width: 100%; }
+.modal-sm .eux-JavascriptButton .btn { width: 100%; }
+.d-invisible { visibility: hidden; }
+@media (max-width: 768px) {
+    .d-mobile-reverse { flex-direction: column-reverse; }
+}
+/*.btn-outline-light { color: var(--ColorSix); border-color: var(--ColorSix); }
+.btn-outline-light:hover { border-color: var(--ColorSix); }*/
+.table > :not(:first-child) { border-color: #dee2e6; }
+.table td { vertical-align: middle; }
+.k-input:focus { box-shadow: none; }
+/* dropdowns */
+.dropdown-menu { --bs-dropdown-border-radius: 3px; }
+@media (min-width: 992px) {
+    .modal-lg, .modal-xl { --bs-modal-width: 682px; }
+}

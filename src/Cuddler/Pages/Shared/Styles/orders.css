@@ -1,0 +1,42 @@
+﻿.eux-CartProductsGrid-pod .eux-quant-price .DiscountedPrice { color: #464646; font-size: 14px; font-weight: 500; text-decoration-line: line-through; }
+.eux-CartProductsGrid-pod { position: relative; width: 98%; }
+.eux-CartProductsGrid-pod .hide-loading { display: none; }
+.loading .eux-CartProductsGrid-pod .hide-loading { display: block; }
+.eux-CartProductsGrid-pod .overlay { align-content: center; background: rgba(0, 0, 0, 0.2); bottom: 0; display: grid; left: 0; position: absolute; right: 0; text-align: center; top: 0; z-index: 99999; }
+.eux-CartProductsGrid-pod .overlay .loading { color: white; font-size: 50px; }
+.eux-CartProductsGrid-pod .eux-pod { min-height: 150px; }
+.eux-CartProductsGrid-pod .eux-head { background: var(--ColorFive); color: black; display: grid; font-weight: bold; grid-template-columns: 1fr 1fr; }
+.eux-CartProductsGrid-pod .eux-head-title { padding: 20px }
+.eux-CartProductsGrid-pod .eux-head-count { padding: 15px; text-align: right; }
+.eux-CartProductsGrid-pod .eux-item { display: grid; grid-template-columns: 1fr 1fr; margin: 5px 0; padding: 10px 0; }
+@media (max-width: 768px) {
+    .eux-CartProductsGrid-pod .eux-item { display: block; }
+}
+.eux-CartProductsGrid-pod .eux-item .prod-info { display: grid; grid-gap: 15px; grid-template-columns: 130px 1fr; margin-bottom: 15px; }
+.eux-CartProductsGrid-pod .eux-item .prod-prices { display: grid; grid-gap: 15px; grid-template-columns: 1fr 1fr 1fr; }
+.eux-CartProductsGrid-pod .eux-item + .eux-item { border-top: #dee2e6 solid 1px; }
+.eux-CartProductsGrid-pod .eux-item:not(.eux-summaryrow) + .eux-summaryrow { margin-top: 30px; }
+.eux-CartProductsGrid-pod .eux-item.eux-summaryrow { /*border-bottom: none !important;*/margin: 5px 0; padding: 7px 0 2px 0px; }
+.eux-CartProductsGrid-pod .eux-item.eux-summaryrow.eux-amountdue .prod-prices { font-size: 30px; font-weight: bold; grid-template-columns: 1fr; padding-right: 15px; }
+.eux-CartProductsGrid-pod .eux-item.eux-summaryrow .eux-price { font-size: 14px; }
+.eux-CartProductsGrid-pod .eux-item-thumb { background-repeat: no-repeat !important; background-size: contain !important; display: block; height: 115px; width: 100%; }
+.eux-CartProductsGrid-pod .eux-name { color: #00A859; display: block; font-size: 18px; }
+.eux-CartProductsGrid-pod .eux-name a { color: #00A859; }
+.eux-CartProductsGrid-pod .eux-desc { font-size: 14px; }
+.eux-CartProductsGrid-pod .eux-item-quant { padding-left: 10px; }
+.eux-CartProductsGrid-pod .eux-quant-amt { align-content: center; display: flex; text-align: center; }
+.eux-CartProductsGrid-pod .eux-quant-amt input { background: none; border: none; color: black; font-size: 26px; margin: 0; padding: 0; position: relative; text-align: center; top: 2px; user-select: none; width: 45px; }
+.eux-CartProductsGrid-pod .eux-quant-amt .fas { cursor: pointer; position: relative; }
+.eux-CartProductsGrid-pod .eux-item-prices { padding-right: 15px; }
+.eux-CartProductsGrid-pod .eux-price { color: black; font-size: 26px; font-weight: bold; text-align: right; }
+.eux-CartProductsGrid-pod .eux-remove { color: black; font-size: 26px; font-weight: bold; text-align: right; text-align: right; }
+.eux-CartProductsGrid-pod .eux-quant-remove { color: orangered; cursor: pointer; font-size: 12px; }
+.eux-quant-price { font-size: 18px; font-weight: 600; margin-top: 10px; }
+.eux-quant-price .DiscountedPrice { color: #464646; font-size: 14px; font-weight: 500; text-decoration-line: line-through; }
+.eux-quant-btn { align-items: center; display: flex; font-size: 20px; }
+/* PRINT VERSION */
+.k-pdf-export .eux-OrderItems { font-size: 10px; }
+.k-pdf-export .eux-OrderItems .eux-OrderItems-fw3 { width: 0%; }
+.k-pdf-export .eux-development { border: inherit; }
+.k-pdf-export .print-none { display: none; }
+.k-pdf-export .eux-MustBeWeighed { background: transparent; }

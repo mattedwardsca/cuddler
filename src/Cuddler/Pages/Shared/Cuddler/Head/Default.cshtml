@@ -3,37 +3,48 @@
 @using global::Cuddler.Web.Links
 @using Microsoft.AspNetCore.Hosting
 @model HeadTagHelper
+@functions
+{
+    public static string? GetPageTitle(IHtmlHelper htmlHelper, string? websiteName)
+    {
+        var viewTitle = htmlHelper.ViewData["Title"] as string;
+        var pageTitle = htmlHelper.ViewData["PageTitle"] as string;
+        var title1 = viewTitle ?? pageTitle;
+        if (string.IsNullOrEmpty(title1))
+        {
+            title1 = websiteName;
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(websiteName))
+            {
+                title1 = title1 + " - " + websiteName;
+            }
+        }
+
+        return title1;
+    }
+}
 @{
     var version = _env.GetVersion(GetType());
+    var websiteName = Model.WebsiteName;
 }
-<link href="/static/favicon/apple-touch-icon.png"
-      rel="apple-touch-icon"
-      sizes="180x180">
-<link href="/static/favicon/favicon-32x32.png"
-      rel="icon"
-      sizes="32x32"
-      type="image/png">
-<link href="/static/favicon/favicon-16x16.png"
-      rel="icon"
-      sizes="16x16"
-      type="image/png">
-<link href="/static/favicon/site.webmanifest"
-      rel="manifest">
-<link color="#5bbad5"
-      href="/static/favicon/safari-pinned-tab.svg"
-      rel="mask-icon">
-<meta content="#da532c"
-      name="msapplication-TileColor">
-<meta content="#ffffff"
-      name="theme-color">
-<meta charset="utf-8" />
-<meta content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"
-      name="viewport" />
-@Html.Raw(GoogleFontsLinks.GoogleFontLink())
-@Html.Raw(JQueryLinks.JQueryLibraryScript())
-@Html.Raw(BootstrapLinks.BootstrapLinkScript())
-@Html.Raw(FontAwesomeLinks.FontAwesomeLink())
-@Html.Raw(KendoLinks.GetHeaderHtml())
-<link href="/_content/Cuddler/css/components.min.css?ver=@version"
-      rel="stylesheet" />
-@Html.Raw(Model.Html)
+<!head>
+    <title>@GetPageTitle(Html, websiteName)</title>
+    <meta content="#da532c" name="msapplication-TileColor">
+    <meta content="#ffffff" name="theme-color">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes" name="viewport" />
+    <link href="/static/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="/static/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="/static/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link href="/static/favicon/site.webmanifest" rel="manifest">
+    <link color="#5bbad5" href="/static/favicon/safari-pinned-tab.svg" rel="mask-icon">
+    @Html.Raw(GoogleFontsLinks.GoogleFontLink())
+    @Html.Raw(JQueryLinks.JQueryLibraryScript())
+    @Html.Raw(BootstrapLinks.BootstrapLinkScript())
+    @Html.Raw(FontAwesomeLinks.FontAwesomeLink())
+    @Html.Raw(KendoLinks.GetHeaderHtml())
+    <link href="/_content/Cuddler/css/components.min.css?ver=@version" rel="stylesheet" />
+    @Html.Raw(Model.Html)
+</!head>

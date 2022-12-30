@@ -1,0 +1,21 @@
+﻿#tmp .eux-OrderItems { background: white; box-sizing: border-box; color: #333; font-size: 14px; }
+#tmp .eux-OrderItems .table { margin-bottom: 0; table-layout: fixed; }
+#tmp .eux-OrderItems .tbody { word-wrap: break-word; }
+#tmp .eux-OrderItems thead { background-color: #ebebeb }
+#tmp .eux-OrderItems .handler { cursor: grab; }
+#tmp .eux-OrderItems .handler:active { cursor: grabbing; }
+#tmp .eux-OrderItems tr { position: relative; }
+#tmp .eux-OrderItems tr .eux-edit-col { border: none; bottom: 0; left: -15px; padding: 0; position: absolute; top: 10px; width: 10px; }
+#tmp .eux-OrderItems tr .eux-edit-col2 { border: none; bottom: 0; padding: 8px; position: absolute; right: -36px; }
+#tmp .eux-OrderItems tr .eux-grand { font-size: 16px; font-weight: bold; position: relative; right: 10px; }
+#tmp .eux-OrderItems tr .eux-gst { width: 40px; }
+#tmp .eux-OrderItems tr .eux-MustBeWeighed { background: lightyellow; font-weight: bold !important; }
+#tmp .eux-OrderItems tr .eux-price { margin: auto; text-align: right; width: 50px; }
+#tmp .eux-OrderItems tr .eux-productInfo-dsc { font-size: 0.9em; }
+#tmp .eux-OrderItems tr .eux-qty-w { width: 50px; }
+#tmp .eux-OrderItems tr .eux-title > * { line-height: 16px; padding-right: 10px; }
+#tmp .eux-OrderItems tr .eux-title a:before { color: #02A659; content: "\203A"; display: inline-block; padding: 0 .5rem 0 .2rem; text-decoration: none; vertical-align: middle; }
+#tmp .eux-OrderItems tr .eux-total-w { width: 80px; }
+#tmp .eux-OrderItems tr th, #tmp .eux-OrderItems tr td { padding: 10px 0; }
+#tmp .eux-OrderItems tr td, #tmp .eux-OrderItems tr th { box-sizing: border-box; color: #333; font-size: 14px; }
+#tmp .eux-OrderItems tr th { border-bottom: none; }

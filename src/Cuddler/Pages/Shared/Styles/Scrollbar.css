@@ -1,0 +1,7 @@
+﻿/* width */
+::-webkit-scrollbar { height: 10px; width: 10px; }
+/* Track */
+::-webkit-scrollbar-track { background: #EBEBEB; }
+/* Handle */
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb:hover { background: var(--ColorThree); border: solid 1px rgba(0, 0, 0, .05); border-radius: 5px; border-style: solid; min-height: 50px; }
+::-webkit-scrollbar-track:horizontal { height: 4px; }

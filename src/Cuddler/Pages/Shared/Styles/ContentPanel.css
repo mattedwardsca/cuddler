@@ -1,0 +1,21 @@
+﻿.eux-portal .eux-ContentPanel, .eux-mobile .eux-ContentPanel { z-index: 1; }
+.eux-mobile .eux-ContentPanel main { flex-direction: column; height: calc(100vh - 47px); overflow: hidden; overflow-y: auto; position: relative; }
+@media all and (max-width: 768px) {
+    .eux-portal .eux-ContentPanel main { overflow: auto !important; webkit-overflow-scrolling: touch; }
+    .eux-portal .eux-ContentPanel main .eux-CuddlerPage { height: inherit !important; }
+}
+.eux-ContentPanel .fa-info-circle { margin-left: 5px; }
+/* TABS */
+.eux-AppPageTabsWidget { align-content: end; color: #333; display: flex; padding: 0 20px; }
+.eux-AppPageTabsWidget .eux-tabs .eux-tab { background: var(--ColorSeven); border: solid 1px var(--ColorSeven); border-bottom: none; border-radius: 5px 5px 0 0; color: #333; font-size: 14px; margin-right: 10px; padding: 10px 40px; position: relative; text-decoration: none; top: 3px; }
+.eux-AppPageTabsWidget .eux-tabs .eux-tab.active { background-color: white; bottom: -3px; color: #333; }
+.eux-AppPageTabsWidget .eux-tabs { display: grid; display: flex; flex-wrap: nowrap; }
+.eux-AppPageTabsWidget .modal-header { color: black; text-align: left; }
+.eux-AppPageTabsWidget .modal-body { color: black; text-align: left; }
+.eux-AppPageTabsWidget .eux-PageTitle { align-content: end; background: white; border-top: 4px solid #E3E5E8; display: grid; height: 40px; padding-left: 20px; position: relative; z-index: 0; }
+.eux-AppPageTabsWidget .eux-PageTitle h1 { font-size: 16px; }
+/* containers */
+.eux-portal .eux-ContentPanel { color: var(--ColorSix); display: grid; grid-template-columns: 1fr; height: 100vh; overflow-x: hidden; overflow-y: hidden; position: relative; z-index: 999; }
+.eux-portal .eux-ContentPanel.eux-has-rightsidebar { grid-template-columns: 1fr minmax(230px, 340px); }
+.eux-portal .eux-ContentPanel .eux-RightPanel { border-right: solid 1px #BCBCBC; display: grid; grid-template-rows: 56px 1fr; height: 100vh; }
+.eux-portal .eux-ContentPanel .eux-RightPanel .eux-rbody { background: #EBEBEB; }

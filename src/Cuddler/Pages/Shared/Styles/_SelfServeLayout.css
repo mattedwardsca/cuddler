@@ -1,0 +1,2 @@
+﻿.eux-ss-applink a { background: var(--ColorOne); border-radius: 20px; color: var(--ColorTwo); padding: 10px 10px; text-decoration: none; }
+.eux-ss-applink a.active { background: var(--ColorThree); color: var(--ColorFour); }

@@ -1,0 +1,13 @@
+﻿.k-toolbar .align-center > div { align-items: center; display: flex; }
+.k-grid tbody td { height: 34px; }
+.k-grid table tr .eux-hidden-hover { visibility: hidden; }
+.k-grid table tr:hover a { color: #0d6efd; }
+.k-grid table tr:hover .eux-hidden-hover { visibility: visible; }
+.k-grid thead.k-grid-header th.k-header:first-child { border-radius: 0; }
+.k-grid { font-size: 12px; }
+.k-grid thead { text-transform: uppercase; }
+.k-grid thead.k-grid-header th.k-header:last-child { border-radius: 0; }
+.k-widget { box-shadow: none; }
+.k-list-item.k-selected { background-color: var(--ColorOne); color: #fff; }
+.k-notification .k-notification-content { font-size: 14px; }
+.k-disabled { background-color: #e9ecef !important; color: #ccc !important; }

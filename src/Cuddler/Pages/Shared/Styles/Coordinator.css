@@ -1,0 +1,5 @@
+﻿.eux-portal.eux-portal-coordinator { grid-template-columns: 110px 1fr; }
+.eux-portal.eux-portal-coordinator .eux-AppMenu.showapps { border-left: none; grid-template-columns: 0 1fr; }
+.eux-portal.eux-portal-coordinator .eux-wrapper { grid-template-columns: 190px 1fr; }
+.eux-portal.eux-portal-coordinator .eux-Navbar .navbar-nav .nav-link { align-content: center; display: grid; height: 75px; margin: 5px auto 0 auto; width: 75px; }
+.eux-portal.eux-portal-coordinator .dropdown-toggle::after { border: none; }
