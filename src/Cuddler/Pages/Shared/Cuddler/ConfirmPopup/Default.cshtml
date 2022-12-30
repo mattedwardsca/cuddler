@@ -1,18 +1,19 @@
 ﻿@model ConfirmPopupTagHelper
 @{
-    var value = Model.Html.ToString()
-                     ?.Trim();
+    var value = Model.Html.ToString()?.Trim();
 }
 <popup-editor action-complete="@Model.ActionComplete" button-icon="@Model.ButtonIcon" button-text="@Model.ButtonText" button-type="@Model.ButtonType" submit-api-url="@Model.ApiUrl" submit-button-text="Confirm">
-    <div class="eux-popup-top-html">
-        @Html.Raw(Model.Html)
-    </div>
-    @if (!string.IsNullOrEmpty(value))
-    {
-        <div>
-            @Html.Raw(value)
+    <c-data>
+        <div class="eux-popup-top-html">
+            @Html.Raw(Model.Html)
         </div>
+        @if (!string.IsNullOrEmpty(value))
+        {
+            <div>
+                @Html.Raw(value)
+            </div>
 
-        <divider />
-    }
+            <divider />
+        }
+    </c-data>
 </popup-editor>

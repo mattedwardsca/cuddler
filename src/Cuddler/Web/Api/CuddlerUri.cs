@@ -29,10 +29,8 @@ public abstract class CuddlerUri
                 var parameterName = memberExpression.Member.Name;
 
                 var objectMember = Expression.Convert(memberExpression, typeof(object));
-                var getterLambda = Expression.Lambda<Func<object>>(objectMember);
-                var getter = getterLambda.Compile()
-                                         .Invoke()
-                                         .ToString();
+                var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
+                var getter = GetGetter(getterLambda);
 
                 yield return $"{parameterName}={getter}";
             }
@@ -41,10 +39,8 @@ public abstract class CuddlerUri
             {
                 var parameterName = infos[index];
                 var objectMember = Expression.Convert(constantExpression, typeof(object));
-                var getterLambda = Expression.Lambda<Func<object>>(objectMember);
-                var getter = getterLambda.Compile()
-                                         .Invoke()
-                                         .ToString();
+                var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
+                var getter = GetGetter(getterLambda);
 
                 yield return $"{parameterName}={getter}";
             }
@@ -58,6 +54,14 @@ public abstract class CuddlerUri
             //    throw new NotImplementedException(parameterInfo.GetType().FullName);
             //}
         }
+    }
+
+    private static string? GetGetter(Expression<Func<object?>?>? getterLambda)
+    {
+        var invoke = getterLambda?.Compile()?.Invoke();
+        var getter = invoke?.ToString();
+
+        return getter;
     }
 
     protected static string GetBaseApiUrl(Type typeOfController)

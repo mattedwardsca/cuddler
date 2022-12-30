@@ -1,2 +1,2 @@
-﻿.eux-CuddlerBody { background: white; border-radius: 0 0 3px 3px; height: 100%; margin: auto; max-width: 1430px; min-width: 500px; overflow: hidden; width: 100%; }
+﻿.eux-CuddlerBody { background: white; border-radius: 0 0 3px 3px; height: calc(100vh - 132px); margin: auto; max-width: 1430px; min-width: 500px; width: 100%; }
 .eux-CuddlerBody .eux-CuddlerBody-wrapper { height: 100%; margin: auto; width: 100%; }

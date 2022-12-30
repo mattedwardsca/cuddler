@@ -7,3 +7,4 @@
 .eux-CuddlerInformation .d-grid-auto-1fr { align-items: center; }
 .eux-CuddlerInformation .eux-Warning .alert { border-radius: 0; }
 .eux-CuddlerInformation .eux-Warning .alert-info { background: #ffe9aa; border-color: darkkhaki; }
+.modal-body .eux-CuddlerInformation { margin-bottom: 20px; }

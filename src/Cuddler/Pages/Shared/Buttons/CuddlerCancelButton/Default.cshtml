@@ -1,29 +1,22 @@
 ﻿@using global::Cuddler.Pages.Shared.Cuddler.PopupEditor
 @using global::Cuddler.Utils
-
 @model CuddlerCancelButtonTagHelper
 @{
     var html = Model.Html.ToNullableString();
 }
 <div class="eux-CuddlerCancelButton">
-    <popup-editor action-complete="Details"
-                  button-icon="Undo"
-                  button-text="@Model.Label"
-                  button-type="Warning"
-                  popup-title="@Model.Label"
-                  redirect-url="@Model.RedirectUrl"
-                  submit-api-url="@(Model.CancelUri)"
-                  submit-button-text="@Model.Label"
-                  submit-button-type="Warning">
-        @if (!string.IsNullOrEmpty(html))
-        {
-            @Html.Raw(html)
-        }
-        else
-        {
-            <p>
-                Would you like to cancel this item?
-            </p>
-        }
+    <popup-editor action-complete="Details" button-icon="Undo" button-text="@Model.Label" button-type="Warning" popup-title="@Model.Label" redirect-url="@Model.RedirectUrl" submit-api-url="@(Model.CancelUri)" submit-button-text="@Model.Label" submit-button-type="Warning">
+        <c-data>
+            @if (!string.IsNullOrEmpty(html))
+            {
+                @Html.Raw(html)
+            }
+            else
+            {
+                <p>
+                    Would you like to cancel this item?
+                </p>
+            }
+        </c-data>
     </popup-editor>
 </div>

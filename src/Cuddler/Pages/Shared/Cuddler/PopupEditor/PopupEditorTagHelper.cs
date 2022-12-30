@@ -4,9 +4,11 @@ using Cuddler.Forms.BaseTagHelpers;
 using Cuddler.Web.Api;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.PopupEditor;
 
+[RestrictChildren("cuddler-information", "form-field", "c-data", "cuddler-update", "flex-row", "form-label")]
 public class PopupEditorTagHelper : BaseTagHelper, ICuddler
 {
     public PopupEditorTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
