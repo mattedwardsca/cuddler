@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Forms.Ui;
 using Cuddler.Web.Api;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,7 +22,7 @@ public class CuddlerPopupUpdateTagHelper : BaseTagHelper, ICuddler
     public bool HideButtonText { get; set; }
 
     [Required]
-    public Forms.CuddlerFormFields UpdateModel { get; set; } = null!;
+    public List<Forms.FormField> UpdateModel { get; set; } = null!;
 
     [Required]
     public CuddlerUri SubmitApiUrl { get; set; } = null!;

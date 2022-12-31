@@ -1,4 +1,4 @@
-﻿namespace Cuddler.Web.Api;
+﻿namespace Cuddler.Forms.Ui;
 
 public abstract class JsonObject
 {

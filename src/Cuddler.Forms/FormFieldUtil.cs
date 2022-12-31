@@ -227,7 +227,7 @@ public static class FormFieldUtil
         return o.ToString();
     }
 
-    internal static object? GetValue(object? obj, PropertyInfo propertyInfo)
+    public static object? GetValue(object? obj, PropertyInfo propertyInfo)
     {
         if (obj == null)
         {

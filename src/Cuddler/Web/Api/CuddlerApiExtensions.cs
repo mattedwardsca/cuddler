@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Cuddler.Web.Controllers;
+using Cuddler.Forms.Ui;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cuddler.Web.Api;
@@ -10,11 +10,6 @@ public class CuddlerApi
     {
         return new CuddlerUri<T>().Endpoint(func);
     }
-
-    //public static CuddlerUri<T> Block<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IBlockController
-    //{
-    //    return new CuddlerUri<T>().Endpoint(func);
-    //}
 
     public static TModel Mock<TModel>()
     {

@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Web.Blocks;
 
-public class DynamicFormWrapper<TData, TService> where TData : class where TService : class, IService
+public class DynamicFormWrapper<TData, TService> where TData : class where TService : class
 {
     private readonly HttpContext _httpContext;
     private Action<DynamicQueryBuilder<TData>> _queryAction = null!;

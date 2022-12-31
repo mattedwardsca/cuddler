@@ -1,4 +1,5 @@
-﻿using System.Text.Encodings.Web;
+﻿using System.Diagnostics;
+using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using Cuddler.Forms.Utils;
 using Microsoft.AspNetCore.Html;
@@ -37,6 +38,7 @@ public abstract class BaseTagHelper : TagHelper
 
     protected string? Class { get; set; }
 
+    [DebuggerStepThrough]
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         (HtmlHelper as IViewContextAware).Contextualize(ViewContext);
@@ -75,6 +77,7 @@ public abstract class BaseTagHelper : TagHelper
         return innerHtml;
     }
 
+    [DebuggerStepThrough]
     private async Task ConfigureContent(TagHelperOutput output)
     {
         var innerHtml = await GetInnerContent(output);

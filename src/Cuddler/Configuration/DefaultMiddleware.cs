@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Diagnostics;
+using System.Security.Claims;
 using Cuddler.Configuration.Identity.Exceptions;
 using Cuddler.Configuration.Identity.Extensions;
 using Cuddler.Data.Entities;
@@ -43,7 +44,7 @@ public class DefaultMiddleware
         return false;
     }
 
-    //[DebuggerStepThrough]
+    [DebuggerStepThrough]
     public async Task InvokeAsync(HttpContext context)
     {
         var pathValue = context.Request.Path.Value;

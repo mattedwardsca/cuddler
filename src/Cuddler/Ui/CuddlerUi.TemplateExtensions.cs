@@ -10,12 +10,8 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Forms.Ui;
 
-public static class CuddlerExtensions
+public static class CuddlerUiTemplateExtensions
 {
-    public static CuddlerUi CuddlerUi(this IHtmlHelper htmlHelper)
-    {
-        return new CuddlerUi(htmlHelper);
-    }
 
     public static async Task<IHtmlContent> Template(this CuddlerUi cuddler, BaseTagHelper tagHelper)
     {

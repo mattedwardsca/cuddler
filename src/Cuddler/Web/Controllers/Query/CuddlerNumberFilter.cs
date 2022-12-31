@@ -1,6 +1,6 @@
 ﻿// ReSharper disable UnusedMethodReturnValue.Global
 
-using Cuddler.Web.Api;
+using Cuddler.Forms.Ui;
 
 namespace Cuddler.Web.Controllers.Query;
 
