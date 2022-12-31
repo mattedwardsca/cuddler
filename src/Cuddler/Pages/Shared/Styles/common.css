@@ -56,7 +56,7 @@ article { display: inline; }
 .d-grid-auto-auto { display: grid; grid-template-columns: auto auto; }
 .d-grid-1fr { display: grid; grid-template-columns: 1fr; }
 .d-grid-m-s { display: grid; grid-gap: 20px; grid-template-columns: 73% 27% x; max-width: 1100px; }
-.d-grid-m-s > div:last-child .eux-ButtonLink { min-width: 200px; }
+.d-grid-m-s > div:last-child .eux-CuddlerLink { min-width: 200px; }
 .d-grid-auto-1fr { display: grid; grid-template-columns: auto 1fr; }
 .eux-li-1 li { margin-bottom: .5em; }
 .eux-li-2 li { margin-bottom: 1em; }

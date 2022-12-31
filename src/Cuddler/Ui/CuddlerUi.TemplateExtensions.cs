@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
+using Cuddler.Forms;
 using Cuddler.Forms.Attributes;
 using Cuddler.Forms.BaseTagHelpers;
 using Cuddler.Forms.Utils;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Cuddler.Forms.Ui;
+namespace Cuddler.Ui;
 
 public static class CuddlerUiTemplateExtensions
 {

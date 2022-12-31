@@ -2,7 +2,7 @@
 using Cuddler.Forms;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicFormPropertyFactory<T> where T : class
 {

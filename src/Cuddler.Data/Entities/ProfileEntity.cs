@@ -70,7 +70,7 @@ public class ProfileEntity : BaseEntity, IProfileRole, IProfile
 
     public string? Gender { get; set; }
 
-    [DefaultValue(501040)]
+    //[DefaultValue(501040)]
     [JsonProperty]
     public string? GeneralLedger { get; set; }
 

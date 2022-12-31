@@ -1,10 +1,10 @@
 ﻿using System.Text.Encodings.Web;
 using Cuddler.Data.Entities;
-using Cuddler.Forms.Ui;
 using Cuddler.Pages.Shared.Cuddler.ArchiveButton;
-using Cuddler.Pages.Shared.Cuddler.ButtonLink;
+using Cuddler.Pages.Shared.Cuddler.CuddlerLink;
 using Cuddler.Pages.Shared.Cuddler.CuddlerFormCreate;
 using Cuddler.Pages.Shared.Cuddler.PopupEditor;
+using Cuddler.Ui;
 using Cuddler.Utils;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Html;
@@ -60,7 +60,7 @@ public class ActionMenuItems
 
     public async Task AddLink(string text, string href)
     {
-        var tag = new ButtonLinkTagHelper(_htmlHelper, HtmlEncoder.Default)
+        var tag = new CuddlerLinkTagHelper(_htmlHelper, HtmlEncoder.Default)
         {
             ButtonType = EButtonType.Link,
             Href = href
@@ -93,7 +93,7 @@ public class ActionMenuItems
 
     public async Task AddDownloadLink(string text, string href)
     {
-        var tag = new ButtonLinkTagHelper(_htmlHelper, HtmlEncoder.Default)
+        var tag = new CuddlerLinkTagHelper(_htmlHelper, HtmlEncoder.Default)
         {
             ButtonType = EButtonType.Link,
             Href = href,

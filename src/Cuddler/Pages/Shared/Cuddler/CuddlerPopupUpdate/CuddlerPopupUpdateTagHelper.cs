@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
-using Cuddler.Forms.Ui;
-using Cuddler.Web.Api;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerPopupUpdate;
 
+[RestrictChildren("cuddler-no-children")]
 public class CuddlerPopupUpdateTagHelper : BaseTagHelper, ICuddler
 {
     public CuddlerPopupUpdateTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
@@ -17,13 +17,9 @@ public class CuddlerPopupUpdateTagHelper : BaseTagHelper, ICuddler
     [Required]
     public EButtonType ButtonType { get; set; } = EButtonType.Light;
 
-    public string? OverridePopupTitle { get; set; }
-
-    public bool HideButtonText { get; set; }
+    [Required]
+    public string ButtonText { get; set; } = null!;
 
     [Required]
-    public List<Forms.FormField> UpdateModel { get; set; } = null!;
-
-    [Required]
-    public CuddlerUri SubmitApiUrl { get; set; } = null!;
+    public Ui.CuddlerFormModel FormModel { get; set; } = null!;
 }

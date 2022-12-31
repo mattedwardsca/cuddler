@@ -27,7 +27,7 @@ a.eux-bg-Green { color: black; }
 a.eux-bg-Yellow { color: black; }
 .eux-PopupButtonTagHelper.eux-w-Small .btn { width: 320px; }
 .eux-w-Full { display: block; width: 100%; }
-.eux-w-Full .eux-ButtonLinkWidget a { display: block; }
+.eux-w-Full .eux-CuddlerLinkWidget a { display: block; }
 .eux-w-Inline { display: inline-block; width: initial; }
 .eux-flex-grow { flex-grow: 1; }
 .eux-flex-center { align-content: center; align-items: center; display: flex; }
@@ -150,9 +150,9 @@ div.k-navigator .k-navigator-left, div.k-navigator .k-navigator-right { margin-t
 @media only screen and (min-width: 836px) {
     .eux-CardWidget { width: 303px; }
 }
-/*eux-ButtonLinkWidget*/
-.eux-ButtonLinkWidget { cursor: pointer; display: inline-block; }
-.eux-ButtonLinkWidget.btn-primary, a:not([href]):not([tabindex]).eux-ButtonLinkWidget.btn-primary { color: white; display: block; }
+/*eux-CuddlerLinkWidget*/
+.eux-CuddlerLinkWidget { cursor: pointer; display: inline-block; }
+.eux-CuddlerLinkWidget.btn-primary, a:not([href]):not([tabindex]).eux-CuddlerLinkWidget.btn-primary { color: white; display: block; }
 /*BackgroundImageWidget*/
 .eux-BackgroundImageWidget .eux-image { background-position: center calc(50% + 1px); background-repeat: no-repeat !important; background-size: cover !important; display: block; }
 /*eux-AlertWidget*/

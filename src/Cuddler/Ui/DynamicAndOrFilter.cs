@@ -1,6 +1,6 @@
 ﻿// ReSharper disable UnusedMethodReturnValue.Global
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicAndOrFilter<T> where T : DynamicBaseFilter
 {

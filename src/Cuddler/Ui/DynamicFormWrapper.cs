@@ -3,11 +3,11 @@ using System.Reflection;
 using System.Text.Encodings.Web;
 using Cuddler.Data.Context;
 using Cuddler.Forms;
-using Cuddler.Forms.Ui;
 using Cuddler.Pages.Shared.Cuddler.ActionMenu;
 using Cuddler.Pages.Shared.Cuddler.CuddlerReplace;
 using Cuddler.Pages.Shared.Cuddler.DynamicForm;
 using Cuddler.Utils;
+using Cuddler.Web.Blocks;
 using Cuddler.Web.Helpers;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.Infrastructure;
@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicFormWrapper<TData, TService> where TData : class where TService : class
 {

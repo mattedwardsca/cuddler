@@ -1,4 +1,4 @@
-﻿namespace Cuddler.Forms.Ui;
+﻿namespace Cuddler.Ui;
 
 public class ClientHandlerDescriptor
 {

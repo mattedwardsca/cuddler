@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
-using Cuddler.Forms.Ui;
+using Cuddler.Ui;
 using Cuddler.Web.Api;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -13,14 +13,14 @@ public class CuddlerFormFieldsTagHelper : BaseTagHelper, ICuddler
     {
     }
 
-    public bool AutoSave { get; set; }
-
     [Required]
     public List<Forms.FormField> Fields { get; set; } = null!;
 
     public bool IsTemplate { get; set; }
 
     public bool IsView { get; set; }
+
+    public bool AutoSave { get; set; }
 
     public CuddlerUri? SaveUrl { get; set; }
 }

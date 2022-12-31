@@ -1,4 +1,4 @@
-﻿using Cuddler.Forms.Ui;
+﻿using Cuddler.Ui;
 
 namespace Cuddler.Web.Controllers.Query;
 

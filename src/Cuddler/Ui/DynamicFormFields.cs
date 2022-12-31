@@ -1,6 +1,6 @@
 ﻿using Cuddler.Data.Entities;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicFormFields<TModel> : DynamicFields where TModel : class
 {

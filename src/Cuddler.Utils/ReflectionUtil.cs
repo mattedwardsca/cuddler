@@ -58,16 +58,6 @@ public static class ReflectionUtil
         return results;
     }
 
-    public static object? GetPropertyValue(object obj, string propertyName)
-    {
-        var result = obj.GetType()
-                        .GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance)
-                        ?.GetMethod?.Invoke(obj, Array.Empty<object>());
-
-        return result;
-    }
-
-
     public static string? GetPropertyAsString(object obj, string propertyName)
     {
         var result = obj.GetType()
@@ -75,6 +65,15 @@ public static class ReflectionUtil
                         ?.GetMethod?.Invoke(obj, Array.Empty<object>());
 
         return result?.ToString();
+    }
+
+    public static object? GetPropertyValue(object obj, string propertyName)
+    {
+        var result = obj.GetType()
+                        .GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance)
+                        ?.GetMethod?.Invoke(obj, Array.Empty<object>());
+
+        return result;
     }
 
     public static bool HasAttribute<T>(PropertyInfo propertyInfo)

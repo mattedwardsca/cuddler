@@ -1,4 +1,6 @@
-﻿namespace Cuddler.Forms.Attributes;
+﻿using Cuddler.Forms.Helpers;
+
+namespace Cuddler.Forms.Attributes;
 
 [AttributeUsage(AttributeTargets.Property)]
 public sealed class FormFieldAttribute : Attribute
@@ -6,6 +8,12 @@ public sealed class FormFieldAttribute : Attribute
     public FormFieldAttribute(string formField)
     {
         FormField = formField;
+    }
+
+    public FormFieldAttribute(EFormField formField, ELookupCategory lookupCategory)
+    {
+        FormField = formField.ToString();
+        ContextType = lookupCategory.ToString();
     }
 
     public FormFieldAttribute(string formField, bool hideLabel) : this(formField)
@@ -25,6 +33,8 @@ public sealed class FormFieldAttribute : Attribute
     }
 
     public string FormField { get; }
+
+    public string? ContextType { get; }
 
     public bool HideLabel { get; set; }
 }

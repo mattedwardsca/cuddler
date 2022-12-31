@@ -1,7 +1,6 @@
 ﻿.eux-CuddlerHeader { background: white; border-radius: 3px 3px 0 0; margin: auto; max-width: 1430px; width: 100%; }
-.eux-CuddlerHeader .eux-CuddlerHeader-wrapper { align-items: center; }
-.eux-CuddlerHeader .eux-CuddlerHeader-wrapper > div:first-child { min-height: 70px; }
-.eux-CuddlerHeader .eux-CuddlerHeader-wrapper > div { display: grid; height: 100%; }
+.eux-CuddlerHeader .eux-CuddlerHeader-wrapper { align-items: center; height: 96px; position: relative; }
+.eux-CuddlerHeader .eux-CuddlerHeader-wrapper > div { display: grid; }
 .eux-CuddlerHeader.eux-CuddlerHeader-hasBottomBorder .eux-CuddlerHeader-wrapper .eux-Heading2 { border-bottom: solid 1px #bcbcbc; }
 .eux-CuddlerHeader.eux-CuddlerHeader-Success { background: aquamarine; }
 .eux-CuddlerHeader.eux-CuddlerHeader-Success + .eux-PageContent { background: aquamarine; }

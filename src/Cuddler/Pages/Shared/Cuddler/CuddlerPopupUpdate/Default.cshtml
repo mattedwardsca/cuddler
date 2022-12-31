@@ -3,17 +3,23 @@
 @using global::Cuddler.Web.Helpers
 @model CuddlerPopupUpdateTagHelper
 @{
-    var buttonText = Model.HideButtonText
+    var buttonText = Model.ButtonType == EButtonType.Icon
         ? null
-        : Model.OverridePopupTitle ?? throw new InvalidOperationException($"{nameof(CuddlerPopupTagHelper)} requires {nameof(CuddlerPopupUpdateTagHelper.OverridePopupTitle)}. Error: de94fcbb-2f48-4aed-b26f-14ccd69394a6");
+        : Model.ButtonText;
 }
 <div class="eux-CuddlerPopupUpdate">
-    <cuddler-popup action-complete="@EActionComplete.Reload" button-icon="@EFontAwesomeIcon.Edit" button-text="@buttonText" button-type="@Model.ButtonType" submit-api-url="@Model.SubmitApiUrl" submit-button-text="Save" submit-button-type="@EButtonType.Success">
+    <cuddler-popup action-complete="@EActionComplete.Reload"
+                   button-icon="@EFontAwesomeIcon.Edit"
+                   button-text="@buttonText"
+                   button-type="@Model.ButtonType"
+                   submit-api-url="@Model.FormModel.FormAction"
+                   submit-button-text="Save"
+                   submit-button-type="@EButtonType.Success">
         <div class="eux-popup-top-html">
             @Html.Raw(Model.Html)
         </div>
         <div>
-            <cuddler-form-fields fields="@Model.UpdateModel" />
+            <cuddler-form-fields fields="@Model.FormModel.FormFields" />
             @Model.Html
         </div>
     </cuddler-popup>

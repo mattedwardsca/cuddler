@@ -34,7 +34,7 @@
             type="text/x-kendo-template">
    @Html.Raw(Model.Html)
 </script>
-    @if (!string.IsNullOrEmpty(Model.RestoreApi))
+    @if (Model.RestoreApi != null)
     {
         <script>
         $(function() {
@@ -51,7 +51,7 @@
         });
     </script>
     }
-    @if (!string.IsNullOrEmpty(Model.DeleteApi))
+    @if (Model.DeleteApi != null)
     {
         var deletePopupId = WebIdUtil.GetWebId();
         const string deletePopupTitle = "Delete";
@@ -175,12 +175,12 @@
               }
 
               columns.Command(c => {
-                  if (!string.IsNullOrEmpty(Model.DeleteApi))
+                  if (Model.DeleteApi != null)
                   {
                       c.Edit()
                        .Template($"<i class=\"pointer customDelete mx-1 {EFontAwesomeIconHelper.ToString(EFontAwesomeIcon.Trash)}\"></i>");
                   }
-                  if (!string.IsNullOrEmpty(Model.RestoreApi))
+                  if (Model.RestoreApi != null)
                   {
                       c.Edit()
                        .Template($"<i class=\"pointer customRestore mx-1 {EFontAwesomeIconHelper.ToString(EFontAwesomeIcon.TrashRestore)}\"></i>");

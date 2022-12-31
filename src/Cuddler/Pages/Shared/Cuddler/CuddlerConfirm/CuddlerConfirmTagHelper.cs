@@ -1,16 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
-using Cuddler.Forms.Ui;
-using Cuddler.Web.Api;
+using Cuddler.Ui;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Pages.Shared.Cuddler.ConfirmPopup;
+namespace Cuddler.Pages.Shared.Cuddler.CuddlerConfirm;
 
-public class ConfirmPopupTagHelper : BaseTagHelper, ICuddler
+public class CuddlerConfirmTagHelper : BaseTagHelper, ICuddler
 {
-    public ConfirmPopupTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
+    public CuddlerConfirmTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
     {
     }
 

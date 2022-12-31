@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public static class DynamicForms
 {

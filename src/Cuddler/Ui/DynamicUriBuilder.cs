@@ -1,11 +1,10 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
-using Cuddler.Forms.Ui;
 using Cuddler.Utils;
 using Kendo.Mvc;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicUriBuilder<TController> : DynamicUriController
 {

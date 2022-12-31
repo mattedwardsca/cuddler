@@ -2,7 +2,7 @@
 using Cuddler.Data.Entities;
 using Cuddler.Forms;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicFields
 {

@@ -2,8 +2,8 @@
 using System.Text.Encodings.Web;
 using Cuddler.Data.Entities;
 using Cuddler.Forms.BaseTagHelpers;
-using Cuddler.Forms.Ui;
 using Cuddler.Pages.Shared.Cuddler.ActionMenu;
+using Cuddler.Ui;
 using Cuddler.Web.Api;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;

@@ -2,7 +2,7 @@
 using Kendo.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicQueryBuilder<TModel> where TModel : class
 {

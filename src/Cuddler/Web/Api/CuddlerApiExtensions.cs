@@ -1,14 +1,24 @@
 ﻿using System.Linq.Expressions;
-using Cuddler.Forms.Ui;
+using Cuddler.Ui;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cuddler.Web.Api;
 
 public class CuddlerApi
 {
+    public static CuddlerUri<T> Grid<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IApiController
+    {
+        return new CuddlerUri<T>().Endpoint(func);
+    }
+
     public static CuddlerUri<T> Uri<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IApiController
     {
         return new CuddlerUri<T>().Endpoint(func);
+    }
+
+    public static CuddlerFormModel Form<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IApiController
+    {
+        return new CuddlerUri<T>().Endpoint(func).ToFormModel();
     }
 
     public static TModel Mock<TModel>()

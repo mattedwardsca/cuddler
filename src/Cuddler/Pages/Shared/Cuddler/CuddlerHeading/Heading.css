@@ -1,4 +1,5 @@
 ﻿.eux-CuddlerHeading { display: grid; height: 100%; margin: auto; max-width: 1430px; padding: 0 35px; width: 100%; }
+.eux-CuddlerHeading > div { z-index: 2; }
 .eux-CuddlerHeading .eux-slogan { max-width: 650px; }
 .eux-CuddlerHeading h6 { padding-top: 5px; }
 .eux-CuddlerHeading .align-items-center > div { display: flex; }

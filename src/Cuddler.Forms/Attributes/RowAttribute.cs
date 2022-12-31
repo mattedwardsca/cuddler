@@ -9,7 +9,7 @@ public class RowAttribute : Attribute
     {
     }
 
-    public RowAttribute(int rowStart, int rowSpan)
+    public RowAttribute(int rowStart, int rowSpan = 0)
     {
         RowStart = rowStart;
         RowSpan = rowSpan;

@@ -1,5 +1,5 @@
 ﻿using Cuddler.Data.Utils;
-using Cuddler.Forms.Ui;
+using Cuddler.Ui;
 using Kendo.Mvc;
 using Kendo.Mvc.Infrastructure;
 

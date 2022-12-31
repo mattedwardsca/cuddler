@@ -1,4 +1,4 @@
-﻿namespace Cuddler.Web.Blocks;
+﻿namespace Cuddler.Ui;
 
 public class DynamicDateFilter : DynamicBaseFilter
 {

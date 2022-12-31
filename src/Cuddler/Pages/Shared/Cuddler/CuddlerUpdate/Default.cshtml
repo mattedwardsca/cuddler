@@ -1,0 +1,15 @@
+﻿@model CuddlerUpdateTagHelper
+@{
+    var formFields = Model.FormModel.FormFields;
+}
+<div class="eux-CuddlerUpdate">
+    <div class="eux-popup-top-html">
+        @Html.Raw(Model.Html)
+    </div>
+    <div>
+        <cuddler-form-fields auto-save="@Model.AutoSave"
+                             fields="@(formFields)"
+                             read-only="@Model.ReadOnly"
+                             save-url="@Model.FormModel.FormAction" />
+    </div>
+</div>

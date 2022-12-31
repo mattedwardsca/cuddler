@@ -36,9 +36,11 @@
                                           button-type="Icon"
                                           popup-title="Rename"
                                           submit-api-url="@(Model.UpdateNameApi)">
-                                <form-field name="@nameof(IHasName.Name)"
-                                            template="@(EFormField.Text)"
-                                            value="@Model.Data.Name" />
+                                <c-data>
+                                    <form-field name="@nameof(IHasName.Name)"
+                                                template="@(EFormField.Text)"
+                                                value="@Model.Data.Name" />
+                                </c-data>
                             </popup-editor>
                         }
                     </div>
@@ -53,7 +55,7 @@
         </div>
         <div class="align-items-center d-grid-1fr-auto d-grid-gap-20 p-relative h-100">
             <div></div>
-            <div class="d-flex d-flex-gap-1 h-100 p-3">
+            <div class="d-flex d-flex-gap-1">
 
                 @if (html != null)
                 {

@@ -2,7 +2,7 @@
 using System.Text.Encodings.Web;
 using Cuddler.Forms;
 using Cuddler.Forms.BaseTagHelpers;
-using Cuddler.Forms.Ui;
+using Cuddler.Ui;
 using Cuddler.Web.Api;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,9 +14,9 @@ public class CuddlerGridTagHelper : BaseTagHelper, ICuddler
     {
     }
 
-    public string? RestoreApi { get; set; }
+    public CuddlerUri? RestoreApi { get; set; }
 
-    public string? DeleteApi { get; set; }
+    public CuddlerUri? DeleteApi { get; set; }
 
     public string? DetailsUrl { get; set; }
 

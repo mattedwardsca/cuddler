@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Forms.Ui;
+namespace Cuddler.Ui;
 
 public class CuddlerUi
 {

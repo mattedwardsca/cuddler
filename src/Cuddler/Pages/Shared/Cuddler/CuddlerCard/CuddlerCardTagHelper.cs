@@ -34,5 +34,5 @@ public class CuddlerCardTagHelper : BaseTagHelper, ICuddler
 
     public string? Title { get; set; }
 
-    public ETagWidth Width { get; set; } = ETagWidth.None;
+    public ETagWidth Width { get; set; } = ETagWidth.Grow;
 }

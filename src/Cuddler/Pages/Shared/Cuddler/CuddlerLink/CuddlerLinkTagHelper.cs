@@ -4,11 +4,11 @@ using Cuddler.Forms.BaseTagHelpers;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Pages.Shared.Cuddler.ButtonLink;
+namespace Cuddler.Pages.Shared.Cuddler.CuddlerLink;
 
-public class ButtonLinkTagHelper : BaseTagHelper, ICuddler
+public class CuddlerLinkTagHelper : BaseTagHelper, ICuddler
 {
-    public ButtonLinkTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
+    public CuddlerLinkTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
     {
     }
 

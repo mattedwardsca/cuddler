@@ -1,7 +1,7 @@
 ﻿using Kendo.Mvc;
 using Kendo.Mvc.Infrastructure;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicDbQuery
 {

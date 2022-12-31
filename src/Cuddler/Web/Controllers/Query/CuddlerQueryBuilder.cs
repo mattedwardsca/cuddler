@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Cuddler.Forms.Ui;
+using Cuddler.Ui;
 using Kendo.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 

@@ -1,6 +1,6 @@
 ﻿using Cuddler.Forms;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class CuddlerForm<TModel> : CuddlerFormFields where TModel : class
 {

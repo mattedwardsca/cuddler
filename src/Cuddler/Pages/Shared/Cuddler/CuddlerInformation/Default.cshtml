@@ -36,7 +36,35 @@
     }
 }
 <div class="eux-CuddlerInformation">
-    @if (Model.Type != EAlert.Meta)
+    
+    @if (Model.Type == EAlert.Warning)
+    {
+        <div class="alert p-4 align-center d-grid @EAlertHelper.ToString(Model.Type)"
+         role="alert">
+            @if (Model.Icon != EFontAwesomeIcon.None)
+            {
+                <div>
+                    <icon type="@Model.Icon" />
+                </div>
+            }
+            <div>
+                <div class="text">
+                    @Html.Raw(Model.Html)
+                </div>
+                @if (Model.ButtonSubmitApi != null && !string.IsNullOrEmpty(Model.ButtonText))
+                {
+                    <div class="mt-2">
+                        <action-button action-complete="Reload"
+                                       button-type="@buttonType"
+                                       submit-api="@Model.ButtonSubmitApi">
+                            @Model.ButtonText
+                        </action-button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else if (Model.Type != EAlert.Meta)
     {
         <div class="alert p-4 d-flex align-center @EAlertHelper.ToString(Model.Type)"
              role="alert">

@@ -1,0 +1,3 @@
+﻿#euxPdf.pdf-page { font-size: 10px; }
+#euxPdf.pdf-page { font-family: 'SimSun', Arial !important; }
+.eux-PrintButton .btn-light { background-color: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.1); color: #212529; }

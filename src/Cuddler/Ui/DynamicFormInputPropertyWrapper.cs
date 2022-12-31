@@ -1,7 +1,7 @@
 ﻿using Cuddler.Forms;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Web.Blocks;
+namespace Cuddler.Ui;
 
 public class DynamicFormInputPropertyWrapper
 {

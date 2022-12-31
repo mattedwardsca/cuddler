@@ -1,9 +1,11 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
+using Cuddler.Data.Utils;
+using Cuddler.Forms;
 using Kendo.Mvc;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cuddler.Forms.Ui;
+namespace Cuddler.Ui;
 
 public abstract class CuddlerUri
 {
@@ -20,10 +22,12 @@ public abstract class CuddlerUri
 
     protected static object? GetValue(Expression argument)
     {
-        var reduced = argument.CanReduce ? argument.Reduce() : argument;
-        
+        var reduced = argument.CanReduce
+            ? argument.Reduce()
+            : argument;
+
         //var memberExpression = argument;
-        
+
         //var parameterName = memberExpression.Member.Name;
         //var objectMember = Expression.Convert(memberExpression, typeof(object));
         //var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
@@ -31,8 +35,10 @@ public abstract class CuddlerUri
 
         //var getter = invoke?.ToString();
 
-        var o = Expression.Lambda(reduced).Compile().DynamicInvoke();
-        
+        var o = Expression.Lambda(reduced)
+                          .Compile()
+                          .DynamicInvoke();
+
         return o;
     }
 
@@ -47,9 +53,31 @@ public abstract class CuddlerUri
 
                 var objectMember = Expression.Convert(memberExpression, typeof(object));
                 var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
-                var getter = GetGetter(getterLambda);
+                var getter = getterLambda.Compile()
+                                         ?.Invoke();
 
-                yield return $"{parameterName}={getter}";
+                if (getter != null)
+                {
+                    //var stringValue = getter.ToString()!;
+
+                    if (getter is DateTime asDate)
+                    {
+                        // DateTime asDate;
+                        // try
+                        // {
+                        //     asDate = DateTime.ParseExact(stringValue, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
+                        // }
+                        // catch (Exception e)
+                        // {
+                        //     Console.WriteLine(e);
+                        //     throw;
+                        // }
+
+                        yield return $"{parameterName}={FormatDateUtil.FormatJsonDate(asDate)}";
+                    }
+
+                    yield return $"{parameterName}={getter}";
+                }
             }
 
             if (parameterInfo is ConstantExpression constantExpression)
@@ -57,9 +85,17 @@ public abstract class CuddlerUri
                 var parameterName = infos[index];
                 var objectMember = Expression.Convert(constantExpression, typeof(object));
                 var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
-                var getter = GetGetter(getterLambda);
+                var getter = getterLambda.Compile()
+                                         ?.Invoke();
+                if (getter != null)
+                {
+                    if (getter is DateTime dateTime)
+                    {
+                        yield return $"{parameterName}={FormatDateUtil.FormatJsonDate(dateTime)}";
+                    }
 
-                yield return $"{parameterName}={getter}";
+                    yield return $"{parameterName}={getter}";
+                }
             }
 
             //if (parameterInfo is PropertyExpression propertyExpression)
@@ -71,14 +107,6 @@ public abstract class CuddlerUri
             //    throw new NotImplementedException(parameterInfo.GetType().FullName);
             //}
         }
-    }
-
-    private static object? GetGetter(Expression<Func<object?>?>? getterLambda)
-    {
-        var invoke = getterLambda?.Compile()?.Invoke();
-        var getter = invoke?.ToString();
-
-        return getter;
     }
 
     protected static string GetBaseApiUrl(Type typeOfController)
@@ -101,6 +129,8 @@ public abstract class CuddlerUri
 
 public class CuddlerUri<TController> : CuddlerUri
 {
+    public List<FormField> FormFields = new();
+
     public static string GetParameterName<TParameter>(Expression<Func<TParameter>> parameterToCheck)
     {
         var memberExpression = parameterToCheck.Body as MemberExpression;
@@ -112,13 +142,20 @@ public class CuddlerUri<TController> : CuddlerUri
 
     public static TParameter GetParameterValue<TParameter>(Expression<Func<TParameter>> parameterToCheck)
     {
-        var parameterValue = parameterToCheck.Compile().Invoke();
+        var parameterValue = parameterToCheck.Compile()
+                                             .Invoke();
 
         return parameterValue;
     }
 
-    public List<FormField> FormFields = new List<FormField>();
-
+    public CuddlerFormModel ToFormModel()
+    {
+        return new CuddlerFormModel
+        {
+            FormFields = FormFields,
+            FormAction = this
+        };
+    }
 
     public CuddlerUri<TController> Endpoint(Expression<Func<TController, Task<IActionResult>>> func)
     {
@@ -129,7 +166,8 @@ public class CuddlerUri<TController> : CuddlerUri
         MethodInfo methodInfo;
         try
         {
-            methodInfo = typeof(TController).GetMethods().Single(w => w.Name == methodName);
+            methodInfo = typeof(TController).GetMethods()
+                                            .Single(w => w.Name == methodName);
         }
         catch (InvalidOperationException)
         {
@@ -140,7 +178,7 @@ public class CuddlerUri<TController> : CuddlerUri
         foreach (var argument in body.Arguments)
         {
             var type = argument.Type;
-            
+
             if (type.IsClass && type != typeof(string))
             {
                 var obj = GetValue(argument);
@@ -149,8 +187,8 @@ public class CuddlerUri<TController> : CuddlerUri
         }
 
         var keys = methodParameters.Select(s => s.Name!).ToList();
-        
-        var parameterString = string.Join('&', GetApiParameters(keys, body.Arguments));
+        var apiParameters = GetApiParameters(keys, body.Arguments);
+        var parameterString = string.Join('&', apiParameters);
         if (string.IsNullOrEmpty(parameterString))
         {
             _endpointUrl = $"{api}/{methodName}";

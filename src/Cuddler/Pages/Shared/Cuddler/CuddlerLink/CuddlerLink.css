@@ -1,0 +1,5 @@
+﻿.eux-CuddlerLink { display: inline-block; }
+.eux-CuddlerLink a { display: inline-block; }
+.eux-CuddlerLink a.btn-light { background-color: #eaf0f6; border-color: #cbd6e2; color: #506e91; font-size: 12px; }
+.eux-CuddlerLink a.btn-warning { color: black; }
+.eux-CuddlerLink a.eux-link { color: #0069D9; cursor: pointer; }
