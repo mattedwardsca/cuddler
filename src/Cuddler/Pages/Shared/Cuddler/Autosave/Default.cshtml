@@ -39,7 +39,7 @@
                 dataType: "json",
                 url: "@Html.Raw(Model.SaveUrl.ToString())",
                 data: indexed_array,
-                success: function () {
+                success: function (results) {
                     
                     $("#@(form1Id) .field-validation-error").empty();
                                         @if (Model.OnBlur == EBlurAction.Reload)
@@ -54,7 +54,7 @@
                             @(form1Id)_timeout = setTimeout(function() { 
                                 $("#@(form1Id)_message").empty(); }, 2000);
                                 $("#@(form1Id)_message").removeClass("field-validation-success");
-                            @(Model.Script)();
+                @(Model.Script)(results);
                         </text>
                                         }
                                         else if (Model.OnBlur == EBlurAction.Trigger)

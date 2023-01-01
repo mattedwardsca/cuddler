@@ -1,0 +1,272 @@
+﻿@using global::Cuddler.Pages.Shared.Cuddler.SubmitButton
+@using global::Cuddler.Utils
+@using Microsoft.AspNetCore.Http
+@model WizardTagHelper
+
+@functions
+{
+    public static string CombinedPathWithQuery(HttpRequest request)
+    {
+        return $"{request.PathBase}{request.Path}{request.QueryString}";
+    }
+
+    public static string CombinedPath(HttpRequest request)
+    {
+        return $"{request.PathBase}{request.Path}";
+    }
+}
+
+@{
+    var selected = true;
+    var counter = 1;
+    var first = Model.ListSteps.First();
+    var stepContentId = WebIdUtil.GetWebId();
+}
+<div class="eux-Wizard">
+    <div class="eux-wizardprogress-pod">
+        @foreach (var step in Model.ListSteps)
+        {
+            var b = Model.ListSteps[Model.GetStepCount()].StepTitle == step.StepTitle;
+            var isFirst = counter == 1;
+            var isLast = counter == Model.ListSteps.Count;
+            var isLastSelected = !isFirst && !isLast && b;
+            var isMiddle = !isFirst && !isLast && !isLastSelected;
+
+            <div class="eux-wizardlink @Model.EnableNavbar.IsTrue("eux-wizardlink-click pointer") @selected.IsTrueHtml("eux-selected") @step.IsDone.IsTrueHtml("eux-done")"
+                 data-href="@step.StepUrl"
+                 data-id="@step.Id"
+                 data-title="@step.StepTitle">
+                <span>
+                    <span class="eux-counter @isFirst.IsTrueHtml("eux-counter-first") @isMiddle.IsTrueHtml("eux-counter-middle") @isLast.IsTrueHtml("eux-counter-last")"></span>
+                    <span class="eux-counter-num">@counter</span>
+                    <span class="eux-text @(step.ShowTitle.IsFalse("d-none"))">@step.StepTitle</span>
+                </span>
+            </div>
+            if (b)
+            {
+                selected = false;
+            }
+            counter += 1;
+        }
+    </div>
+    <div id="@stepContentId"></div>
+    @if (Model.ShowNavigationButtons)
+    {
+        <div class="eux-wizard-buttons p-4">
+            <div class="d-flex d-flex-justify-between">
+                <div>
+                    @foreach (var step in Model.ListSteps)
+                    {
+                        <div class="eux-previous-button @selected.IsTrueHtml("eux-selected") btn btn-secondary w-200px"
+                             data-href="@step.StepUrl"
+                             data-id="@step.Id"
+                             data-title="@step.StepTitle"
+                             style="display: none;">
+                            Previous
+                        </div>
+                    }
+                </div>
+                <div>
+                    <div id="NextButtonSet">
+                        @foreach (var step in Model.ListSteps)
+                        {
+                            <div class="eux-next-button @selected.IsTrueHtml("eux-selected") btn btn-primary w-200px"
+                                 data-href="@step.StepUrl"
+                                 data-id="@step.Id"
+                                 data-title="@step.StepTitle"
+                                 style="display: none;">
+                                Next
+                            </div>
+                        }
+                        <div class="eux-confirm-button eux-next-button eux-wizard-button"
+                             style="display: none;">
+
+                            @if (Model.ShowSubmitButton)
+                            {
+                                if (Model.SubmitApiUrl == null)
+                                {
+                                    if (string.IsNullOrEmpty(Model.RedirectUrl))
+                                    {
+                                        throw new InvalidOperationException("Wizard without a SubmitApiUrl must have a RedirectUrl");
+                                    }
+                                    <cuddler-link button-type="Primary"
+                                                  href="@(Model.RedirectUrl)">
+                                        @Model.SubmitButtonText
+                                    </cuddler-link>
+                                }
+                                else
+                                {
+                                    <submit-button action-complete="Redirect"
+                                                   class="w-200px"
+                                                   form-id="@(Model.FormId)"
+                                                   redirect-url="@(Model.RedirectUrl)"
+                                                   show-cancel="false"
+                                                   show-divider="false"
+                                                   submit-api-url="@(Model.SubmitApiUrl)"
+                                                   submit-button-text="@Model.SubmitButtonText"
+                                                   submit-button-type="Success" />
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+    function UpdateWizard(element) {
+        element.addClass("eux-selected");
+        element.prevAll().addClass("eux-selected");
+        element.nextAll().removeClass("eux-selected");
+        const source1 = element.data('href');
+        const dataId = element.data('id');
+        const nextTitle = element.data('title');
+        const nextUrl = `@Html.Raw(CombinedPathWithQuery(Context.Request))#tab=${dataId}`;
+        
+        window.history.replaceState(dataId, nextTitle, nextUrl);
+        
+        $.get(source1, function(data) { 
+            window.scrollTo(0, 0);
+            $(".eux-PageContent").animate({ scrollTop: 0 }, "fast");
+            $(`#@stepContentId`).html(data);
+        });
+    }
+    $(document).ready(function() {
+        $('.eux-wizardprogress-pod .eux-wizardlink-click').on('click',
+            function() {
+
+                const $this1 = $(this);
+                const dataId = $this1.data('id');
+
+                UpdateWizard($this1);
+
+                $(".eux-wizard-buttons .eux-confirm-button").hide();
+                $(".eux-wizard-buttons .eux-next-button").hide();
+                const thisNextButton = $(`.eux-wizard-buttons .eux-next-button[data-id="${dataId}"]`);
+                const nextButton1 = thisNextButton.next();
+                if (nextButton1 !== undefined && nextButton1 != null) {
+                    nextButton1.show();
+                }
+
+                $(".eux-wizard-buttons .eux-previous-button").hide();
+                const thisPrevButton = $(`.eux-wizard-buttons .eux-previous-button[data-id="${dataId}"]`);
+                const prevButton1 = thisPrevButton.prev();
+                if (prevButton1 !== undefined && prevButton1 != null) {
+                    prevButton1.show();
+                }
+
+                return true;
+            });
+
+        $('.eux-wizard-buttons .eux-previous-button').on('click',
+            function() {
+                $(".eux-wizard-buttons .eux-next-button").hide();
+                $(".eux-wizard-buttons .eux-confirm-button").hide();
+
+                const currentButton = $(this);
+                const previousButton = currentButton.prev();
+                const thisButtonId = currentButton.data('id');
+                const thisWizardButton = $(`.eux-wizard-buttons .eux-next-button[data-id="${thisButtonId}"]`);
+                const nextWizardButton = thisWizardButton.next();
+
+                currentButton.hide();
+
+                if (previousButton !== undefined && previousButton != null) {
+                    previousButton.show();
+                }
+                if (nextWizardButton != undefined) {
+                    nextWizardButton.show();
+                }
+
+                const wizardButton = $(`.eux-wizardprogress-pod .eux-wizardlink[data-id="${thisButtonId}"]`);
+                UpdateWizard(wizardButton);
+
+                return true;
+            });
+
+        $('.eux-wizard-buttons .eux-next-button').on('click',
+            function() {
+                const $this1 = $(this);
+                $this1.hide();
+
+                const next = $this1.next();
+                if (next !== undefined && next != null) {
+                    next.show();
+                }
+
+                $(".eux-wizard-buttons .eux-previous-button").hide();
+                const thisId = $this1.data('id');
+                const thisButton = $(`.eux-wizard-buttons .eux-previous-button[data-id="${thisId}"]`);
+                const prevButton1 = thisButton.prev();
+                if (prevButton1 != undefined) {
+                    prevButton1.show();
+                }
+
+                const wizardButton = $(`.eux-wizardprogress-pod .eux-wizardlink[data-id="${thisId}"]`);
+                UpdateWizard(wizardButton);
+
+                return true;
+            });
+
+        if (window.location.hash) {
+            const currentHash = window.location.hash.substr(5).split("&")[0];
+            const current1 = $(`.eux-wizardprogress-pod [data-id="${currentHash}"]`);
+            current1.addClass("eux-selected");
+            current1.prevAll().addClass("eux-selected");
+            current1.nextAll().removeClass("eux-selected");
+            const source1 = current1.data('href');
+
+            $.get({ url: source1, cache: false }, function(data) { 
+                $(`#@stepContentId`).html(data); 
+                const split = window.location.hash.substr(5).split("&");
+                if (split.length > 1) {
+                    // Scroll
+                    var splitAgain = split[1].split("=")[1];
+                    const element = document.getElementById(splitAgain);
+                    element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                    const hashAgain = window.location.hash.substr(5).split("&")[0];
+                    history.replaceState(undefined, undefined, "#tab=" + hashAgain)
+                }
+            });
+            const prevButton1 = $(`.eux-wizard-buttons .eux-previous-button[data-id="${currentHash}"]`).prev();
+            if (prevButton1 !== undefined && prevButton1 != null) {
+                prevButton1.show();
+            }
+
+            const nextButton1 = $(`.eux-wizard-buttons .eux-next-button[data-id="${currentHash}"]`).next();
+            if (nextButton1 !== undefined && nextButton1 != null) {
+                nextButton1.show();
+            }          
+
+            return;
+        }
+
+        const $this = $(`[data-id="${"@(first.Id)"}"]`);
+        $this.addClass("eux-selected");
+        $this.prevAll().addClass("eux-selected");
+        $this.nextAll().removeClass("eux-selected");
+        const source = $this.data('href');
+
+        $.get({ url: source, cache: false }, function(data) { $(`#@stepContentId`).html(data); });
+        const prevButton = $(`.eux-wizard-buttons .eux-previous-button[data-id="${"@(first.Id)"}"]`).prev();
+        if (prevButton !== undefined && prevButton != null) {
+            prevButton.show();
+        }
+
+        const nextButton = $(`.eux-wizard-buttons .eux-next-button[data-id="${"@(first.Id)"}"]`).next();
+        if (nextButton !== undefined && nextButton != null) {
+            nextButton.show();
+        }
+    });
+</script>
+    <script>
+    function hideNext() {
+        $("#NextButtonSet").hide();
+    }
+
+    function showNext() {
+        $("#NextButtonSet").show();
+    }
+</script>
+</div>
