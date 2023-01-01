@@ -2,7 +2,6 @@
 using Cuddler.Data.Entities;
 using Cuddler.Pages.Shared.Cuddler.ArchiveButton;
 using Cuddler.Pages.Shared.Cuddler.CuddlerLink;
-using Cuddler.Pages.Shared.Cuddler.CuddlerFormCreate;
 using Cuddler.Pages.Shared.Cuddler.PopupEditor;
 using Cuddler.Ui;
 using Cuddler.Utils;
@@ -22,22 +21,6 @@ public class ActionMenuItems
     }
 
     public List<IHtmlContent> MenuLinks { get; } = new();
-
-    public async Task AddCuddlerCreate(Forms.CuddlerFormFields createModel, EActionComplete actionComplete = EActionComplete.Details, string? overrideButtonText = null, string? detailsUrl = null)
-    {
-        var tag = new CuddlerFormCreateTagHelper(_htmlHelper, HtmlEncoder.Default)
-        {
-            ActionComplete = actionComplete,
-            CreateModel = createModel,
-            DetailsUrl = detailsUrl,
-            OverrideButtonText = overrideButtonText
-        };
-
-        var htmlContent = (await _htmlHelper.CuddlerUi()
-                                            .Template(tag.GetType(), tag.ToTagHelperDictionary())).ToNullableString();
-
-        MenuLinks.Add(new HtmlString(htmlContent));
-    }
 
     public async Task AddPopupEditor(string text, string href, EFontAwesomeIcon icon = EFontAwesomeIcon.None)
     {

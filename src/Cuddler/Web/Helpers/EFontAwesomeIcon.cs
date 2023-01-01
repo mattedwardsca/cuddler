@@ -106,5 +106,7 @@ public enum EFontAwesomeIcon
     MilitaryUser,
     UserCrown,
     Flag,
-    Square
+    Square,
+    WashingMachine,
+    Truck
 }

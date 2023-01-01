@@ -142,6 +142,8 @@ public static class EFontAwesomeIconHelper
             EFontAwesomeIcon.UserCrown => "fas fa-user-crown",
             EFontAwesomeIcon.Flag => "fas fa-flag-pennant",
             EFontAwesomeIcon.Square => "fa-regular fa-square",
+            EFontAwesomeIcon.WashingMachine => "fa-regular fa-washing-machine",
+            EFontAwesomeIcon.Truck => "fa-regular fa-truck",
 
             var _ => throw new ArgumentOutOfRangeException(nameof(icon), icon, $"Icon '{icon}' is not supported. (Error: fa4daeaf-8438-40f0-a522-befbac78902c)")
         };
