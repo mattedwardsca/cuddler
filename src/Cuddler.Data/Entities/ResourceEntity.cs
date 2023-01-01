@@ -17,7 +17,7 @@ public class ResourceEntity
     [Required]
     public string Value { get; set; } = null!;
 
-    public string? ArchiveReason { get; set; }
+    
 
     public DateTime? DateArchived { get; set; }
 

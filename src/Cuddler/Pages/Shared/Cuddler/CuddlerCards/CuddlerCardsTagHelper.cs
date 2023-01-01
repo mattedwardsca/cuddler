@@ -1,18 +1,14 @@
 ﻿using System.Text.Encodings.Web;
-using Cuddler.Web.Helpers;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Cuddler.Forms.BaseTagHelpers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerCards;
 
 [RestrictChildren("cuddler-block", "cuddler-card")]
-public class CuddlerCardsTagHelper : TagHelper
+public class CuddlerCardsTagHelper : BaseTagHelper, ICuddler
 {
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public CuddlerCardsTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
     {
-        output.TagName = "div";
-        output.AddClass("eux-CuddlerCards", HtmlEncoder.Default);
-    
-        await Task.CompletedTask;
     }
 }

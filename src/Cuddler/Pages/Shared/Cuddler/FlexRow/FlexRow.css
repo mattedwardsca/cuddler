@@ -1,1 +1,3 @@
-﻿
+﻿.eux-FlexRow { display: flex; }
+.eux-FlexRow > * { margin-right: 5px; }
+.eux-FlexRow.eux-FlexRow-W5050 { display: grid !important; grid-gap: 10px; grid-template-columns: 1fr 1fr; }

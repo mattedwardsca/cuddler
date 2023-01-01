@@ -1,27 +1,10 @@
 ﻿@using global::Cuddler.Pages.Shared.Cuddler.CuddlerInformation
-@using global::Cuddler.Utils
 @model CuddlerWarningTagHelper
- 
-@functions
-{
-    public string GetName()
-    {
-        var name = string.IsNullOrEmpty(Model.OverrideName)
-            ? StringUtil.SplitCamelCase(Model.Data.GetType().Name.Replace("Entity", string.Empty).Replace("Proxy", string.Empty))
-            : Model.OverrideName;
-        return $"{name} has been deleted.";
-    }
-}
-
 @{
     if (Model.Data.DateArchived == null)
     {
         return;
     }
-
-    var text = string.IsNullOrEmpty(Model.OverrideText)
-        ? GetName()
-        : Model.OverrideText;
 }
 @if (Model.Data.DateArchived != null)
 {
@@ -30,17 +13,8 @@
             <div class="text-center">
                 <div>
                     <div>
-                        @text
+                        Item has been deleted.
                     </div>
-                    @if (!string.IsNullOrEmpty(Model.Data.ArchiveReason))
-                    {
-                        <div class="mt-3">
-                            <h6 class="mb-2">
-                                Reason
-                            </h6>
-                            @Html.Raw(Model.Data.ArchiveReason)
-                        </div>
-                    }
                 </div>
             </div>
         </cuddler-information>

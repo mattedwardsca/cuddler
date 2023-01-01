@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Cuddler.Data.Entities;
 
 public interface IData : IHasId
 {
-    string? ArchiveReason { get; set; }
-
     DateTime? DateArchived { get; set; }
 
     [Required]
@@ -17,8 +14,4 @@ public interface IData : IHasId
     [Required]
     [ValidateNever]
     DateTime DateUpdated { get; set; }
-
-    [JsonIgnore]
-    [ValidateNever]
-    string? PolicyTagId { get; set; }
 }

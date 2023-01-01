@@ -1,4 +1,4 @@
-﻿namespace BoostDC.Ui.Helpers;
+﻿namespace Cuddler.Pages.Shared.Cuddler.ListEditor;
 
 public enum EListEditorActionComplete
 {

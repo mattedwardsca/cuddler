@@ -1,4 +1,7 @@
 ﻿@model FlexRowTagHelper
-<div class="d-flex d-flex-gap-1 eux-FlexRow">
+@{
+    var cssClass = $"eux-FlexRow-{Model.Width}";
+}
+<div class="eux-FlexRow @cssClass">
     @Html.Raw(Model.Html)
 </div>

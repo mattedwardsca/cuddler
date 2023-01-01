@@ -68,8 +68,6 @@ public class AccountEntity : IdentityUser, IData, IAccount
         set => base.UserName = value;
     }
 
-    public string? ArchiveReason { get; set; }
-
     public DateTime? DateArchived { get; set; }
 
     public DateTime DateCreated { get; set; }

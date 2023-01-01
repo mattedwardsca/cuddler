@@ -9,12 +9,12 @@
 .eux-CuddlerCard .eux-Icon { margin-right: 5px; }
 .eux-CuddlerCard .card { border-radius: 0; }
 .eux-CuddlerCard.b-0 .card { border: 0; }
-.eux-CuddlerCard.eux-Mini { max-width: 280px; width: 100%; }
-.eux-CuddlerCard.eux-Small { max-width: 429px; width: 100%; }
+.eux-CuddlerCard.eux-Mini { width: 280px; }
+.eux-CuddlerCard.eux-Small { width: 429px;  }
 .eux-CuddlerCard.eux-Grow { flex-grow: 1 }
-.eux-CuddlerCard.eux-Medium { max-width: 655px; width: 100%; }
-.eux-CuddlerCard.eux-Paper { max-width: 812px; width: 100%; }
-.eux-CuddlerCard.eux-Large { max-width: 880px; width: 100%; }
+.eux-CuddlerCard.eux-Medium { width: 655px; }
+.eux-CuddlerCard.eux-Paper { width: 812px; }
+.eux-CuddlerCard.eux-Large { width: 880px; }
 .eux-CuddlerCard.eux-Full { width: 100%; }
 @keyframes euxSectionCard {
     0% { background-color: #EEEEEE; }

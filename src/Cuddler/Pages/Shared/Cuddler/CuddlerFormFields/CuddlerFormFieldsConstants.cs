@@ -1,6 +1,6 @@
 ﻿namespace Cuddler.Pages.Shared.Cuddler.CuddlerFormFields;
 
-public static class FormFieldConstants
+public static class CuddlerFormFieldsConstants
 {
     public const string Object = "Object";
     public const string Matrix = "Matrix";

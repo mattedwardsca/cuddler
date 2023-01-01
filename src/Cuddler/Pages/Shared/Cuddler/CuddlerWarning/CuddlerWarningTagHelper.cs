@@ -15,8 +15,4 @@ public class CuddlerWarningTagHelper : BaseTagHelper, ICuddler
 
     [Required]
     public IData Data { get; set; } = null!;
-
-    public string? OverrideName { get; set; }
-
-    public string? OverrideText { get; set; }
 }

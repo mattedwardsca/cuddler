@@ -76,12 +76,11 @@ public class ActionMenuItems
         MenuLinks.Add(new HtmlString(htmlContent));
     }
 
-    public async Task AddArchiveButton(IData data, string? overrideSingularText = null)
+    public async Task AddArchiveButton(IData data)
     {
         var tag = new ArchiveButtonTagHelper(_htmlHelper, HtmlEncoder.Default)
         {
             Data = data,
-            ArchiveText = overrideSingularText,
             ButtonType = EArchiveButtonType.ActionMenu
         };
 

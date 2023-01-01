@@ -7,8 +7,6 @@ namespace Cuddler.Data.Entities;
 
 public abstract class BaseEntity : IData
 {
-    public string? ArchiveReason { get; set; }
-
     public DateTime? DateArchived { get; set; }
 
     [Required]
@@ -25,9 +23,4 @@ public abstract class BaseEntity : IData
     [ValidateNever]
     [HiddenInput]
     public string Id { get; set; } = null!;
-
-    [JsonIgnore]
-    [MaxLength(36)]
-    [ValidateNever]
-    public string? PolicyTagId { get; set; }
 }

@@ -1,3 +1,4 @@
-﻿.eux-CuddlerCards { height: 100%; display: flex; padding: 20px; overflow-y: scroll;}
+﻿.eux-CuddlerCards { padding: 20px; overflow-y: scroll; height: 100%;}
+.eux-CuddlerCards .eux-CuddlerCards-wrapper { display: flex; flex-wrap: wrap; }
 .eux-CuddlerTabs .eux-CuddlerCards { height: inherit; overflow-y: auto;}
 .eux-CuddlerHeader + .eux-CuddlerBody > .eux-CuddlerBody-wrapper > .eux-CuddlerCards { border-top: solid 1px #bcbcbc; }

@@ -3,7 +3,6 @@ using System.Text.Encodings.Web;
 using Cuddler.Data.Entities;
 using Cuddler.Forms.BaseTagHelpers;
 using Cuddler.Ui;
-using Cuddler.Web.Api;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -24,10 +23,6 @@ public class ArchiveButtonTagHelper : BaseTagHelper, ICuddler
 
     public EActionComplete ActionComplete { get; set; }
 
-    public string? ArchiveReason { get; set; }
-
-    public string? ArchiveText { get; set; }
-
     public CuddlerUri? ArchiveUrl { get; set; }
 
     public EArchiveButtonType ButtonType { get; set; } = EArchiveButtonType.Button;
@@ -35,13 +30,7 @@ public class ArchiveButtonTagHelper : BaseTagHelper, ICuddler
     [Required]
     public IData Data { get; set; } = null!;
 
-    public bool HideArchiveReason { get; set; }
-
-    public string? OverrideName { get; set; }
-
     public string? RedirectUrl { get; set; }
 
     public CuddlerUri? RestoreUrl { get; set; }
-
-    public string? UnarchiveText { get; set; }
 }
