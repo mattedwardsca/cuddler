@@ -73,6 +73,8 @@ public abstract class CuddlerUri
 
                 case NewExpression:
                 case MethodCallExpression:
+                case BinaryExpression:
+                case UnaryExpression:
                 {
                     // Don't add these
                     break;
@@ -81,7 +83,7 @@ public abstract class CuddlerUri
                 default:
                 {
                     // https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.binaryexpression?view=net-7.0
-                    throw new InvalidOperationException($"Invalid expression type. Error: f2a8fe3c-2438-4526-8dad-7027523c2228.");
+                    throw new InvalidOperationException($"Invalid expression type '{parameterInfo.NodeType}'. Error: f2a8fe3c-2438-4526-8dad-7027523c2228.");
                 }
             }
         }
