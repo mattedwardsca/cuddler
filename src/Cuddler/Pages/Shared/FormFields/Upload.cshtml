@@ -4,6 +4,10 @@
 @{
     var guid = WebIdUtil.GetWebId();
     var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
     dictionary.Add("id", Model.WebId);
 }
 <div class="eux-UploadEditor">

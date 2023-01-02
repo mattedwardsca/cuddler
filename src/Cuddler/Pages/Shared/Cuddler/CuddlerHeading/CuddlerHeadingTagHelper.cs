@@ -16,7 +16,7 @@ public class CuddlerHeadingTagHelper : BaseTagHelper, ICuddler
     {
     }
 
-    public IHasName? Data { get; set; }
+    public IData? Data { get; set; }
 
     public CuddlerUri? UpdateNameApi { get; set; }
 

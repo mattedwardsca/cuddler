@@ -46,6 +46,7 @@ article { display: inline; }
 .d-grid-gap-20 { grid-gap: 20px; }
 .grid-align-bottom { align-items: end; display: grid; }
 .grid-align-center { align-items: center; display: grid; }
+.d-grid-align-center { align-items: center; }
 .d-grid-rowgap-5 { grid-row-gap: 5px; }
 .d-grid-30-30-30 { display: grid; grid-template-columns: 1fr 1fr 1fr; }
 .d-grid-borders { border: solid 1px var(--ColorFive); }

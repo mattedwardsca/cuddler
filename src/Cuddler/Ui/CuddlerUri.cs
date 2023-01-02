@@ -44,68 +44,74 @@ public abstract class CuddlerUri
 
     protected static IEnumerable<string> GetApiParameters(IReadOnlyList<string> infos, IReadOnlyList<Expression> parameterInfos)
     {
+        var list = new List<string>();
+
         for (var index = 0; index < parameterInfos.Count; index++)
         {
+            
             var parameterInfo = parameterInfos[index];
-            if (parameterInfo is MemberExpression memberExpression)
+
+            switch (parameterInfo)
             {
-                var parameterName = memberExpression.Member.Name;
-
-                var objectMember = Expression.Convert(memberExpression, typeof(object));
-                var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
-                var getter = getterLambda.Compile()
-                                         ?.Invoke();
-
-                if (getter != null)
+                case MemberExpression memberExpression:
                 {
-                    //var stringValue = getter.ToString()!;
+                    var parameterName = memberExpression.Member.Name;
+                    var getter = GetGetter(parameterInfo);
+                    ListAdd(getter, list, parameterName);
 
-                    if (getter is DateTime asDate)
-                    {
-                        // DateTime asDate;
-                        // try
-                        // {
-                        //     asDate = DateTime.ParseExact(stringValue, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
-                        // }
-                        // catch (Exception e)
-                        // {
-                        //     Console.WriteLine(e);
-                        //     throw;
-                        // }
+                    break;
+                }
 
-                        yield return $"{parameterName}={FormatDateUtil.FormatJsonDate(asDate)}";
-                    }
+                case ConstantExpression constantExpression:
+                {
+                    var parameterName = infos[index];
+                    var getter = GetGetter(parameterInfo);
+                    ListAdd(getter, list, parameterName);
 
-                    yield return $"{parameterName}={getter}";
+                    break;
+                }
+
+                case NewExpression:
+                case MethodCallExpression:
+                {
+                    // Don't add these
+                    break;
+                }
+
+                default:
+                {
+                    // https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.binaryexpression?view=net-7.0
+                    throw new InvalidOperationException($"Invalid expression type. Error: f2a8fe3c-2438-4526-8dad-7027523c2228.");
                 }
             }
+        }
 
-            if (parameterInfo is ConstantExpression constantExpression)
+        return list;
+    }
+
+    private static object? GetGetter(Expression parameterInfo)
+    {
+
+        var objectMember = Expression.Convert(parameterInfo, typeof(object));
+        var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
+        var getter = getterLambda.Compile()
+                                 ?.Invoke();
+        return getter;
+    }
+
+    private static void ListAdd(object? getter, List<string> list, string parameterName)
+    {
+
+        if (getter != null)
+        {
+            if (getter is DateTime dateTime)
             {
-                var parameterName = infos[index];
-                var objectMember = Expression.Convert(constantExpression, typeof(object));
-                var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
-                var getter = getterLambda.Compile()
-                                         ?.Invoke();
-                if (getter != null)
-                {
-                    if (getter is DateTime dateTime)
-                    {
-                        yield return $"{parameterName}={FormatDateUtil.FormatJsonDate(dateTime)}";
-                    }
+                list.Add($"{parameterName}={FormatDateUtil.FormatJsonDate(dateTime)}");
 
-                    yield return $"{parameterName}={getter}";
-                }
+                return;
             }
 
-            //if (parameterInfo is PropertyExpression propertyExpression)
-            //{
-            //}
-
-            //else
-            //{
-            //    throw new NotImplementedException(parameterInfo.GetType().FullName);
-            //}
+            list.Add($"{parameterName}={getter}");
         }
     }
 

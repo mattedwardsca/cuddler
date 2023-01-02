@@ -52,7 +52,7 @@ public static class GetNextTokenExtension
         return repository.GetNextToken<T>(typeof(T).Name[..3]
                                                    .ToUpper());
     }
-
+    
     public static string GetNextToken<T>(this IRepository repository, string prefix) where T : class, IHasToken
     {
         if (string.IsNullOrEmpty(prefix))

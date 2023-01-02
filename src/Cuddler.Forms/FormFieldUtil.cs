@@ -82,6 +82,7 @@ public static class FormFieldUtil
             GridColumnWidth = GetColumnWidth(propertyInfo),
             GridTemplate = TemplateUtil.GetGridTemplate(propertyInfo, propertyInfoName),
             HideLabel = GetHideLabel(propertyInfo),
+            Tabindex = GetTabindex(propertyInfo),
             Inherited = HasAttribute<InheritedInputAttribute>(propertyInfo),
             Label = GetLabel(propertyInfo),
             CascadeFrom = GetCascadeFrom(propertyInfo),
@@ -99,6 +100,12 @@ public static class FormFieldUtil
         GetLayout(property, propertyInfo);
 
         return property;
+    }
+
+    private static int? GetTabindex(PropertyInfo propertyInfo)
+    {
+        return propertyInfo.GetCustomAttribute<TabindexAttribute>()
+                           ?.Tabindex;
     }
 
     public static string GetGridTemplate(string memberKey, string template)

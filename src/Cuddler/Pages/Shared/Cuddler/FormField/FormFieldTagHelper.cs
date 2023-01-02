@@ -36,6 +36,9 @@ public class FormFieldTagHelper : TagHelper
 
     public string? ErrorMessage { get; set; }
 
+    /// <summary>
+    /// String version of the Template
+    /// </summary>
     public string? Field { get; set; }
 
     public bool HideLabel { get; set; }
@@ -51,6 +54,8 @@ public class FormFieldTagHelper : TagHelper
     public bool Matrix { get; set; }
 
     public int? MaxLength { get; set; }
+    
+    public int? Tabindex { get; set; }
 
     public int? MinLength { get; set; }
 

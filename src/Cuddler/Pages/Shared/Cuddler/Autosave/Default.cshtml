@@ -33,28 +33,26 @@
                 function(n, i) {
                     indexed_array[n['name']] = n['value'];
                 });
-
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 url: "@Html.Raw(Model.SaveUrl.ToString())",
                 data: indexed_array,
-                success: function (results) {
-                    
+                success: function (results) {                    
                     $("#@(form1Id) .field-validation-error").empty();
-                                        @if (Model.OnBlur == EBlurAction.Reload)
-                                        {
-                                            <text>location.reload();</text>
-                                        }
-                                        else if (Model.OnBlur == EBlurAction.Script)
-                                        {
-                                            <text>
+                    @if (Model.OnBlur == EBlurAction.Reload)
+                    {
+                        <text>location.reload();</text>
+                    }
+                    else if (Model.OnBlur == EBlurAction.Script)
+                    {
+                        <text>
                             $("#@(form1Id)_message").addClass("field-validation-success");
                             $("#@(form1Id)_message").html("<i class=\"fas fa-check\"></i>");
                             @(form1Id)_timeout = setTimeout(function() { 
                                 $("#@(form1Id)_message").empty(); }, 2000);
                                 $("#@(form1Id)_message").removeClass("field-validation-success");
-                @(Model.Script)(results);
+                        @(Model.Script)(results);
                         </text>
                                         }
                                         else if (Model.OnBlur == EBlurAction.Trigger)
@@ -71,10 +69,10 @@
                                         else
                                         {
                                             <text>
-                            $("#@(form1Id)_message").addClass("field-validation-success");
-                            $("#@(form1Id)_message").show();
-                            $("#@(form1Id)_message").html("<i class=\"fas fa-check\"></i>");
-                            @(form1Id)_timeout = setTimeout(function() {
+                                    $("#@(form1Id)_message").addClass("field-validation-success");
+                                    $("#@(form1Id)_message").show();
+                                    $("#@(form1Id)_message").html("<i class=\"fas fa-check\"></i>");
+                                    @(form1Id)_timeout = setTimeout(function() {
                                     $("#@(form1Id)_message").empty();
                                     $("#@(form1Id)_message").removeClass("field-validation-success");
                                 },

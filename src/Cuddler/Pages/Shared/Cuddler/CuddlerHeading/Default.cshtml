@@ -28,8 +28,10 @@
                         </h2>
                     </div>
                     <div>
-                        @if (Model.Data != null && Model.UpdateNameApi != null)
+                        @if (Model.Data != null && Model.UpdateNameApi != null && ReflectionUtil.Implements<IHasName>(Model.Data))
                         {
+                            var hasName = (IHasName)Model.Data;
+
                             <popup-editor button-icon="Edit"
                                           button-text="Rename"
                                           button-type="Icon"
@@ -38,7 +40,7 @@
                                 <c-data>
                                     <form-field name="@nameof(IHasName.Name)"
                                                 template="@(EFormField.Text)"
-                                                value="@Model.Data.Name" />
+                                                value="@hasName.Name" />
                                 </c-data>
                             </popup-editor>
                         }

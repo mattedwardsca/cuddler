@@ -79,6 +79,7 @@ public class ProfileEntity : BaseEntity, IProfileRole, IProfile
     [JsonProperty]
     public string? InternalOrderNo { get; set; }
 
+    [JsonProperty]
     public bool IsBlacklisted { get; set; }
 
     [JsonProperty]
@@ -150,6 +151,18 @@ public class ProfileEntity : BaseEntity, IProfileRole, IProfile
         if (Organization != null)
         {
             name += $"&nbsp;({Organization.Name})";
+        }
+
+        return name;
+    }
+
+    public string GetNameAndCompanyBirthDate()
+    {
+        var name = GetNameAndCompany();
+
+        if (!string.IsNullOrEmpty(BirthDate))
+        {
+            name += $"&nbsp;b.{BirthDate}";
         }
 
         return name;

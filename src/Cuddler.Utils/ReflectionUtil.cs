@@ -80,4 +80,9 @@ public static class ReflectionUtil
     {
         return Attribute.IsDefined(propertyInfo, typeof(T));
     }
+
+    public static bool Implements<T>(object obj)
+    {
+        return obj.GetType().IsAssignableFrom(typeof(T));
+    }
 }

@@ -28,6 +28,10 @@
         ? "display: grid; grid-template-columns: 1fr 50px 50px 50px; grid-gap: 10px;"
         : string.Empty;
     var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
     dictionary.Add("id", Model.WebId);
 }
 <div class="eux-YesNoNa"

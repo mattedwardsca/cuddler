@@ -3,6 +3,10 @@
 @model global::Cuddler.Forms.FormField
 @{
     var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
     dictionary.Add("id", Model.WebId);
     dictionary.Add("style", "font-size: 16px; width: 100%;max-width: 200px;");
     if (Model.ReadOnly)

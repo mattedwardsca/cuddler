@@ -19,6 +19,12 @@ public class DynamicFormInputPropertyWrapper
         return this;
     }
 
+    public DynamicFormInputPropertyWrapper Tabindex(int tabindex)
+    {
+        _formFieldProperty.Tabindex = tabindex;
+
+        return this;
+    }
     public DynamicFormInputPropertyWrapper Col(int zeroBasedIndex, int? length = null)
     {
         _formFieldProperty.Col = zeroBasedIndex;

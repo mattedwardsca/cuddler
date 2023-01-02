@@ -37,6 +37,8 @@ public class FormField
 
     public int Col { get; set; }
 
+    public int? Tabindex { get; set; }
+
     public int? ColLength { get; set; }
 
     [NotMapped]

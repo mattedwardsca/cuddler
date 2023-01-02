@@ -24,5 +24,5 @@ public enum EGridTemplate
     TimeMonthDay,
     Token,
     Yes,
-    YesNo
+    YesNo,
 }
