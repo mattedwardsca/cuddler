@@ -1,7 +1,8 @@
 @using global::Cuddler.Pages.Shared.Cuddler.FormLabel
 @using global::Cuddler.Utils
 @using Kendo.Mvc.UI
-@model global::Cuddler.Forms.FormField
+@using FormField = global::Cuddler.Forms.FormField
+@model FormField
 @{
     //const string DateFormat = "MM/dd/yyyy";
     const string DateFormat = "yyyy-MM-dd"; // 1999-10-22T00:00:00
@@ -32,13 +33,13 @@
     var now = DateTime.Now.ToLocalTime();
 }
 
-                
+
 @if (!Model.HideLabel)
 {
     <form-label description="@Model.Description"
-            for-property="@Model.WebId"
-            required="@Model.Required"
-            text="@Model.Label" />
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
 }
 <div class="d-grid d-grid-1fr-auto"
      style="width: 265px;">
@@ -52,14 +53,16 @@
               .ParseFormats(ParseFormats)
               .HtmlAttributes(dictionary))
     </div>
-    <div>
-        <input class="btn btn-light"
-               id="@buttonId"
-               style="width: 50px;"
-               type="button"
-               value="Now" />
-    </div>
-    <script>
+    @if (!Model.ReadOnly)
+    {
+        <div>
+            <input class="btn btn-light"
+                   id="@buttonId"
+                   style="width: 50px;"
+                   type="button"
+                   value="Now" />
+        </div>
+        <script>
         $("#@(buttonId)").click(function(){
             var datepicker = $("#@(Model.WebId)").data("kendoDatePicker");
             datepicker.value(new Date(@now.Year, @now.Month, @now.Day));
@@ -67,7 +70,7 @@
             $(this).closest("form").trigger("change");
         });
     </script>
-    <script>
+        <script>
     $("#@(Model.WebId)").on("focus",
         function() {
             var input = $(this);
@@ -76,8 +79,8 @@
             });
         });
 </script>
+    }
 </div>
-
 @if (Model.ReadOnly)
 {
     <script>
