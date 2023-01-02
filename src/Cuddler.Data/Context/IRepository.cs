@@ -33,4 +33,8 @@ public interface IRepository
     //int SaveChanges();
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+
+    int SaveChanges();
+
+    EntityEntry Entry(object entity);
 }
