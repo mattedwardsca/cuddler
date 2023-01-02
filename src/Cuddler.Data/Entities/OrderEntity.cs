@@ -31,11 +31,6 @@ public class OrderEntity : BaseEntity, IHasName, IWebsiteBillingAddress, IHasDes
 
     public bool IsRequired { get; set; }
 
-    // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-    public virtual string Segment => Name == null
-        ? string.Empty
-        : Name.Replace(" ", string.Empty);
-
     public bool ShowInApps { get; set; }
 
     public bool IsAlwaysPinned { get; set; }
@@ -301,6 +296,8 @@ public class OrderEntity : BaseEntity, IHasName, IWebsiteBillingAddress, IHasDes
     public string? WebsiteName { get; set; }
 
     public string? WebsiteBillingCity { get; set; }
+
+    public string? RefNumber { get; set; }
 
     public virtual bool CustomerCanCancel()
     {
