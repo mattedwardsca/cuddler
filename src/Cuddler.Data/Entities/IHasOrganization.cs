@@ -2,5 +2,5 @@
 
 public interface IHasOrganization
 {
-    string? OrganizationId { get; set; }
+    string OrganizationId { get; set; }
 }

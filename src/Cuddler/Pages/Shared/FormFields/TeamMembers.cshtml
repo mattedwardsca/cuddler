@@ -1,0 +1,28 @@
+﻿@using global::Cuddler.Data.Context
+@using global::Cuddler.Data.Entities
+@using global::Cuddler.Forms
+@using global::Cuddler.Pages.Shared.Cuddler.FormField
+@using Microsoft.EntityFrameworkCore
+@using FormField = global::Cuddler.Forms.FormField
+@model FormField
+@inject IRepository Repository
+@{
+    var query = Repository.DbSet<AccountEntity>()
+                          .Include(x => x.Profile)
+                          .ThenInclude(x => x.Organization)
+                          .Where(x => x.Profile.OrganizationId == Model.BindId);
+
+    var data = query.OrderBy(x => x.UserName)
+                    .Select(x => new SelectListItem { Text = x.FormattedName, Value = x.Id })
+                    .ToList();
+}
+<form-field bind-data="@data"
+            description="@Model.Description"
+            hide-label="@Model.HideLabel"
+            html-attributes="@(new { style = "width:100%;" })"
+            label="@Model.Label"
+            name="@Model.Name"
+            read-only="@Model.ReadOnly"
+            required="@Model.Required"
+            template="@(EFormField.Dropdown)"
+            value="@Model.Value" />
