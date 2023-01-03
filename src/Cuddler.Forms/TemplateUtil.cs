@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections;
+using System.Linq.Expressions;
 using System.Reflection;
 using Cuddler.Forms.Attributes;
 using Microsoft.AspNetCore.Html;
@@ -186,5 +187,26 @@ public static class TemplateUtil
     private static string IfNotNull(string key)
     {
         return $"{key}!==undefined && {key}!==null";
+    }
+
+    public static string? Replace(string? text, IDictionary replacements)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return null;
+        }
+
+        var itr = replacements.GetEnumerator();
+        while (itr.MoveNext())
+        {
+            var oldValue = itr.Key?.ToString();
+            var newValue = itr.Value ?? "N/A";
+            if (oldValue != null)
+            {
+                text = text.Replace(oldValue, newValue.ToString());
+            }
+        }
+
+        return text;
     }
 }
