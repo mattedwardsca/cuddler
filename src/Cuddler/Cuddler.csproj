@@ -48,13 +48,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\Cuddler.Data\Cuddler.Data.csproj" />
-		<ProjectReference Include="..\Cuddler.Forms\Cuddler.Forms.csproj" />
-		<ProjectReference Include="..\Cuddler.Modules\Cuddler.Modules.csproj" />
-		<ProjectReference Include="..\Cuddler.Utils\Cuddler.Utils.csproj" />
-	</ItemGroup>
-	
-	<ItemGroup>
 	  <Reference Include="Kendo.Mvc">
 	    <HintPath>..\..\libs\Telerik.UI.for.AspNet.Core.2022.3.1109\lib\net7.0\Kendo.Mvc.dll</HintPath>
 	  </Reference>
