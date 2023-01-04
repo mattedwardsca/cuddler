@@ -264,3 +264,4 @@ __pycache__/
 /publish.bat
 /pack.bat
 /lib/kendo
+/libs/Telerik.UI.for.AspNet.Core.2022.3.1109/lib/net7.0
