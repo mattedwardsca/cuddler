@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerKanban;
 
-public class CuddlerKanbanTagHelper : BaseTagHelper
+public class CuddlerKanbanTagHelper : BaseTagHelper, ICuddler
 {
     public CuddlerKanbanTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
     {
