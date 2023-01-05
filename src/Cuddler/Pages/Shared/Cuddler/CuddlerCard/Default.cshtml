@@ -16,6 +16,10 @@
     {
         classBuilder.AddClass("b-0");
     }
+    else
+    {
+        classBuilder.AddClass("b-1");
+    }
 
     if (Model.Width != ETagWidth.None)
     {
@@ -36,8 +40,10 @@
         stylesBuilder.AddStyle("min-height", Model.MinHeight);
     }
 }
-<div class="eux-CuddlerCard @classBuilder" id="@Model.WebId" style="@stylesBuilder">
-    <div class="card">
+<div class="eux-CuddlerCard @classBuilder"
+     id="@Model.WebId"
+     style="@stylesBuilder">
+    <div class="card p-2">
 
         @if (!string.IsNullOrEmpty(Model.Title))
         {
@@ -70,20 +76,22 @@
                 </div>
             </div>
         }
-        <div class="eux-loader-wrapper" id="@(webId)">
+        <div class="eux-loader-wrapper"
+             id="@(webId)">
             @Html.Raw(Model.Html)
         </div>
         @if (!string.IsNullOrEmpty(Model.Src))
         {
-            <div class="eux-loader-background eux-loader-background-flicker" id="@(webId2)">
+            <div class="eux-loader-background eux-loader-background-flicker"
+             id="@(webId2)">
             </div>
             <script>
-            $.get("@(Html.Raw(Model.Src))", function (result) {
-                $("#@(webId)").html(result);
-                $("#@(webId2)").removeClass("eux-loader-background-flicker");
-                $("#@(webId2)").fadeOut("slow", function () { });
-            });
-        </script>
+                $.get("@(Html.Raw(Model.Src))", function (result) {
+                    $("#@(webId)").html(result);
+                    $("#@(webId2)").removeClass("eux-loader-background-flicker");
+                    $("#@(webId2)").fadeOut("slow", function () { });
+                });
+            </script>
         }
     </div>
 </div>

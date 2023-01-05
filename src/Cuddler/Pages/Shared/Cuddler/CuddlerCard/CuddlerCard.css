@@ -7,8 +7,8 @@
 .d-flex-gap-4 > * { margin-right: 20px; }
 .d-flex-gap-4 > .eux-CuddlerCard { margin-bottom: 20px; margin-right: 20px; }
 .eux-CuddlerCard .eux-Icon { margin-right: 5px; }
-.eux-CuddlerCard .card { border-radius: 0; }
-.eux-CuddlerCard.b-0 .card { border: 0; }
+.eux-CuddlerCard > .card { border-radius: 0; }
+.eux-CuddlerCard.b-0 > .card { border: 0; }
 .eux-CuddlerCard.eux-Mini { width: 280px; }
 .eux-CuddlerCard.eux-Small { width: 429px;  }
 .eux-CuddlerCard.eux-Grow { flex-grow: 1 }

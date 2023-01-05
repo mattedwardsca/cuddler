@@ -3,9 +3,11 @@ using Cuddler.Forms.BaseTagHelpers;
 using Cuddler.Pages.Shared.Cuddler.ActionMenu;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerCard;
 
+[RestrictChildren("c-data")]
 public class CuddlerCardTagHelper : BaseTagHelper, ICuddler
 {
     public CuddlerCardTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
