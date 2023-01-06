@@ -15,6 +15,7 @@ using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cuddler.Ui;
 
@@ -141,7 +142,7 @@ public class DynamicFormWrapper<TData, TService> where TData : class where TServ
 
     public async Task<DynamicActionResult<TData>> Service(Expression<Func<TService, Task<DynamicActionResult<TData>>>> func)
     {
-        var service = _httpContext.GetService<TService>();
+        var service = _httpContext.RequestServices.GetService<TService>()!;
         var data = await func.Compile()
                              .Invoke(service);
 
@@ -234,7 +235,7 @@ public class DynamicFormWrapper<TData, TService> where TData : class where TServ
 
     private IEnumerable<TData> GetQueryable(string q)
     {
-        var repository = _httpContext.GetService<IRepository>();
+        var repository = _httpContext.RequestServices.GetService<IRepository>();
 
         var ds = new DataSourceRequest();
         ds.Filters = FilterDescriptorFactory.Create(q);

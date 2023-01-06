@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Ui;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -21,5 +22,8 @@ public class CuddlerPopupUpdateTagHelper : BaseTagHelper, ICuddler
     public string ButtonText { get; set; } = null!;
 
     [Required]
-    public Ui.CuddlerFormModel FormModel { get; set; } = null!;
+    public CuddlerUri FormAction { get; set; } = null!;
+
+    [Required]
+    public List<Forms.FormField> FormFields { get; set; } = null!;
 }

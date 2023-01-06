@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Cuddler.Forms.BaseTagHelpers;
+using Cuddler.Ui;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerUpdate;
@@ -11,8 +12,10 @@ public class CuddlerUpdateTagHelper : BaseTagHelper, ICuddler
     {
     }
 
+    public CuddlerUri? FormAction { get; set; }
+
     [Required]
-    public Ui.CuddlerFormModel FormModel { get; set; } = null!;
+    public List<Forms.FormField> FormFields { get; set; } = null!;
 
     public bool AutoSave { get; set; } = true;
 }

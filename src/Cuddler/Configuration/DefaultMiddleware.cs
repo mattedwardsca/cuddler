@@ -5,8 +5,8 @@ using Cuddler.Configuration.Identity.Extensions;
 using Cuddler.Data.Entities;
 using Cuddler.Modules;
 using Cuddler.Utils;
-using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Cuddler.Configuration;
@@ -22,7 +22,7 @@ public class DefaultMiddleware
 
     public static bool FilterPaths(HttpContext context)
     {
-        var env = context.GetService<IHostEnvironment>();
+        var env = context.RequestServices.GetService<IHostEnvironment>()!;
         var isDevelopment = env.IsDevelopment();
 
         var pathValue = context.Request.Path.Value;
@@ -49,7 +49,7 @@ public class DefaultMiddleware
     {
         var pathValue = context.Request.Path.Value;
 
-        var moduleService = context.GetService<IModuleService>();
+        var moduleService = context.RequestServices.GetService<IModuleService>()!;
 
         if (IsPathMapped(moduleService, pathValue))
         {
