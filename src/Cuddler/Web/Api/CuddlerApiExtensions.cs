@@ -18,11 +18,20 @@ public class CuddlerApi
 
     public static CuddlerFormModel Form<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IApiController
     {
-        return new CuddlerUri<T>().Endpoint(func).ToFormModel();
+        return new CuddlerUri<T>().Endpoint(func)
+                                  .ToFormModel();
     }
 
-    public static TModel Mock<TModel>()
+    public static Mock Mock = new();
+
+}
+
+public class Mock
+{
+    public TModel Object<TModel>()
     {
         return Activator.CreateInstance<TModel>();
     }
+
+    public string String => string.Empty;
 }
