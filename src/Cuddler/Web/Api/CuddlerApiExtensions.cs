@@ -34,4 +34,6 @@ public class Mock
     }
 
     public string String => string.Empty;
+    
+    public int Int => 0;
 }
