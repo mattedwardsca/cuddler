@@ -52,7 +52,7 @@ public class OrganizationEntity : BaseEntity, IBillingAddress, IHasName
 
     public string? OnboardingContact { get; set; }
 
-    public int OrganizationSize { get; set; }
+    public string? OrganizationSize { get; set; }
 
     [MaxLength(36)]
     public string? PrimaryAccountContactId { get; set; }

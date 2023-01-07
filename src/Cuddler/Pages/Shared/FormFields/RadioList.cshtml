@@ -21,7 +21,7 @@
 <div class="eux-RadioList" @dictionary.ToHtmlAttributes()>
     @if (!Model.HideLabel)
     {
-        <div>
+        <div class="mb-2">
             <label>@Html.Raw(Model.Label)</label>
             <form-tooltip title="@Model.Description" />
         </div>
