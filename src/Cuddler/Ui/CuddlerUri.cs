@@ -48,24 +48,16 @@ public abstract class CuddlerUri
 
         for (var index = 0; index < parameterInfos.Count; index++)
         {
-            
+
             var parameterInfo = parameterInfos[index];
+            var parameterName = infos[index];
+            var getter = GetGetter(parameterInfo);
 
             switch (parameterInfo)
             {
-                case MemberExpression memberExpression:
+                case MemberExpression:
+                case ConstantExpression:
                 {
-                    var parameterName = memberExpression.Member.Name;
-                    var getter = GetGetter(parameterInfo);
-                    ListAdd(getter, list, parameterName);
-
-                    break;
-                }
-
-                case ConstantExpression constantExpression:
-                {
-                    var parameterName = infos[index];
-                    var getter = GetGetter(parameterInfo);
                     ListAdd(getter, list, parameterName);
 
                     break;
@@ -168,7 +160,6 @@ public class CuddlerUri<TController> : CuddlerUri
     public CuddlerUri<TController> Endpoint(Expression<Func<TController, Task<IActionResult>>> func)
     {
         var body = func.Body as MethodCallExpression;
-
         var api = GetBaseApiUrl(typeof(TController));
         var methodName = body!.Method.Name;
         MethodInfo methodInfo;
@@ -194,7 +185,8 @@ public class CuddlerUri<TController> : CuddlerUri
             }
         }
 
-        var keys = methodParameters.Select(s => s.Name!).ToList();
+        var keys = methodParameters.Select(s => s.Name!)
+                                   .ToList();
         var apiParameters = GetApiParameters(keys, body.Arguments);
         var parameterString = string.Join('&', apiParameters);
         if (string.IsNullOrEmpty(parameterString))

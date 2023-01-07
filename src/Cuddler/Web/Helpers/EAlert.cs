@@ -6,5 +6,6 @@ public enum EAlert
     Info,
     Warning,
     Danger,
-    Meta
+    Meta,
+    Secondary
 }

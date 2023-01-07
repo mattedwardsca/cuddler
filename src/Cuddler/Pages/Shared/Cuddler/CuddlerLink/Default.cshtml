@@ -25,11 +25,7 @@
     var buttonType = EButtonTypeHelper.ToString(Model.ButtonType);
 }
 
-@if (Model.ButtonType == EButtonType.Link)
-{
-    @:<li>
-}
-else if (Model.ButtonType == EButtonType.ActionMenu)
+@if (Model.ButtonType == EButtonType.ActionMenu)
 {
     @:<div class="dropdown-item">
 }
@@ -67,11 +63,7 @@ else if (Model.ButtonType == EButtonType.ActionMenu)
         </span>
     }
 </a>
-@if (Model.ButtonType == EButtonType.Link)
-{
-    @:</li>
-}
-else if (Model.ButtonType == EButtonType.ActionMenu)
+@if (Model.ButtonType == EButtonType.ActionMenu)
 {
     @:</div>
 }

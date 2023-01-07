@@ -24,6 +24,8 @@ public class CuddlerTabsTagHelper : TagHelper, ICuddler
         HtmlHelper = htmlHelper as HtmlHelper ?? throw new ArgumentNullException(nameof(htmlHelper));
         HtmlEncoder = htmlEncoder;
     }
+    
+    public bool Skeleton { get; set; }
 
     public IHtmlContent Html { get; protected set; } = null!;
 
@@ -38,6 +40,8 @@ public class CuddlerTabsTagHelper : TagHelper, ICuddler
     [ViewContext]
     [HtmlAttributeNotBound]
     public ViewContext ViewContext { get; set; } = null!;
+
+    public string? SkeletonMessage { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Cuddler.Pages.Shared.Cuddler.CuddlerCard;
 
-[RestrictChildren("c-data", "partial")]
+[RestrictChildren("c-data", "partial", "paper")]
 public class CuddlerCardTagHelper : BaseTagHelper, ICuddler
 {
     public CuddlerCardTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)

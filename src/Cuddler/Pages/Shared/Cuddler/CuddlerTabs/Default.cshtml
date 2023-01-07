@@ -40,6 +40,18 @@
                  class="tab-pane"
                  id="link-@tab.Id"
                  role="tabpanel">
+                
+                @if (Model.Skeleton)
+                {
+                    <div class="m-auto p-5">
+                        <cuddler-information type="Secondary">
+                            @if (!string.IsNullOrEmpty(Model.SkeletonMessage))
+                            {
+                                @Html.Raw(Model.SkeletonMessage)
+                            }
+                        </cuddler-information>
+                    </div>
+                }
             </div>
         }
     </div>
@@ -91,7 +103,7 @@
     else
     {
         <text>
-    $(`[data-bs-target="#link-${"@Model.TabList.First().Id"}"]`).click();
+            $(`[data-bs-target="#link-${"@Model.TabList.First().Id"}"]`).click();
         </text>
     }
         
