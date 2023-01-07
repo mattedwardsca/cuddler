@@ -33,6 +33,7 @@ public class AdditionalDatabaseBuilder
         _applicationBuilder.Services.AddSingleton(instance);
 
         var app = _applicationBuilder.Build();
+        app.LoadWebsiteSettingsFromDatabase();
         app.ConfigureApp(_applicationBuilder.Environment, _boostConfiguration, _applicationSettings, middlewareAction);
         app.Run();
     }

@@ -235,7 +235,7 @@ public class DynamicFormWrapper<TData, TService> where TData : class where TServ
 
     private IEnumerable<TData> GetQueryable(string q)
     {
-        var repository = _httpContext.RequestServices.GetService<IRepository>();
+        var repository = _httpContext.RequestServices.GetService<IRepository>()!;
 
         var ds = new DataSourceRequest();
         ds.Filters = FilterDescriptorFactory.Create(q);

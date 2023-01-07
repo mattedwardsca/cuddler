@@ -67,6 +67,7 @@ public abstract class CuddlerUri
                 case MethodCallExpression:
                 case BinaryExpression:
                 case UnaryExpression:
+                case MemberInitExpression:
                 {
                     // Don't add these
                     break;

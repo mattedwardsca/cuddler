@@ -28,6 +28,8 @@ article { display: inline; }
 .w-200px { width: 200px; }
 .w-150px { width: 150px; }
 .w-100px { width: 100px; }
+.eux-Width-W200px { width: 200px; }
+.eux-Width-W400px { width: 400px; }
 .d-flex-gap-justify-between { align-items: center; display: flex; justify-content: space-between; }
 .d-grid-center { align-content: center; display: grid; }
 .d-flex-bottom { align-content: flex-end; align-self: flex-end; }

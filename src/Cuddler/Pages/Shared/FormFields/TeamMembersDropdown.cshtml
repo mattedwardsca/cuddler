@@ -1,21 +1,20 @@
 ﻿@using global::Cuddler.Configuration.Identity.Extensions
+@using global::Cuddler.Core.Membership
 @using global::Cuddler.Data.Context
-@using global::Cuddler.Data.Entities
 @using global::Cuddler.Forms
 @using global::Cuddler.Pages.Shared.Cuddler.FormField
-@using Microsoft.EntityFrameworkCore
 @using FormField = global::Cuddler.Forms.FormField
 @model FormField
 @inject IRepository Repository
+@inject ITeamService TeamService
 @{
     var userId = Model.BindId ?? Context.GetLoggedInAccountId();
-    var data = Repository.DbSet<AccountEntity>()
-                         .Include(x => x.Profile)
-                         .ThenInclude(x => x.Organization)
-                         .Where(x => x.Profile.OrganizationId == userId)
+    var data = TeamService.ListAllMyTeamMembers(userId)
                          .OrderBy(x => x.UserName)
-                         .Select(x => new SelectListItem { Text = x.FormattedName, Value = x.Id })
+                         .Select(x => new SelectListItem { Text = x.Profile.GetFullName(), Value = x.Id })
                          .ToList();
+
+    data.Insert(0, new SelectListItem("Select one...", null));
 }
 <form-field bind-data="@data"
             description="@Model.Description"

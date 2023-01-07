@@ -4,7 +4,6 @@ using Cuddler.Data.Context;
 using Cuddler.Data.Entities;
 using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 
 namespace Cuddler.Configuration.Identity.Extensions;
 
@@ -50,7 +49,6 @@ public static class LoggedInAccountExtensions
     {
         var repository = httpContext.GetService<IRepository>();
         return repository.DbSet<AccountEntity>()
-                         .AsNoTracking()
                          .SingleOrDefault(w => w.Id == userId);
     }
 }

@@ -40,6 +40,8 @@ internal class CuddlerApplicationBuilder
 
     internal AuthenticationDatabaseBuilder InitServices()
     {
+        _applicationBuilder.Services.AddTransient<ISettingsService, SettingsService>();
+
         // Web Services
         _applicationBuilder.Services.AddTransient<IAppService, AppService>();
 

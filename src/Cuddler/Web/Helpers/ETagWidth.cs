@@ -16,7 +16,7 @@ public enum ETagWidth
 
 public static class ETagWidthHelper
 {
-    public static string ToCssClass(this ETagWidth? element)
+    public static string ToCssClass(this ETagWidth element)
     {
         return $"eux-Width-{element.ToString()}";
     }
