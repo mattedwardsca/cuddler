@@ -37,4 +37,7 @@ public interface IRepository
     int SaveChanges();
 
     EntityEntry Entry(object entity);
+
+
+
 }

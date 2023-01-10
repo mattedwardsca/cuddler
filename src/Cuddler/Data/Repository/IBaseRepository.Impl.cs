@@ -13,6 +13,10 @@ public abstract class BaseRepository : IdentityDbContext<AccountEntity>, IReposi
     {
     }
 
+    public DbSet<MessageEntity> Messages { get; set; } = null!;
+
+    public DbSet<MessageUserEntity> MessageUsers { get; set; } = null!;
+
     public DbSet<AccountRequestEntity> AccountRequests { get; set; } = null!;
 
     public DbSet<AccountEntity> Accounts { get; set; } = null!;

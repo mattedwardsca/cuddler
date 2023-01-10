@@ -5,6 +5,10 @@ namespace Cuddler.Data.Repository;
 
 public interface IBaseRepository
 {
+    DbSet<MessageEntity> Messages { get; set; }
+
+    DbSet<MessageUserEntity> MessageUsers { get; set; }
+
     DbSet<AccountRequestEntity> AccountRequests { get; set; }
 
     DbSet<AccountEntity> Accounts { get; set; }
