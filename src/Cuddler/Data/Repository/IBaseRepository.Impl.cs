@@ -121,10 +121,10 @@ public abstract class BaseRepository : IdentityDbContext<AccountEntity>, IReposi
                .Navigation(n => n.Organization)
                .AutoInclude();
 
-        //builder.Entity<MessageEntity>()
-        //       .Property(b => b.ReceipientIds)
-        //       .HasConversion(v => string.Join(',', v), v => v.Split(',', StringSplitOptions.RemoveEmptyEntries))
-        //       .Metadata.SetValueComparer(SharedValueComparers.StringArray());
+        builder.Entity<MessageEntity>()
+               .Property(b => b.ReceipientIds)
+               .HasConversion(v => string.Join(',', v), v => v.Split(',', StringSplitOptions.RemoveEmptyEntries))
+               .Metadata.SetValueComparer(SharedValueComparers.StringArray());
 
         //builder.Entity<ProductPackageEntity>()
         //       .Property(b => b.ProductIds)
