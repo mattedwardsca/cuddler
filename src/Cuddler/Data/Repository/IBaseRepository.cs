@@ -5,10 +5,6 @@ namespace Cuddler.Data.Repository;
 
 public interface IBaseRepository
 {
-    DbSet<MessageEntity> Messages { get; set; }
-
-    DbSet<MessageUserEntity> MessageUsers { get; set; }
-
     DbSet<AccountRequestEntity> AccountRequests { get; set; }
 
     DbSet<AccountEntity> Accounts { get; set; }
@@ -22,6 +18,12 @@ public interface IBaseRepository
     DbSet<EmailTemplateEntity> EmailTemplates { get; set; }
 
     DbSet<FieldEntity> Fields { get; set; }
+
+    DbSet<MessageEntity> Messages { get; set; }
+
+    DbSet<MessageUserEntity> MessageUsers { get; set; }
+
+    DbSet<NoteEntity> Notes { get; set; }
 
     DbSet<OptionEntity> Options { get; set; }
 
