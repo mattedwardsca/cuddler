@@ -29,7 +29,7 @@
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-		<Version>1.1.7</Version>
+		<Version>1.1.8</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
