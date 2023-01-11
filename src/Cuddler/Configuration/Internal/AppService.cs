@@ -11,7 +11,12 @@ internal class AppService : IAppService
         _module = module;
     }
 
-    public List<IApp> ListApps()
+    public List<IApp> ListShowInBottom()
+    {
+        return _module.BottomApps.ToList();
+    }
+
+    public List<IApp> ListShowInMiddle()
     {
         return _module.MiddleApps.Where(w => !w.Hidden)
                       .ToList();

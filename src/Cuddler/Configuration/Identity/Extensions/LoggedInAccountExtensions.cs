@@ -21,7 +21,7 @@ public static class LoggedInAccountExtensions
     {
         var userId = httpContext.User.FindFirst(ClaimTypes.NameIdentifier)
                                 ?.Value
-                     ?? throw new InvalidOperationException("77f90ffa-6ad7-4172-af7a-ce30b3b682dc");
+                     ??  throw new InvalidClaimException("User is not logged in. Error: 77f90ffa-6ad7-4172-af7a-ce30b3b682dc");
 
         var getAccountEntityById = httpContext.Items[SessionAccountToken] ?? (httpContext.Items[SessionAccountToken] = Get(httpContext, userId));
 

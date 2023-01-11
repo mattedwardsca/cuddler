@@ -4,7 +4,9 @@ namespace Cuddler.Configuration;
 
 public interface IAppService
 {
+    List<IApp> ListShowInBottom();
+
     List<IApp> ListShowInTop();
 
-    List<IApp> ListApps();
+    List<IApp> ListShowInMiddle();
 }

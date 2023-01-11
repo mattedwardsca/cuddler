@@ -120,7 +120,7 @@
             </div>
         </div>
         <div>
-            @if (Module.AllowAdminMode)
+            @if (Module.ShowAdminToggle)
             {
                 var isAdmin = Model.Account.IsAdmin;
                 if (isAdmin)

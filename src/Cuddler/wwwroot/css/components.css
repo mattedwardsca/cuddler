@@ -2799,11 +2799,11 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   background: var(--ColorThree);
   color: var(--ColorFour);
 }
-.eux-CuddlerSaveButton {
+.eux-CuddlerCancelButton {
   max-width: 200px;
   width: 100%;
 }
-.eux-CuddlerCancelButton {
+.eux-CuddlerSaveButton {
   max-width: 200px;
   width: 100%;
 }
@@ -5259,6 +5259,51 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   padding: 0 5px;
 }
 
+.eux-portal .eux-ModuleNavbar .eux-bottom-links .navbar-nav .nav-item {
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  position: relative;
+  width: 40px;
+}
+
+.eux-portal .eux-ModuleNavbar .eux-bottom-links .navbar-nav .nav-link {
+  border-radius: 5px;
+}
+
+.eux-portal .eux-ModuleNavbar .eux-bottom-links .navbar-nav .nav-link span {
+  position: absolute;
+  top: 43px;
+}
+
+.eux-portal .eux-ModuleNavbar .eux-bottom-links .nav-item .nav-link {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.eux-portal .eux-ModuleNavbar .eux-bottom-links {
+  border-top: solid 1px rgba(0, 0, 0, 0.01);
+  margin-top: 5px;
+  padding: 0 5px;
+}
+
+.eux-portal .eux-ModuleNavbar .eux-bottom-links .nav-item:not(.active) .nav-link:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.eux-portal .eux-ModuleNavbar .eux-bottom-links .nav-link {
+  font-size: 9px;
+  line-height: 14px;
+  padding: 8px 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+.eux-portal .eux-ModuleNavbar .eux-bottom-links .nav-link i {
+  font-size: 20px;
+  width: 100%;
+}
+
 .eux-portal .eux-ModuleNavbar .navbar-nav .nav-link {
   color: var(--ColorTwo);
   position: relative;
@@ -5310,7 +5355,7 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   -webkit-overflow-scrolling: touch;
   background: var(--ColorOne);
   display: grid;
-  grid-template-rows: 48px 90px calc(100vh - 130px);
+  grid-template-rows: 48px 90px auto 1fr;
   height: 100%;
   z-index: 0;
 }
