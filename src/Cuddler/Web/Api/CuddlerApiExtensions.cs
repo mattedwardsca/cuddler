@@ -28,12 +28,20 @@ public class CuddlerApi
 
 public class Mock
 {
-    public TModel Object<TModel>()
+    public static TModel Object<TModel>()
     {
         return Activator.CreateInstance<TModel>();
     }
 
-    public string String => string.Empty;
+    public string String => Object<string>();
     
-    public int Int => 0;
+    public bool Bool => Object<bool>();
+    
+    public int Int => Object<int>();
+    
+    public decimal Decimal => Object<decimal>();
+    
+    public double Double => Object<double>();
+    
+    public DateTime DateTime => Object<DateTime>();
 }
