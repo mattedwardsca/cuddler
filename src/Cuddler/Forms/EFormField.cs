@@ -4,10 +4,9 @@ public enum EFormField
 {
     None,
     Checkbox,
-    ClientsDropdown,
     ColorPicker,
     Country,
-    Currencies,
+    CurrenciesDropdown,
     Currency,
     Date,
     DateMonthYear,
@@ -36,7 +35,6 @@ public enum EFormField
     RadioList,
     SelectList,
     Slider,
-    TeamMembersDropdown,
     Template,
     Text,
     Textarea,
@@ -45,5 +43,5 @@ public enum EFormField
     Upload,
     YearMonthDay,
     YesNo,
-    YesNoNa
+    YesNoNa,
 }
