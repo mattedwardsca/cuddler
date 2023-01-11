@@ -1,4 +1,7 @@
-﻿namespace Cuddler.Modules;
+﻿using Cuddler.Modules.Utils;
+using Microsoft.AspNetCore.Http;
+
+namespace Cuddler.Modules;
 
 public abstract class CuddlerBaseModule : ICuddlerModule
 {
@@ -97,56 +100,56 @@ public abstract class CuddlerBaseModule : ICuddlerModule
         return obj;
     }
 
-    //private IApp? GetFirstApp(bool isAdminMode)
-    //{
-    //    var firstOrDefault = isAdminMode
-    //        ? TopApps.FirstOrDefault(w => w.IsForAdmins)
-    //        : TopApps.FirstOrDefault(w => w.IsForClients);
+    private IApp? GetFirstApp(bool isAdminMode)
+    {
+        var firstOrDefault = isAdminMode
+            ? TopApps.FirstOrDefault(w => w.IsForAdmins)
+            : TopApps.FirstOrDefault(w => w.IsForClients);
 
-    //    if (firstOrDefault == null)
-    //    {
-    //        firstOrDefault = isAdminMode
-    //            ? MiddleApps.FirstOrDefault(w => w.IsForAdmins)
-    //            : MiddleApps.FirstOrDefault(w => w.IsForClients);
-    //    }
+        if (firstOrDefault == null)
+        {
+            firstOrDefault = isAdminMode
+                ? MiddleApps.FirstOrDefault(w => w.IsForAdmins)
+                : MiddleApps.FirstOrDefault(w => w.IsForClients);
+        }
 
-    //    if (firstOrDefault == null)
-    //    {
-    //        firstOrDefault = isAdminMode
-    //            ? HiddenApps.FirstOrDefault(w => w.IsForAdmins)
-    //            : HiddenApps.FirstOrDefault(w => w.IsForClients);
-    //    }
+        if (firstOrDefault == null)
+        {
+            firstOrDefault = isAdminMode
+                ? HiddenApps.FirstOrDefault(w => w.IsForAdmins)
+                : HiddenApps.FirstOrDefault(w => w.IsForClients);
+        }
 
-    //    return firstOrDefault;
-    //}
+        return firstOrDefault;
+    }
 
-    //private async Task<string> GetRootPage(HttpRequest request)
-    //{
-    //    var isAdminMode = request.HttpContext.IsAdminMode();
-    //    var firstApp = GetFirstApp(isAdminMode);
+    public async Task<string> GetRootPage(HttpRequest request)
+    {
+        var isAdminMode = request.HttpContext.IsAdminMode();
+        var firstApp = GetFirstApp(isAdminMode);
 
-    //    if (firstApp == null)
-    //    {
-    //        throw new InvalidOperationException("No apps have been registered.");
-    //    }
+        if (firstApp == null)
+        {
+            throw new InvalidOperationException("No apps have been registered.");
+        }
 
-    //    var menuItems = await firstApp.GetAppMenu(request.HttpContext);
-    //    var url = string.Empty;
-    //    var s = firstApp.Name.Replace(" ", string.Empty);
-    //    if (!string.IsNullOrEmpty(s))
-    //    {
-    //        url += $"/{s}";
-    //    }
+        var menuItems = await firstApp.GetAppMenu(request.HttpContext);
+        var url = string.Empty;
+        var s = firstApp.Name.Replace(" ", string.Empty);
+        if (!string.IsNullOrEmpty(s))
+        {
+            url += $"/{s}";
+        }
 
-    //    var pageSegment = menuItems.FirstOrDefault(w => w.LinkType == ELinkType.Link && !w.Hide)
-    //                               ?.Segment;
-    //    if (!string.IsNullOrEmpty(pageSegment))
-    //    {
-    //        url += $"/{pageSegment}";
-    //    }
+        var pageSegment = menuItems.FirstOrDefault(w => w.LinkType == ELinkType.Link && !w.Hide)
+                                   ?.Segment;
+        if (!string.IsNullOrEmpty(pageSegment))
+        {
+            url += $"/{pageSegment}";
+        }
 
-    //    return url;
-    //}
+        return url;
+    }
 
     //private bool HasApp(string appId)
     //{

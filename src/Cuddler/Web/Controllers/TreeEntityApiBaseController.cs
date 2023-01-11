@@ -26,7 +26,7 @@ public abstract class TreeEntityApiBaseController<TEntity> : BaseController wher
 
         var data = await OnListActive(queryable);
 
-        return Json(data.ToDataSourceResult(request));
+        return Json(await data.ToDataSourceResultAsync(request));
         // return Json(data.ToTreeDataSourceResult(request, e => e.Id, e => e.ParentId, e => e));
     }
 

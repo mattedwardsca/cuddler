@@ -1,4 +1,6 @@
-﻿namespace Cuddler.Modules;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Cuddler.Modules;
 
 public interface ICuddlerModule
 {
@@ -15,6 +17,8 @@ public interface ICuddlerModule
     string SiteName { get; }
 
     List<IApp> TopApps { get; }
+
+    Task<string> GetRootPage(HttpRequest request);
 
     List<IApp> ListAllApps();
 }

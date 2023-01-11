@@ -20,6 +20,7 @@ public enum EFormField
     DropdownOptions,
     Email,
     FlatColorPicker,
+    Gender,
     Hidden,
     Image,
     InlineHtml,
