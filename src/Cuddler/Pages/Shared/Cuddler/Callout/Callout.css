@@ -1,0 +1,23 @@
+﻿.bd-callout { background: white; border: 1px solid #eee; border-left-color: #5bc0de; border-left-width: 5px; border-radius: .25rem; margin-bottom: 10px; max-width: 340px; padding: 15px 10px; width: 100%; }
+.bd-callout h4 { margin-bottom: .25rem; margin-bottom: 20px; margin-top: 0; }
+.bd-callout p:last-child { margin-bottom: 0; }
+.bd-callout code { border-radius: .25rem; }
+.bd-callout-primary { border-left-color: #0069D9; }
+.bd-callout-primary h4 { color: #0069D9; }
+.bd-callout-info { border-left-color: #5bc0de; }
+.bd-callout-info h4 { color: #5bc0de; }
+.bd-callout-warning { border-left-color: #f0ad4e; }
+.bd-callout-warning h4 { color: #f0ad4e; }
+.bd-callout-danger { border-left-color: #d9534f; }
+.bd-callout-danger h4 { color: #d9534f; }
+.bd-callout .eux-PopupButton { width: 100%; }
+.bd-callout .eux-ButtonLink { display: block; }
+.bd-callout .btn { width: 100%; }
+.bd-callout .eux-nolist li { margin-bottom: 10px; }
+.bd-callout.eux-w-Medium { width: 612px; }
+.bd-callout .eux-btn-content > span { font-size: 14px; padding-right: 10px; }
+@media (max-width: 812px) {
+    .bd-callout { width: 100%; }
+    .bd-callout .btn { width: 100%; }
+}
+.bd-callout .eux-PopupEditor { display: block; }

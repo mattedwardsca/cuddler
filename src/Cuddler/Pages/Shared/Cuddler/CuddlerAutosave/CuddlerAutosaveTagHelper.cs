@@ -5,11 +5,11 @@ using Cuddler.Ui;
 using Cuddler.Web.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cuddler.Pages.Shared.Cuddler.Autosave;
+namespace Cuddler.Pages.Shared.Cuddler.CuddlerAutosave;
 
-public class AutosaveTagHelper : BaseTagHelper, ICuddler
+public class CuddlerAutosaveTagHelper : BaseTagHelper, ICuddler
 {
-    public AutosaveTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
+    public CuddlerAutosaveTagHelper(IHtmlHelper htmlHelper, HtmlEncoder htmlEncoder) : base(htmlHelper, htmlEncoder)
     {
         OnBlur = EBlurAction.None;
     }

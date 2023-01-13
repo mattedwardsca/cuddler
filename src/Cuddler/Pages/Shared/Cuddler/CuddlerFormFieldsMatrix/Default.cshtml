@@ -1,4 +1,4 @@
-﻿@using global::Cuddler.Pages.Shared.Cuddler.Autosave
+﻿@using global::Cuddler.Pages.Shared.Cuddler.CuddlerAutosave
 @using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsRow
 
 @model CuddlerFormFieldsMatrixTagHelper
@@ -38,11 +38,11 @@
                             <td>
                                 @if (Model.AutoSave && !Model.ReadOnly)
                                 {
-                                    <autosave read-only="@Model.ReadOnly"
+                                    <cuddler-autosave read-only="@Model.ReadOnly"
                                               save-url="@(Model.SaveUrl!)">
                                         <cuddler-form-fields-row form-field="@property"
                                                                  read-only="@Model.ReadOnly" />
-                                    </autosave>
+                                    </cuddler-autosave>
                                 }
                                 else
                                 {

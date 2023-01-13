@@ -1,0 +1,16 @@
+﻿@model PaperToolbarTagHelper
+<div class="eux-PaperToolbar">
+    @if (Model.Justify)
+    {
+        <div class="d-flex d-flex-justify-between">
+            @Html.Raw(Model.Html)
+        </div>
+    }
+    else
+    {
+
+        <div class="d-flex">
+            @Html.Raw(Model.Html)
+        </div>
+    }
+</div>

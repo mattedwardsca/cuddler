@@ -3313,18 +3313,18 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   text-decoration: none;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links {
+.eux-appmenu-button .eux-appmenu-cuddler-links {
   display: flex;
   justify-content: center;
   padding: 12px 0 0 0;
   text-align: center;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links a:hover {
+.eux-appmenu-button .eux-appmenu-cuddler-links a:hover {
   text-decoration: none;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links .app-icon {
+.eux-appmenu-button .eux-appmenu-cuddler-links .app-icon {
   align-items: center;
   background: var(--ColorThree);
   border-radius: 10px;
@@ -3338,7 +3338,7 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   width: 75px;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links .eux-appmenu-button-label {
+.eux-appmenu-button .eux-appmenu-cuddler-links .eux-appmenu-button-label {
   color: var(--ColorSix);
   display: block;
   font-size: 16px;

@@ -1,4 +1,4 @@
-﻿@using global::Cuddler.Pages.Shared.Cuddler.Autosave
+﻿@using global::Cuddler.Pages.Shared.Cuddler.CuddlerAutosave
 @using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
 @using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsMatrix
 @using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsRow
@@ -116,11 +116,11 @@
 
                                             @if (Model.AutoSave)
                                             {
-                                                <autosave read-only="@Model.ReadOnly"
+                                                <cuddler-autosave read-only="@Model.ReadOnly"
                                                           save-url="@(Model.SaveUrl!)">
                                                     <cuddler-form-fields-row form-field="@property"
                                                                              read-only="@Model.ReadOnly" />
-                                                </autosave>
+                                                </cuddler-autosave>
                                             }
                                             else
                                             {

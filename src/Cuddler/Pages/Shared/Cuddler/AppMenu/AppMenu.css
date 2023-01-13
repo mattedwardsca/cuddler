@@ -49,10 +49,10 @@
 /* app button */
 .eux-portal .eux-AppMenu-aside .eux-appmenu-button { border-top-left-radius: 15px; }
 .eux-AppMenu .eux-appmenu-button a, .eux-AppMenu .eux-appmenu-button a:hover { color: inherit; display: block; font-size: 16px; font-weight: bold; line-height: 1.2em; padding-top: 0.5em; text-decoration: none; }
-.eux-appmenu-button .eux-appmenu-button-links { display: flex; justify-content: center; padding: 12px 0 0 0; text-align: center; }
-.eux-appmenu-button .eux-appmenu-button-links a:hover { text-decoration: none; }
-.eux-appmenu-button .eux-appmenu-button-links .app-icon { align-items: center; background: var(--ColorThree); border-radius: 10px; color: var(--ColorFour); display: grid; font-size: 36px; height: 75px; margin: auto; overflow: hidden; padding-left: 3px; width: 75px; }
-.eux-appmenu-button .eux-appmenu-button-links .eux-appmenu-button-label { color: var(--ColorSix); display: block; font-size: 16px; font-weight: bold; margin-top: 5px; margin-top: 10px; text-align: center; white-space: nowrap; width: 100%; }
+.eux-appmenu-button .eux-appmenu-cuddler-links { display: flex; justify-content: center; padding: 12px 0 0 0; text-align: center; }
+.eux-appmenu-button .eux-appmenu-cuddler-links a:hover { text-decoration: none; }
+.eux-appmenu-button .eux-appmenu-cuddler-links .app-icon { align-items: center; background: var(--ColorThree); border-radius: 10px; color: var(--ColorFour); display: grid; font-size: 36px; height: 75px; margin: auto; overflow: hidden; padding-left: 3px; width: 75px; }
+.eux-appmenu-button .eux-appmenu-cuddler-links .eux-appmenu-button-label { color: var(--ColorSix); display: block; font-size: 16px; font-weight: bold; margin-top: 5px; margin-top: 10px; text-align: center; white-space: nowrap; width: 100%; }
 .eux-appmenu-button-tools .eux-btn-content > span:last-child { display: none; }
 /* app menu */
 .eux-app-nav-main-link { align-items: center; border-radius: .2rem; display: flex; font-size: .875rem; line-height: 1rem; margin: 0 5px; position: relative; text-decoration: none; /*padding-left: 10px;*//*padding-left: 10px;*/ }
