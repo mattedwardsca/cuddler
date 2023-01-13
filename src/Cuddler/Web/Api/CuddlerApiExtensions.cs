@@ -6,8 +6,6 @@ namespace Cuddler.Web.Api;
 
 public class CuddlerApi
 {
-    public static Mock Mock = new();
-
     public static CuddlerUri<T> Grid<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IApiController
     {
         return new CuddlerUri<T>().Endpoint(func);
@@ -25,7 +23,7 @@ public class CuddlerApi
     }
 }
 
-public class Mock
+public static class Mock
 {
     public static string[] StringArray => Array.Empty<string>();
 
