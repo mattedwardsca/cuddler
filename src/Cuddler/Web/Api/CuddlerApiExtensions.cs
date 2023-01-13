@@ -27,17 +27,19 @@ public class CuddlerApi
 
 public class Mock
 {
-    public static string String => Object<string>();
+    public static string[] StringArray => Array.Empty<string>();
 
-    public static bool Bool => Object<bool>();
+    public static string String => string.Empty;
 
-    public static int Int => Object<int>();
+    public static bool Bool => false;
 
-    public static decimal Decimal => Object<decimal>();
+    public static int Int => 0;
 
-    public static double Double => Object<double>();
+    public static decimal Decimal => 0;
 
-    public static DateTime DateTime => Object<DateTime>();
+    public static double Double => 0;
+
+    public static DateTime DateTime => DateTime.MinValue;
 
     public static TModel Object<TModel>()
     {
