@@ -11,7 +11,7 @@ public class CuddlerApi
         return new CuddlerUri<T>().Endpoint(func);
     }
 
-    public static CuddlerUri<T> Uri<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IApiController
+    public static CuddlerUri<T> Api<T>(Expression<Func<T, Task<IActionResult>>> func) where T : class, IApiController
     {
         return new CuddlerUri<T>().Endpoint(func);
     }
