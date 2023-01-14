@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 using Cuddler.Data.Utils;
-using Cuddler.Forms;
 using Kendo.Mvc;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +14,8 @@ public abstract class CuddlerUri
 
     public List<CuddlerBaseFilter> FilterList { get; } = new();
 
+    public string Uri => _endpointUrl ?? "UNINITIALIZED-ENDPOINT";
+
     public override string ToString()
     {
         return _endpointUrl ?? "UNINITIALIZED-ENDPOINT";
@@ -25,15 +26,6 @@ public abstract class CuddlerUri
         var reduced = argument.CanReduce
             ? argument.Reduce()
             : argument;
-
-        //var memberExpression = argument;
-
-        //var parameterName = memberExpression.Member.Name;
-        //var objectMember = Expression.Convert(memberExpression, typeof(object));
-        //var getterLambda = Expression.Lambda<Func<object?>?>(objectMember);
-        //var getter = GetGetter(getterLambda);
-
-        //var getter = invoke?.ToString();
 
         var o = Expression.Lambda(reduced)
                           .Compile()
@@ -48,40 +40,49 @@ public abstract class CuddlerUri
 
         for (var index = 0; index < parameterInfos.Count; index++)
         {
-
             var parameterInfo = parameterInfos[index];
             var parameterName = infos[index];
-            var getter = GetGetter(parameterInfo);
-
-            switch (parameterInfo)
+            var item = GetItem(parameterInfo, parameterName);
+            if (item != null)
             {
-                case MemberExpression:
-                case ConstantExpression:
-                {
-                    ListAdd(getter, list, parameterName);
-
-                    break;
-                }
-
-                case NewExpression:
-                case MethodCallExpression:
-                case BinaryExpression:
-                case UnaryExpression:
-                case MemberInitExpression:
-                {
-                    // Don't add these
-                    break;
-                }
-
-                default:
-                {
-                    // https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.binaryexpression?view=net-7.0
-                    throw new InvalidOperationException($"Invalid expression type '{parameterInfo.NodeType}'. Error: f2a8fe3c-2438-4526-8dad-7027523c2228.");
-                }
+                list.Add(item);
             }
         }
 
         return list;
+    }
+
+    protected static string? GetItem(Expression parameterInfo, string parameterName)
+    {
+        var getter = GetGetter(parameterInfo);
+        switch (parameterInfo)
+        {
+            case MemberExpression:
+            case ConstantExpression:
+            {
+                return getter switch
+                {
+                    null => null,
+                    DateTime dateTime => $"{parameterName}={FormatDateUtil.FormatJsonDate(dateTime)}",
+                    _ => $"{parameterName}={getter}"
+                };
+
+            }
+
+            case NewExpression:
+            case MethodCallExpression:
+            case BinaryExpression:
+            case UnaryExpression:
+            case MemberInitExpression:
+            {
+                return null;
+            }
+
+            default:
+            {
+                throw new InvalidOperationException($"Invalid expression type '{parameterInfo.NodeType}'. Error: f2a8fe3c-2438-4526-8dad-7027523c2228.");
+            }
+        }
     }
 
     private static object? GetGetter(Expression parameterInfo)
@@ -92,22 +93,6 @@ public abstract class CuddlerUri
         var getter = getterLambda.Compile()
                                  ?.Invoke();
         return getter;
-    }
-
-    private static void ListAdd(object? getter, List<string> list, string parameterName)
-    {
-
-        if (getter != null)
-        {
-            if (getter is DateTime dateTime)
-            {
-                list.Add($"{parameterName}={FormatDateUtil.FormatJsonDate(dateTime)}");
-
-                return;
-            }
-
-            list.Add($"{parameterName}={getter}");
-        }
     }
 
     protected static string GetBaseApiUrl(Type typeOfController)
@@ -130,8 +115,6 @@ public abstract class CuddlerUri
 
 public class CuddlerUri<TController> : CuddlerUri
 {
-    public List<FormField> FormFields = new();
-
     public static string GetParameterName<TParameter>(Expression<Func<TParameter>> parameterToCheck)
     {
         var memberExpression = parameterToCheck.Body as MemberExpression;
@@ -153,7 +136,6 @@ public class CuddlerUri<TController> : CuddlerUri
     {
         return new CuddlerFormModel
         {
-            FormFields = FormFields,
             FormAction = this
         };
     }
@@ -174,72 +156,54 @@ public class CuddlerUri<TController> : CuddlerUri
             throw new InvalidOperationException($"Method '{methodName}' exists more than once in {typeof(TController).Name}");
         }
 
+        var apiParameters = new List<string>();
         var methodParameters = methodInfo.GetParameters();
-        foreach (var argument in body.Arguments)
+
+
+        for (var index = 0; index < body.Arguments.Count; index++)
         {
-            var type = argument.Type;
+            var expression = body.Arguments[index];
+            var type = expression.Type;
 
-            if (argument is MethodCallExpression methodCallExpression)
+            switch (expression)
             {
-                var isMock = methodCallExpression.Method.DeclaringType?.Name == "Mock";
-
-                if (isMock)
+                case MethodCallExpression methodCallExpression:
                 {
-                    continue;
-                }
-                
-                // var parameterName = memberExpression.Method.Name;
-                // var objectMember = Expression.Convert(memberExpression, typeof(object));
-                // var getterLambda = Expression.Lambda<Func<object>>(objectMember);
-                // var getter = getterLambda.Compile()
-                //                          .Invoke()
-                //                          .ToString();
-                var b = true;
-            }
-            if (argument is MemberExpression memberExpression )
-            {
-                var isMock = memberExpression.Member.DeclaringType?.Name == "Mock";
+                    var isMock = methodCallExpression.Method.DeclaringType?.Name == "Mock";
 
-                if (isMock)
+                    if (isMock)
+                    {
+                        continue;
+                    }
+
+                    break;
+                }
+                case MemberExpression memberExpression:
                 {
-                    continue;
-                }
+                    var isMock = memberExpression.Member.DeclaringType?.Name == "Mock";
 
-                // var parameterName = memberExpression.Method.Name;
-                // var objectMember = Expression.Convert(memberExpression, typeof(object));
-                // var getterLambda = Expression.Lambda<Func<object>>(objectMember);
-                // var getter = getterLambda.Compile()
-                //                          .Invoke()
-                //                          .ToString();
-                var b = true;
+                    if (isMock)
+                    {
+                        continue;
+                    }
+
+                    break;
+                }
             }
 
-            if (type.IsClass && type != typeof(string))
+            var param = methodParameters[index].Name!;
+            var item = GetItem(expression, param);
+            if (item != null)
             {
-                var obj = GetValue(argument);
-                var listFormFields = FormFieldUtil.ListFormFields(type, obj);
-                FormFields.AddRange(listFormFields);
+                apiParameters.Add(item);
             }
         }
 
-        var keys = methodParameters.Select(s => s.Name!)
-                                   .ToList();
-        var apiParameters = GetApiParameters(keys, body.Arguments);
         var parameterString = string.Join('&', apiParameters);
-        if (string.IsNullOrEmpty(parameterString))
-        {
-            _endpointUrl = $"{api}/{methodName}";
-        }
-        else
-        {
-            _endpointUrl = $"{api}/{methodName}?{parameterString}";
-        }
+        _endpointUrl = string.IsNullOrEmpty(parameterString)
+            ? $"{api}/{methodName}"
+            : $"{api}/{methodName}?{parameterString}";
 
         return this;
     }
-
-    // public CuddlerFormFields<T> Form<T>() where T : class, IApiController
-    // {
-    //     throw new NotImplementedException();
-    // }
 }

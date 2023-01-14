@@ -2799,11 +2799,11 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   background: var(--ColorThree);
   color: var(--ColorFour);
 }
-.eux-CuddlerSaveButton {
+.eux-CuddlerCancelButton {
   max-width: 200px;
   width: 100%;
 }
-.eux-CuddlerCancelButton {
+.eux-CuddlerSaveButton {
   max-width: 200px;
   width: 100%;
 }
@@ -2841,6 +2841,21 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   padding-bottom: 5px;
   padding-left: 24px;
   padding-top: 20px;
+}
+.eux-ActionButton .eux-appmenubuttons {
+  width: 100%;
+}
+
+.eux-ActionButton .eux-appmenubuttons button {
+  width: 100%;
+}
+
+.eux-ActionButton .eux-appmenubuttons .eux-link {
+  border-color: transparent;
+}
+
+.eux-jumbo-size.eux-ActionButton .eux-appmenubuttons .btn {
+  font-size: 20px;
 }
 .eux-ActionMenu .btn.btn-link {
   box-shadow: none;
@@ -2933,21 +2948,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   transform: rotate(-135deg);
   width: 20px;
   z-index: 9999;
-}
-.eux-ActionButton .eux-appmenubuttons {
-  width: 100%;
-}
-
-.eux-ActionButton .eux-appmenubuttons button {
-  width: 100%;
-}
-
-.eux-ActionButton .eux-appmenubuttons .eux-link {
-  border-color: transparent;
-}
-
-.eux-jumbo-size.eux-ActionButton .eux-appmenubuttons .btn {
-  font-size: 20px;
 }
 .eux-AppHeader {
   align-content: center;
@@ -4695,6 +4695,29 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   margin: 0;
   width: 228px;
 }
+.eux-CuddlerLink {
+  display: inline-block;
+}
+
+.eux-CuddlerLink a {
+  display: inline-block;
+}
+
+.eux-CuddlerLink a.btn-light {
+  background-color: #eaf0f6;
+  border-color: #cbd6e2;
+  color: #506e91;
+  font-size: 12px;
+}
+
+.eux-CuddlerLink a.btn-warning {
+  color: black;
+}
+
+.eux-CuddlerLink a.eux-link {
+  color: #0069D9;
+  cursor: pointer;
+}
 .eux-Portal .eux-CuddlerPage {
   background: darkgray;
   display: grid;
@@ -4722,29 +4745,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 
 .eux-portal main > .eux-CuddlerPage.eux-Page-LightGray {
   background: #EBEBEB;
-}
-.eux-CuddlerLink {
-  display: inline-block;
-}
-
-.eux-CuddlerLink a {
-  display: inline-block;
-}
-
-.eux-CuddlerLink a.btn-light {
-  background-color: #eaf0f6;
-  border-color: #cbd6e2;
-  color: #506e91;
-  font-size: 12px;
-}
-
-.eux-CuddlerLink a.btn-warning {
-  color: black;
-}
-
-.eux-CuddlerLink a.eux-link {
-  color: #0069D9;
-  cursor: pointer;
 }
 .eux-CuddlerPopup.medium .btn.btn-icon {
   background-color: #d4edda;
@@ -4796,9 +4796,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 
 .eux-CuddlerPopup .eux-icon-Edit.btn.btn-icon:hover .fa-pencil {
   color: white;
-}
-.eux-CuddlerPopupUpdate {
-  display: inline-block;
 }
 .d-flex-gap-1 > .eux-CuddlerReplace {
   margin-bottom: 5px;
@@ -4940,6 +4937,9 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 .eux-CuddlerReplace .card .eux-loader-wrapper > * {
   margin-bottom: 1em;
 }
+.eux-CuddlerPopupUpdate {
+  display: inline-block;
+}
 .eux-CuddlerSubmitButton .eux-submit-btn {
   min-width: 100px;
 }
@@ -5047,9 +5047,9 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 .eux-Toolbar {
   align-items: center;
   background: var(--ColorFive);
-  border-radius: 10px;
+  border-radius: 2px;
   display: flex;
-  padding: 7px 0px 7px 15px;
+  padding: 0;
   max-height: 85px;
   align-self: center;
   overflow: hidden;
@@ -5086,6 +5086,7 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 .eux-Divider {
   margin: 20px 0;
 }
+
 
 .eux-FlexRow {
   display: flex;
@@ -5738,6 +5739,28 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   border-color: rgba(0, 0, 0, 0.1);
   color: #212529;
 }
+.eux-SectionCardToolbar {
+  background: var(--ColorFive);
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  padding: 5px 4px;
+}
+
+.eux-SectionCardToolbar + .eux-Paper {
+  margin-top: 3px;
+}
+
+.eux-SectionCardToolbar > div {
+  display: flex;
+}
+
+.eux-SectionCardToolbar > div > * {
+  margin: 0 5px;
+}
+
+.eux-SectionCardToolbar .btn {
+  font-size: 12px;
+  padding: 6px;
+}
 .eux-ShortcutButton {
   border-radius: 10px;
   cursor: pointer;
@@ -5799,28 +5822,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   padding: 0 10px;
   position: absolute;
   width: 100%;
-}
-.eux-SectionCardToolbar {
-  background: var(--ColorFive);
-  border: solid 1px rgba(0, 0, 0, 0.2);
-  padding: 5px 4px;
-}
-
-.eux-SectionCardToolbar + .eux-Paper {
-  margin-top: 3px;
-}
-
-.eux-SectionCardToolbar > div {
-  display: flex;
-}
-
-.eux-SectionCardToolbar > div > * {
-  margin: 0 5px;
-}
-
-.eux-SectionCardToolbar .btn {
-  font-size: 12px;
-  padding: 6px;
 }
 .eux-SubmitButton .eux-submit-btn {
   min-width: 100px;

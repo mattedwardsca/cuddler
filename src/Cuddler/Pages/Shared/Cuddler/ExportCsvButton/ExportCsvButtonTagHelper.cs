@@ -15,6 +15,7 @@ public class ExportCsvButtonTagHelper : BaseTagHelper, ICuddler
     [Required]
     public CuddlerUri ExportUri { get; set; } = null!;
 
-    [Required]
-    public string ClientTemplateId { get; set; } = null!;
+    public string? ClientTemplateId { get; set; }
+
+    public bool IsTemplate { get; set; }
 }
