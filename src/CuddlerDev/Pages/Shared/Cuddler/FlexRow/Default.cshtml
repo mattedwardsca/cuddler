@@ -1,0 +1,7 @@
+﻿@model CuddlerDev.Pages.Shared.Cuddler.FlexRow.FlexRowTagHelper
+@{
+    var cssClass = $"eux-FlexRow-{Model.Width}";
+}
+<div class="eux-FlexRow @cssClass">
+    @Html.Raw(Model.Html)
+</div>

@@ -1,0 +1,34 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::CuddlerDev.Forms.FormField
+@{
+    var val = string.IsNullOrEmpty(Model.Value)
+        ? 0
+        : double.Parse(Model.Value);
+
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+    dictionary.Add("style", "width:260px;");
+}
+
+@if (!Model.HideLabel)
+{
+    <form-label for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+
+@(Html.Kendo()
+      .Slider()
+      .Name(Model.Name)
+      .Min(0)
+      .Max(50)
+      .SmallStep(1)
+      .LargeStep(5)
+      .Value(val)
+      .HtmlAttributes(dictionary))

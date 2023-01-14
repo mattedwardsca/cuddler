@@ -1,0 +1,139 @@
+﻿@using CuddlerDev.Modules
+@using CuddlerDev.Modules.Utils
+@using CuddlerDev.Pages.Shared.Cuddler.ToggleCookie
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.ToggleCookie
+@model CuddlerDev.Pages.Shared.Cuddler.AppMenu.AppMenuTagHelper
+@inject ICuddlerModule Module
+@{
+    var app = Model.SegmentApp;
+    var appMenu = await app.GetAppMenu(Context);
+    var page = AppMenuUtil.GetAppRootLink(appMenu);
+    var pagePath = ModulePageUtil.GetPagePath(app, page);
+}
+<div class="eux-AppMenu">
+    <div class="eux-app-bar">
+        <div>
+            <a href="/">@Module.SiteName</a>
+        </div>
+    </div>
+    <aside class="eux-AppMenu-aside p-relative">
+        @if (!Model.HideIcon)
+        {
+            <div class="eux-appmenu-button">
+                <div class="eux-appmenu-link">
+                    <div>
+                        <div class="p-relative">
+                            <a href="@pagePath">
+                                <span class="app-icon">
+                                    @if (!string.IsNullOrEmpty(app.Icon))
+                                    {
+                                        <i class="fad fa-@app.Icon.ToLower()"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa-building fad"></i>
+                                    }
+                                </span>
+                            </a>
+                        </div>
+                        <div class="p-relative">
+                            <a class="eux-appmenu-button-label"
+                               href="@pagePath">
+                                @app.Name
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="content-side">
+            <div class="bd-sidebar">
+                <ul class="eux-drag-pod nav-main">
+                    @if (appMenu.Any())
+                    {
+                        foreach (var appPage in appMenu)
+                        {
+                            if (appPage.LinkType == ELinkType.Link)
+                            {
+                                if (!appPage.Hide)
+                                {
+                                    <li class="eux-nav-main-item p-relative @((Model.ReadOnly && !appPage.Locked).IsTrue("eux-nav-main-item-editgrid"))">
+                                        @if (!appPage.Disabled)
+                                        {
+                                            var href = $"/{app.Name.Replace(" ", string.Empty)}/{appPage.Segment}";
+                                            if (!string.IsNullOrEmpty(appPage.Query))
+                                            {
+                                                href = href + "?" + appPage.Query;
+                                            }
+
+                                            // Check if main nav menu has selected page
+                                            var isSelected = ModulePageUtil.IsSelected(Context, $"/{app.Name.Replace(" ", string.Empty)}/{appPage.Segment}");
+                                            if (isSelected)
+                                            {
+                                                ViewData["AppPageName"] = appPage.Text;
+                                            }
+
+                                            <a class="eux-app-nav-main-link @isSelected.IsTrue("active")"
+                                               href="@href">
+                                                <span class="eux-app-nav-main-link-name">
+                                                    @if (appPage.Icon != null)
+                                                    {
+                                                        <i class="@Html.Raw(appPage.Icon) fa-fw"></i>
+                                                    }
+                                                    @Html.Raw(appPage.Text)
+                                                    @if (appPage.Count != null)
+                                                    {
+                                                        <span>(@appPage.Count)</span>
+                                                    }
+                                                </span>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <div class="disabled eux-app-nav-main-link">
+                                                <span class="eux-app-nav-main-link-name">
+                                                    @if (appPage.Icon != null)
+                                                    {
+                                                        <i class="@Html.Raw(appPage.Icon) fa-fw"></i>
+                                                    }
+                                                    @Html.Raw(appPage.Text)
+                                                </span>
+                                            </div>
+                                        }
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                switch (appPage.LinkType)
+                                {
+                                    case ELinkType.Divider:
+                                        <li class="eux-AppMenu-divider eux-AppMenu-divider-top eux-nav-main-item">@Html.Raw(appPage.Text)</li>
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div>
+            @if (Module.ShowAdminToggle)
+            {
+                var isAdmin = Model.Account.IsAdmin;
+                if (isAdmin)
+                {
+                    <div class="m-1 mb-2">
+                        <toggle-cookie off-label="Client mode"
+                                       on-label="Admin mode"
+                                       param-name="@CuddlerCookies.AdminModeCookieName"
+                                       toggle-width="130" />
+                    </div>
+                }
+            }
+        </div>
+    </aside>
+</div>

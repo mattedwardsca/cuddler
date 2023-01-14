@@ -1,9 +1,0 @@
-﻿@model DividerTagHelper
-@{
-    var width = Model.Width.HasValue
-        ? $"{Model.Width.Value}px"
-        : "100%";
-}
-<div class="eux-Divider">
-    <div style="background: @Model.Color; height: @(Model.Height)px; width: @(width)"></div>
-</div>

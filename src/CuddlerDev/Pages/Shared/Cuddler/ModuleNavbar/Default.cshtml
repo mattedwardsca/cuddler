@@ -1,0 +1,102 @@
+﻿@using CuddlerDev.Configuration
+@using CuddlerDev.Modules
+@using CuddlerDev.Modules.Utils
+@using CuddlerDev.Utils
+@model CuddlerDev.Pages.Shared.Cuddler.ModuleNavbar.ModuleNavbarTagHelper
+@inject IAppService EmbeddedAppService
+
+@functions {
+
+    public void GetModuleLink(IApp app, string? combinedPath)
+    {
+        var appPath = $"/{app.Name.Replace(" ", string.Empty)}";
+        var active = !string.IsNullOrEmpty(combinedPath);
+        if (!active || !string.Equals(combinedPath, appPath, StringComparison.CurrentCultureIgnoreCase))
+        {
+            if (combinedPath!.Length > 1)
+            {
+                active = combinedPath[1..].Split("/")[0].Equals(app.Name.Replace(" ", string.Empty), StringComparison.InvariantCultureIgnoreCase);
+            }
+        }
+
+        var appIcon = $"fad fa-{app.Icon?.ToLower()}";
+
+        if (!appPath.EndsWith('/'))
+        {
+            appPath += "/";
+        }
+
+        var template = $"<li class=\"nav-item {active.IsTrue("active")}\">" + $"<a class=\"nav-link\" href=\"{appPath}\"><i class=\"{appIcon} fa-fw\"></i>" + $"<span>{app.Name}</span>" + "</a></li>";
+
+        @Html.Raw(template)
+    }
+
+}
+
+@{
+    var topApps = EmbeddedAppService.ListShowInTop();
+    var middleApps = EmbeddedAppService.ListShowInMiddle();
+    var bottomApps = EmbeddedAppService.ListShowInBottom();
+
+    if (Context.Request.Cookies.GetBool(CuddlerCookies.AdminModeCookieName))
+    {
+        topApps = topApps.Where(w => w.IsForAdmins)
+                         .ToList();
+        middleApps = middleApps.Where(w => w.IsForAdmins)
+                               .ToList();
+        bottomApps = bottomApps.Where(w => w.IsForAdmins)
+                               .ToList();
+    }
+    else
+    {
+        topApps = topApps.Where(w => w.IsForClients)
+                         .ToList();
+        middleApps = middleApps.Where(w => w.IsForClients)
+                               .ToList();
+        bottomApps = bottomApps.Where(w => w.IsForClients)
+                               .ToList();
+    }
+
+    var combinedPath = Context.Request.CombinedPath();
+    var portalLogoPath = Model.WebsiteFaviconPath;
+}
+<nav class="eux-ModuleNavbar">
+    <div class="eux-logo-links">
+        <a href="@Model.RootLink">
+            @if (!string.IsNullOrEmpty(portalLogoPath))
+            {
+                <img alt=""
+                     src="@Html.Raw(portalLogoPath)"
+                     style="height: 30px;" />
+            }
+            else
+            {
+                <span></span>
+            }
+        </a>
+    </div>
+    <div class="eux-top-links">
+        <ul class="navbar-nav">
+            @foreach (var app in topApps)
+            {
+                GetModuleLink(app, combinedPath);
+            }
+        </ul>
+    </div>
+    <div class="eux-middle-links">
+        <ul class="navbar-nav">
+            @foreach (var app in middleApps)
+            {
+                GetModuleLink(app, combinedPath);
+            }
+        </ul>
+    </div>
+    <div class="eux-bottom-links">
+        <ul class="navbar-nav">
+            @foreach (var app in bottomApps)
+            {
+                GetModuleLink(app, combinedPath);
+            }
+        </ul>
+    </div>
+</nav>

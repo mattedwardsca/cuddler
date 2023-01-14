@@ -1,0 +1,20 @@
+﻿@using CuddlerDev.Web.Helpers
+@model CuddlerDev.Pages.Shared.Cuddler.ShortcutButton.ShortcutButtonTagHelper
+<div class="eux-ShortcutButton @($"eux-ShortcutButtonSize-{Model.Size}")">
+    <a class="eux-pod"
+       href="@Model.Href">
+        <span class="eux-circle">
+            @if (Model.OverrideIcon && Model.Number > 0)
+            {
+                <span class="eux-overridenumber">
+                    @Model.Number
+                </span>
+            }
+            else
+            {
+                <i class="@EFontAwesomeIconHelper.ToString(Model.Icon)"></i>
+            }
+        </span>
+        <span class="eux-text">@Model.Text</span>
+    </a>
+</div>

@@ -1,0 +1,95 @@
+﻿@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@model CuddlerDev.Pages.Shared.Cuddler.Popup.PopupTagHelper
+@{
+    // Example how to use: $("#@(Model.Id)").trigger("open", [url, "Update Translation"]);
+    var guid = string.IsNullOrEmpty(Model.Id)
+        ? WebIdUtil.GetWebId()
+        : Model.Id;
+    var target = guid + "_target";
+}
+<div class="eux-Popup">
+    <div aria-hidden="true"
+         aria-labelledby="@(guid)"
+         class="fade modal"
+         data-backdrop="static"
+         data-keyboard="false"
+         id="@(guid)"
+         role="dialog"
+         style="background: rgba(0, 0, 0, .8); display: none;"
+         tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        @(Html.Raw(Model.PopupTitle))
+                    </h4>
+                    <button aria-label="Close"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            data-dismiss="modal"
+                            type="button">
+                    </button>
+                </div>
+                <div class="modal-body"
+                     id="@(target)-pod">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function @(guid)_openGlobalPopup(title, url) {
+        $("#@guid").trigger("open", [url, title]);
+    }
+
+    $(function() {
+        $("#@(guid)").on("open",
+            function(event, url, title) {
+                document.querySelectorAll(".c8d32fc7a").forEach(el => el.remove());
+                const popupWindow = $("#@(guid)");
+                popupWindow.find('.modal-title').text(title);
+                const clonedWindow = popupWindow.clone().addClass('c8d32fc7a');
+                clonedWindow.appendTo("body");
+                $.get({ url: url, cache: false },
+                    function(html) {
+                        const found = clonedWindow.find("#@(target)-pod");
+                        found.html(html);
+                        clonedWindow.modal('show');
+                    });
+                //found.load(url);
+                
+                @if (Model.ActionComplete == EActionComplete.Reload)
+                {
+                    <text>clonedWindow.on('hidden.bs.modal', function() { location.reload(); });</text>
+                }
+                else if (Model.ActionComplete == EActionComplete.CallbackEvent)
+                {
+                    <text>clonedWindow.on('hidden.bs.modal', function() { $(document).trigger("@Model.EventName"); });</text>
+                }
+            });
+
+        $("#@(guid)").on("html",
+            function(event, html, title) {
+                document.querySelectorAll(".c8d32fc7a").forEach(el => el.remove());
+                const popupWindow = $("#@(guid)");
+                popupWindow.find('.modal-title').text(title);
+                const clonedWindow = popupWindow.clone().addClass('c8d32fc7a');
+                clonedWindow.appendTo("body");
+                const found = clonedWindow.find("#@(target)-pod");
+                found.html(html);
+                clonedWindow.modal('show');
+                @if (Model.ActionComplete == EActionComplete.Reload)
+                {
+                    <text>clonedWindow.on('hidden.bs.modal', function() { location.reload(); });</text>
+                }
+                else if (Model.ActionComplete == EActionComplete.CallbackEvent)
+                {
+                    @*
+                    $("document").on( "webId", function(){ alert(); });
+                    *@
+                    <text>clonedWindow.on('hidden.bs.modal', function() { $(document).trigger("@Model.EventName"); });</text>
+                }
+            });
+    });
+</script>
+</div>

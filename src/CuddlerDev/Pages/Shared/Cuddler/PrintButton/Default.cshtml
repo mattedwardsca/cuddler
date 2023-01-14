@@ -1,0 +1,35 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.Icon
+@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@using global::Cuddler.Pages.Shared.Cuddler.Icon
+@model CuddlerDev.Pages.Shared.Cuddler.PrintButton.PrintButtonTagHelper
+@{
+    if (string.IsNullOrEmpty(Model.PrintTargetId))
+    {
+        throw new ArgumentException("TargetId is required");
+    }
+    var buttonId = WebIdUtil.GetWebId();
+    var classValues = EButtonTypeHelper.ToString(EButtonType.Light);
+}
+<script src="/_content/BoostDC.Core/kendo/js/print.min.js"></script>
+<span class="eux-PrintButton">
+    <button class="@classValues"
+            id="@buttonId"
+            type="button">
+        <icon type="Print" /> Print
+    </button>
+</span>
+<script>
+    $("#@buttonId").click(function() {
+        $("#@(Model.PrintTargetId)").addClass("pdf-page");
+        @*kendo.pdf.defineFont({ "SimSun": "/_content/BoostDC.Core/fonts/SimSun-Regular.ttf", "SimSun|Bold": "/_content/BoostDC.Core/fonts/SimSun-Bold.ttf" });*@
+        kendo.drawing
+            .drawDOM($(".pdf-page"), { paperSize: "A3", landscape: false, scale: 0.95, margin: { left: "0.25in", top: "0.25in", right: "0.25in", bottom: "0.5in" } })
+            .then(function(group) { return kendo.drawing.exportPDF(group); })
+            .done(function(data) {
+                const base64 = data.replace('data:application/pdf;base64,', '');
+                printJS({ printable: base64, type: 'pdf', base64: true });
+                $("#@(Model.PrintTargetId)").removeClass("pdf-page");
+            });
+    });
+</script>

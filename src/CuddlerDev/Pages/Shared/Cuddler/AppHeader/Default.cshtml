@@ -1,0 +1,60 @@
+﻿@using CuddlerDev.Modules.Utils
+@using CuddlerDev.Pages.Shared.Cuddler.AccountDropdown
+@using CuddlerDev.Pages.Shared.Cuddler.BreadcrumbLink
+@using global::Cuddler.Pages.Shared.Cuddler.AccountDropdown
+@using global::Cuddler.Pages.Shared.Cuddler.BreadcrumbLink
+@model CuddlerDev.Pages.Shared.Cuddler.AppHeader.AppHeaderTagHelper
+@{
+    var app = Model.SegmentApp;
+    var appMenu = await app.GetAppMenu(Context);
+    var appPage = ModulePageUtil.GetSelectedPage(Context.Request, app, false, appMenu);
+    var pageTitle = ViewData["Title"] as string ?? appPage?.Text ?? app.Name;
+    var topbar = ViewData["Topbar"];
+}
+<div class="eux-AppHeader">
+    <div class="d-flex eux-pod justify-content-between">
+        <div class="eux-menuPageTitle">
+            <div class="eux-menuPageTitle-text">
+                <div class="eux-Breadcrumbs">
+                    @*<span class="eux-BreadcrumbLink eux-Component eux-development">
+                    <a class="eux-link"
+                       href="/@app.Segment"
+                       tabindex="-1">
+                        <i class="fa @app.Icon"></i>
+                    </a>
+                </span>*@
+                    @{
+                        var breadcrumbs = ViewData["Breadcrumbs"];
+                    }
+
+                    @if (appPage != null)
+                    {
+                        var menuPagePath = $"/{app.Name.Replace(" ", string.Empty)}/{appPage.Segment}";
+
+                        <span class="eux-BreadcrumbLink eux-Component eux-development">
+                            <a class="eux-link"
+                               href="@menuPagePath"
+                               tabindex="-1">
+                                @appPage.Text
+                            </a>
+                        </span>
+
+                        if (breadcrumbs == null && !string.Equals(Context.Request.Path, menuPagePath, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            <breadcrumb-link href="@Context.Request.Path">@pageTitle</breadcrumb-link>
+                        }
+                    }
+
+                    @if (breadcrumbs != null)
+                    {
+                        @Html.Raw(breadcrumbs)
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="d-flex d-flex-gap-1 eux-topbar">
+            @Html.Raw(topbar)
+            <account-dropdown account="@Model.Account" />
+        </div>
+    </div>
+</div>

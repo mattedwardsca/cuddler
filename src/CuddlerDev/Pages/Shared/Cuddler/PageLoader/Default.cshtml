@@ -1,0 +1,15 @@
+﻿@using CuddlerDev.Utils
+@model CuddlerDev.Pages.Shared.Cuddler.PageLoader.PageLoaderTagHelper
+@{
+    var loaderId = WebIdUtil.GetWebId();
+}
+<div class="eux-PageLoader">
+    <div id="@loaderId"
+         style="background: white; bottom: 0; left: 0; position: absolute; right: 0; top: 0; z-index: 999999999;">
+    </div>
+    <script>
+    $(function() {
+        $("#@loaderId").delay(@(Model.Delay)).fadeOut(300);
+    })
+</script>
+</div>

@@ -1,0 +1,257 @@
+﻿@using CuddlerDev.Utils
+@using Kendo.Mvc.UI
+@using Microsoft.AspNetCore.Html
+@using Microsoft.AspNetCore.Http
+@model CuddlerDev.Pages.Shared.Cuddler.Today.TodayTagHelper
+
+@functions{
+
+    public static IHtmlContent ToJavascriptDate(DateTime dateTime)
+    {
+        return new HtmlString($"new Date({dateTime.Year}, {dateTime.Month - 1}, {dateTime.Day})");
+    }
+
+    public static string FormatMonthDay(DateTime? date)
+    {
+        return $"{date:MMM d}";
+    }
+
+    public static string FormatRazorDate(in DateTime? date)
+    {
+        return $"{date:yyyy-MM-dd}";
+    }
+
+    public static DateTime GetStartOfWeek(DateTime today)
+    {
+        var diff = (7 + (today.DayOfWeek - DayOfWeek.Sunday)) % 7;
+
+        return today.AddDays(-1 * diff)
+                    .Date;
+    }
+
+    public static DateTime GetFirstDayOfMonth(DateTime now)
+    {
+        return new DateTime(now.Year, now.Month, 1);
+    }
+
+    public static DateTime GetLastDayOfMonth(DateTime today)
+    {
+        var endOfMonth = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+
+        return new DateTime(endOfMonth.Ticks - 1).AddDays(1);
+    }
+
+    public static DateTime? RequestStartDate(HttpRequest request, bool required)
+    {
+        if (!DateTime.TryParse(request.Query["start"].FirstOrDefault(), out var startdate))
+        {
+            if (required)
+            {
+                startdate = DateTime.UtcNow.ToLocalTime();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        return startdate.Date;
+    }
+
+    public static DateTime GetRequiredStartDate(HttpRequest httpRequest)
+    {
+        return (DateTime)RequestStartDate(httpRequest, true)!;
+    }
+
+    public static DateTime? RequestEndDate(HttpRequest request, bool required)
+    {
+        if (!DateTime.TryParse(request.Query["end"].FirstOrDefault(), out var enddate))
+        {
+            if (required)
+            {
+                enddate = DateTime.UtcNow.ToLocalTime();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        return new DateTime(enddate.Ticks - 1).AddDays(1);
+    }
+
+    public static DateTime? GetStartDate(HttpRequest httpRequest)
+    {
+        return RequestStartDate(httpRequest, false);
+    }
+
+    public static DateTime GetRequiredEndDate(HttpRequest httpRequest)
+    {
+        return (DateTime)RequestEndDate(httpRequest, true)!;
+    }
+
+    public static DateTime? GetEndDate(HttpRequest httpRequest)
+    {
+        return RequestEndDate(httpRequest.HttpContext.Request, false);
+    }
+
+}
+
+@{
+    var webId = WebIdUtil.GetWebId();
+    var modelBaseUrl = Context.Request.PathBase + Context.Request.Path;
+    var startdate = Model.Required
+        ? GetRequiredStartDate(Context.Request)
+        : GetStartDate(Context.Request);
+
+    var enddate = Model.Required
+        ? GetRequiredEndDate(Context.Request)
+        : GetEndDate(Context.Request);
+
+    var todayStart = DateTime.UtcNow.ToLocalTime();
+}
+
+@functions
+{
+    public void QuickDateButtons()
+    {
+        <div class="eux-quickdates">
+            <i class="fa-calendar-day fas"
+               onclick="setTodayDate()"
+               title="Today">
+            </i>
+            <i class="fa-calendar-week fas"
+               onclick="setWeekDate()"
+               title="Week">
+            </i>
+            <i class="fa-calendar-alt fas"
+               onclick="setMonthDate()"
+               title="Month">
+            </i>
+        </div>
+    }
+}
+
+<div class="eux-Today">
+    @if (!string.IsNullOrEmpty(Model.Label))
+    {
+        <label class="eux-TodayDatePicker-lbl">@Model.Label</label>
+    }
+
+
+    @if (Model.ShowDaterange)
+    {
+        <div class="eux-TodayDatePicker-filter">
+            <div class="d-inline">
+                @Html.Kendo().DateRangePicker().Name(webId).Range(r => r.Start(startdate)
+                                                                        .End(enddate)).Labels(false)
+            </div>
+            @{
+                QuickDateButtons();
+            }
+        </div>
+
+        <script>
+
+            function setTodayDate() {
+                setDates(@ToJavascriptDate(todayStart), @ToJavascriptDate(todayStart));
+            }
+
+            function setWeekDate() {
+                setDates(@ToJavascriptDate(todayStart.AddDays(-7)), @ToJavascriptDate(todayStart));
+            }
+
+            function setMonthDate() {
+                setDates(@ToJavascriptDate(todayStart.AddMonths(-1)), @ToJavascriptDate(todayStart));
+            }
+
+            function setDates(startDate, endDate) {
+                const daterangepicker = $("#@(webId)").data("kendoDateRangePicker");
+                daterangepicker.range({ start: startDate, end: endDate });
+                reloadPageDates(startDate, endDate);
+            }
+
+            function reloadPageDates(rangeStart, rangeEnd) {
+                if (rangeStart === null || rangeEnd === null || rangeStart === '' || rangeEnd === '' || rangeStart === undefined || rangeEnd === undefined) {
+                    return;
+                }
+                const startDate = kendo.toString(rangeStart, 'yyyy-MM-dd');
+                const endDate = kendo.toString(rangeEnd, 'yyyy-MM-dd');
+                var url = window.location.href.split("?")[0];
+                url = url.split("#")[0];
+                if (startDate === '' || endDate === '') {
+                } else {
+                    url = url + `?start=${startDate}&end=${endDate}`;
+                }
+                const hash = location.hash;
+                if (hash.length > 1) {
+                    url = url + hash;
+                }
+                window.location = url;
+            }
+
+            $(function() {
+                //var startDate = '@startdate?.ToString("yyyy-MM-dd")';
+                //var endDate = '@enddate?.ToString("yyyy-MM-dd")';
+                const dtp = $("#@(webId)").data("kendoDateRangePicker").bind('change',
+                    function() {
+                        const range = this.range();
+                        reloadPageDates(range.start, range.end);
+                    });
+                @if (!Model.Required)
+                {
+                    <text>
+                        const clearButton = '<span id="@(webId)_clear" class="k-link k-link-clear eux-TodayDatePicker-clear" aria-label="Clear dates"><span unselectable="on" class="far fa-broom" aria-controls="dtp_timeview"></span></span>';
+                        dtp.wrapper.append(clearButton);
+                        $("#@(webId)_clear").on("click",
+                            function() {
+                                const daterangepicker = $("#@(webId)").data("kendoDateRangePicker");
+                                daterangepicker.range({ start: '', end: '' });
+                                const url = window.location.href.split("?")[0];
+                                window.location = url;
+                            });
+                    </text>
+                }
+            });
+        </script>
+    }
+    else
+    {
+        <div class="eux-TodayDatePicker-pod">
+            <div>
+                @(Html.Kendo()
+                      .DatePicker()
+                      .Format("yyyy-MM-dd")
+                      .ParseFormats("yyyy-MM-dd")
+                      .Name(webId)
+                      .Value(startdate))
+            </div>
+            <div>
+                <a class="btn btn-secondary eux-btn-nextprev"
+                   href="@modelBaseUrl?start=@HtmlEncoder.Encode(FormatRazorDate(startdate?.AddDays(-1)))&end=@HtmlEncoder.Encode(FormatRazorDate(enddate?.AddDays(-1)))">
+                    <i class="fa-angle-left fas"></i>
+                </a>
+                <a class="btn btn-secondary"
+                   href="@modelBaseUrl?start=@HtmlEncoder.Encode(FormatRazorDate(DateTime.UtcNow.ToLocalTime()))&end=@HtmlEncoder.Encode(FormatRazorDate(DateTime.UtcNow.ToLocalTime()))">
+                    @*FormatMonthDay(DateTime.UtcNow.ToLocalTime())*@
+                    Today
+                </a>
+                <a class="btn btn-secondary eux-btn-nextprev"
+                   href="@modelBaseUrl?start=@HtmlEncoder.Encode(FormatRazorDate(startdate?.AddDays(1)))&end=@HtmlEncoder.Encode(FormatRazorDate(enddate?.AddDays(1)))">
+                    <i class="fa-angle-right fas"></i>
+                </a>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                const datepicker = $("#@(webId)").data("kendoDatePicker");
+                datepicker.bind("change",
+                    function() {
+                        const value = kendo.toString(this.value(), "yyyy-MM-dd");
+                        const current = window.location.href.split("?")[0];
+                        window.location.href = `${current}?start=${value}&end=${value}`;
+                    });
+            })
+        </script>
+    }
+</div>

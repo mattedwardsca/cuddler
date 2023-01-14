@@ -1,0 +1,19 @@
+﻿@using CuddlerDev.Web.Helpers
+@model CuddlerDev.Pages.Shared.Cuddler.Badge.BadgeTagHelper
+@{
+    var badgeClass = EBadgeTypeHelper.ToCss(Model.BadgeType);
+    var fontSize = EFontSizeHelper.ToFontSize(Model.FontSize);
+}
+<div class="eux-Badge">
+    @if (!string.IsNullOrEmpty(Model.Href))
+    {
+        <a class="@badgeClass @fontSize"
+           href="@(Model.Href)">
+            @Model.Html
+        </a>
+    }
+    else
+    {
+        <span class="@badgeClass @fontSize">@Model.Html</span>
+    }
+</div>

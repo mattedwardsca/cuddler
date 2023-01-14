@@ -1,0 +1,52 @@
+@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::CuddlerDev.Forms.FormField
+@{
+    decimal? dbl = null;
+    if (!string.IsNullOrEmpty(Model.Value))
+    {
+        if (!string.IsNullOrEmpty(Model.Value))
+        {
+            dbl = decimal.Parse(Model.Value);
+        }
+    }
+
+    //if (dbl <= 0)
+    //{
+    //    dbl = null;
+    //}
+
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary["style"] = "width:100%;";
+    dictionary.Add("id", Model.WebId);
+}
+@if (!Model.HideLabel)
+{
+    <form-label description="@Model.Description"
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+@(Html.Kendo()
+      .CurrencyTextBox()
+      .Name(Model.Name)
+      .Value(dbl)
+      .Format("c")
+      .Spinners(false)
+      .Min(Model.MinLength ?? 0)
+      .Enable(!Model.ReadOnly)
+      .HtmlAttributes(dictionary))
+<script>
+    $("#@(Model.WebId)").on("focus",
+        function() {
+            var input = $(this);
+            setTimeout(function() {
+                input.select();
+            });
+        });
+</script>

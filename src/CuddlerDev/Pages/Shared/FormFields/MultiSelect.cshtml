@@ -1,0 +1,79 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::CuddlerDev.Forms.FormField
+@{
+    //List<TextValue> list;
+    //if (Model.BindData != null && Model.BindData.GetType() == typeof(List<TextValue>))
+    //{
+    //    var selectListItems = Model.BindData;
+    //    var str = Model.Value;
+    //    var bindOptions = from s in selectListItems
+    //                      where s.Value?.ToString() != str
+    //                      select s;
+    //    var selectedOption = selectListItems.SingleOrDefault(s => s.Value?.ToString() == str);
+    //    list = bindOptions.Select(s => new TextValue(){Text = s.Text, Value = s.Value}).ToList();
+    //    if (selectedOption != null)
+    //    {
+    //        list.Insert(0, new TextValue
+    //        {
+    //            Text = selectedOption.Text, 
+    //            Value = selectedOption.Value
+    //        });
+    //    }
+    //}
+    //else
+    //{
+    //    list = new List<TextValue>();
+    //}
+
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+
+    var isTextValue = Model.BindData != null && SelectListItemUtil.IsTextValue(Model.BindData);
+}
+@if (!Model.HideLabel)
+{
+    <form-label description="@Model.Description"
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+
+@if (isTextValue)
+{
+    @(Html.Kendo()
+          .MultiSelect()
+          .Name(Model.Name)
+          .DataTextField(nameof(SelectListItem.Text))
+          .DataValueField(nameof(SelectListItem.Value))
+          .Placeholder(Model.Placeholder)
+          .Value(Model.Value?.Split(","))
+          .HtmlAttributes(dictionary)
+          .BindTo(Model.BindData))
+}
+else
+{
+    @(Html.Kendo()
+          .MultiSelect()
+          .Name(Model.Name)
+          .Placeholder(Model.Placeholder)
+          .Value(Model.Value?.Split(","))
+          .HtmlAttributes(dictionary)
+          .BindTo(Model.BindData))
+}
+
+@if (Model.ReadOnly)
+{
+    <script>
+        $(function() {
+            const multiSelect = $("#@(Model.WebId)").data("kendoMultiSelect");
+            multiSelect.readonly();
+        });
+    </script>
+}

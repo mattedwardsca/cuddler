@@ -1,0 +1,38 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@model global::CuddlerDev.Forms.FormField
+@{
+    var guid = WebIdUtil.GetWebId();
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+}
+<div class="eux-UploadEditor">
+    @if (!Model.HideLabel)
+    {
+        <form-label description="@Model.Description"
+                    for-property="@Model.WebId"required="@Model.Required"
+                    text="@Model.Label" />
+    }
+    <div>
+        <input aria-label="files"
+               id="@guid"
+               name="@Model.Name"
+               @dictionary.ToHtmlAttributes()
+               type="file" />
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#@guid").kendoUpload({
+                "multiple": false,
+                localization: {
+                    select: "Select a file"
+                }
+            });
+        });
+    </script>
+</div>

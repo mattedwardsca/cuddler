@@ -1,0 +1,83 @@
+﻿@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@model CuddlerDev.Pages.Shared.Cuddler.ActionButton.ActionButtonTagHelper
+@{
+    var cssClassBuilder = CssClassBuilder.CreateInstance();
+    if (Model.ButtonType == EButtonType.ActionMenu)
+    {
+        cssClassBuilder.AddClass("dropdown-item");
+    }
+
+    if (Model.JumboSize)
+    {
+        cssClassBuilder.AddClass("eux-jumbo-size");
+    }
+
+    var componentId = WebIdUtil.GetWebId();
+    var btnId = WebIdUtil.GetWebId();
+    var btnClass = EButtonTypeHelper.ToString(Model.ButtonType);
+}
+
+@functions
+{
+    private void SubmitActionScript()
+    {
+        <text>
+            $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "@Html.Raw(Model.SubmitApi)",
+            success: function(response) {
+            @if (Model.ActionComplete == EActionComplete.Redirect)
+            {
+                <text>
+                    window.location = "@Model.RedirectUrl";
+                </text>
+            }
+            else if (Model.ActionComplete == EActionComplete.Reload)
+            {
+                <text>
+                    location.reload();
+                </text>
+            }
+            else if (Model.ActionComplete == EActionComplete.Details)
+            {
+                <text>
+                    window.location = `@Model.RedirectUrl/${response.Data.Id}`;
+                </text>
+            }
+            }});
+        </text>
+    }
+}
+
+<div class="eux-ActionButton @cssClassBuilder">
+    <div class="eux-appmenubuttons">
+        <button class="@(btnClass)"
+                id="@btnId"
+                onclick="_post@(componentId)()"
+                tabindex="-1" @Model.ReadOnly.IsTrueHtml("disabled=\"disabled\"")>
+            @Html.Raw(Model.Html)
+        </button>
+    </div>
+    <script>
+    function _post@(componentId)() {
+        @if (Model.Confirm)
+        {
+            <text>
+                const go = confirm("@(Model.ConfirmText)");
+                if (go) {
+
+                    @{
+                        SubmitActionScript();
+                    }
+                }
+            </text>
+        }
+        else
+        {
+            SubmitActionScript();
+        }
+    }
+</script>
+</div>

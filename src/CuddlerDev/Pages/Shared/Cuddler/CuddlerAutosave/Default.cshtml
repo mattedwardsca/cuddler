@@ -1,0 +1,118 @@
+﻿@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CuddlerDev.Pages.Shared.Cuddler.CuddlerAutosave.CuddlerAutosaveTagHelper
+@{
+    if (Model.OnBlur == EBlurAction.Trigger && string.IsNullOrEmpty(Model.Script))
+    {
+        throw new InvalidOperationException($"{nameof(Model.Script)} is required when {nameof(Model.OnBlur)} is set to {nameof(EBlurAction.Trigger)}");
+    }
+    var form1Id = WebIdUtil.GetWebId();
+}
+<div class="eux-Autosave">
+    <form id="@form1Id"
+          method="POST"
+          onsubmit="return false;">
+        @Html.Raw(Model.Html)
+        <div class="field-validation"
+             id="@(form1Id)_message">
+        </div>
+    </form>
+    <script>
+    $(function() {
+        var @(form1Id)_timeout;
+        $("#@form1Id").kendoValidator({ validateOnBlur: false });
+        $("#@form1Id").change(function() {
+            clearTimeout(@(form1Id)_timeout);
+            $("#@(form1Id)_message").empty();
+            $("#@(form1Id)_message").removeClass("field-validation-success");
+            $("#@form1Id input").prop("readonly", true);
+            const unindexed_array = $(`#@form1Id`).serializeArray();
+            var indexed_array = {};
+            $.map(unindexed_array,
+                function(n, i) {
+                    indexed_array[n['name']] = n['value'];
+                });
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "@Html.Raw(Model.SaveUrl.ToString())",
+                data: indexed_array,
+                success: function (results) {                    
+                    $("#@(form1Id) .field-validation-error").empty();
+                    @if (Model.OnBlur == EBlurAction.Reload)
+                    {
+                        <text>location.reload();</text>
+                    }
+                    else if (Model.OnBlur == EBlurAction.Script)
+                    {
+                        <text>
+                            $("#@(form1Id)_message").addClass("field-validation-success");
+                            $("#@(form1Id)_message").html("<i class=\"fas fa-check\"></i>");
+                            @(form1Id)_timeout = setTimeout(function() { 
+                                $("#@(form1Id)_message").empty(); }, 2000);
+                                $("#@(form1Id)_message").removeClass("field-validation-success");
+                        @(Model.Script)(results);
+                        </text>
+                                        }
+                                        else if (Model.OnBlur == EBlurAction.Trigger)
+                                        {
+                                            <text>
+                            $("#@(form1Id)_message").addClass("field-validation-success");
+                            $("#@(form1Id)_message").html("<i class=\"fas fa-check\"></i>");
+                            @(form1Id)_timeout = setTimeout(function() { 
+                                $("#@(form1Id)_message").empty();
+                                $("#@(form1Id)_message").removeClass("field-validation-success");}, 2000);
+                            $(document).trigger("@(Model.Script)");
+                        </text>
+                                        }
+                                        else
+                                        {
+                                            <text>
+                                    $("#@(form1Id)_message").addClass("field-validation-success");
+                                    $("#@(form1Id)_message").show();
+                                    $("#@(form1Id)_message").html("<i class=\"fas fa-check\"></i>");
+                                    @(form1Id)_timeout = setTimeout(function() {
+                                    $("#@(form1Id)_message").empty();
+                                    $("#@(form1Id)_message").removeClass("field-validation-success");
+                                },
+                                2000);
+                        </text>
+                                        }
+                },
+                error: function (xhr) {
+                    if (xhr.responseText.startsWith("{")) {
+                        let json = JSON.parse(xhr.responseText);
+                        if (json.Data !== undefined && json.Data !== null && json.Data.Data !== undefined) {
+                            json = json.Data.Data;
+                            notifyWarning("Warning: API result has nested data");
+                        }
+                        $.each(json.Errors,
+                            function (key, value) {
+                                var lKey = key.toLowerCase();
+                                const msg = $(`#${lKey}_validationMessage`);
+                                if (msg.length) {
+                                    msg.html(value);
+                                    msg.removeClass("k-hidden");
+                                } else {
+                                    notifyError(value);
+                                }
+                            });
+                    } else {
+                        $("#@(form1Id)_message").addClass("field-validation-error");
+                        $("#@(form1Id)_message").html("<i class=\"fas fa-times\"></i> Unable to save");
+                        $("#@(form1Id)_message").show();
+                        @(form1Id)_timeout = setTimeout(function () {
+                            $("#@(form1Id)_message").empty();
+                            $("#@(form1Id)_message").removeClass("field-validation-success");
+                        }, 2000);
+                    }
+                },
+                complete: function() {
+                    $("#@form1Id input").prop("readonly", false);
+                }
+            });
+        });
+    });
+</script>
+</div>

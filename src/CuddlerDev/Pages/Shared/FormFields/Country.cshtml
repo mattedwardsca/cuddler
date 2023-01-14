@@ -1,0 +1,43 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@model global::CuddlerDev.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+}
+
+@if (!Model.HideLabel)
+{
+    <form-label description="@Model.Description"
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+<input autocomplete="off"
+       name="@Model.Name"
+       type="Text"
+       validationMessage="@Model.ErrorMessage" @dictionary.ToHtmlAttributes()
+       value="@Model.Value" />
+@if (Model.ReadOnly)
+{
+    <script>
+        $(document).ready(function() {
+            $("#@(Model.WebId)").kendoTextBox();
+            const textbox = $("#@(Model.WebId)").data("kendoTextBox");
+            textbox.readonly(true);
+        });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function() {
+            $("#@(Model.WebId)").kendoTextBox();
+        });
+    </script>
+}

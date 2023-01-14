@@ -1,0 +1,229 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.ElementEncode
+@using CuddlerDev.Pages.Shared.Cuddler.SubmitButton
+@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@using global::Cuddler.Pages.Shared.Cuddler.SubmitButton
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CuddlerDev.Pages.Shared.Cuddler.PopupEditor.PopupEditorTagHelper
+@{
+    var classBuilder = CssClassBuilder.CreateInstance();
+    if (string.IsNullOrEmpty(Model.ButtonText) && Model.ButtonIcon == EFontAwesomeIcon.None)
+    {
+        Model.ButtonIcon = EFontAwesomeIcon.Edit;
+    }
+
+    if (Model.ButtonType == EButtonType.Icon && !string.IsNullOrEmpty(Model.ButtonText))
+    {
+        classBuilder.AddClass("btn-pill");
+    }
+
+    if (string.IsNullOrEmpty(Model.SubmitButtonText))
+    {
+        Model.SubmitButtonText = "Save";
+    }
+
+    if (string.IsNullOrEmpty(Model.PopupTitle))
+    {
+        Model.PopupTitle = Model.ButtonText;
+    }
+
+    if (Model.Inline)
+    {
+        classBuilder.AddClass("d-inline");
+    }
+
+    var guid = string.IsNullOrEmpty(Model.Id)
+        ? WebIdUtil.GetWebId()
+        : Model.Id;
+
+    var guid3 = WebIdUtil.GetWebId();
+    var target = guid + "_target";
+    var label = guid + "_label";
+    var buttonType = EButtonTypeHelper.ToString(Model.ButtonType);
+    var formId = WebIdUtil.GetWebId();
+
+    EActionComplete action;
+
+    switch (Model.ActionComplete)
+    {
+        case EActionComplete.Reload:
+            action = EActionComplete.Reload;
+            break;
+        case EActionComplete.Redirect:
+            action = EActionComplete.Redirect;
+            break;
+        case EActionComplete.Details:
+            action = EActionComplete.Details;
+            break;
+        case EActionComplete.ShowMessage:
+            action = EActionComplete.ShowMessage;
+            break;
+        case EActionComplete.Nothing:
+            action = EActionComplete.Nothing;
+            break;
+        case EActionComplete.Replace:
+            action = EActionComplete.Replace;
+            break;
+        case EActionComplete.CallbackEvent:
+            action = EActionComplete.CallbackEvent;
+            break;
+        case EActionComplete.ClosePopup:
+            action = EActionComplete.ClosePopup;
+            break;
+        default:
+            throw new ArgumentOutOfRangeException();
+    }
+}
+<div class="eux-PopupEditor @classBuilder">
+    <div class="@buttonType @Model.ReadOnly.IsTrue("disabled") @($"eux-icon-{Model.ButtonIcon}")"
+         id="@(guid)"
+         tabindex="-1"
+         @Model.ReadOnly.IsFalseHtml("data-toggle=\"modal\"")
+         @Model.ReadOnly.IsFalseHtml($"data-target=\".{target}\"")
+         @string.IsNullOrEmpty(Model.ButtonWidth).IsFalseHtml($"style=\"width:{Model.ButtonWidth}\"")
+         @string.IsNullOrEmpty(Model.PopupEvent).IsFalseHtml($"onclick=\"return {Model.PopupEvent}();\"")
+         type="button">
+        @if (Model.ButtonType != EButtonType.Icon && !string.IsNullOrEmpty(Model.ButtonText))
+        {
+            if (Model.ButtonIcon == EFontAwesomeIcon.None)
+            {
+                @Html.Raw(Model.ButtonText)
+            }
+            else
+            {
+                <span class="eux-btn-content">
+                    <span>
+                        <i class="@EFontAwesomeIconHelper.ToString(Model.ButtonIcon)"></i>
+                    </span>
+                    <span>
+                        @Html.Raw(Model.ButtonText)
+                    </span>
+                </span>
+            }
+        }
+        else
+        {
+            var icon = $"fa-fw {EFontAwesomeIconHelper.ToString(Model.ButtonIcon)}";
+
+            <span>
+                <i class="@icon"></i>
+            </span>
+        }
+    </div>
+    <div aria-hidden="true"
+         aria-labelledby="@(label)"
+         class="fade modal"
+         id="@(guid)_popupwindow"
+         role="dialog"
+         style="background: rgba(0, 0, 0, .8); display: none;"
+         tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"
+                        id="@(label)">
+                        @Html.Raw(Model.PopupTitle)
+                    </h4>
+                    <button aria-label="Close"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            data-dismiss="modal"
+                            type="button">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="@(target)-pod"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (!Model.ReadOnly)
+    {
+        @if (!Model.SubmitButtonHide)
+        {
+            if (!string.IsNullOrEmpty(Model.SubmitEvent))
+            {
+                <script>
+                function SubmitForm_@(guid)() {
+                    $(document).trigger("@Model.SubmitEvent");
+                }
+            </script>
+            }
+            else
+            {
+                <script>
+                function SubmitForm_@(guid)() {
+                    return true;
+                }
+            </script>
+            }
+            <element-encode id="@guid3">
+                <form autocomplete="off"
+                      id="@formId"
+                      method="POST"
+                      onsubmit="return false;">
+                    @Html.AntiForgeryToken()
+                    <div id="@(target)-pod2"></div>
+                    @Html.Raw(Model.Html)
+                    <submit-button action-complete="@action"
+                                   form-id="@formId"
+                                   read-only="@Model.ReadOnly"
+                                   redirect-url="@Model.RedirectUrl"
+                                   submit-api-url="@Model.SubmitApiUrl"
+                                   submit-button-text="@Model.SubmitButtonText"
+                                   submit-button-type="@Model.SubmitButtonType"
+                                   submit-event="SubmitForm_@(guid)" />
+                </form>
+            </element-encode>
+        }
+        else
+        {
+            <element-encode id="@guid3">
+                @Html.AntiForgeryToken()
+                <div id="@(target)-pod2"></div>
+                @Html.Raw(Model.Html)
+            </element-encode>
+        }
+
+        <script>
+        $(function() {
+            $("#@(guid)").click(function(e) {
+                e.preventDefault();
+                document.querySelectorAll(".c8d32fc7a").forEach(el => el.remove());
+                const popwindow = $("#@(guid)_popupwindow");
+                const clonedwindow = popwindow.clone().addClass('c8d32fc7a');
+                clonedwindow.appendTo("body");
+                clonedwindow.find("#@(target)-pod").html($("<div/>").html($("#@guid3").html()).text());
+                clonedwindow.modal('show');
+                @if (!string.IsNullOrEmpty(Model.PopupHref))
+                {
+                    <text>
+                        $.get("@(Html.Raw(Model.PopupHref))",
+                            function(data) {
+                                clonedwindow.find("#@(target)-pod2").html(data);
+                            });
+                    </text>
+                }
+                @if (!string.IsNullOrEmpty(Model.CloseEvent))
+                {
+                    <text>clonedwindow.on('hidden.bs.modal',
+                    function() {
+                        $(document).trigger("@Model.CloseEvent");
+                    });</text>
+                }
+                @if (!string.IsNullOrEmpty(Model.PopupEvent))
+                {
+                    <text>
+                        return @(Model.PopupEvent)();
+                    </text>
+                }
+                else
+                {
+                    // ReSharper disable once JsUnreachableCode // Actually, it is reachable. Do this so clicking the button doesn't close panels.
+                    <text>return false;</text>
+                }
+            });
+        });
+    </script>
+    }
+</div>

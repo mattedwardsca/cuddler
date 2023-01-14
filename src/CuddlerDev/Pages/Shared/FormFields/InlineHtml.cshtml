@@ -1,0 +1,57 @@
+﻿@using System.Web
+@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::CuddlerDev.Forms.FormField
+@{
+    var gridId = WebIdUtil.GetWebId();
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+}
+
+@if (!Model.HideLabel || !string.IsNullOrEmpty(Model.Description))
+{
+    <div class="eux-InlineHtml-lbls">
+        @if (!Model.HideLabel)
+        {
+            <form-label description="@Model.Description"
+                        for-property="@Model.WebId"
+                        required="@Model.Required"
+                        text="@Model.Label" />
+        }
+    </div>
+}
+<div id="@(gridId)_wrapper">
+    @if (Model.ReadOnly)
+    {
+        <div id="@(gridId)_overlay"></div>
+        <style>
+            #@(gridId)_wrapper { position: relative; }
+            #@(gridId)_overlay { background-color: black; border-radius: 5px; bottom: 0; left: 0; opacity: 0.1; position: absolute; right: 0; top: 0; z-index: 9999; }
+        </style>
+
+        <div class="p-3"
+             style="min-height: 100px; overflow-y: auto;">
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Value))
+        </div>
+    }
+    else
+    {
+        @(Html.Kendo()
+              .Editor()
+              .Name(Model.Name)
+              .Value(HttpUtility.HtmlDecode(Model.Value))
+              .HtmlAttributes(dictionary)
+              .Tools(tools => tools.Clear()
+                                   .Bold()
+                                   .Italic()
+                                   .Underline()
+                                   .InsertOrderedList()
+                                   .InsertUnorderedList()))
+    }
+</div>

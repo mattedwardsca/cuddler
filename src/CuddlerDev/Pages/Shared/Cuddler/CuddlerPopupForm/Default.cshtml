@@ -1,0 +1,30 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.CData
+@using CuddlerDev.Pages.Shared.Cuddler.CuddlerFormFields
+@using CuddlerDev.Pages.Shared.Cuddler.PopupEditor
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
+@using global::Cuddler.Pages.Shared.Cuddler.PopupEditor
+@model CuddlerDev.Pages.Shared.Cuddler.CuddlerPopupForm.CuddlerPopupFormTagHelper
+@{
+
+    if (string.IsNullOrEmpty(Model.PopupTitle))
+    {
+        Model.PopupTitle = Model.ButtonText;
+    }
+}
+<div class="eux-CuddlerPopupForm">
+    <popup-editor action-complete="@Model.ActionComplete" button-icon="@Model.ButtonIcon" button-text="@Model.ButtonText" button-type="@Model.ButtonType" close-event="@Model.CloseEventName" popup-event="@Model.PopupEvent" redirect-url="@Model.DetailsUrl" submit-api-url="@Model.SubmitApiUrl" submit-button-text="@Model.SubmitButtonText" submit-button-type="@Model.SubmitButtonType" submit-event="@Model.SubmitEvent">
+        <c-data>
+            <div class="eux-popup-top-html">
+                @Html.Raw(Model.Html)
+            </div>
+            <cuddler-form-fields fields="@Model.Fields" />
+        </c-data>
+    </popup-editor>
+    <script>
+    $(document).ready(function() {
+        $("#ConfirmedBox").show();
+        $("#AfterConfirmedBox").hide();
+        $("#GoTONext").hide();
+    });
+</script>
+</div>

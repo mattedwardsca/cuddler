@@ -1,0 +1,17 @@
+﻿@using CuddlerDev.Utils
+@model CuddlerDev.Pages.Shared.Cuddler.FormTooltip.FormTooltipTagHelper
+@{
+    var webId = WebIdUtil.GetWebId();
+}
+@if (!string.IsNullOrEmpty(Model.Title))
+{
+    <div class="eux-FormTooltip">
+        <i class="fa-fw fa-question-circle fas"
+           data-html="true"
+           data-toggle="tooltip"
+           id="@webId"
+           title="@Model.Title">
+        </i>
+        <script>$(function () { $('#@webId').tooltip({ html: true }); });</script>
+    </div>
+}

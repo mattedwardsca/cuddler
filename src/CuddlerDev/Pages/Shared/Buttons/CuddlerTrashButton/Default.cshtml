@@ -1,0 +1,32 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.CData
+@using CuddlerDev.Pages.Shared.Cuddler.CuddlerInformation
+@using CuddlerDev.Pages.Shared.Cuddler.PopupEditor
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerInformation
+@using global::Cuddler.Pages.Shared.Cuddler.PopupEditor
+@model CuddlerDev.Pages.Shared.Buttons.CuddlerTrashButton.CuddlerTrashButtonTagHelper
+@{
+    var html = Model.Html.ToNullableString();
+}
+<div class="eux-CuddlerTrashButton">
+    <popup-editor action-complete="Reload" button-icon="Trash" button-text="@Model.Label" button-type="IconDanger" submit-api-url="@(Model.ArchiveUri)" submit-button-text="@Model.Label" submit-button-type="Danger">
+        <c-data>
+            @if (Model.CantBeUndone)
+            {
+                <cuddler-information class="mb-4" icon="Info" type="Danger">
+                    Action cannot be undone
+                </cuddler-information>
+            }
+            @if (!string.IsNullOrEmpty(html))
+            {
+                @Html.Raw(html)
+            }
+            else
+            {
+                <p>
+                    Would you like to remove this item?
+                </p>
+            }
+        </c-data>
+    </popup-editor>
+</div>

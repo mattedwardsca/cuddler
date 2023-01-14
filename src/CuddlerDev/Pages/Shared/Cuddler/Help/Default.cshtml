@@ -1,0 +1,11 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.PopupEditor
+@using global::Cuddler.Pages.Shared.Cuddler.PopupEditor
+@model CuddlerDev.Pages.Shared.Cuddler.Help.HelpTagHelper
+<div class="eux-Help">
+    <popup-editor button-icon="Help"
+                  button-type="Link"
+                  popup-title="Help"
+                  submit-button-hide="true">
+        @Html.Raw(Model.Html)
+    </popup-editor>
+</div>

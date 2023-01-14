@@ -1,0 +1,196 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.CuddlerFormFields
+@using CuddlerDev.Pages.Shared.Cuddler.Divider
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
+@using global::Cuddler.Pages.Shared.Cuddler.Divider
+
+@model CuddlerDev.Pages.Shared.Cuddler.DynamicForm.DynamicFormTagHelper
+@{
+    var formId = WebIdUtil.GetWebId();
+    var uri = $"{Model.PostUrl}?=handler={Model.Handler.ToString()}";
+    var btnId = WebIdUtil.GetWebId();
+    var msgId = WebIdUtil.GetWebId();
+    var buttonClass = Model.GetButtonClass();
+    var buttonText = Model.GetButtonText();
+}
+<form autocomplete="off"
+      id="@formId"
+      method="POST"
+      onsubmit="return false;">
+
+    @Html.AntiForgeryToken()
+    <cuddler-form-fields fields="@Model.Fields"
+                         is-view="@Model.IsView"
+                         read-only="@Model.ReadOnly" />
+    <div class="eux-SubmitButton">
+        @if (string.IsNullOrEmpty(formId))
+        {
+            formId = WebIdUtil.GetWebId();
+
+            <form id="@formId"
+                  onsubmit="return false;">
+            </form>
+        }
+        <divider />
+        <script>
+            $(function () {
+                $("#@formId").kendoValidator({
+                    rules: {
+                        required: function (input) {
+                            if (input.filter("[required]").length && $.trim(input.val()) === "") {
+                                return false;
+                            }
+                            return true;
+                        },
+                        datevalidation: function (input, params) {
+                            if (input.is("[data-role='datepicker']") && input.val() !== "") {
+                                input.attr("data-datevalidation-msg", "Not a valid date in YYYY-MM-DD format!");
+                                const date = kendo.parseDate(input.val(), "yyyy-MM-dd");
+                                if (date) {
+                                    return true;
+                                }
+                                return false;
+                            }
+                            return true;
+                        },
+                        regex: function (input) {
+                            if (input.is("[data-regex-msg]") && input.val() !== "") {
+                                const value = input.val();
+                                const regex = input.attr("data-regex");
+                                const re = new RegExp(regex);
+                                if (re.test(value)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    },
+                    messages: {
+                        datevalidation: function (input) {
+                            return input.attr("data-val-datevalidation");
+                        }
+                    },
+                    validateOnBlur: false
+                });
+                $("#@formId").on("submit",
+                    function () {
+                        $("#@(btnId)").click();
+                    });
+            });
+
+            function PostError_@(formId)(formid, json) {
+                $("#@(msgId)").empty();
+                if (json.Errors !== undefined && json.Errors != null) {
+                    const validator = $(`#${formid}`).getKendoValidator();
+                    if (validator) {
+                        validator.reset();
+                    }
+                    $.each(json.Errors,
+                        function (key, value) {
+                            var lKey = key.toLowerCase();
+                            const msg = $(`#${lKey}_validationMessage`);
+                            if (msg.length) {
+                                msg.html(value);
+                                msg.removeClass("k-hidden");
+                            } else {
+                                //var html = $("p").append(value).addClass("eux-error");
+                                $("#@(msgId)").append(value);
+                                $("#@(msgId)").append("<br/>");
+                                $("#@(msgId)").show();
+                            }
+                        });
+                    $("#@(btnId)").text("Try again");
+                    $("#@(btnId)").removeAttr('disabled');
+                    $("#@(btnId)").removeClass('eux-disabled');
+                }
+            }
+
+            function Post_@(formId)(btn) {
+                if ($("#@(btnId)").attr('disabled') === 'disabled') {
+                    return false;
+                }
+                $("#@(btnId)").text("Saving...");
+                $("#@(btnId)").attr('disabled', 'disabled');
+                $("#@(btnId)").addClass('eux-disabled');
+                const formid = "@formId";
+                const action = $(btn).data('action');
+                if (action !== undefined && action !== null) {
+                    $(`#${formid}`).append(`<input type="hidden" name="form-action-type" value="${action}">`);
+                }
+                const kendoValidator = $(`#${formid}`).getKendoValidator();
+                if (kendoValidator === undefined || (kendoValidator != null && kendoValidator.validate(`#${formid}`))) {
+                    const serial = $(`#${formid} :input`).serialize();
+                    $("#@(msgId)").hide();
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "@Html.Raw(uri)",
+                        data: new FormData($(`#${formid}`)[0]),
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        global: false,
+                        success: function (response) {
+                            location.reload();
+                            return true;
+                        },
+                        error: function (jqXhr) {
+                            try {
+                                const json = JSON.parse(jqXhr.responseText);
+                                                                                                PostError_@(formId)(formid, json);
+                            } catch (err) {
+                                notifyError("An error occured parsing the server response.");
+                                $("#@(btnId)").text("Try again");
+                                $("#@(btnId)").removeAttr('disabled');
+                                $("#@(btnId)").removeClass('eux-disabled');
+                            }
+                        }
+                    });
+                } else {
+                    $("#@(btnId)").text("Try again");
+                    $("#@(btnId)").removeAttr('disabled');
+                    $("#@(btnId)").removeClass('eux-disabled');
+                    $("#@(msgId)").hide();
+                    return false;
+                }
+                return false;
+            }
+
+            $(function () {
+                $("#@(formId) input, #@(formId) select, #@(formId) textarea").first().focus();
+                $("#@(formId)").keypress((e) => {
+                    if (e.which === 13) {
+                        const target = $(event.target);
+                        if (target.is("textarea")) {
+                            return true;
+                        }
+                        $("#@(btnId)").click();
+                    }
+                    return true;
+                });
+                $("#@btnId").click(Post_@(formId));
+            });
+        </script>
+        <div class="align-items-center d-flex d-flex-gap-2 pt-2">
+            <div>
+                <span class="@buttonClass pointer eux-submit-btn"
+                      id="@btnId"
+                      tabindex="-1" @Model.ReadOnly.IsTrueHtml("disabled=\"disabled\"")>
+                    @buttonText
+                </span>
+            </div>
+            <div>
+                <span class="btn btn-light ms-2 w-100px"
+                      type="button">
+                    Cancel
+                </span>
+            </div>
+        </div>
+        <span class="d-block eux-error eux-message mt-2"
+              id="@msgId">
+        </span>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.Icon
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.Icon
+@model CuddlerDev.Pages.Shared.Cuddler.CuddlerReplace.CuddlerReplaceTagHelper
+@{
+    var linkId = WebIdUtil.GetWebId();
+}
+<div class="dropdown-item">
+    <a class="eux-link"
+       href="@(Model.GetUrlHandler())"
+       id="@linkId">
+        <icon type="@Model.Icon" />
+        @(Model.Label)
+    </a>
+</div>
+<script>
+$(function(){
+    $("#@(linkId)").click(function(e){
+        e.preventDefault();
+        debugger;
+        var href = $(this).attr("href");
+        $("#@(Model.BlockId)").load(href);
+    });
+});
+</script>

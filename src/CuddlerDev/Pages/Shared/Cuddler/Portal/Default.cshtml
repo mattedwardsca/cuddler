@@ -1,0 +1,31 @@
+﻿@using CuddlerDev.Modules
+@using CuddlerDev.Pages.Shared.Cuddler.AppHeader
+@using CuddlerDev.Pages.Shared.Cuddler.AppMenu
+@using CuddlerDev.Pages.Shared.Cuddler.AppNotifications
+@using CuddlerDev.Pages.Shared.Cuddler.ModuleNavbar
+@using CuddlerDev.Pages.Shared.Cuddler.PageLoader
+@using global::Cuddler.Pages.Shared.Cuddler.AppHeader
+@using global::Cuddler.Pages.Shared.Cuddler.AppMenu
+@using global::Cuddler.Pages.Shared.Cuddler.AppNotifications
+@using global::Cuddler.Pages.Shared.Cuddler.ModuleNavbar
+@using global::Cuddler.Pages.Shared.Cuddler.PageLoader
+@model CuddlerDev.Pages.Shared.Cuddler.Portal.PortalTagHelper
+@inject ICuddlerModule Module
+<div class="eux-Portal">
+    <page-loader />
+    <div class="eux-portal">
+        <module-navbar root-link="@Module.RootLink" website-favicon-path="@Model.WebsiteFaviconPath" />
+        <div class="eux-wrapper">
+            <app-menu account="@Model.Account" segment-app="@Model.SegmentApp" />
+            <div class="eux-ContentPanel">
+                <div class="eux-ContentPanel-body">
+                    <app-header account="@Model.Account" segment-app="@Model.SegmentApp" />
+                    <main role="main">
+                        @Html.Raw(Model.Html)
+                    </main>
+                </div>
+            </div>
+        </div>
+        <app-notifications />
+    </div>
+</div>

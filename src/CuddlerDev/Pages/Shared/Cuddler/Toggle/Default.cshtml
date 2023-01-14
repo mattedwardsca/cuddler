@@ -1,0 +1,79 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.Toggle
+@using CuddlerDev.Utils
+@using Microsoft.Extensions.Localization
+@model CuddlerDev.Pages.Shared.Cuddler.Toggle.ToggleTagHelper
+@inject IStringLocalizer<ToggleTagHelper> _l10N
+@{
+    var randomGuid = WebIdUtil.GetWebId();
+    var display = Model.BlockLabel
+        ? "d-block"
+        : "d-inline";
+}
+<div class="eux-Toggle">
+    <div class="eux-ToggleWidget"
+         role="alert">
+
+        @if (!Model.HideLabel && !string.IsNullOrEmpty(Model.Label))
+        {
+            <label class="@display">
+                @Model.Label
+            </label>
+        }
+        <input id="@(randomGuid)"
+               type="checkbox" @Model.Checked.IsTrue("checked=\"checked\"") />
+        <script>
+        $(function() {
+            $("#@(randomGuid)").kendoSwitch({
+                @if (Model.ReadOnly)
+                {
+                    <text>readonly: true,</text>
+                }
+                @if (Model.ToggleWidth > 0)
+                {
+                    <text>width: @(Model.ToggleWidth),</text>
+                }
+                messages: {
+                    checked: "@_l10N[Model.OnLabel]",
+                    unchecked: "@_l10N[Model.OffLabel]"
+                },
+                change: function(e) {
+                    const isOn = e.checked;
+                    if (isOn) {
+                        $.ajax({
+                            type: "POST",
+                            url: "@Html.Raw(Model.TurnOnApi)",
+                            success: function() {
+                                @if (!string.IsNullOrEmpty(Model.Callback))
+                                {
+                                    <text>@($"{Model.Callback}()");</text>
+                                }
+                                @if (Model.RefreshAfter)
+                                {
+                                    <text> location.reload();</text>
+                                }
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: "@Html.Raw(Model.TurnOffApi)",
+                            success: function() {
+                                @if (!string.IsNullOrEmpty(Model.Callback))
+                                {
+                                    <text>@($"{Model.Callback}()");</text>
+                                }
+
+                                @if (Model.RefreshAfter)
+                                {
+                                    <text>location.reload();</text>
+                                }
+
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+    </div>
+</div>

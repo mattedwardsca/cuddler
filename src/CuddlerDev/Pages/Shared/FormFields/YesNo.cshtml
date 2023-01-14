@@ -1,0 +1,73 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.FormTooltip
+@using CuddlerDev.Utils
+@using global::Cuddler.Pages.Shared.Cuddler.FormTooltip
+@model global::CuddlerDev.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+
+    var parentStyles = Model.Matrix
+        ? "display: grid; grid-template-columns: 1fr 50px 50px; grid-gap: 10px;"
+        : string.Empty;
+    dictionary.AppendStyles(parentStyles);
+    bool? chcked = null;
+    if (string.Equals("True", Model.Value, StringComparison.InvariantCultureIgnoreCase))
+    {
+        chcked = true;
+    }
+    else if (string.Equals("False", Model.Value, StringComparison.InvariantCultureIgnoreCase))
+    {
+        chcked = false;
+    }
+    var trueName = $"{Model.Name.Replace(".", "_")}_true";
+    var falseName = $"{Model.Name.Replace(".", "_")}_false";
+    var template = Model.Value != null && Model.Value.StartsWith("#")
+        ? $"data-template=\"{Model.Value}\""
+        : string.Empty;
+}
+<div class="eux-YesNo" @dictionary.ToHtmlAttributes()>
+    @if (!Model.HideLabel || !string.IsNullOrEmpty(Model.Description))
+    {
+        <div class="mb-2">
+            @if (!Model.HideLabel)
+            {
+                <label>@Html.Raw(Model.Label)</label>
+                <form-tooltip title="@Model.Description" />
+            }
+        </div>
+    }
+    <div class="d-flex">
+        <div>
+            <label style="margin-right: 10px; text-align: center;">
+                <input data-role="checkbox"
+                       id="@trueName"
+                       name="@Model.Name"
+                       @Html.Raw(template)
+                       type="radio"
+                       value="True"
+                       @Model.ReadOnly.IsTrueHtml("disabled")
+                       @((chcked != null && chcked == true).IsTrueHtml("checked=\"checked\"")) /> <span class="eux-cblbl">Yes</span>
+            </label>
+        </div>
+        <div>
+            <label style="text-align: center;">
+                <input data-role="checkbox"
+                       id="@falseName"
+                       name="@Model.Name"
+                       @Html.Raw(template)
+                       type="radio"
+                       value="False"
+                       @Model.ReadOnly.IsTrueHtml("disabled")
+                       @((chcked != null && chcked == false).IsTrueHtml("checked=\"checked\"")) /> <span class="eux-cblbl">No</span>
+            </label>
+        </div>
+    </div>
+</div>

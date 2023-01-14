@@ -1,0 +1,57 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.ArchiveButton
+@using CuddlerDev.Pages.Shared.Cuddler.CuddlerPopup
+@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerPopup
+@model CuddlerDev.Pages.Shared.Cuddler.ArchiveButton.ArchiveButtonTagHelper
+@{
+    var cssClassBuilder = CssClassBuilder.CreateInstance();
+
+    if (Model.ArchiveUrl == null && Model.RestoreUrl == null)
+    {
+        throw new InvalidOperationException($"At least one of either {nameof(ArchiveButtonTagHelper)}.{nameof(Model.ArchiveUrl)} or {nameof(ArchiveButtonTagHelper)}.{nameof(Model.RestoreUrl)} is required. Error: c3995fd4-cb79-4600-a0ad-e04de838b1c2");
+    }
+
+    if (Model.ButtonType == EArchiveButtonType.ActionMenu)
+    {
+        cssClassBuilder.AddClass("dropdown-item");
+    }
+
+    var model = Model.Data;
+    var isArchiveAction = model.DateArchived == null;
+    var buttonText = isArchiveAction
+        ? "Delete"
+        : "Restore";
+
+    var isButton = Model.ButtonType == EArchiveButtonType.Button;
+    var buttonType = isButton
+        ? EButtonType.Warning
+        : EButtonType.Link;
+
+    var buttonIcon = isArchiveAction
+        ? EFontAwesomeIcon.Archive
+        : EFontAwesomeIcon.ArchiveRestore;
+
+    var description = isArchiveAction
+        ? "Please confirm you want to delete this item."
+        : "Please confirm you want to restore this item.";
+    var apiUrl = isArchiveAction
+        ? Model.ArchiveUrl
+        : Model.RestoreUrl;
+
+    var submitButtonText = isArchiveAction
+        ? "Delete"
+        : "Restore";
+}
+<div class="eux-ArchiveButton @cssClassBuilder">
+    <cuddler-popup action-complete="@Model.ActionComplete"
+                   button-icon="@buttonIcon"
+                   button-text="@buttonText"
+                   button-type="@buttonType"
+                   redirect-url="@Model.RedirectUrl"
+                   submit-api-url="@apiUrl"
+                   submit-button-text="@submitButtonText"
+                   submit-button-type="Warning">
+        @description
+    </cuddler-popup>
+</div>

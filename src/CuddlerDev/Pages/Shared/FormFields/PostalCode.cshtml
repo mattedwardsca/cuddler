@@ -1,0 +1,48 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::CuddlerDev.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+    dictionary.Add("style", "width:100%; text-transform:uppercase;");
+}
+
+@if (!Model.HideLabel)
+{
+    <form-label description="@Model.Description"
+                for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+
+@(Html.Kendo()
+      .MaskedTextBox()
+      .Name(Model.Name)
+      .Value(Model.Value)
+      .Mask("L0L 0L0")
+      .HtmlAttributes(dictionary))
+
+@if (Model.ReadOnly)
+{
+    <script>
+        $(document).ready(function() {
+            //$("#@(Model.WebId)").kendoMaskedTextBox();
+            const textbox = $("#@(Model.WebId)").data("kendoMaskedTextBox");
+            textbox.readonly(true);
+        });
+    </script>
+}
+
+@*else
+{
+    <script>
+        $(document).ready(function() {
+            $("#@(Model.WebId)").kendoMaskedTextBox();
+        });
+    </script>
+}*@

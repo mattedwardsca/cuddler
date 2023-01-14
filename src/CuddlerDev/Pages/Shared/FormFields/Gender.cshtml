@@ -1,0 +1,43 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.FormLabel
+@using global::Cuddler.Pages.Shared.Cuddler.FormLabel
+@using Kendo.Mvc.UI
+@model global::CuddlerDev.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    if (Model.Tabindex != null)
+    {
+        dictionary.Add("tabindex", Model.Tabindex);
+    }
+    dictionary.Add("id", Model.WebId);
+
+    var provinces = new List<SelectListItem>
+    {
+        new("Male", "Male"),
+        new("Female", "Female"),
+    };
+}
+@if (!Model.HideLabel)
+{
+    <form-label for-property="@Model.WebId"
+                required="@Model.Required"
+                text="@Model.Label" />
+}
+
+@(Html.Kendo()
+      .DropDownList()
+      .Name(Model.Name)
+      .Value(Model.Value)
+      .DataValueField(nameof(SelectListItem.Value))
+      .DataTextField(nameof(SelectListItem.Text))
+      .BindTo(provinces)
+      .HtmlAttributes(dictionary))
+
+@if (Model.ReadOnly)
+{
+    <script>
+        $(function() {
+            const dropdownlist = $("#@(Model.WebId)").data("kendoDropDownList");
+            dropdownlist.readonly();
+        });
+    </script>
+}

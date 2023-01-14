@@ -1,0 +1,17 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.CuddlerFormFields
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFields
+@model CuddlerDev.Pages.Shared.Cuddler.CuddlerUpdate.CuddlerUpdateTagHelper
+@{
+    var formFields = Model.FormFields;
+}
+<div class="eux-CuddlerUpdate">
+    <div class="eux-popup-top-html">
+        @Html.Raw(Model.Html)
+    </div>
+    <div>
+        <cuddler-form-fields auto-save="@Model.AutoSave"
+                             fields="@(formFields)"
+                             read-only="@Model.ReadOnly"
+                             save-url="@Model.FormAction" />
+    </div>
+</div>

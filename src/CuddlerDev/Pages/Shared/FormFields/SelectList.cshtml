@@ -1,0 +1,23 @@
+﻿@using Kendo.Mvc.UI
+@model global::CuddlerDev.Forms.FormField
+@{
+    var dictionary = Model.HtmlAttributes as Dictionary<string, object?> ?? new Dictionary<string, object?>();
+    dictionary.Add("id", Model.WebId);
+}
+
+@(Html.Kendo()
+      .DropDownList()
+      .Name(Model.Name)
+      .Value(Model.Value)
+      .BindTo(Model.BindData)
+      .OptionLabel(Model.Placeholder)
+      .HtmlAttributes(dictionary))
+@if (Model.ReadOnly)
+{
+    <script>
+        $(function() {
+            const dropdownlist = $("#@(Model.Name)").data("kendoDropDownList");
+            dropdownlist.readonly();
+        });
+    </script>
+}

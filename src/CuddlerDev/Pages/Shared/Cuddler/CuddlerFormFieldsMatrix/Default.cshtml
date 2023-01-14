@@ -1,0 +1,61 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.CuddlerAutosave
+@using CuddlerDev.Pages.Shared.Cuddler.CuddlerFormFieldsRow
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerAutosave
+@using global::Cuddler.Pages.Shared.Cuddler.CuddlerFormFieldsRow
+
+@model CuddlerDev.Pages.Shared.Cuddler.CuddlerFormFieldsMatrix.CuddlerFormFieldsMatrixTagHelper
+@{
+    var children = Model.Fields.ToList();
+    if (!children.Any())
+    {
+        return;
+    }
+
+    var rows = children.OrderBy(o => o.Row)
+                       .Last()
+                       .Row;
+
+    for (var i = 0; i <= rows; i++)
+    {
+        var i1 = i;
+        var cols = children.Where(w => w.Row == i1)
+                           .ToList();
+        <table class="table table-bordered">
+            @if (cols.Any())
+            {
+                var maxCols = cols.OrderBy(o => o.Col)
+                                  .Last()
+                                  .Col;
+                for (var j = 0; j <= maxCols; j++)
+                {
+                    var colInputs = children.Where(w => w.Row == i && w.Col == j)
+                                            .OrderBy(o => o.Col)
+                                            .ToList();
+                    @foreach (var property in colInputs)
+                    {
+                        <tr>
+                            <td>
+                                @property.Label
+                            </td>
+                            <td>
+                                @if (Model.AutoSave && !Model.ReadOnly)
+                                {
+                                    <cuddler-autosave read-only="@Model.ReadOnly"
+                                              save-url="@(Model.SaveUrl!)">
+                                        <cuddler-form-fields-row form-field="@property"
+                                                                 read-only="@Model.ReadOnly" />
+                                    </cuddler-autosave>
+                                }
+                                else
+                                {
+                                    <cuddler-form-fields-row form-field="@property"
+                                                             read-only="@Model.ReadOnly" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+    }
+}

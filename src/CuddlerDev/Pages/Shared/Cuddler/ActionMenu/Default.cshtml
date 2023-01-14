@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Html
+@model CuddlerDev.Pages.Shared.Cuddler.ActionMenu.ActionMenuTagHelper
+@{
+    var queue = new Queue<IHtmlContent>(Model.Menu.MenuLinks);
+}
+<div class="eux-ActionMenu">
+    @if (queue.Any())
+    {
+        <div class="dropdown">
+            <button aria-expanded="false"
+                    class="btn btn-light dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    type="button">
+                @Model.ButtonText
+            </button>
+            <div class="kagVYw"
+                 data-popover-arrow="true"
+                 width="20">
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end">
+                @while (queue.Any())
+                {
+                    var item = queue.Dequeue();
+                    <li>
+                        @(item)
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

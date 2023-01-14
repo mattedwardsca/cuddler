@@ -1,0 +1,68 @@
+﻿@using CuddlerDev.Modules.Utils
+@using CuddlerDev.Pages.Shared.Cuddler.Translate
+@using CuddlerDev.Utils
+@using CuddlerDev.Web.Links
+@model CuddlerDev.Pages.Shared.Cuddler.ToggleCookie.ToggleCookieTagHelper
+@{
+    var randomGuid = WebIdUtil.GetWebId();
+    var display = Model.BlockLabel
+        ? "d-block"
+        : "d-inline";
+    var isChecked = Context.Request.Cookies.GetBool(Model.ParamName);
+    if (Model.Flip)
+    {
+        isChecked = !isChecked;
+    }
+}
+@(JQueryLinks.JsCookieScript())
+<div class="eux-ToggleWidget"
+     role="alert">
+    @if (!string.IsNullOrEmpty(Model.Label))
+    {
+        <label class="@display">
+            <translate>@Model.Label</translate>
+        </label>
+    }
+    <input id="@(randomGuid)"
+           type="checkbox"
+           @(isChecked.IsTrue("checked=\"checked\"")) />
+    <script>
+        $(function() {
+            $("#@(randomGuid)").kendoSwitch({
+                @if (Model.ReadOnly)
+                {
+                    <text>readonly: true,</text>
+                }
+                @if (Model.ToggleWidth > 0)
+                {
+                    <text>width: @(Model.ToggleWidth),</text>
+                }
+                messages: {
+                    checked: "@(Model.OnLabel)",
+                    unchecked: "@(Model.OffLabel)"
+                },
+                change: function(e) {
+                    const isOn = e.checked;
+                    @if (Model.Flip)
+                    {
+                        <text>if (isOn) {
+                        Cookies.set('@(Model.ParamName)', 'false');
+                    } else {
+                        Cookies.set('@(Model.ParamName)', 'true');
+                    }</text>
+                    }
+                    else
+                    {
+                        <text>if (isOn) {
+                        Cookies.set('@(Model.ParamName)', 'true');
+                    } else {
+                        Cookies.set('@(Model.ParamName)', 'false');
+                    }</text>
+                    }
+                    
+                    window.location.href = '/';
+                }
+            });
+        });
+    </script>
+</div>

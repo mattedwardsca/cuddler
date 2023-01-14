@@ -1,0 +1,306 @@
+﻿@using CuddlerDev.Pages.Shared.Cuddler.Divider
+@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@using global::Cuddler.Pages.Shared.Cuddler.Divider
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CuddlerDev.Pages.Shared.Cuddler.SubmitButton.SubmitButtonTagHelper
+@{
+    var btnId = WebIdUtil.GetWebId();
+    var msgId = WebIdUtil.GetWebId();
+    var buttonClass = EButtonTypeHelper.ToString(Model.SubmitButtonType);
+    var style = string.IsNullOrEmpty(Model.Width)
+        ? string.Empty
+        : $"style=\"width:{Model.Width}\"";
+}
+<div class="eux-SubmitButton">
+    @if (string.IsNullOrEmpty(Model.FormId))
+    {
+        Model.FormId = WebIdUtil.GetWebId();
+
+        <form id="@Model.FormId"
+              onsubmit="return false;">
+        </form>
+    }
+
+    @if (Model.ShowDivider)
+    {
+        <divider />
+    }
+    <script>
+    $(function() {
+        $("#@Model.FormId").kendoValidator({
+            rules: {
+                required: function(input) {
+                    if (input.filter("[required]").length && $.trim(input.val()) === "") {
+                        return false;
+                    }
+                    return true;
+                },
+                datevalidation: function(input, params) {
+                    if (input.is("[data-role='datepicker']") && input.val() !== "") {
+                        input.attr("data-datevalidation-msg", "Not a valid date in YYYY-MM-DD format!");
+                        const date = kendo.parseDate(input.val(), "yyyy-MM-dd");
+                        if (date) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return true;
+                },
+                regex: function(input) {
+                    if (input.is("[data-regex-msg]") && input.val() !== "") {
+                        const value = input.val();
+                        const regex = input.attr("data-regex");
+                        const re = new RegExp(regex);
+                        if (re.test(value)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            },
+            messages: {
+                datevalidation: function(input) {
+                    return input.attr("data-val-datevalidation");
+                }
+            },
+            validateOnBlur: false
+        });
+        $("#@Model.FormId").on("submit",
+            function() {
+                $("#@(btnId)").click();
+            });
+    });
+
+    function PostError_@(Model.FormId)(formid, json) {
+        $("#@(msgId)").empty();
+        if (json.Errors !== undefined && json.Errors != null) {
+            const validator = $(`#${formid}`).getKendoValidator();
+            if (validator) {
+                validator.reset();
+            }
+
+            $.each(json.Errors,
+                function (key, value) {
+                    var lKey = key.toLowerCase();
+                    const msg = $(`#${lKey}_validationMessage`);
+                    if (msg.length) {
+                        msg.html(value);
+                        msg.removeClass("k-hidden");
+                    } else {
+                        //var html = $("p").append(value).addClass("eux-error");
+                        $("#@(msgId)").append(value);
+                        $("#@(msgId)").append("<br/>");
+                        $("#@(msgId)").show();
+                    }
+                });
+
+            $("#@(btnId)").text("Try again");
+            $("#@(btnId)").removeAttr('disabled');
+            $("#@(btnId)").removeClass('eux-disabled');
+        }
+    }
+
+    function Post_@(Model.FormId)(btn) {
+        if ($("#@(btnId)").attr('disabled') === 'disabled') {
+            return false;
+        }
+        @if (!string.IsNullOrEmpty(Model.SubmitEvent))
+        {
+            <text>
+                if (!@(Model.SubmitEvent)()) {
+                    return false;
+                }
+            </text>
+        }
+        $("#@(btnId)").text("Saving...");
+        $("#@(btnId)").attr('disabled', 'disabled');
+        $("#@(btnId)").addClass('eux-disabled');
+        const formid = "@Model.FormId";
+        const action = $(btn).data('action');
+        if (action !== undefined && action !== null) {
+            $(`#${formid}`).append(`<input type="hidden" name="form-action-type" value="${action}">`);
+        }
+        const kendoValidator = $(`#${formid}`).getKendoValidator();
+        if (kendoValidator === undefined || (kendoValidator != null && kendoValidator.validate(`#${formid}`))) {
+            const serial = $(`#${formid} :input`).serialize();
+            @if (Model.ActionComplete == EActionComplete.Replace)
+            {
+                <text>
+                    $("#@(msgId)").hide();
+                    $.ajax({
+                        type: "POST",
+                        dataType: "html",
+                        url: "@Html.Raw(Model.SubmitApiUrl)",
+                        data: serial,
+                        success: function(response) {
+                            $(`#${formid}`).html(response);
+                            $("#@(btnId)").text("@(Model.SubmitButtonText)");
+                            $("#@(btnId)").removeAttr('disabled');
+                            $("#@(btnId)").removeClass('eux-disabled');
+                            return true;
+                        }
+                    });
+                </text>
+            }
+            else
+            {
+                <text>
+                    $("#@(msgId)").hide();
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "@Html.Raw(Model.SubmitApiUrl)",
+                        data: new FormData($(`#${formid}`)[0]),
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        global: false,
+                        success: function(response) {
+                            @if (!string.IsNullOrEmpty(Model.CallbackFunction))
+                            {
+                                if (!string.IsNullOrEmpty(Model.CallbackFunction))
+                                {
+                                    <text>
+                                        @($"{Model.CallbackFunction}(response);");
+                                    </text>
+                                }
+                                <text>
+                                    $("#@Model.FormId").closest(".modal").click();
+                                </text>
+                            }
+                            @if (Model.ActionComplete == EActionComplete.ClosePopup)
+                            {
+                                <text>
+                                    $("#@Model.FormId").closest(".modal").click();
+                                </text>
+                            }
+                            @if (Model.ActionComplete == EActionComplete.Redirect)
+                            {
+                                <text>
+                                    window.location = "@Model.RedirectUrl";
+                                </text>
+                            }
+                            else if (Model.ActionComplete == EActionComplete.Reload)
+                            {
+                                <text>
+                                    location.reload();
+                                </text>
+                            }
+                            else if (Model.ActionComplete == EActionComplete.Details)
+                            {
+                                var url = Model.RedirectUrl ?? string.Empty;
+                                if (!url.EndsWith('/'))
+                                {
+                                    url += "/";
+                                }
+                                <text>
+                                    if (response.Data && response.Data.Id) {
+                                        window.location = `@url${response.Data.Id}`;
+                                    } else {
+                                        notifyError("Server responded success, but payload was not wrapped in Data container.");
+                                    }
+                                </text>
+                            }
+                            else if (Model.ActionComplete == EActionComplete.ShowMessage)
+                            {
+                                <text>
+                                    $("#@(btnId)").text("@(Model.SubmitButtonText)");
+                                    $("#@(btnId)").removeAttr('disabled');
+                                    $("#@(btnId)").removeClass('eux-disabled');
+                                    if (response.Message != null) {
+                                        $("#@(msgId)").html(response.Message);
+                                        $("#@(msgId)").show();
+                                        $("#@(msgId)").removeClass("error");
+                                        $("#@(msgId)").addClass("success");
+                                    }
+                                </text>
+                            }
+                            return true;
+                        },
+                        error: function(jqXhr) {
+                            try {
+                                const json = JSON.parse(jqXhr.responseText);
+                                PostError_@(Model.FormId)(formid, json);
+                            } catch (err) {
+                                notifyError("An error occured parsing the server response.");
+                                $("#@(btnId)").text("Try again");
+                                $("#@(btnId)").removeAttr('disabled');
+                                $("#@(btnId)").removeClass('eux-disabled');
+                            }
+                        }
+                    });
+                  @*.fail(function(jqXhr) {
+                        notifyError("The server reported an error.");
+                        $("#@(btnId)").text("Try again");
+                        $("#@(btnId)").removeAttr('disabled');
+                        $("#@(btnId)").removeClass('eux-disabled');
+                        return false;
+                    });*@                
+                </text>
+            }
+        } else {
+            $("#@(btnId)").text("Try again");
+            $("#@(btnId)").removeAttr('disabled');
+            $("#@(btnId)").removeClass('eux-disabled');
+            $("#@(msgId)").hide();
+            return false;
+        }
+        return false;
+    }
+</script>
+    <script>
+    $(function() {
+        $("#@(Model.FormId) input, #@(Model.FormId) select, #@(Model.FormId) textarea").first().focus();
+        $("#@(Model.FormId)").keypress((e) => {
+            if (e.which === 13) {
+                const target = $(event.target);
+                if (target.is("textarea")) {
+                    return true;
+                }
+                $("#@(btnId)").click();
+            }
+            return true;
+        });
+        $("#@btnId").click(Post_@(Model.FormId));
+    });
+</script>
+    <div class="align-items-center d-flex d-flex-gap-2 pt-2">
+        <div>
+            <span class="@buttonClass pointer eux-submit-btn"
+                  @Html.Raw(style)
+                  id="@btnId"
+                  tabindex="-1" @Model.ReadOnly.IsTrueHtml("disabled=\"disabled\"")>
+                @Model.SubmitButtonText
+            </span>
+        </div>
+        <div>
+            @if (Model.ShowCancel)
+            {
+                if (string.IsNullOrEmpty(Model.CancelCallbackFunction))
+                {
+                    <span class="btn btn-light ms-2 w-100px"
+                          data-bs-dismiss="modal"
+                          data-dismiss="modal"
+                          type="button">
+                        Cancel
+                    </span>
+                }
+                else
+                {
+                    <span class="btn btn-light ms-2 w-100px"
+                          onclick="@($"{Model.CancelCallbackFunction}();")"
+                          type="button">
+                        Cancel
+                    </span>
+                }
+            }
+        </div>
+    </div>
+    <span class="d-block eux-error eux-message mt-2"
+          id="@msgId">
+    </span>
+</div>

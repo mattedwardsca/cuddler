@@ -1,0 +1,40 @@
+﻿@using CuddlerDev.Utils
+@using CuddlerDev.Web.Helpers
+@model CuddlerDev.Pages.Shared.Cuddler.ExportCsvButton.ExportCsvButtonTagHelper
+@{
+}
+
+@functions
+{
+    public void Button()
+    {
+        var buttonId = WebIdUtil.GetWebId();
+        var classValues = EButtonTypeHelper.ToString(EButtonType.Light);
+        var uri = Model.ExportUri.ToString();
+
+        <span class="eux-PrintButton">
+            <a class="@classValues"
+               href="@Html.Raw(uri)"
+               id="@buttonId"
+               type="button">
+                <span class="eux-Icon">
+                    <i class="fa-2x fa-file-csv fa-regular"></i>
+                </span>
+            </a>
+        </span>
+    }
+}
+
+@if (Model.IsTemplate)
+{
+    <script id="@Model.ClientTemplateId"
+            type="text/x-kendo-template">
+        @{
+            Button();
+        }
+    </script>
+}
+else
+{
+    Button();
+}
