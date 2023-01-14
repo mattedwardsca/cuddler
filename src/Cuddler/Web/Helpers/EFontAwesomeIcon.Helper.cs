@@ -144,6 +144,7 @@ public static class EFontAwesomeIconHelper
             EFontAwesomeIcon.Square => "fa-regular fa-square",
             EFontAwesomeIcon.WashingMachine => "fa-regular fa-washing-machine",
             EFontAwesomeIcon.Truck => "fa-regular fa-truck",
+            EFontAwesomeIcon.Csv => "fa-regular fa-file-csv",
 
             var _ => throw new ArgumentOutOfRangeException(nameof(icon), icon, $"Icon '{icon}' is not supported. (Error: fa4daeaf-8438-40f0-a522-befbac78902c)")
         };

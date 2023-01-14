@@ -1,4 +1,4 @@
-﻿.eux-Toolbar { align-items: center; background: var(--ColorFive); border-radius: 10px; display: flex; padding: 0; max-height: 85px; align-self: center; overflow: hidden; }
+﻿.eux-Toolbar { align-items: center; background: var(--ColorFive); border-radius: 10px; display: flex; padding: 7px 0px 7px 15px; max-height: 85px; align-self: center; overflow: hidden; }
 .eux-Toolbar > div { height: 100%; }
 .eux-Toolbar > div > .btn { align-content: center; display: grid; height: 100%;}
 .eux-Toolbar > div > .eux-link { align-content: center; display: grid; height: 100%;  padding: 0 10px;}

@@ -108,5 +108,6 @@ public enum EFontAwesomeIcon
     Flag,
     Square,
     WashingMachine,
-    Truck
+    Truck,
+    Csv
 }

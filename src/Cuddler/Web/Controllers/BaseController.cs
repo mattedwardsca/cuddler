@@ -1,4 +1,7 @@
-﻿using Cuddler.Data.Attributes;
+﻿using System.Globalization;
+using System.Text;
+using CsvHelper;
+using Cuddler.Data.Attributes;
 using Cuddler.Data.Context;
 using Cuddler.Data.Entities;
 using Cuddler.Forms.Utils;
@@ -39,8 +42,6 @@ public abstract class BaseController : Controller
                    .Data.Cast<TSource>()
                    .Select(selector);
     }
-
-    protected abstract Task<bool> HeartbeatTests();
 
     protected async Task<IActionResult> ArchiveEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
     {
@@ -115,6 +116,21 @@ public abstract class BaseController : Controller
         return Json(null);
     }
 
+    protected async Task<IActionResult> ExportCsv<T>(string fileDownloadName, IEnumerable<T> records)
+    {
+        var memoryStream = new MemoryStream();
+        var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8);
+        var csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture);
+
+        csvWriter.WriteHeader<T>();
+        csvWriter.WriteRecords(records);
+        csvWriter.Flush();
+
+        await Task.CompletedTask;
+
+        return File(memoryStream.ToArray(), "text/csv", $"{fileDownloadName}.csv");
+    }
+
     protected IQueryable<TEntity> FilterByDate<TEntity>(IQueryable<TEntity> queryable) where TEntity : class, IData
     {
         var startDate = GetStartDate(Request);
@@ -133,6 +149,8 @@ public abstract class BaseController : Controller
 
         return queryable;
     }
+
+    protected abstract Task<bool> HeartbeatTests();
 
     protected async Task<IActionResult> RestoreEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
     {

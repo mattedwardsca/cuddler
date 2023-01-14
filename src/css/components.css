@@ -106,6 +106,9 @@ table tr td > .eux-YesNo {
 .eux-YesNoNa .eux-options label {
   font-weight: normal;
 }
+:focus-visible {
+  outline: none;
+}
 .eux-bg-Danger {
   background: #dc3545;
 }
@@ -2796,18 +2799,15 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   background: var(--ColorThree);
   color: var(--ColorFour);
 }
-:focus-visible {
-  outline: none;
-}
 .eux-CuddlerSaveButton {
   max-width: 200px;
   width: 100%;
 }
-.eux-CuddlerTrashButton {
+.eux-CuddlerCancelButton {
   max-width: 200px;
   width: 100%;
 }
-.eux-CuddlerCancelButton {
+.eux-CuddlerTrashButton {
   max-width: 200px;
   width: 100%;
 }
@@ -2841,21 +2841,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   padding-bottom: 5px;
   padding-left: 24px;
   padding-top: 20px;
-}
-.eux-ActionButton .eux-appmenubuttons {
-  width: 100%;
-}
-
-.eux-ActionButton .eux-appmenubuttons button {
-  width: 100%;
-}
-
-.eux-ActionButton .eux-appmenubuttons .eux-link {
-  border-color: transparent;
-}
-
-.eux-jumbo-size.eux-ActionButton .eux-appmenubuttons .btn {
-  font-size: 20px;
 }
 .eux-ActionMenu .btn.btn-link {
   box-shadow: none;
@@ -2948,6 +2933,21 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   transform: rotate(-135deg);
   width: 20px;
   z-index: 9999;
+}
+.eux-ActionButton .eux-appmenubuttons {
+  width: 100%;
+}
+
+.eux-ActionButton .eux-appmenubuttons button {
+  width: 100%;
+}
+
+.eux-ActionButton .eux-appmenubuttons .eux-link {
+  border-color: transparent;
+}
+
+.eux-jumbo-size.eux-ActionButton .eux-appmenubuttons .btn {
+  font-size: 20px;
 }
 .eux-AppHeader {
   align-content: center;
@@ -3313,18 +3313,18 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   text-decoration: none;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links {
+.eux-appmenu-button .eux-appmenu-cuddler-links {
   display: flex;
   justify-content: center;
   padding: 12px 0 0 0;
   text-align: center;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links a:hover {
+.eux-appmenu-button .eux-appmenu-cuddler-links a:hover {
   text-decoration: none;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links .app-icon {
+.eux-appmenu-button .eux-appmenu-cuddler-links .app-icon {
   align-items: center;
   background: var(--ColorThree);
   border-radius: 10px;
@@ -3338,7 +3338,7 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   width: 75px;
 }
 
-.eux-appmenu-button .eux-appmenu-button-links .eux-appmenu-button-label {
+.eux-appmenu-button .eux-appmenu-cuddler-links .eux-appmenu-button-label {
   color: var(--ColorSix);
   display: block;
   font-size: 16px;
@@ -3534,58 +3534,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   overflow: hidden;
   overflow-wrap: anywhere;
 }
-.eux-Autosave {
-  position: relative;
-}
-
-.eux-Autosave > form > article {
-  display: block;
-}
-
-.eux-Autosave .field-validation {
-  border-radius: 50px;
-  bottom: -2px;
-  display: none;
-  font-size: 10px;
-  padding: 2px 4px 0px 4px;
-  position: absolute;
-  text-transform: uppercase;
-}
-
-.eux-Autosave .field-validation-error {
-  color: darkred;
-  text-align: left;
-}
-
-.eux-Autosave .field-validation-success {
-  background: rgba(0, 0, 0, .2);
-  color: darkgreen;
-  text-align: left;
-}
-.eux-AutosaveButton {
-  max-width: 200px;
-  width: 100%;
-}
-.eux-Backarrow {
-  align-items: center;
-  display: flex;
-}
-
-.eux-Backarrow a.eux-BackArrowWidget-pod {
-  align-content: center;
-  align-items: center;
-  color: inherit;
-  display: inline-flex;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 22px;
-  padding: 3px 8px;
-  text-decoration: none;
-}
-
-.eux-Backarrow a.eux-BackArrowWidget-pod i {
-  margin-right: 5px;
-}
 .eux-Badge a {
   color: inherit;
   text-decoration: none;
@@ -3658,7 +3606,155 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 .eux-Breadcrumbs .eux-BreadcrumbLink:last-child a {
   text-decoration: none !important;
 }
+.bd-callout {
+  background: white;
+  border: 1px solid #eee;
+  border-left-color: #5bc0de;
+  border-left-width: 5px;
+  border-radius: .25rem;
+  margin-bottom: 10px;
+  max-width: 340px;
+  padding: 15px 10px;
+  width: 100%;
+}
 
+.bd-callout h4 {
+  margin-bottom: .25rem;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.bd-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.bd-callout code {
+  border-radius: .25rem;
+}
+
+.bd-callout-primary {
+  border-left-color: #0069D9;
+}
+
+.bd-callout-primary h4 {
+  color: #0069D9;
+}
+
+.bd-callout-info {
+  border-left-color: #5bc0de;
+}
+
+.bd-callout-info h4 {
+  color: #5bc0de;
+}
+
+.bd-callout-warning {
+  border-left-color: #f0ad4e;
+}
+
+.bd-callout-warning h4 {
+  color: #f0ad4e;
+}
+
+.bd-callout-danger {
+  border-left-color: #d9534f;
+}
+
+.bd-callout-danger h4 {
+  color: #d9534f;
+}
+
+.bd-callout .eux-PopupButton {
+  width: 100%;
+}
+
+.bd-callout .eux-ButtonLink {
+  display: block;
+}
+
+.bd-callout .btn {
+  width: 100%;
+}
+
+.bd-callout .eux-nolist li {
+  margin-bottom: 10px;
+}
+
+.bd-callout.eux-w-Medium {
+  width: 612px;
+}
+
+.bd-callout .eux-btn-content > span {
+  font-size: 14px;
+  padding-right: 10px;
+}
+
+@media (max-width: 812px) {
+  .bd-callout {
+    width: 100%;
+  }
+
+  .bd-callout .btn {
+    width: 100%;
+  }
+}
+
+.bd-callout .eux-PopupEditor {
+  display: block;
+}
+
+.eux-CuddlerAutosave {
+  position: relative;
+}
+
+.eux-CuddlerAutosave > form > article {
+  display: block;
+}
+
+.eux-CuddlerAutosave .field-validation {
+  border-radius: 50px;
+  bottom: -2px;
+  display: none;
+  font-size: 10px;
+  padding: 2px 4px 0px 4px;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.eux-CuddlerAutosave .field-validation-error {
+  color: darkred;
+  text-align: left;
+}
+
+.eux-CuddlerAutosave .field-validation-success {
+  background: rgba(0, 0, 0, .2);
+  color: darkgreen;
+  text-align: left;
+}
+.eux-CuddlerAutosaveButton {
+  max-width: 200px;
+  width: 100%;
+}
+.eux-CuddlerBackArrow {
+  align-items: center;
+  display: flex;
+}
+
+.eux-CuddlerBackArrow a.eux-BackArrowWidget-pod {
+  align-content: center;
+  align-items: center;
+  color: inherit;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 22px;
+  padding: 3px 8px;
+  text-decoration: none;
+}
+
+.eux-CuddlerBackArrow a.eux-BackArrowWidget-pod i {
+  margin-right: 5px;
+}
 .d-flex-gap-1 > * {
   margin-right: 5px;
 }
@@ -4599,29 +4695,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   margin: 0;
   width: 228px;
 }
-.eux-CuddlerLink {
-  display: inline-block;
-}
-
-.eux-CuddlerLink a {
-  display: inline-block;
-}
-
-.eux-CuddlerLink a.btn-light {
-  background-color: #eaf0f6;
-  border-color: #cbd6e2;
-  color: #506e91;
-  font-size: 12px;
-}
-
-.eux-CuddlerLink a.btn-warning {
-  color: black;
-}
-
-.eux-CuddlerLink a.eux-link {
-  color: #0069D9;
-  cursor: pointer;
-}
 .eux-Portal .eux-CuddlerPage {
   background: darkgray;
   display: grid;
@@ -4649,6 +4722,29 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 
 .eux-portal main > .eux-CuddlerPage.eux-Page-LightGray {
   background: #EBEBEB;
+}
+.eux-CuddlerLink {
+  display: inline-block;
+}
+
+.eux-CuddlerLink a {
+  display: inline-block;
+}
+
+.eux-CuddlerLink a.btn-light {
+  background-color: #eaf0f6;
+  border-color: #cbd6e2;
+  color: #506e91;
+  font-size: 12px;
+}
+
+.eux-CuddlerLink a.btn-warning {
+  color: black;
+}
+
+.eux-CuddlerLink a.eux-link {
+  color: #0069D9;
+  cursor: pointer;
 }
 .eux-CuddlerPopup.medium .btn.btn-icon {
   background-color: #d4edda;
@@ -4953,7 +5049,7 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   background: var(--ColorFive);
   border-radius: 10px;
   display: flex;
-  padding: 0;
+  padding: 7px 0px 7px 15px;
   max-height: 85px;
   align-self: center;
   overflow: hidden;
@@ -5642,28 +5738,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   border-color: rgba(0, 0, 0, 0.1);
   color: #212529;
 }
-.eux-SectionCardToolbar {
-  background: var(--ColorFive);
-  border: solid 1px rgba(0, 0, 0, 0.2);
-  padding: 5px 4px;
-}
-
-.eux-SectionCardToolbar + .eux-Paper {
-  margin-top: 3px;
-}
-
-.eux-SectionCardToolbar > div {
-  display: flex;
-}
-
-.eux-SectionCardToolbar > div > * {
-  margin: 0 5px;
-}
-
-.eux-SectionCardToolbar .btn {
-  font-size: 12px;
-  padding: 6px;
-}
 .eux-ShortcutButton {
   border-radius: 10px;
   cursor: pointer;
@@ -5725,6 +5799,28 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   padding: 0 10px;
   position: absolute;
   width: 100%;
+}
+.eux-SectionCardToolbar {
+  background: var(--ColorFive);
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  padding: 5px 4px;
+}
+
+.eux-SectionCardToolbar + .eux-Paper {
+  margin-top: 3px;
+}
+
+.eux-SectionCardToolbar > div {
+  display: flex;
+}
+
+.eux-SectionCardToolbar > div > * {
+  margin: 0 5px;
+}
+
+.eux-SectionCardToolbar .btn {
+  font-size: 12px;
+  padding: 6px;
 }
 .eux-SubmitButton .eux-submit-btn {
   min-width: 100px;

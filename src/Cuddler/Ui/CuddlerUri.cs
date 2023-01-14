@@ -179,10 +179,46 @@ public class CuddlerUri<TController> : CuddlerUri
         {
             var type = argument.Type;
 
+            if (argument is MethodCallExpression methodCallExpression)
+            {
+                var isMock = methodCallExpression.Method.DeclaringType?.Name == "Mock";
+
+                if (isMock)
+                {
+                    continue;
+                }
+                
+                // var parameterName = memberExpression.Method.Name;
+                // var objectMember = Expression.Convert(memberExpression, typeof(object));
+                // var getterLambda = Expression.Lambda<Func<object>>(objectMember);
+                // var getter = getterLambda.Compile()
+                //                          .Invoke()
+                //                          .ToString();
+                var b = true;
+            }
+            if (argument is MemberExpression memberExpression )
+            {
+                var isMock = memberExpression.Member.DeclaringType?.Name == "Mock";
+
+                if (isMock)
+                {
+                    continue;
+                }
+
+                // var parameterName = memberExpression.Method.Name;
+                // var objectMember = Expression.Convert(memberExpression, typeof(object));
+                // var getterLambda = Expression.Lambda<Func<object>>(objectMember);
+                // var getter = getterLambda.Compile()
+                //                          .Invoke()
+                //                          .ToString();
+                var b = true;
+            }
+
             if (type.IsClass && type != typeof(string))
             {
                 var obj = GetValue(argument);
-                FormFields.AddRange(FormFieldUtil.ListFormFields(type, obj));
+                var listFormFields = FormFieldUtil.ListFormFields(type, obj);
+                FormFields.AddRange(listFormFields);
             }
         }
 
