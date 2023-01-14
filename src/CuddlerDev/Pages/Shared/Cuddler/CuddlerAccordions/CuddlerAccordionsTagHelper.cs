@@ -30,7 +30,7 @@ public class CuddlerAccordionsTagHelper : TagHelper, ICuddler
     [JsonIgnore]
     public bool ReadOnly { get; set; }
 
-    public List<cuddler-accordionModel> TabList { get; private set; } = null!;
+    public List<CuddlerAccordionTagHelperModel> TabList { get; private set; } = null!;
 
     [JsonIgnore]
     [ViewContext]
@@ -80,9 +80,9 @@ public class CuddlerAccordionsTagHelper : TagHelper, ICuddler
         return JsonSerializer.Deserialize(json, type) ?? Activator.CreateInstance(type)!;
     }
 
-    private static List<cuddler-accordionModel> ParseInnerContent(string innerHtml)
+    private static List<CuddlerAccordionTagHelperModel> ParseInnerContent(string innerHtml)
     {
-        var list = new List<cuddler-accordionModel>();
+        var list = new List<CuddlerAccordionTagHelperModel>();
 
         using StringReader reader = new(innerHtml);
         while (reader.ReadLine() is { } line)

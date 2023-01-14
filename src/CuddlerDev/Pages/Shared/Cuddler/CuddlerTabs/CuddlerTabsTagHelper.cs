@@ -32,7 +32,7 @@ public class CuddlerTabsTagHelper : TagHelper, ICuddler
     [JsonIgnore]
     public bool ReadOnly { get; set; }
 
-    public List<cuddler-tab> TabList { get; private set; } = null!;
+    public List<CuddlerTabTagHelper> TabList { get; private set; } = null!;
 
     public bool TrackHistory { get; set; } = true;
 
@@ -84,9 +84,9 @@ public class CuddlerTabsTagHelper : TagHelper, ICuddler
         return JsonSerializer.Deserialize(json, type) ?? Activator.CreateInstance(type)!;
     }
 
-    private static List<cuddler-tab> ParseInnerContent(string innerHtml)
+    private static List<CuddlerTabTagHelper> ParseInnerContent(string innerHtml)
     {
-        var list = new List<cuddler-tab>();
+        var list = new List<CuddlerTabTagHelper>();
 
         using StringReader reader = new(innerHtml);
         while (reader.ReadLine() is { } line)
