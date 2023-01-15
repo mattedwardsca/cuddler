@@ -1,15 +1,16 @@
 using CuddlerDev.Data.Context;
+using CuddlerDev.Ui;
 using CuddlerDev.Web.Links;
 using CuddlerDev.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CuddlerDev.Web.Controllers;
 
-public abstract class DocumentsController : BaseController
+public abstract class AbstractDocumentsController : BaseController, IApiController
 {
     protected readonly IDocumentsService DocumentsService;
 
-    protected DocumentsController(IRepository repository, IDocumentsService documentsService) : base(repository)
+    protected AbstractDocumentsController(IRepository repository, IDocumentsService documentsService) : base(repository)
     {
         DocumentsService = documentsService;
     }
@@ -62,5 +63,4 @@ public abstract class DocumentsController : BaseController
             return Redirect(ThumbnailLinks.Package);
         }
     }
-
 }

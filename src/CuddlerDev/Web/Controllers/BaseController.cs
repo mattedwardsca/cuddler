@@ -43,6 +43,22 @@ public abstract class BaseController : Controller
                    .Select(selector);
     }
 
+    protected async Task<IActionResult> ActiveEntities<T>(DataSourceRequest request) where T : class, IData
+    {
+        var queryable = Repository.DbSet<T>()
+                                  .Where(w => w.DateArchived == null);
+
+        return Json(await queryable.ToDataSourceResultAsync(request));
+    }
+
+    protected async Task<IActionResult> ArchivedEntities<T>(DataSourceRequest request) where T : class, IData
+    {
+        var queryable = Repository.DbSet<T>()
+                                  .Where(w => w.DateArchived != null);
+
+        return Json(await queryable.ToDataSourceResultAsync(request));
+    }
+
     protected async Task<IActionResult> ArchiveEntity<TEntity>(string id, Func<TEntity, Task<bool>>? boolTask = null) where TEntity : class, IData
     {
         if (string.IsNullOrEmpty(id))

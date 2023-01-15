@@ -1,4 +1,5 @@
-﻿.eux-Toolbar { align-items: center; background: var(--ColorFive); border-radius: 2px; display: flex; padding: 0; max-height: 85px; align-self: center; overflow: hidden; }
-.eux-Toolbar > div { height: 100%; }
-.eux-Toolbar > div > .btn { align-content: center; display: grid; height: 100%;}
-.eux-Toolbar > div > .eux-link { align-content: center; display: grid; height: 100%;  padding: 0 10px;}
+﻿.eux-CuddlerToolbar { align-items: center; align-self: center; background: var(--ColorFive); border-radius: 4px; display: flex; max-height: 85px; min-height: 85px; overflow: hidden; padding: 0 20px; }
+.eux-CuddlerToolbar > div { height: 100%; }
+.eux-CuddlerToolbar > div > .btn { align-content: center; display: grid; height: 100%; }
+.eux-CuddlerToolbar > div > .eux-link { align-content: center; display: grid; height: 100%; padding: 0 10px; }
+.eux-CuddlerToolbar > a.btn { color: inherit; }

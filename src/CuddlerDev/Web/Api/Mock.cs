@@ -1,4 +1,6 @@
-﻿namespace CuddlerDev.Web.Api;
+﻿using Kendo.Mvc.UI;
+
+namespace CuddlerDev.Web.Api;
 
 public static class Mock
 {
@@ -15,6 +17,8 @@ public static class Mock
     public static double Double => 0;
 
     public static DateTime DateTime => DateTime.MinValue;
+
+    public static DataSourceRequest DataSourceRequest => Object<DataSourceRequest>();
 
     public static TModel Object<TModel>()
     {

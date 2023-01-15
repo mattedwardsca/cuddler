@@ -4,7 +4,7 @@ const sourceMap = require("gulp-sourcemaps");
 const concat = require("gulp-concat-css");
 
 const cssFiles = [
-	"../src/Cuddler/Pages/**/!(*.min).css",
+	"../src/CuddlerDev/Pages/**/!(*.min).css",
 ];
 
 const bundle = () => {
@@ -25,7 +25,7 @@ const minify = () => {
 
 const place = () => {
     return src("../src/css/*.*")
-        .pipe(dest("../src/Cuddler/wwwroot/css"));
+        .pipe(dest("../src/CuddlerDev/wwwroot/css"));
 };
 
 const devWatch = () => {

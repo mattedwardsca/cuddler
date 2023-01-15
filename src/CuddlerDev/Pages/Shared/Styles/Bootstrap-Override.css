@@ -3,7 +3,6 @@
 .modal-header .modal-title { color: var(--ColorSix); }
 .modal-header .close { color: var(--ColorSix); }
 a.btn-success { color: #fff !important; }
-.btn { font-size: 14px; }
 .btn.btn-lg { font-size: 22px; }
 .btn-light { border: solid 1px #d3d4d5; color: rgba(0, 0, 0, 0.8); }
 .d-grid-center, .align-center { align-content: center; align-items: center; }

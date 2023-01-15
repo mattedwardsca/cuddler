@@ -1,3 +1,6 @@
+:focus-visible {
+  outline: none;
+}
 .eux-Checkbox {
   margin-top: 3px;
 }
@@ -106,9 +109,6 @@ table tr td > .eux-YesNo {
 .eux-YesNoNa .eux-options label {
   font-weight: normal;
 }
-:focus-visible {
-  outline: none;
-}
 .eux-bg-Danger {
   background: #dc3545;
 }
@@ -154,10 +154,6 @@ table tr td > .eux-YesNo {
 
 a.btn-success {
   color: #fff !important;
-}
-
-.btn {
-  font-size: 14px;
 }
 
 .btn.btn-lg {
@@ -2799,11 +2795,11 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   background: var(--ColorThree);
   color: var(--ColorFour);
 }
-.eux-CuddlerCancelButton {
+.eux-CuddlerSaveButton {
   max-width: 200px;
   width: 100%;
 }
-.eux-CuddlerSaveButton {
+.eux-CuddlerCancelButton {
   max-width: 200px;
   width: 100%;
 }
@@ -2841,21 +2837,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   padding-bottom: 5px;
   padding-left: 24px;
   padding-top: 20px;
-}
-.eux-ActionButton .eux-appmenubuttons {
-  width: 100%;
-}
-
-.eux-ActionButton .eux-appmenubuttons button {
-  width: 100%;
-}
-
-.eux-ActionButton .eux-appmenubuttons .eux-link {
-  border-color: transparent;
-}
-
-.eux-jumbo-size.eux-ActionButton .eux-appmenubuttons .btn {
-  font-size: 20px;
 }
 .eux-ActionMenu .btn.btn-link {
   box-shadow: none;
@@ -2948,6 +2929,21 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   transform: rotate(-135deg);
   width: 20px;
   z-index: 9999;
+}
+.eux-ActionButton .eux-appmenubuttons {
+  width: 100%;
+}
+
+.eux-ActionButton .eux-appmenubuttons button {
+  width: 100%;
+}
+
+.eux-ActionButton .eux-appmenubuttons .eux-link {
+  border-color: transparent;
+}
+
+.eux-jumbo-size.eux-ActionButton .eux-appmenubuttons .btn {
+  font-size: 20px;
 }
 .eux-AppHeader {
   align-content: center;
@@ -4797,6 +4793,9 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 .eux-CuddlerPopup .eux-icon-Edit.btn.btn-icon:hover .fa-pencil {
   color: white;
 }
+.eux-CuddlerPopupUpdate {
+  display: inline-block;
+}
 .d-flex-gap-1 > .eux-CuddlerReplace {
   margin-bottom: 5px;
   margin-right: 5px;
@@ -4937,9 +4936,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 .eux-CuddlerReplace .card .eux-loader-wrapper > * {
   margin-bottom: 1em;
 }
-.eux-CuddlerPopupUpdate {
-  display: inline-block;
-}
 .eux-CuddlerSubmitButton .eux-submit-btn {
   min-width: 100px;
 }
@@ -5044,32 +5040,37 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
 .eux-CuddlerTabs .tab-pane {
   padding: 20px;
 }
-.eux-Toolbar {
+.eux-CuddlerToolbar {
   align-items: center;
-  background: var(--ColorFive);
-  border-radius: 2px;
-  display: flex;
-  padding: 0;
-  max-height: 85px;
   align-self: center;
+  background: var(--ColorFive);
+  border-radius: 4px;
+  display: flex;
+  max-height: 85px;
+  min-height: 85px;
   overflow: hidden;
+  padding: 0 20px;
 }
 
-.eux-Toolbar > div {
+.eux-CuddlerToolbar > div {
   height: 100%;
 }
 
-.eux-Toolbar > div > .btn {
+.eux-CuddlerToolbar > div > .btn {
   align-content: center;
   display: grid;
   height: 100%;
 }
 
-.eux-Toolbar > div > .eux-link {
+.eux-CuddlerToolbar > div > .eux-link {
   align-content: center;
   display: grid;
   height: 100%;
   padding: 0 10px;
+}
+
+.eux-CuddlerToolbar > a.btn {
+  color: inherit;
 }
 .eux-CuddlerArchiveWarning {
   left: 0;
@@ -5087,7 +5088,6 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   margin: 20px 0;
 }
 
-
 .eux-FlexRow {
   display: flex;
 }
@@ -5101,6 +5101,7 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
 }
+
 .eux-FormField {
   display: block;
 }
@@ -5931,7 +5932,7 @@ main .eux-SpecialTabs .nav-tabs .nav-link:hover {
   cursor: pointer;
 }
 
-.eux-Toolbar .eux-Today {
+.eux-CuddlerToolbar .eux-Today {
   margin: 10px 15px;
 }
 .eux-ToggleWidget > label {
