@@ -51,7 +51,7 @@ public abstract class AppBase : IApp
 
     private static string ConvertToMd5HashGuid(string? value)
     {
-        // convert null to empty string - null can not be hashed
+        // convert null to empty string - null cannot be hashed
         value ??= string.Empty;
 
         // get the byte representation
