@@ -15,4 +15,6 @@ public interface IAddressService
     IQueryable<AddressEntity> ListShippingAddresses(string contextId);
 
     AddressEntity SaveAddress(IAddress model, string contextId, string contextType, EAddressType addressType);
+    
+    AddressEntity GetAddress(string addressId);
 }
